@@ -1,0 +1,16 @@
+{
+	"name": "Dark Pesto",
+	"description": "Dark Pesto stands for Dark Pattern ExpoSure and inTerventiOn. A chrome plugin aiming at intervention for dark patterns on websites.",
+	"version": "0.0.0",
+	"manifest_version": 3,
+	"content_scripts": [
+        {
+            "matches": [
+                "https://www.amazon.com/*"
+            ],
+            "js": [
+                "background.js"
+            ]
+        }
+    ]
+}
