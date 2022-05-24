@@ -1,6 +1,6 @@
 {
-	"name": "Dark Pesto",
-	"description": "Dark Pesto stands for Dark Pattern ExpoSure and inTerventiOn. A chrome plugin aiming at intervention for dark patterns on websites.",
+	"name": "Dark Pita",
+	"description": "Dark Pita stands for Dark Pattern Intervention for Transparency and Awareness. A chrome plugin aiming at intervention for dark patterns on websites.",
 	"version": "0.0.0",
 	"manifest_version": 3,
 	"content_scripts": [
@@ -9,7 +9,7 @@
                 "https://www.amazon.com/*"
             ],
             "js": [
-                "background.js"
+                "amazon.js"
             ]
         }
     ]
