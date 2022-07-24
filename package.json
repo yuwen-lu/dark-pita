@@ -1,0 +1,27 @@
+{
+  "name": "dark-pita",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite build --mode developmemnt",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "node-sass": "^7.0.1",
+    "sass-loader": "^13.0.2",
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@iconify/json": "^1.1.387",
+    "@vitejs/plugin-vue": "^1.3.0",
+    "@vue/compiler-sfc": "^3.0.5",
+    "autoprefixer": "^10.3.1",
+    "postcss": "^8.3.6",
+    "sass": "^1.54.0",
+    "tailwindcss": "^2.2.7",
+    "vite": "^2.4.4",
+    "vite-plugin-chrome-extension": "^0.0.7",
+    "vite-plugin-components": "^0.13.2",
+    "vite-plugin-icons": "^0.6.5"
+  }
+}
