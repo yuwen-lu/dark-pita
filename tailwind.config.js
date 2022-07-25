@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        dark: '#333333'
+        dark: '#333333',
+        money: '#FABC05'
       },
       fontFamily: {
         menlo: ['Menlo'],
@@ -15,7 +16,7 @@ module.exports = {
       },
       zIndex: {
         '999': '999',
-        'infinite': 'infinite'
+        'infinite': '100003'
       }
     }
   },

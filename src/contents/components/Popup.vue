@@ -1,6 +1,6 @@
 <template>
   <div class="popup">
-    <header>
+    <header class="header">
       <p>DARK PITA</p>
       <svg
         width="24"
@@ -11,96 +11,47 @@
       >
         <path
           d="m4.397 4.554.073-.084a.75.75 0 0 1 .976-.073l.084.073L12 10.939l6.47-6.47a.75.75 0 1 1 1.06 1.061L13.061 12l6.47 6.47a.75.75 0 0 1 .072.976l-.073.084a.75.75 0 0 1-.976.073l-.084-.073L12 13.061l-6.47 6.47a.75.75 0 0 1-1.06-1.061L10.939 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084-.073.084Z"
-          fill="#212121"
+          fill="#FFFFFF"
         />
       </svg>
     </header>
-    <body>
-      <div>
-        <img src="" />
-        <h1>Financial Loss</h1>
-      </div>
-      <div>
-        <h2>Loss-gain framing</h2>
-        <p>
-          A selective disclosure of information that positively frames the
-          consequences of an action, while omitting the entailed risks.
-        </p>
-      </div>
-      <div>
-        <h2>Awareness <a>- Threats</a></h2>
-        <p>
-          If I am manipulated by this item, I will have a high chance of
-          purchasing this item. If I purchase this item, I would not break even.
-        </p>
-      </div>
-      <div>
-        <h2>Action <a>- Intervention Desgn</a></h2>
-        <button
-          id="dropdownDefault"
-          data-dropdown-toggle="dropdown"
-          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          type="button"
-        >
-          Dropdown button
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4.22 8.47a.75.75 0 0 1 1.06 0L12 15.19l6.72-6.72a.75.75 0 1 1 1.06 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L4.22 9.53a.75.75 0 0 1 0-1.06Z"
-              fill="#212121"
-            />
-          </svg>
-        </button>
-        <!-- Dropdown menu -->
-        <div
-          id="dropdown"
-          class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
-        >
-          <ul
-            class="py-1 text-sm text-gray-700 dark:text-gray-200"
-            aria-labelledby="dropdownDefault"
-          >
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Dashboard</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Settings</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Earnings</a
-              >
-            </li>
-            <li>
-              <a
-                href="#"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >Sign out</a
-              >
-            </li>
-          </ul>
+    <div class="body">
+      <div class="section">
+        <div class="title">
+          <img
+            src="https://raw.githubusercontent.com/yuwen-lu/dark-pita/main/public/images/money.png?token=GHSAT0AAAAAABWHHBVOW6YR7AGJMIWLJDUUYW6VDUA"
+          />
+          <h1>Financial Loss</h1>
         </div>
-        <p>
-          If I am manipulated by this item, I will have a high chance of
-          purchasing this item. If I purchase this item, I would not break even.
-        </p>
+        <div class="introduction">
+          <h2>Loss-gain framing</h2>
+          <p>
+            A selective disclosure of information that positively frames the
+            consequences of an action, while omitting the entailed risks.
+          </p>
+        </div>
+        <div class="subtitle">
+          <h2>Awareness <span>- Threats</span></h2>
+          <div class="description">
+            <p>
+              If I am manipulated by this item, I will have a high chance of
+              purchasing this item. If I purchase this item, I would not break
+              even.
+            </p>
+          </div>
+        </div>
+        <div class="subtitle">
+          <h2>Action <span>- Intervention Desgn</span></h2>
+          <div class="description">
+            <p>
+              If I am manipulated by this item, I will have a high chance of
+              purchasing this item. If I purchase this item, I would not break
+              even.
+            </p>
+          </div>
+        </div>
       </div>
-    </body>
+    </div>
   </div>
 </template>
 
@@ -119,6 +70,76 @@ export default {
 
 <style lang="scss" scoped>
 .popup {
-  @apply bg-dark;
+  @apply flex flex-col justify-center items-center p-0 shadow-sm;
+
+  width: 230px;
+}
+
+.header {
+  @apply flex flex-row items-start px-3 py-2 bg-dark opacity-100;
+
+  gap: 132px;
+  width: 230px;
+
+  p {
+    @apply font-cabin font-bold text-xs leading-4 text-white;
+  }
+
+  svg {
+    @apply w-4 h-4;
+  }
+}
+.body {
+  @apply box-border flex flex-col items-end px-3 py-3 gap-2 border-t-2 border-solid border-money bg-dark opacity-90 backdrop-filter backdrop-blur-sm;
+
+  width: 230px;
+
+  .section {
+    @apply flex flex-col items-start p-0 gap-4;
+
+    .title {
+      @apply flex flex-row items-center p-0 gap-2;
+
+      img {
+        @apply w-8 h-8;
+      }
+
+      h1 {
+        @apply font-cabin font-normal text-xl leading-6 text-white;
+      }
+    }
+
+    .introduction {
+      @apply flex flex-col items-start p-0 gap-1;
+
+      > h2 {
+        @apply font-cabin font-normal text-xs uppercase text-money;
+      }
+
+      p {
+        @apply font-cabin font-medium text-xs text-white;
+      }
+    }
+
+    .subtitle {
+      @apply flex flex-col items-start p-0 gap-1;
+
+      > h2 {
+        @apply font-cabin font-normal text-xs uppercase text-white;
+
+        span {
+          @apply font-cabin font-normal text-xs uppercase text-white opacity-50;
+        }
+      }
+    }
+
+    .description {
+      @apply box-border p-2 gap-2 bg-dark border-2 border-solid border-money;
+
+      > p {
+        @apply font-cabin italic font-medium text-xs text-white;
+      }
+    }
+  }
 }
 </style>

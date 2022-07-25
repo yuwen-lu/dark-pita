@@ -2,7 +2,7 @@
   <div>
     <div class="status" v-show="visible">
       <p>Dark Pita is on...</p>
-      <button @click="highlight" class="button">button</button>
+      <button @click="highlight" class="button">hightlight</button>
     </div>
 
     <Popup class="popup" :text="text" v-show="visible" />
@@ -40,16 +40,16 @@ export default {
 
 <style lang="scss" scoped>
 .status {
-  @apply fixed top-0 left-0 bg-dark px-6 py-3 w-auto z-999;
+  @apply fixed top-0 left-0 bg-dark px-6 py-3 w-auto z-infinite;
 
   p {
     @apply m-0 font-menlo text-white text-xs;
   }
 }
 .button {
-  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+  @apply bg-blue-500 hover:bg-blue-700 font-menlo text-white text-xs py-2 px-4 rounded mt-4;
 }
 .popup {
-  @apply fixed top-64 left-12;
+  @apply fixed top-64 left-12 z-infinite;
 }
 </style>
