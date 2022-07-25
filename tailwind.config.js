@@ -12,6 +12,10 @@ module.exports = {
       fontFamily: {
         menlo: ['Menlo'],
         cabin: ['Cabin']
+      },
+      zIndex: {
+        '999': '999',
+        'infinite': 'infinite'
       }
     }
   },
