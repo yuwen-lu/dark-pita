@@ -16,7 +16,9 @@ module.exports = {
       },
       zIndex: {
         '999': '999',
-        'infinite': '100003'
+        overlay: '99999',
+        extension: '999999',
+        infinite: '9999999'
       }
     }
   },

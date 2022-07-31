@@ -18,9 +18,7 @@
     <div class="body">
       <div class="section">
         <div class="title">
-          <img
-            src="https://raw.githubusercontent.com/yuwen-lu/dark-pita/main/public/images/money.png?token=GHSAT0AAAAAABWHHBVOW6YR7AGJMIWLJDUUYW6VDUA"
-          />
+          <img :src="money" />
           <h1>Financial Loss</h1>
         </div>
         <div class="introduction">
@@ -56,6 +54,8 @@
 </template>
 
 <script>
+import money from '@/assets/images/money.png';
+
 export default {
   name: 'Popup',
   props: {

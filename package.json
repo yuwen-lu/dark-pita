@@ -7,7 +7,9 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "driver.js": "^0.9.8",
     "node-sass": "^7.0.1",
+    "paper": "^0.12.15",
     "sass-loader": "^13.0.2",
     "vue": "^3.0.5"
   },
