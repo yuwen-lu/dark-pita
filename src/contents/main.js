@@ -18,12 +18,9 @@ document.body.appendChild(mountEl);
 
 const app = createApp(App).mount(mountEl);
 
-console.log('hello from content');
-chrome.runtime.onMessage.addListener((message) => {
-  if (message.toggleVisible) {
-    app.visible = !app.visible;
-
-    // const driver = new Driver({ allowClose: false });
-    // driver.highlight('#header');
-  }
-});
+// console.log('hello from content');
+// chrome.runtime.onMessage.addListener((message) => {
+//   if (message.toggleVisible) {
+//     app.visible = !app.visible;
+//   }
+// });

@@ -23,7 +23,7 @@
       "action": [
         { "name": "hide / disable", "image": "https://", "component": "" },
         { "name": "detection", "image": "https://", "component": "" },
-        { "name": "bright pattern ", "image": "https://", "component": "" }
+        { "name": "bright pattern", "image": "https://", "component": "" }
       ]
     }
   ],
@@ -38,7 +38,7 @@
       "action": [
         { "name": "hide / disable", "image": "https://", "component": "" },
         { "name": "detection", "image": "https://", "component": "" },
-        { "name": "bright pattern ", "image": "https://", "component": "" }
+        { "name": "bright pattern", "image": "https://", "component": "" }
       ]
     },
     {
@@ -51,7 +51,7 @@
       "action": [
         { "name": "hide / disable", "image": "https://", "component": "" },
         { "name": "detection", "image": "https://", "component": "" },
-        { "name": "bright pattern ", "image": "https://", "component": "" }
+        { "name": "bright pattern", "image": "https://", "component": "" }
       ]
     }
   ]

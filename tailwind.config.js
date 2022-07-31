@@ -6,12 +6,15 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontSize: {
+        '2xs': ['10px', '12px']
+      },
       colors: {
-        dark: '#333333',
+        background: '#333333',
+        dark: '#2C2C2C',
         money: '#FABC05'
       },
       fontFamily: {
-        menlo: ['Menlo'],
         cabin: ['Cabin']
       },
       zIndex: {
@@ -19,6 +22,13 @@ module.exports = {
         overlay: '99999',
         extension: '999999',
         infinite: '9999999'
+      },
+      transitionProperty: {
+        left: 'left'
+      },
+      transitionDelay: {
+        '0': '0ms',
+        '2000': '2000ms'
       }
     }
   },

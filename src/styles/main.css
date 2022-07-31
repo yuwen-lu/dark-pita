@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Menlo';
-  src: url('../../public/fonts/Menlo.ttc');
-}
-
-@font-face {
   font-family: 'Cabin';
   src: url('../../public/fonts/Cabin-Regular.ttf') format('truetype');
   font-weight: normal;

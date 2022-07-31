@@ -1,46 +1,71 @@
 <template>
   <div id="wrapper">
-    <div class="status" v-show="visible">
-      <p>Dark Pita is on...</p>
-      <button @click="generateOverviewOverlay" class="button">
-        hightlight
+    <div class="DP_header" v-show="isAlert">
+      <div class="DP_alert">
+        <img
+          src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dawn.png?v=1659250496384"
+        />
+        <p>
+          <span>Dark Pita</span> detected dark patterns on this site that may be
+          affecting your personal wellbeing
+        </p>
+        <button @click="show">
+          Show All
+        </button>
+      </div>
+
+      <button @click="close">
+        <svg
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="m4.397 4.554.073-.084a.75.75 0 0 1 .976-.073l.084.073L12 10.939l6.47-6.47a.75.75 0 1 1 1.06 1.061L13.061 12l6.47 6.47a.75.75 0 0 1 .072.976l-.073.084a.75.75 0 0 1-.976.073l-.084-.073L12 13.061l-6.47 6.47a.75.75 0 0 1-1.06-1.061L10.939 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084-.073.084Z"
+            fill="#FFFFFF"
+          />
+        </svg>
       </button>
     </div>
 
-    <Popup class="popup" v-show="visible" :text="text" />
+    <Popup class="DP_popup" v-show="isPop" :text="text" />
 
-    <canvas resize id="main-canvas" style="display:none"></canvas>
+    <canvas resize id="main_canvas" style="display:none"></canvas>
 
-    <div id="mask" class="mask" v-show="visible"></div>
+    <div id="mask" class="DP_mask"></div>
 
     <div
       v-for="(val, index) in ids"
       :key="index"
       :id="'DP_' + val"
-      class="boundingBox"
+      class="DP_bounding_box"
+      @click="togglePopup"
     ></div>
   </div>
 </template>
 
 <script>
 import Popup from '@/contents/components/Popup.vue';
-import Driver from 'driver.js';
-import 'driver.js/dist/driver.min.css';
 import Paper from 'paper';
+// import Driver from 'driver.js';
+// import 'driver.js/dist/driver.min.css';
 
 export default {
   data() {
     return {
       ids: ['header', 'basic-usage'],
       boundingBoxList: [],
-      visible: false,
+      isAlert: true,
+      isPop: false,
       popUpX: 0,
       popUpY: 0,
       text: '',
       overlayPath: '',
       overlayWidth: document.body.clientWidth,
-      overlayHeight: document.body.clientHeight,
-      driver: new Driver({ allowClose: false })
+      overlayHeight: document.body.clientHeight
+      // driver: new Driver({ allowClose: false })
     };
   },
   components: {
@@ -48,8 +73,11 @@ export default {
   },
   computed: {},
   methods: {
-    highlight() {
-      this.driver.highlight('#header');
+    // highlight() {
+    //   this.driver.highlight('#header');
+    // },
+    show() {
+      this.generateOverviewOverlay();
     },
     generateTouchableArea() {
       document.body.style.position = 'relative';
@@ -157,40 +185,58 @@ export default {
         this.boundingBoxList.push(boundingBox);
       }
     },
+    togglePopup() {
+      this.isPop = !this.isPop;
+    },
     refresh() {
       this.overlayWidth = document.body.clientWidth;
       this.overlayHeight = document.body.clientHeight;
       this.getboundingBoxList();
+    },
+    close() {
+      this.isAlert = false;
     }
   },
   mounted() {
     console.log('mounted');
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.generateOverviewOverlay);
-    Paper.setup(document.getElementById('main-canvas'));
+    Paper.setup(document.getElementById('main_canvas'));
     this.getboundingBoxList();
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.status {
-  @apply fixed top-0 left-0 bg-dark px-6 py-3 w-auto z-extension;
+.DP_header {
+  @apply fixed w-full top-0 left-0 z-extension;
 
-  p {
-    @apply m-0 font-menlo text-white text-xs;
+  svg {
+    @apply absolute top-4 right-4;
   }
 }
-.button {
-  @apply bg-blue-500 hover:bg-blue-700 font-menlo text-white text-xs py-2 px-4 rounded mt-4;
+.DP_alert {
+  @apply bg-dark w-full py-3 flex flex-row justify-center items-center gap-4 border-b border-gray-400;
+
+  p {
+    @apply font-cabin font-medium text-base text-white;
+
+    span {
+      @apply font-semibold uppercase;
+    }
+  }
+
+  button {
+    @apply bg-transparent hover:bg-white font-cabin font-normal text-xs text-white hover:text-dark px-6 py-2 rounded border;
+  }
 }
-.popup {
-  @apply fixed top-64 left-12 z-extension;
+.DP_popup {
+  @apply fixed z-extension;
 }
-.mask {
+.DP_mask {
   @apply absolute left-0 top-0 z-overlay;
 }
-.boundingBox {
+.DP_bounding_box {
   @apply absolute bg-transparent rounded border-2 border-transparent hover:border-blue-500 z-overlay;
 }
 </style>
