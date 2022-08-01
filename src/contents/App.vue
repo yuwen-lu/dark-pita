@@ -9,12 +9,15 @@
           <span>Dark Pita</span> detected dark patterns on this site that may be
           affecting your personal wellbeing
         </p>
-        <button @click="show">
+        <button @click="toggleMask" v-if="!isMask">
           Show All
+        </button>
+        <button @click="toggleMask" v-if="isMask">
+          Close
         </button>
       </div>
 
-      <button @click="close">
+      <button @click="closeAlert">
         <svg
           width="24"
           height="24"
@@ -30,18 +33,26 @@
       </button>
     </div>
 
-    <Popup class="DP_popup" v-show="isPop" :text="text" />
+    <Popup
+      class="DP_popup"
+      v-show="isPop"
+      :left="popupX"
+      :top="popupY"
+      :key="popupX"
+      @closePop="closePop"
+    />
 
     <canvas resize id="main_canvas" style="display:none"></canvas>
 
-    <div id="mask" class="DP_mask"></div>
+    <div id="mask" class="DP_mask" v-show="isMask"></div>
 
     <div
-      v-for="(val, index) in ids"
+      v-for="(value, index) in ids"
       :key="index"
-      :id="'DP_' + val"
+      :id="'DP_' + value"
       class="DP_bounding_box"
-      @click="togglePopup"
+      @click="togglePopup($event, value)"
+      v-show="isMask"
     ></div>
   </div>
 </template>
@@ -59,8 +70,9 @@ export default {
       boundingBoxList: [],
       isAlert: true,
       isPop: false,
-      popUpX: 0,
-      popUpY: 0,
+      isMask: false,
+      popupX: 0,
+      popupY: 0,
       text: '',
       overlayPath: '',
       overlayWidth: document.body.clientWidth,
@@ -76,14 +88,21 @@ export default {
     // highlight() {
     //   this.driver.highlight('#header');
     // },
-    show() {
-      this.generateOverviewOverlay();
+    toggleMask() {
+      if (this.isMask === false) {
+        this.isMask = true;
+        this.generateOverviewOverlay();
+      } else {
+        this.isMask = false;
+        let mask = document.getElementById('mask');
+        mask.innerHTML = '';
+      }
     },
     generateTouchableArea() {
       document.body.style.position = 'relative';
       for (let i = 0; i < this.ids.length; i++) {
-        let elt = document.getElementById(this.ids[i]);
-        let boundingBox = this.getboundingBox(elt);
+        let element = document.getElementById(this.ids[i]);
+        let boundingBox = this.getboundingBox(element);
 
         let id = boundingBox.id;
         let left = boundingBox.x + 'px';
@@ -94,21 +113,21 @@ export default {
         this.generateSpotlightOverlay(id, left, top, width, height, opacity);
       }
     },
-    getElementAbsPos(elt) {
-      let i = elt.id;
-      let t = elt.offsetTop;
-      let l = elt.offsetLeft;
-      while ((elt = elt.offsetParent)) {
-        t += elt.offsetTop;
-        l += elt.offsetLeft;
+    getElementAbsPos(element) {
+      let i = element.id;
+      let t = element.offsetTop;
+      let l = element.offsetLeft;
+      while ((element = element.offsetParent)) {
+        t += element.offsetTop;
+        l += element.offsetLeft;
       }
       return { id: i, left: l, top: t };
     },
-    getboundingBox(elt) {
-      let i = elt.id;
-      let w = elt.offsetWidth;
-      let h = elt.offsetHeight;
-      let pos = this.getElementAbsPos(elt);
+    getboundingBox(element) {
+      let i = element.id;
+      let w = element.offsetWidth;
+      let h = element.offsetHeight;
+      let pos = this.getElementAbsPos(element);
       let offset = 10;
       return {
         id: i,
@@ -125,22 +144,19 @@ export default {
       boundingBox.style.width = width;
       boundingBox.style.height = height;
       boundingBox.style.opacity = opacity;
-      boundingBox.onclick = () => {
-        console.log('boundingBox clicked');
-      };
     },
     handleScroll() {
       let scrollTop =
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      console.log('Scrolling distance from top:', scrollTop);
+      console.log('scrolling distance from top:', scrollTop);
     },
     generateOverviewOverlay() {
-      console.log('generate overview overlay');
+      console.log('generate overlay');
 
       this.refresh();
-      console.log(this.boundingBoxList);
+      // console.log(this.boundingBoxList);
       let mask = document.getElementById('mask');
       mask.innerHTML = '';
 
@@ -180,25 +196,37 @@ export default {
     getboundingBoxList() {
       this.boundingBoxList = [];
       for (let i = 0; i < this.ids.length; i++) {
-        let elt = document.getElementById(this.ids[i]);
-        let boundingBox = this.getboundingBox(elt);
+        let element = document.getElementById(this.ids[i]);
+        let boundingBox = this.getboundingBox(element);
         this.boundingBoxList.push(boundingBox);
       }
-    },
-    togglePopup() {
-      this.isPop = !this.isPop;
     },
     refresh() {
       this.overlayWidth = document.body.clientWidth;
       this.overlayHeight = document.body.clientHeight;
       this.getboundingBoxList();
     },
-    close() {
+    togglePopup(event, value) {
+      console.log(value);
+      this.isPop = false;
+
+      let rect = event.target.getBoundingClientRect();
+      this.popupX = rect.left - 20;
+      this.popupY = rect.top - 20;
+      this.isPop = true;
+    },
+    closeAlert() {
       this.isAlert = false;
+    },
+    closePop(value) {
+      this.isPop = false;
+      this.isMask = false;
+      let mask = document.getElementById('mask');
+      mask.innerHTML = '';
     }
   },
   mounted() {
-    console.log('mounted');
+    console.log('popup mounted');
     window.addEventListener('scroll', this.handleScroll);
     window.addEventListener('resize', this.generateOverviewOverlay);
     Paper.setup(document.getElementById('main_canvas'));
@@ -215,6 +243,7 @@ export default {
     @apply absolute top-4 right-4;
   }
 }
+
 .DP_alert {
   @apply bg-dark w-full py-3 flex flex-row justify-center items-center gap-4 border-b border-gray-400;
 
@@ -227,15 +256,18 @@ export default {
   }
 
   button {
-    @apply bg-transparent hover:bg-white font-cabin font-normal text-xs text-white hover:text-dark px-6 py-2 rounded border;
+    @apply bg-transparent w-24 hover:bg-white font-cabin font-normal text-xs text-white hover:text-dark px-6 py-2 rounded border;
   }
 }
+
 .DP_popup {
   @apply fixed z-extension;
 }
+
 .DP_mask {
   @apply absolute left-0 top-0 z-overlay;
 }
+
 .DP_bounding_box {
   @apply absolute bg-transparent rounded border-2 border-transparent hover:border-blue-500 z-overlay;
 }
