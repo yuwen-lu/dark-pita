@@ -1,6 +1,6 @@
 <template>
   <div id="wrapper">
-    <div class="DP_header" v-show="isAlert">
+    <div class="DP_heading" v-show="isAlert">
       <div class="DP_alert">
         <img
           src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dawn.png?v=1659250496384"
@@ -38,7 +38,9 @@
       v-show="isPop"
       :left="popupX"
       :top="popupY"
-      :key="popupX"
+      :key="timer"
+      :target="currentTarget"
+      :targetId="currentTargetId"
       @closePop="closePop"
     />
 
@@ -47,18 +49,19 @@
     <div id="mask" class="DP_mask" v-show="isMask"></div>
 
     <div
-      v-for="(value, index) in ids"
+      v-for="(value, index) in targets"
       :key="index"
-      :id="'DP_' + value"
+      :id="'DP_i_' + value"
       class="DP_bounding_box"
-      @click="togglePopup($event, value)"
+      @click="togglePopup($event, value, index)"
       v-show="isMask"
     ></div>
   </div>
 </template>
 
 <script>
-import Popup from '@/contents/components/Popup.vue';
+import INDEX from '@/contents/index.js';
+import Popup from '@/contents/components/basic/Popup.vue';
 import Paper from 'paper';
 // import Driver from 'driver.js';
 // import 'driver.js/dist/driver.min.css';
@@ -66,7 +69,13 @@ import Paper from 'paper';
 export default {
   data() {
     return {
-      ids: ['header', 'basic-usage'],
+      timer: null,
+      currentTab: null,
+      info: [],
+      label: 'id',
+      targets: [],
+      currentTarget: {},
+      currentTargetId: 0,
       boundingBoxList: [],
       isAlert: true,
       isPop: false,
@@ -75,8 +84,14 @@ export default {
       popupY: 0,
       text: '',
       overlayPath: '',
-      overlayWidth: document.body.clientWidth,
-      overlayHeight: document.body.clientHeight
+      overlayWidth: Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+      ),
+      overlayHeight: Math.max(
+        document.documentElement.clientHeight || 0,
+        window.innerHeight || 0
+      )
       // driver: new Driver({ allowClose: false })
     };
   },
@@ -89,6 +104,7 @@ export default {
     //   this.driver.highlight('#header');
     // },
     toggleMask() {
+      this.refresh();
       if (this.isMask === false) {
         this.isMask = true;
         this.generateOverviewOverlay();
@@ -100,45 +116,18 @@ export default {
     },
     generateTouchableArea() {
       document.body.style.position = 'relative';
-      for (let i = 0; i < this.ids.length; i++) {
-        let element = document.getElementById(this.ids[i]);
-        let boundingBox = this.getboundingBox(element);
-
-        let id = boundingBox.id;
-        let left = boundingBox.x + 'px';
-        let top = boundingBox.y + 'px';
-        let width = boundingBox.width + 'px';
-        let height = boundingBox.height + 'px';
+      for (let i = 0; i < this.boundingBoxList.length; i++) {
+        let id = this.boundingBoxList[i].id;
+        let left = this.boundingBoxList[i].x + 'px';
+        let top = this.boundingBoxList[i].y + 'px';
+        let width = this.boundingBoxList[i].width + 'px';
+        let height = this.boundingBoxList[i].height + 'px';
         let opacity = 1;
         this.generateSpotlightOverlay(id, left, top, width, height, opacity);
       }
     },
-    getElementAbsPos(element) {
-      let i = element.id;
-      let t = element.offsetTop;
-      let l = element.offsetLeft;
-      while ((element = element.offsetParent)) {
-        t += element.offsetTop;
-        l += element.offsetLeft;
-      }
-      return { id: i, left: l, top: t };
-    },
-    getboundingBox(element) {
-      let i = element.id;
-      let w = element.offsetWidth;
-      let h = element.offsetHeight;
-      let pos = this.getElementAbsPos(element);
-      let offset = 10;
-      return {
-        id: i,
-        x: pos.left - offset,
-        y: pos.top - offset,
-        width: w + 2 * offset,
-        height: h + 2 * offset
-      };
-    },
     generateSpotlightOverlay(id, left, top, width, height, opacity = 0.5) {
-      let boundingBox = document.getElementById('DP_' + id);
+      let boundingBox = document.getElementById('DP_i_' + id);
       boundingBox.style.left = left;
       boundingBox.style.top = top;
       boundingBox.style.width = width;
@@ -156,7 +145,6 @@ export default {
       console.log('generate overlay');
 
       this.refresh();
-      // console.log(this.boundingBoxList);
       let mask = document.getElementById('mask');
       mask.innerHTML = '';
 
@@ -193,27 +181,59 @@ export default {
       this.generateTouchableArea();
       // console.log(this.overlayPath);
     },
-    getboundingBoxList() {
+    getBoundingBoxList() {
       this.boundingBoxList = [];
-      for (let i = 0; i < this.ids.length; i++) {
-        let element = document.getElementById(this.ids[i]);
-        let boundingBox = this.getboundingBox(element);
+      for (let i = 0; i < this.targets.length; i++) {
+        let element;
+        if (this.label === 'id') {
+          element = document.getElementById(this.targets[i]);
+        } else if (this.label === 'aria-label') {
+          element = document.querySelector(
+            '[aria-label="' + this.targets[i] + '"]'
+          );
+        }
+
+        let boundingBox = element.getBoundingClientRect();
+        boundingBox.id = this.targets[i];
+        boundingBox.x = boundingBox.x - 10;
+        boundingBox.y = boundingBox.y - 10;
+        boundingBox.width = boundingBox.width + 20;
+        boundingBox.height = boundingBox.height + 20;
         this.boundingBoxList.push(boundingBox);
       }
+      // console.log(this.boundingBoxList);
     },
     refresh() {
-      this.overlayWidth = document.body.clientWidth;
-      this.overlayHeight = document.body.clientHeight;
-      this.getboundingBoxList();
+      this.overlayWidth = Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+      );
+      this.overlayHeight = Math.max(
+        document.documentElement.clientHeight || 0,
+        window.innerHeight || 0
+      );
+      this.getBoundingBoxList();
     },
-    togglePopup(event, value) {
+    togglePopup(event, value, index) {
       console.log(value);
       this.isPop = false;
+      this.currentTarget = this.info[index];
+      this.currentTargetId = index;
 
-      let rect = event.target.getBoundingClientRect();
-      this.popupX = rect.left - 20;
-      this.popupY = rect.top - 20;
+      let target = event.target.getBoundingClientRect();
+      if (target.x > this.overlayWidth / 2) {
+        this.popupX = target.x - 100;
+      } else {
+        this.popupX = target.x + 100;
+      }
+      if (target.y > this.overlayHeight / 2) {
+        this.popupY = target.y - 200;
+      } else {
+        this.popupY = target.y + 200;
+      }
+
       this.isPop = true;
+      this.timer = new Date().getTime();
     },
     closeAlert() {
       this.isAlert = false;
@@ -227,16 +247,35 @@ export default {
   },
   mounted() {
     console.log('popup mounted');
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.generateOverviewOverlay);
     window.addEventListener('resize', this.generateOverviewOverlay);
     Paper.setup(document.getElementById('main_canvas'));
-    this.getboundingBoxList();
+    chrome.runtime.sendMessage({ type: 'POPUP_INIT' }, async (tab) => {
+      this.currentTab = await tab;
+      console.log(this.currentTab.url);
+
+      let url = this.currentTab.url;
+      if (url.search(/tailwindcss.com/) !== -1) {
+        this.label = 'id';
+        this.info = INDEX.tailwind;
+      } else if (url.search(/twitter.com/) !== -1) {
+        this.label = 'aria-label';
+        this.info = INDEX.twitter;
+      }
+
+      for (let target of this.info) {
+        this.targets.push(target.id);
+      }
+
+      this.currentTarget = this.info[0];
+      this.currentTargetId = 0;
+    });
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.DP_header {
+.DP_heading {
   @apply fixed w-full top-0 left-0 z-extension;
 
   svg {
@@ -265,10 +304,10 @@ export default {
 }
 
 .DP_mask {
-  @apply absolute left-0 top-0 z-overlay;
+  @apply fixed left-0 top-0 z-overlay;
 }
 
 .DP_bounding_box {
-  @apply absolute bg-transparent rounded border-2 border-transparent hover:border-blue-500 z-overlay;
+  @apply fixed bg-transparent rounded border-2 border-transparent hover:border-blue-500 z-overlay;
 }
 </style>

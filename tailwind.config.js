@@ -12,7 +12,9 @@ module.exports = {
       colors: {
         background: '#333333',
         dark: '#2C2C2C',
-        money: '#FABC05'
+        money: '#FABC05',
+        privacy: '#6FCF97',
+        cognition: '#56CCF2'
       },
       fontFamily: {
         cabin: ['Cabin']

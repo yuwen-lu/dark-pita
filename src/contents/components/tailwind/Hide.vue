@@ -10,6 +10,7 @@ export default {
     }
   },
   mounted() {
+    // console.log(this.state);
     if (this.state) {
       console.log('hide on');
     } else {

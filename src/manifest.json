@@ -20,7 +20,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://tailwindcss.com/*"],
+      "matches": ["https://tailwindcss.com/*", "https://twitter.com/*"],
       "js": ["contents/main.js"]
     }
   ],

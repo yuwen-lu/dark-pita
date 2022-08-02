@@ -1,9 +1,7 @@
 <template>
-  <div class="DP_body">
+  <div class="DP_body" id="DP_awareness">
     <div class="DP_title">
-      <img
-        src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388"
-      />
+      <img :src="icon" />
       <h1>{{ type }}</h1>
     </div>
     <div class="DP_subtitle">
@@ -42,6 +40,11 @@ export default {
       type: String,
       default: 'financial loss'
     },
+    icon: {
+      type: String,
+      default:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388'
+    },
     name: {
       type: String,
       default: 'loss-gain framing'
@@ -56,40 +59,23 @@ export default {
       default:
         'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
     },
-    interventionList: {
-      type: Array,
-      default: [
-        {
-          name: 'none',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659258223727',
-          component: '',
-          description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        },
-        {
-          name: 'hide / disable',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659258223727',
-          component: 'hide',
-          description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        },
-        {
-          name: 'detection',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659258223727',
-          component: '',
-          description:
-            'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.'
-        }
-      ]
+    color: {
+      type: String,
+      default: 'money'
     }
   },
   methods: {
     toggleAction() {
       this.$emit('toggleAction', 'toggle action');
     }
+  },
+  mounted() {
+    let element = document.getElementById('DP_awareness');
+    element.classList.remove('DP_money');
+    element.classList.remove('DP_privacy');
+    element.classList.remove('DP_cognition');
+    element.classList.add('DP_' + this.color);
+    // console.log(this.color);
   }
 };
 </script>
@@ -117,17 +103,13 @@ export default {
     }
   }
 
-  .DP_introduction {
-    @apply text-money;
-  }
-
   .DP_awareness {
     @apply text-white;
   }
 }
 
 .DP_button {
-  @apply w-full flex flex-row items-center justify-center rounded bg-dark hover:bg-money py-2 border border-money gap-2;
+  @apply w-full flex flex-row items-center justify-center rounded bg-dark py-2 border gap-2;
 
   > p {
     @apply font-cabin font-normal text-sm text-white;
@@ -143,6 +125,36 @@ export default {
 
   > p {
     @apply font-cabin italic font-normal text-sm text-white;
+  }
+}
+
+.DP_money {
+  .DP_introduction {
+    @apply text-money;
+  }
+
+  .DP_button {
+    @apply hover:bg-money border-money;
+  }
+}
+
+.DP_privacy {
+  .DP_introduction {
+    @apply text-privacy;
+  }
+
+  .DP_button {
+    @apply hover:bg-privacy border-privacy;
+  }
+}
+
+.DP_cognition {
+  .DP_introduction {
+    @apply text-cognition;
+  }
+
+  .DP_button {
+    @apply hover:bg-cognition border-cognition;
   }
 }
 </style>

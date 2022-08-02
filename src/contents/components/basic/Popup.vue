@@ -6,14 +6,25 @@
       @mouseup="mouseup"
       @mouseleave="mouseup"
       @close="close"
+      :color="color"
     />
-    <Awareness @toggleAction="toggleAction" />
+    <Awareness
+      :type="target.type"
+      :icon="target.icon"
+      :name="target.name"
+      :description="target.description"
+      :awareness="target.awareness"
+      :color="color"
+      @toggleAction="toggleAction"
+    />
     <Action
+      :action="target.action"
+      :color="color"
       :style="actionPosition"
       @toggleAction="toggleAction"
       @triggerIntervention="triggerIntervention"
     />
-    <Hide :state="hideState" :key="hideState" />
+    <Hide :state="testState" :key="testState" />
   </div>
 </template>
 
@@ -33,6 +44,13 @@ export default {
     top: {
       type: Number,
       default: 100
+    },
+    targetId: {
+      type: Number,
+      default: 0
+    },
+    target: {
+      type: Object
     }
   },
   data() {
@@ -43,10 +61,11 @@ export default {
       topOffset: 0, // 鼠标距离移动窗口顶部偏移量
       isMove: false, // 是否移动标识
       actionX: 0,
-      actionY: 37,
-      actionHeight: 400,
+      actionY: 36,
+      actionHeight: 300,
       isPop: true,
-      hideState: false
+      testState: false,
+      color: 'money'
     };
   },
   components: {
@@ -87,11 +106,11 @@ export default {
       this.isMove = false;
     },
     triggerIntervention(value) {
-      console.log(value);
-      if (value === 'hide') {
-        this.hideState = true;
+      // console.log(value);
+      if (value === 'test') {
+        this.testState = true;
       } else {
-        this.hideState = false;
+        this.testState = false;
       }
     },
     toggleAction(value) {
@@ -109,6 +128,17 @@ export default {
       this.isPop = value;
       this.$emit('closePop', this.isPop);
     }
+  },
+  beforeMount() {
+    console.log(this.target);
+    if (this.target.type === 'financial loss') {
+      this.color = 'money';
+    } else if (this.target.type === 'privacy invasion') {
+      this.color = 'privacy';
+    } else if (this.target.type === 'cognitive burden') {
+      this.color = 'cognition';
+    }
+    console.log(this.color);
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="DP_action">
+  <div class="DP_action" id="DP_action">
     <div class="DP_action_section">
       <div class="DP_action_title">
         <h2>choose action</h2>
@@ -47,7 +47,7 @@
         <div id="dropdown" v-show="dropdown" class="DP_dropdown_list">
           <ul aria-labelledby="dropdownDefault">
             <li
-              v-for="(val, index) in interventionList"
+              v-for="(val, index) in action"
               :key="index"
               @click="alterIntervention(index)"
             >
@@ -69,7 +69,7 @@
 <script>
 export default {
   props: {
-    interventionList: {
+    action: {
       type: Array,
       default: [
         {
@@ -97,12 +97,17 @@ export default {
             'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.'
         }
       ]
+    },
+    color: {
+      type: String,
+      default: 'money'
     }
   },
   data() {
     return {
       dropdown: false,
-      intervention: this.interventionList[0]
+      intervention: this.action[0],
+      interventionId: 0
     };
   },
   methods: {
@@ -110,15 +115,31 @@ export default {
       this.$emit('toggleAction', 'toggle action');
     },
     alterIntervention(index) {
-      this.intervention = this.interventionList[index];
+      this.intervention = this.action[index];
+      this.interventionId = index;
       this.toggleDropdown();
     },
     triggerIntervention() {
-      this.$emit('triggerIntervention', this.intervention.component);
+      // this.$emit('triggerIntervention', this.intervention.component);
+      // this.$emit('triggerIntervention', this.interventionId);
+      // console.log(this.intervention.name);
+      if (this.intervention.name === 'none') {
+        this.$emit('triggerIntervention', 'none');
+      } else {
+        this.$emit('triggerIntervention', 'test');
+      }
     },
     toggleDropdown() {
       this.dropdown = !this.dropdown;
     }
+  },
+  mounted() {
+    let element = document.getElementById('DP_action');
+    element.classList.remove('DP_money');
+    element.classList.remove('DP_privacy');
+    element.classList.remove('DP_cognition');
+    element.classList.add('DP_' + this.color);
+    // console.log(this.color);
   }
 };
 </script>
@@ -126,7 +147,6 @@ export default {
 .DP_action {
   @apply absolute w-full top-0 flex flex-col justify-between px-3 pt-5 pb-3 bg-background rounded-r transition-left ease-in-out duration-1000 delay-0;
 
-  height: 500px;
   z-index: -1;
 
   .DP_action_section {
@@ -155,7 +175,7 @@ export default {
 }
 
 .DP_dropdown {
-  @apply w-full bg-dark hover:bg-money p-2 border border-money focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded items-center flex flex-row justify-between capitalize;
+  @apply w-full bg-dark p-2 border focus:ring-4 focus:outline-none font-medium rounded items-center flex flex-row justify-between capitalize;
 
   > p {
     @apply font-cabin font-normal text-sm text-white;
@@ -177,7 +197,7 @@ export default {
 }
 
 .DP_button {
-  @apply w-full flex flex-row items-center justify-center rounded bg-dark hover:bg-money py-2 border border-money gap-2;
+  @apply w-full flex flex-row items-center justify-center rounded bg-dark py-2 border gap-2;
 
   > p {
     @apply font-cabin font-normal text-sm text-white;
@@ -193,6 +213,36 @@ export default {
 
   > p {
     @apply font-cabin italic font-normal text-sm text-white;
+  }
+}
+
+.DP_money {
+  .DP_dropdown {
+    @apply hover:bg-money border-money focus:ring-yellow-300;
+  }
+
+  .DP_button {
+    @apply hover:bg-money border-money;
+  }
+}
+
+.DP_privacy {
+  .DP_dropdown {
+    @apply hover:bg-privacy border-privacy focus:ring-green-300;
+  }
+
+  .DP_button {
+    @apply hover:bg-privacy border-privacy;
+  }
+}
+
+.DP_cognition {
+  .DP_dropdown {
+    @apply hover:bg-cognition border-cognition focus:ring-blue-300;
+  }
+
+  .DP_button {
+    @apply hover:bg-cognition border-cognition;
   }
 }
 </style>

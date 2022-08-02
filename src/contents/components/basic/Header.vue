@@ -1,5 +1,5 @@
 <template>
-  <div class="DP_header">
+  <div class="DP_header" id="DP_header">
     <p>DARK PITA</p>
     <button @click="close">
       <svg
@@ -19,16 +19,36 @@
 </template>
 <script>
 export default {
-  methods: {
-    close() {
-      this.$emit('close', false);
+  props: {
+    color: {
+      type: String,
+      default: 'money'
     }
+  },
+  methods: {
+    close(event) {
+      this.$emit('close', false);
+      if (event.target == this) {
+        event.preventDefault();
+        event.cancelBubble = true;
+      }
+    }
+  },
+  mounted() {
+    let element = document.getElementById('DP_header');
+    element.classList.remove('DP_money');
+    element.classList.remove('DP_privacy');
+    element.classList.remove('DP_cognition');
+    element.classList.add('DP_' + this.color);
+    // console.log(this.color);
   }
 };
 </script>
 <style lang="scss" scoped>
 .DP_header {
-  @apply flex flex-row justify-between items-center w-full px-3 py-2 bg-dark opacity-100 border-b border-solid border-money rounded-t;
+  @apply flex flex-row justify-between items-center w-full px-3 py-2 bg-dark opacity-100 border-b border-solid rounded-t;
+
+  height: 36px;
 
   p {
     @apply font-cabin font-bold text-xs text-white pointer-events-none select-none;
@@ -37,5 +57,17 @@ export default {
   svg {
     @apply w-5 h-5;
   }
+}
+
+.DP_money {
+  @apply border-money;
+}
+
+.DP_privacy {
+  @apply border-privacy;
+}
+
+.DP_cognition {
+  @apply border-cognition;
 }
 </style>
