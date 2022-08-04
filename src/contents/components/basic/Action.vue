@@ -3,7 +3,7 @@
     <div class="DP_action_section">
       <div class="DP_action_title">
         <h2>choose action</h2>
-        <button @click="toggleAction">
+        <!-- <button @click="toggleAction">
           <svg
             width="24"
             height="24"
@@ -16,7 +16,7 @@
               fill="#FFFFFF"
             />
           </svg>
-        </button>
+        </button> -->
       </div>
       <div class="DP_action_dropdown">
         <button
@@ -56,10 +56,12 @@
           </ul>
         </div>
       </div>
-      <div class="DP_description">
-        <p>{{ intervention.description }}</p>
+      <div class="DP_section">
+        <div class="DP_description DP_no-scrollbar">
+          <p>{{ intervention.description }}</p>
+        </div>
+        <img :src="intervention.image" class="DP_action_demo" />
       </div>
-      <img :src="intervention.image" class="DP_action_demo" />
     </div>
     <button class="DP_button" @click="triggerIntervention">
       <p>Select</p>
@@ -75,7 +77,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659258223727',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
@@ -83,7 +85,7 @@ export default {
         {
           name: 'hide / disable',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659258223727',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'hide',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
@@ -91,7 +93,7 @@ export default {
         {
           name: 'detection',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659258223727',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'detection',
           description:
             'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.'
@@ -145,12 +147,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 .DP_action {
-  @apply absolute w-full top-0 flex flex-col justify-between px-3 pt-5 pb-3 bg-background rounded-r transition-left ease-in-out duration-1000 delay-0;
+  @apply absolute w-full top-0 flex flex-col justify-between gap-[16px] px-[12px] pt-[20px] pb-[12px] bg-background rounded-r-[4px] transition-left ease-in-out duration-1000 delay-0;
 
   z-index: -1;
+  &:hover {
+    z-index: 999999;
+  }
 
   .DP_action_section {
-    @apply w-full flex flex-col gap-2 items-start;
+    @apply w-full flex flex-col gap-[8px] items-start;
 
     .DP_action_title {
       @apply flex flex-row justify-between items-center w-full;
@@ -158,14 +163,6 @@ export default {
       > h2 {
         @apply font-cabin font-medium text-base uppercase text-white;
       }
-
-      svg {
-        @apply w-5 h-5;
-      }
-    }
-
-    .DP_action_demo {
-      @apply w-full rounded;
     }
   }
 
@@ -175,7 +172,7 @@ export default {
 }
 
 .DP_dropdown {
-  @apply w-full bg-dark p-2 border focus:ring-4 focus:outline-none font-medium rounded items-center flex flex-row justify-between capitalize;
+  @apply w-full bg-dark p-[8px] border focus:ring-4 focus:outline-none font-medium rounded-[4px] items-center flex flex-row justify-between capitalize;
 
   > p {
     @apply font-cabin font-normal text-sm text-white;
@@ -183,37 +180,54 @@ export default {
 }
 
 .DP_dropdown_list {
-  @apply absolute z-extension w-full bg-dark rounded divide-y divide-gray-100 shadow;
-
-  width: 228px;
+  @apply absolute z-extension w-[237.5px] bg-dark rounded-[4px] divide-y divide-gray-100 shadow;
 
   ul {
-    @apply py-1;
+    @apply py-[4px];
 
     a {
-      @apply block py-2 px-4 hover:bg-background font-cabin font-normal text-sm text-white capitalize;
+      @apply block py-[8px] px-[16px] hover:bg-background font-cabin font-normal text-sm text-white capitalize;
     }
   }
 }
 
 .DP_button {
-  @apply w-full flex flex-row items-center justify-center rounded bg-dark py-2 border gap-2;
+  @apply w-full flex flex-row items-center justify-center rounded-[4px] bg-dark py-[8px] border gap-[8px];
 
   > p {
     @apply font-cabin font-normal text-sm text-white;
   }
-
-  svg {
-    @apply w-5 h-5;
-  }
 }
 
 .DP_description {
-  @apply box-border p-2 bg-dark rounded;
+  @apply box-border w-full h-[96px] p-[8px] bg-dark rounded-[4px] overflow-scroll overscroll-none flex items-center;
 
   > p {
     @apply font-cabin italic font-normal text-sm text-white;
   }
+}
+
+.DP_action_demo {
+  @apply w-full rounded-[4px] transition ease-in-out delay-150 hover:-translate-y-1 z-infinite;
+
+  &:hover {
+    transform: scale(3);
+  }
+}
+
+.DP_section {
+  @apply flex flex-col gap-[10px] mt-[2px];
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.DP_no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.DP_no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .DP_money {
