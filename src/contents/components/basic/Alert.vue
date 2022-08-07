@@ -48,10 +48,19 @@ export default {
     closeAlert() {
       this.isAlert = false;
     }
+  },
+  mounted() {
+    console.log('alert mounted');
   }
 };
 </script>
 <style lang="scss" scoped>
+div {
+  p {
+    @apply p-0 m-0;
+  }
+}
+
 .DP_heading {
   @apply fixed w-full top-0 left-0 z-extension;
 
@@ -72,7 +81,7 @@ export default {
   }
 
   button {
-    @apply bg-transparent w-[96px] hover:bg-white font-cabin font-normal text-xs text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border;
+    @apply bg-transparent w-[104px] hover:bg-white font-cabin font-normal text-sm text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border;
   }
 }
 </style>

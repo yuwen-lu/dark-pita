@@ -130,7 +130,7 @@ export default {
     }
   },
   beforeMount() {
-    console.log(this.target);
+    // console.log(this.target);
     if (this.target.type === 'financial loss') {
       this.color = 'money';
     } else if (this.target.type === 'privacy invasion') {
@@ -138,12 +138,22 @@ export default {
     } else if (this.target.type === 'cognitive burden') {
       this.color = 'cognition';
     }
-    console.log(this.color);
+
+    // console.log(this.color);
+  },
+  mounted() {
+    console.log('popup mounted');
   }
 };
 </script>
 
 <style lang="scss" scoped>
+div {
+  p {
+    @apply p-0 m-0;
+  }
+}
+
 .DP_wrapper {
   @apply flex flex-col justify-center items-center drop-shadow-lg;
 

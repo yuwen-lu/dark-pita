@@ -45,6 +45,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+div {
+  p {
+    @apply p-0 m-0;
+  }
+}
+
 .DP_header {
   @apply flex flex-row justify-between items-center w-full px-3 py-2 bg-dark opacity-100 border-b border-solid rounded-t;
 
@@ -52,10 +58,6 @@ export default {
 
   p {
     @apply font-cabin font-bold text-xs text-white pointer-events-none select-none;
-  }
-
-  svg {
-    @apply w-5 h-5;
   }
 }
 
@@ -69,5 +71,9 @@ export default {
 
 .DP_cognition {
   @apply border-cognition;
+}
+
+svg {
+  @apply w-5 h-5;
 }
 </style>

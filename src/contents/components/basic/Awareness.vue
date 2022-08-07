@@ -5,7 +5,7 @@
       <h1>{{ type }}</h1>
     </div>
     <div class="DP_section">
-      <h2 class="DP_subtitle">loss-gain framing</h2>
+      <h2 class="DP_subtitle">{{ name }}</h2>
       <div class="DP_description DP_no-scrollbar">
         <p>{{ description }}</p>
       </div>
@@ -95,6 +95,8 @@ export default {
     }
   },
   mounted() {
+    console.log('action mounted');
+
     let element = document.getElementById('DP_awareness');
     element.classList.remove('DP_money');
     element.classList.remove('DP_privacy');
@@ -105,6 +107,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+div {
+  p {
+    @apply p-0 m-0;
+  }
+}
+
 .DP_body {
   @apply box-border flex flex-col justify-between items-start w-full px-[12px] py-[12px] gap-[16px] bg-background rounded-b-[4px];
 
@@ -167,10 +175,6 @@ export default {
 
   .DP_button {
     @apply hover:bg-money border-money;
-
-    svg {
-      @apply w-[16px] h-[16px];
-    }
   }
 }
 
@@ -192,5 +196,9 @@ export default {
   .DP_button {
     @apply hover:bg-cognition border-cognition;
   }
+}
+
+svg {
+  @apply w-5 h-5;
 }
 </style>

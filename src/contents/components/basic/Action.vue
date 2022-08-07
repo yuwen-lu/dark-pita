@@ -28,19 +28,16 @@
         >
           <p>{{ intervention.name }}</p>
           <svg
-            class="ml-2 w-4 h-4"
-            aria-hidden="true"
+            width="24"
+            height="24"
             fill="none"
-            stroke="white"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
+              d="M4.22 8.47a.75.75 0 0 1 1.06 0L12 15.19l6.72-6.72a.75.75 0 1 1 1.06 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L4.22 9.53a.75.75 0 0 1 0-1.06Z"
+              fill="#FFFFFF"
+            />
           </svg>
         </button>
         <!-- Dropdown menu -->
@@ -136,6 +133,8 @@ export default {
     }
   },
   mounted() {
+    console.log('action mounted');
+
     let element = document.getElementById('DP_action');
     element.classList.remove('DP_money');
     element.classList.remove('DP_privacy');
@@ -146,6 +145,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+div {
+  p {
+    @apply p-0 m-0;
+  }
+}
+
 .DP_action {
   @apply absolute w-full top-0 flex flex-col justify-between gap-[16px] px-[12px] pt-[20px] pb-[12px] bg-background rounded-r-[4px] transition-left ease-in-out duration-1000 delay-0;
 
@@ -183,7 +188,11 @@ export default {
   @apply absolute z-extension w-[237.5px] bg-dark rounded-[4px] divide-y divide-gray-100 shadow;
 
   ul {
-    @apply py-[4px];
+    @apply py-[4px] list-none m-0;
+
+    li::marker {
+      content: none;
+    }
 
     a {
       @apply block py-[8px] px-[16px] hover:bg-background font-cabin font-normal text-sm text-white capitalize;
@@ -258,5 +267,9 @@ export default {
   .DP_button {
     @apply hover:bg-cognition border-cognition;
   }
+}
+
+svg {
+  @apply w-5 h-5;
 }
 </style>

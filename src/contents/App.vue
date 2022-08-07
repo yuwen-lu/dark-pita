@@ -1,10 +1,10 @@
 <template>
-  <div id="wrapper">
-    <Alert @toggleMask="toggleMask" @closeAlert="closeAlert" />
+  <div id="DP_wrapper" :key="reload">
+    <Alert v-if="isAlert" @toggleMask="toggleMask" @closeAlert="closeAlert" />
 
     <Popup
       class="DP_popup"
-      v-show="isPop"
+      v-if="isPop"
       :left="popupX"
       :top="popupY"
       :key="timer"
@@ -13,9 +13,9 @@
       @closePop="closePop"
     />
 
-    <canvas resize id="main_canvas" style="display:none"></canvas>
+    <canvas resize id="DP_canvas" style="display:none"></canvas>
 
-    <div id="mask" class="DP_mask" v-show="isMask"></div>
+    <div id="DP_mask" class="DP_mask" v-show="isMask"></div>
 
     <div
       v-for="(value, index) in targets"
@@ -39,17 +39,18 @@ import Paper from 'paper';
 export default {
   data() {
     return {
+      reload: 0,
       timer: null,
       currentTab: null,
       info: [],
       label: 'id',
-      targets: [],
+      targets: null,
       currentTarget: {},
       currentTargetId: 0,
       boundingBoxList: [],
-      isAlert: true,
       isPop: false,
       isMask: false,
+      isAlert: false,
       popupX: 0,
       popupY: 0,
       text: '',
@@ -61,7 +62,8 @@ export default {
       overlayHeight: Math.max(
         document.documentElement.clientHeight || 0,
         window.innerHeight || 0
-      )
+      ),
+      mask: null
       // driver: new Driver({ allowClose: false })
     };
   },
@@ -70,10 +72,63 @@ export default {
     Popup
   },
   computed: {},
+  watch: {
+    reload(newVal, oldVal) {
+      console.log('app reload');
+      this.initialize();
+    }
+  },
   methods: {
     // highlight() {
     //   this.driver.highlight('#header');
     // },
+    initialize() {
+      this.targets = null;
+      this.isAlert = false;
+      this.mask = document.getElementById('DP_mask');
+
+      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+        this.currentTab = await tab;
+        // console.log(this.currentTab);
+
+        if (this.currentTab !== null) {
+          let url = this.currentTab.url;
+          console.log('current site: ', url);
+
+          // Define the identifier
+          if (url.search(/tailwindcss.com/) !== -1) {
+            this.label = 'id';
+            this.info = INDEX.tailwind;
+          } else if (url.search(/twitter.com/) !== -1) {
+            this.label = 'aria-label';
+            this.info = INDEX.twitter;
+          } else if (url.search(/amazon.com/) !== -1) {
+            this.label = 'id';
+            this.info = INDEX.amazon;
+          }
+
+          // Collect dark patterns
+          for (let target of this.info) {
+            let re = new RegExp(target.url);
+            if (url.search(re) !== -1) {
+              if (this.targets === null) {
+                this.targets = [];
+              }
+              this.targets.push(target.id);
+            }
+          }
+
+          console.log('dark patterns on this site:', this.targets);
+
+          // Initialize
+          if (this.targets !== null) {
+            this.currentTarget = this.info[0];
+            this.currentTargetId = 0;
+            this.isAlert = true;
+          }
+        }
+      });
+    },
     toggleMask() {
       this.refresh();
       if (this.isMask === false) {
@@ -81,8 +136,6 @@ export default {
         this.generateOverviewOverlay();
       } else {
         this.isMask = false;
-        let mask = document.getElementById('mask');
-        mask.innerHTML = '';
       }
     },
     generateTouchableArea() {
@@ -113,44 +166,47 @@ export default {
       console.log('scrolling distance from top:', scrollTop);
     },
     generateOverviewOverlay() {
-      console.log('generate overlay');
+      if (this.isMask) {
+        console.log('generate overlay');
 
-      this.refresh();
-      let mask = document.getElementById('mask');
-      mask.innerHTML = '';
+        this.refresh();
 
-      const origin = new Paper.Point(0, 0);
-      const rect = new Paper.Path.Rectangle({
-        point: origin,
-        size: [this.overlayWidth, this.overlayHeight],
-        fillColor: 'black',
-        opacity: 0.6
-      });
-
-      let overlayPath = rect;
-      for (let i = 0; i < this.boundingBoxList.length; i++) {
-        const boundingBox = new Paper.Path.Rectangle({
-          point: [this.boundingBoxList[i].x, this.boundingBoxList[i].y],
-          size: [this.boundingBoxList[i].width, this.boundingBoxList[i].height],
+        const origin = new Paper.Point(0, 0);
+        const rect = new Paper.Path.Rectangle({
+          point: origin,
+          size: [this.overlayWidth, this.overlayHeight],
           fillColor: 'black',
-          radius: 4
+          opacity: 0.6
         });
 
-        overlayPath = overlayPath.subtract(boundingBox);
+        let overlayPath = rect;
+        for (let i = 0; i < this.boundingBoxList.length; i++) {
+          const boundingBox = new Paper.Path.Rectangle({
+            point: [this.boundingBoxList[i].x, this.boundingBoxList[i].y],
+            size: [
+              this.boundingBoxList[i].width,
+              this.boundingBoxList[i].height
+            ],
+            fillColor: 'black',
+            radius: 4
+          });
+
+          overlayPath = overlayPath.subtract(boundingBox);
+        }
+
+        this.overlayPath = overlayPath.exportSVG();
+        Paper.project.clear();
+
+        const SVG_NS = 'http://www.w3.org/2000/svg';
+        let svg = document.createElementNS(SVG_NS, 'svg');
+        svg.setAttribute('width', this.overlayWidth);
+        svg.setAttribute('height', this.overlayHeight);
+        svg.appendChild(this.overlayPath);
+        this.mask.appendChild(svg);
+
+        this.generateTouchableArea();
+        // console.log(this.overlayPath);
       }
-
-      this.overlayPath = overlayPath.exportSVG();
-      Paper.project.clear();
-
-      const SVG_NS = 'http://www.w3.org/2000/svg';
-      let svg = document.createElementNS(SVG_NS, 'svg');
-      svg.setAttribute('width', this.overlayWidth);
-      svg.setAttribute('height', this.overlayHeight);
-      svg.appendChild(this.overlayPath);
-      mask.appendChild(svg);
-
-      this.generateTouchableArea();
-      // console.log(this.overlayPath);
     },
     getBoundingBoxList() {
       this.boundingBoxList = [];
@@ -175,6 +231,10 @@ export default {
       // console.log(this.boundingBoxList);
     },
     refresh() {
+      if (this.isMask) {
+        this.mask.innerHTML = '';
+      }
+
       this.overlayWidth = Math.max(
         document.documentElement.clientWidth || 0,
         window.innerWidth || 0
@@ -183,6 +243,7 @@ export default {
         document.documentElement.clientHeight || 0,
         window.innerHeight || 0
       );
+
       this.getBoundingBoxList();
     },
     togglePopup(event, value, index) {
@@ -210,42 +271,29 @@ export default {
       this.isAlert = false;
     },
     closePop(value) {
+      this.refresh();
       this.isPop = false;
       this.isMask = false;
-      let mask = document.getElementById('mask');
-      mask.innerHTML = '';
     }
   },
   mounted() {
-    console.log('popup mounted');
+    console.log('app mounted');
     window.addEventListener('scroll', this.generateOverviewOverlay);
     window.addEventListener('resize', this.generateOverviewOverlay);
-    Paper.setup(document.getElementById('main_canvas'));
-    chrome.runtime.sendMessage({ type: 'POPUP_INIT' }, async (tab) => {
-      this.currentTab = await tab;
-      console.log(this.currentTab.url);
+    Paper.setup(document.getElementById('DP_canvas'));
 
-      let url = this.currentTab.url;
-      if (url.search(/tailwindcss.com/) !== -1) {
-        this.label = 'id';
-        this.info = INDEX.tailwind;
-      } else if (url.search(/twitter.com/) !== -1) {
-        this.label = 'aria-label';
-        this.info = INDEX.twitter;
-      }
-
-      for (let target of this.info) {
-        this.targets.push(target.id);
-      }
-
-      this.currentTarget = this.info[0];
-      this.currentTargetId = 0;
-    });
+    this.initialize();
   }
 };
 </script>
 
 <style lang="scss" scoped>
+div {
+  p {
+    @apply p-0 m-0;
+  }
+}
+
 .DP_popup {
   @apply fixed z-extension;
 }

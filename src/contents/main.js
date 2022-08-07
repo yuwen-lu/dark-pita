@@ -15,9 +15,16 @@ document.body.appendChild(mountEl);
 
 const app = createApp(App).mount(mountEl);
 
-console.log('hello from content');
+console.log('content is working');
+// chrome.runtime.onMessage.addListener((message) => {
+//   if (message.toggleVisible) {
+//     app.isAlert = !app.isAlert;
+//   }
+// });
+
 chrome.runtime.onMessage.addListener((message) => {
-  if (message.toggleVisible) {
-    app.isAlert = !app.isAlert;
+  // console.log(message);
+  if (message.type === 'URL_CHANGED') {
+    app.reload = app.reload + 1;
   }
 });
