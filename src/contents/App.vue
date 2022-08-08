@@ -25,6 +25,10 @@
       @click="togglePopup($event, value, index)"
       v-show="isMask"
     ></div>
+
+    <buy_now_hide />
+    <buy_now_fairness />
+    <buy_now_friction />
   </div>
 </template>
 
@@ -33,8 +37,12 @@ import INDEX from '@/contents/index.js';
 import Alert from '@/contents/components/basic/Alert.vue';
 import Popup from '@/contents/components/basic/Popup.vue';
 import Paper from 'paper';
-// import Driver from 'driver.js';
-// import 'driver.js/dist/driver.min.css';
+
+// Action components
+import template from '@/contents/components/tailwind/template.vue';
+import buy_now_hide from '@/contents/components/amazon/buy_now/buy_now_hide.vue';
+import buy_now_fairness from '@/contents/components/amazon/buy_now/buy_now_fairness.vue';
+import buy_now_friction from '@/contents/components/amazon/buy_now/buy_now_friction.vue';
 
 export default {
   data() {
@@ -69,7 +77,11 @@ export default {
   },
   components: {
     Alert,
-    Popup
+    Popup,
+    template,
+    buy_now_hide,
+    buy_now_fairness,
+    buy_now_friction
   },
   computed: {},
   watch: {
@@ -93,7 +105,7 @@ export default {
 
         if (this.currentTab !== null) {
           let url = this.currentTab.url;
-          console.log('current site: ', url);
+          console.log('current site:', url);
 
           // Define the identifier
           if (url.search(/tailwindcss.com/) !== -1) {
@@ -303,6 +315,6 @@ div {
 }
 
 .DP_bounding_box {
-  @apply fixed bg-transparent rounded border-2 border-transparent hover:border-blue-500 z-overlay;
+  @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent hover:border-blue-500 z-overlay;
 }
 </style>

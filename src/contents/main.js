@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import '@/styles/main.css';
+import mitt from 'mitt';
 
 const MOUNT_EL_ID = 'as-dark-pita';
 
@@ -13,7 +14,9 @@ mountEl = document.createElement('div');
 mountEl.setAttribute('id', MOUNT_EL_ID);
 document.body.appendChild(mountEl);
 
-const app = createApp(App).mount(mountEl);
+const app = createApp(App);
+app.config.globalProperties.emitter = mitt();
+app.mount(mountEl);
 
 console.log('content is working');
 // chrome.runtime.onMessage.addListener((message) => {

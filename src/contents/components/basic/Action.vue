@@ -3,20 +3,6 @@
     <div class="DP_action_section">
       <div class="DP_action_title">
         <h2>choose action</h2>
-        <!-- <button @click="toggleAction">
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="m4.397 4.554.073-.084a.75.75 0 0 1 .976-.073l.084.073L12 10.939l6.47-6.47a.75.75 0 1 1 1.06 1.061L13.061 12l6.47 6.47a.75.75 0 0 1 .072.976l-.073.084a.75.75 0 0 1-.976.073l-.084-.073L12 13.061l-6.47 6.47a.75.75 0 0 1-1.06-1.061L10.939 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084-.073.084Z"
-              fill="#FFFFFF"
-            />
-          </svg>
-        </button> -->
       </div>
       <div class="DP_action_dropdown">
         <button
@@ -57,7 +43,12 @@
         <div class="DP_description DP_no-scrollbar">
           <p>{{ intervention.description }}</p>
         </div>
-        <img :src="intervention.image" class="DP_action_demo" />
+        <img
+          :src="intervention.image"
+          id="DP_action_demo"
+          class="DP_action_demo"
+          @click="zoomDemo"
+        />
       </div>
     </div>
     <button class="DP_button" @click="triggerIntervention">
@@ -106,7 +97,12 @@ export default {
     return {
       dropdown: false,
       intervention: this.action[0],
-      interventionId: 0
+      interventionId: 0,
+      interventionState: {
+        buy_now_hide: 'off',
+        buy_now_fairness: 'off',
+        buy_now_friction: 'off'
+      }
     };
   },
   methods: {
@@ -119,17 +115,45 @@ export default {
       this.toggleDropdown();
     },
     triggerIntervention() {
-      // this.$emit('triggerIntervention', this.intervention.component);
-      // this.$emit('triggerIntervention', this.interventionId);
-      // console.log(this.intervention.name);
-      if (this.intervention.name === 'none') {
-        this.$emit('triggerIntervention', 'none');
-      } else {
-        this.$emit('triggerIntervention', 'test');
+      this.resetIntervention();
+      if (this.intervention.component === 'buy_now_hide') {
+        this.emitter.emit('buy_now_hide', 'on');
+      } else if (this.intervention.component === 'buy_now_fairness') {
+        this.emitter.emit('buy_now_fairness', 'on');
+      } else if (this.intervention.component === 'buy_now_friction') {
+        this.emitter.emit('buy_now_friction', 'on');
       }
+
+      if (this.intervention.component !== 'none') {
+        this.interventionState[this.intervention.component] = 'on';
+      }
+    },
+    resetIntervention() {
+      console.log(this.interventionState);
+      Object.keys(this.interventionState).forEach((key, value) => {
+        if (this.interventionState[key] === 'on') {
+          console.log(key);
+          this.emitter.emit(key, 'off');
+          this.interventionState[key] = 'off';
+        }
+      });
     },
     toggleDropdown() {
       this.dropdown = !this.dropdown;
+    },
+    zoomDemo() {
+      let action = document.getElementById('DP_action');
+      let demo = document.getElementById('DP_action_demo');
+
+      if (action.style.zIndex == -1 || action.style.zIndex == '') {
+        demo.style.transform = 'scale(3)';
+        action.style.zIndex = 999999;
+      } else {
+        demo.style.transform = 'scale(1)';
+        setTimeout(() => {
+          action.style.zIndex = -1;
+        }, '500');
+      }
     }
   },
   mounted() {
@@ -155,9 +179,9 @@ div {
   @apply absolute w-full top-0 flex flex-col justify-between gap-[16px] px-[12px] pt-[20px] pb-[12px] bg-background rounded-r-[4px] transition-left ease-in-out duration-1000 delay-0;
 
   z-index: -1;
-  &:hover {
-    z-index: 999999;
-  }
+  // &:hover {
+  //   z-index: 999999;
+  // }
 
   .DP_action_section {
     @apply w-full flex flex-col gap-[8px] items-start;
@@ -185,7 +209,7 @@ div {
 }
 
 .DP_dropdown_list {
-  @apply absolute z-extension w-[237.5px] bg-dark rounded-[4px] divide-y divide-gray-100 shadow;
+  @apply absolute z-infinite w-[237.5px] bg-dark rounded-[4px] divide-y divide-gray-100 shadow;
 
   ul {
     @apply py-[4px] list-none m-0;
@@ -217,11 +241,11 @@ div {
 }
 
 .DP_action_demo {
-  @apply w-full rounded-[4px] transition ease-in-out delay-150 hover:-translate-y-1 z-infinite;
+  @apply w-full rounded-[4px] transition ease-in-out delay-150 hover:-translate-y-1 cursor-pointer;
 
-  &:hover {
-    transform: scale(3);
-  }
+  // &:hover {
+  //   transform: scale(3);
+  // }
 }
 
 .DP_section {

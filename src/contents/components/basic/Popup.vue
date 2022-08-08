@@ -22,17 +22,15 @@
       :color="color"
       :style="actionPosition"
       @toggleAction="toggleAction"
-      @triggerIntervention="triggerIntervention"
     />
-    <Hide :state="testState" :key="testState" />
   </div>
 </template>
 
 <script>
+// Basic components
 import Header from '@/contents/components/basic/Header.vue';
 import Awareness from '@/contents/components/basic/Awareness.vue';
 import Action from '@/contents/components/basic/Action.vue';
-import Hide from '@/contents/components/tailwind/Hide.vue';
 
 export default {
   name: 'Popup',
@@ -63,16 +61,15 @@ export default {
       actionX: 0,
       actionY: 36,
       actionHeight: 300,
+      color: 'money',
       isPop: true,
-      testState: false,
-      color: 'money'
+      buyNowHideState: false
     };
   },
   components: {
     Header,
     Awareness,
-    Action,
-    Hide
+    Action
   },
   computed: {
     // top与left加上px
@@ -104,14 +101,6 @@ export default {
     // 鼠标抬起
     mouseup() {
       this.isMove = false;
-    },
-    triggerIntervention(value) {
-      // console.log(value);
-      if (value === 'test') {
-        this.testState = true;
-      } else {
-        this.testState = false;
-      }
     },
     toggleAction(value) {
       console.log(value);

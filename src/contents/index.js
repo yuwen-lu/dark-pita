@@ -1,7 +1,7 @@
 export default {
   amazon: [
     {
-      id: 'buy-now-button',
+      id: 'buyNow_feature_div',
       url: 'www.amazon.com(\\S*)dp',
       type: 'financial loss',
       icon:
@@ -16,7 +16,7 @@ export default {
           name: 'none',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
+          component: 'none',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         },

@@ -28,10 +28,8 @@ export default {
   methods: {
     close(event) {
       this.$emit('close', false);
-      if (event.target == this) {
-        event.preventDefault();
-        event.cancelBubble = true;
-      }
+      event.preventDefault();
+      event.cancelBubble = true;
     }
   },
   mounted() {
