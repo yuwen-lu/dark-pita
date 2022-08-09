@@ -82,7 +82,7 @@ components: {
 8. Add your alternative in `alterIntervention(index)` of `src/contents/components/basic/Action.vue`.
 
 ```javascript
-triggerIntervention() {
+alterIntervention(index) {
   ...
   else if (this.intervention.component === 'buy_now_hide') {
     this.emitter.emit('buy_now_hide', 'on');
@@ -132,8 +132,6 @@ if (url.search(/tailwindcss.com/) !== -1) {
 if (this.label === 'id') {
   element = document.getElementById(this.targets[i]);
 } else if (this.label === 'aria-label') {
-  element = document.querySelector(
-    '[aria-label="' + this.targets[i] + '"]'
-  );
+  element = document.querySelector('[aria-label="' + this.targets[i] + '"]');
 }
 ```
