@@ -52,7 +52,7 @@
       </div>
     </div>
     <button class="DP_button" @click="triggerIntervention">
-      <p>Select</p>
+      <p>Save Changes</p>
     </button>
   </div>
 </template>
@@ -112,9 +112,7 @@ export default {
     alterIntervention(index) {
       this.intervention = this.action[index];
       this.interventionId = index;
-      this.toggleDropdown();
-    },
-    triggerIntervention() {
+
       this.resetIntervention();
       if (this.intervention.component === 'buy_now_hide') {
         this.emitter.emit('buy_now_hide', 'on');
@@ -127,6 +125,21 @@ export default {
       if (this.intervention.component !== 'none') {
         this.interventionState[this.intervention.component] = 'on';
       }
+
+      this.toggleDropdown();
+    },
+    triggerIntervention() {
+      // this.resetIntervention();
+      // if (this.intervention.component === 'buy_now_hide') {
+      //   this.emitter.emit('buy_now_hide', 'on');
+      // } else if (this.intervention.component === 'buy_now_fairness') {
+      //   this.emitter.emit('buy_now_fairness', 'on');
+      // } else if (this.intervention.component === 'buy_now_friction') {
+      //   this.emitter.emit('buy_now_friction', 'on');
+      // }
+      // if (this.intervention.component !== 'none') {
+      //   this.interventionState[this.intervention.component] = 'on';
+      // }
     },
     resetIntervention() {
       console.log(this.interventionState);

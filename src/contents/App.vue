@@ -224,6 +224,8 @@ export default {
       this.boundingBoxList = [];
       for (let i = 0; i < this.targets.length; i++) {
         let element;
+
+        // Set the selector
         if (this.label === 'id') {
           element = document.getElementById(this.targets[i]);
         } else if (this.label === 'aria-label') {
@@ -266,14 +268,14 @@ export default {
 
       let target = event.target.getBoundingClientRect();
       if (target.x > this.overlayWidth / 2) {
-        this.popupX = target.x - 100;
+        this.popupX = target.x - 300;
       } else {
-        this.popupX = target.x + 100;
+        this.popupX = target.x + 300;
       }
       if (target.y > this.overlayHeight / 2) {
-        this.popupY = target.y - 200;
+        this.popupY = target.y - 400;
       } else {
-        this.popupY = target.y + 200;
+        this.popupY = target.y + 400;
       }
 
       this.isPop = true;

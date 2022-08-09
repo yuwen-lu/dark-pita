@@ -9,13 +9,17 @@ console.log('background is working');
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   // read changeInfo data and do something with it
   // like send the new url to contentscripts.js
+  console.log(changeInfo);
   let re = /(tailwind.com)|(twitter.com)|(amazon.com)/;
   if (changeInfo.url) {
     if (changeInfo.url.search(re) !== -1) {
-      chrome.tabs.sendMessage(tabId, {
-        type: 'URL_CHANGED',
-        url: changeInfo.url
-      });
+      // conditional check prevents sending multiple messages per refresh
+      if (changeInfo.status === 'complete') {
+        chrome.tabs.sendMessage(tabId, {
+          type: 'URL_CHANGED',
+          url: changeInfo.url
+        });
+      }
     }
   }
 });

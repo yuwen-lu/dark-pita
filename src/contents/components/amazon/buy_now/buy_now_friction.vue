@@ -32,6 +32,7 @@ export default {
     this.emitter.on('buy_now_friction', (massage) => {
       if (massage === 'on') {
         console.log('buy now friction on');
+        this.target = document.getElementById('submit.buy-now');
         this.target.onmouseenter = () => {
           console.log('buy now friction overlay');
           this.on();

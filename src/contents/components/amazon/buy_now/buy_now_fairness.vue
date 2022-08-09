@@ -12,6 +12,7 @@ export default {
     this.emitter.on('buy_now_fairness', (massage) => {
       if (massage === 'on') {
         console.log('buy now fairness on');
+        this.target = document.getElementById('submit.buy-now');
         this.target.style.cssText =
           'background: #ffd814 !important; border-color: #fcd200 !important;';
         this.target.classList.remove('a-button-oneclick');
