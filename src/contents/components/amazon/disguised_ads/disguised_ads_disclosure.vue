@@ -58,6 +58,11 @@ export default {
         this.remove(this.sponsord);
         this.target.style.cssText =
           'border-width: 4px; border-color: rgb(220 38 38);';
+        let tip = document.createElement('div');
+        tip.appendChild(document.createTextNode('This is an ADVERTISEMENT.'));
+        tip.style.cssText =
+          'background-color: rgb(220 38 38); color: rgb(255 255 255); font-size: 24px; position: absolute; top: 0; right: 0; padding: 4px;';
+        this.target.appendChild(tip);
       } else if (massage === 'off') {
         console.log('disguised ads disclosure off');
         this.recover(this.sponsord);
