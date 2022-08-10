@@ -60,33 +60,7 @@
 export default {
   props: {
     action: {
-      type: Array,
-      default: [
-        {
-          name: 'none',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'none',
-          description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        },
-        {
-          name: 'hide / disable',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'hide',
-          description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        },
-        {
-          name: 'detection',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'detection',
-          description:
-            'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.'
-        }
-      ]
+      type: Array
     },
     color: {
       type: String,
@@ -101,7 +75,9 @@ export default {
       interventionState: {
         buy_now_hide: 'off',
         buy_now_fairness: 'off',
-        buy_now_friction: 'off'
+        buy_now_friction: 'off',
+        disguised_ads_hide: 'off',
+        disguised_ads_disclosure: 'off'
       }
     };
   },
@@ -120,6 +96,10 @@ export default {
         this.emitter.emit('buy_now_fairness', 'on');
       } else if (this.intervention.component === 'buy_now_friction') {
         this.emitter.emit('buy_now_friction', 'on');
+      } else if (this.intervention.component === 'disguised_ads_hide') {
+        this.emitter.emit('disguised_ads_hide', 'on');
+      } else if (this.intervention.component === 'disguised_ads_disclosure') {
+        this.emitter.emit('disguised_ads_disclosure', 'on');
       }
 
       if (this.intervention.component !== 'none') {

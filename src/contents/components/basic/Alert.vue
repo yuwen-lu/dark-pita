@@ -51,6 +51,7 @@ export default {
   },
   mounted() {
     console.log('alert mounted');
+    document.body.style.paddingTop = '64px';
   }
 };
 </script>

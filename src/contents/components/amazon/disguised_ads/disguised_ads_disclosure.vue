@@ -5,7 +5,10 @@
 export default {
   data() {
     return {
-      target: document.querySelectorAll('[id^=CardInstance]')[0]
+      target: document.querySelectorAll('[id^=CardInstance]')[0],
+      sponsord: document.getElementById(
+        'ad-feedback-text-auto-sparkle-hsa-tetris'
+      )
     };
   },
   methods: {
@@ -45,17 +48,23 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('disguised_ads_hide', (massage) => {
+    this.emitter.on('disguised_ads_disclosure', (massage) => {
       if (massage === 'on') {
-        console.log('disguised ads hide on');
+        console.log('disguised ads disclosure on');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
-        this.remove(this.target);
+        this.sponsord = document.getElementById(
+          'ad-feedback-text-auto-sparkle-hsa-tetris'
+        );
+        this.remove(this.sponsord);
+        this.target.style.cssText =
+          'border-width: 4px; border-color: rgb(220 38 38);';
       } else if (massage === 'off') {
-        console.log('disguised ads hide off');
-        this.recover(this.target);
+        console.log('disguised ads disclosure off');
+        this.recover(this.sponsord);
+        this.target.style.cssText = '';
       }
     });
   }
 };
 </script>
-<style lang=""></style>
+<style lang="scss" scoped></style>

@@ -9,7 +9,6 @@
       :top="popupY"
       :key="timer"
       :target="currentTarget"
-      :targetId="currentTargetId"
       @closePop="closePop"
     />
 
@@ -30,6 +29,7 @@
     <buy_now_fairness />
     <buy_now_friction />
     <disguised_ads_hide />
+    <disguised_ads_disclosure />
   </div>
 </template>
 
@@ -45,6 +45,7 @@ import buy_now_hide from '@/contents/components/amazon/buy_now/buy_now_hide.vue'
 import buy_now_fairness from '@/contents/components/amazon/buy_now/buy_now_fairness.vue';
 import buy_now_friction from '@/contents/components/amazon/buy_now/buy_now_friction.vue';
 import disguised_ads_hide from '@/contents/components/amazon/disguised_ads/disguised_ads_hide.vue';
+import disguised_ads_disclosure from '@/contents/components/amazon/disguised_ads/disguised_ads_disclosure.vue';
 
 export default {
   data() {
@@ -56,7 +57,6 @@ export default {
       label: 'id',
       targets: null,
       currentTarget: {},
-      currentTargetId: 0,
       boundingBoxList: [],
       isPop: false,
       isMask: false,
@@ -84,7 +84,8 @@ export default {
     buy_now_hide,
     buy_now_fairness,
     buy_now_friction,
-    disguised_ads_hide
+    disguised_ads_hide,
+    disguised_ads_disclosure
   },
   computed: {},
   watch: {
@@ -118,7 +119,7 @@ export default {
             this.label = 'aria-label';
             this.info = INDEX.twitter;
           } else if (url.search(/amazon.com/) !== -1) {
-            this.label = 'id';
+            this.label = 'id-regex';
             this.info = INDEX.amazon;
           }
 
@@ -138,7 +139,6 @@ export default {
           // Initialize
           if (this.targets !== null) {
             this.currentTarget = this.info[0];
-            this.currentTargetId = 0;
             this.isAlert = true;
           }
         }
@@ -235,6 +235,10 @@ export default {
           element = document.querySelector(
             '[aria-label="' + this.targets[i] + '"]'
           );
+        } else if (this.label === 'id-regex') {
+          element = document.querySelectorAll(
+            '[id^=' + this.targets[i] + ']'
+          )[0];
         }
 
         let boundingBox = element.getBoundingClientRect();
@@ -266,8 +270,11 @@ export default {
     togglePopup(event, value, index) {
       console.log(value);
       this.isPop = false;
-      this.currentTarget = this.info[index];
-      this.currentTargetId = index;
+      for (let i = 0; i < this.info.length; i++) {
+        if (this.info[i].id === value) {
+          this.currentTarget = this.info[i];
+        }
+      }
 
       let target = event.target.getBoundingClientRect();
       if (target.x > this.overlayWidth / 2) {

@@ -79,7 +79,16 @@ components: {
 </template>
 ```
 
-8. Add your alternative in `alterIntervention(index)` of `src/contents/components/basic/Action.vue`.
+8. Add your alternative in `data() {}` of `src/contents/components/basic/Action.vue`.
+
+```javascript
+interventionState: {
+  ...
+  buy_now_hide: 'off'
+}
+```
+
+9.  Add your alternative in `alterIntervention(index)` of `src/contents/components/basic/Action.vue`.
 
 ```javascript
 alterIntervention(index) {

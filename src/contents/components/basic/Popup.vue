@@ -43,10 +43,6 @@ export default {
       type: Number,
       default: 100
     },
-    targetId: {
-      type: Number,
-      default: 0
-    },
     target: {
       type: Object
     }

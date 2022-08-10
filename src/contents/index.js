@@ -45,6 +45,52 @@ export default {
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         }
       ]
+    },
+    {
+      id: 'CardInstance',
+      url: 'www.amazon.com/s?',
+      type: 'financial loss',
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+      name: 'hidden information',
+      description:
+        'Disguising relevant information (options, actions) as irrelevant.',
+      awareness:
+        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'none',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'hide',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'disguised_ads_hide',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'information disclosure',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'disguised_ads_disclosure',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'counterfactual thinking',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'disguised_ads_counterfact',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        }
+      ]
     }
   ],
   tailwind: [
