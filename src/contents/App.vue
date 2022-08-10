@@ -29,6 +29,7 @@
     <buy_now_hide />
     <buy_now_fairness />
     <buy_now_friction />
+    <disguised_ads_hide />
   </div>
 </template>
 
@@ -43,6 +44,7 @@ import template from '@/contents/components/tailwind/template.vue';
 import buy_now_hide from '@/contents/components/amazon/buy_now/buy_now_hide.vue';
 import buy_now_fairness from '@/contents/components/amazon/buy_now/buy_now_fairness.vue';
 import buy_now_friction from '@/contents/components/amazon/buy_now/buy_now_friction.vue';
+import disguised_ads_hide from '@/contents/components/amazon/disguised_ads/disguised_ads_hide.vue';
 
 export default {
   data() {
@@ -81,7 +83,8 @@ export default {
     template,
     buy_now_hide,
     buy_now_fairness,
-    buy_now_friction
+    buy_now_friction,
+    disguised_ads_hide
   },
   computed: {},
   watch: {
