@@ -47,11 +47,11 @@ export default {
   mounted() {
     this.emitter.on('buy_now_hide', (massage) => {
       if (massage === 'on') {
-        console.log('buy now hide on');
+        console.log('disguised ads hide on');
         this.target = document.getElementById('buyNow_feature_div');
         this.remove(this.target);
       } else if (massage === 'off') {
-        console.log('buy now hide off');
+        console.log('disguised ads hide off');
         this.recover(this.target);
       }
     });
