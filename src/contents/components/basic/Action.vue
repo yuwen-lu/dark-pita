@@ -77,7 +77,8 @@ export default {
         buy_now_fairness: 'off',
         buy_now_friction: 'off',
         disguised_ads_hide: 'off',
-        disguised_ads_disclosure: 'off'
+        disguised_ads_disclosure: 'off',
+        facebook_suggsted_hide: 'off'
       }
     };
   },
@@ -90,6 +91,7 @@ export default {
       this.interventionId = index;
 
       this.resetIntervention();
+      //amazon
       if (this.intervention.component === 'buy_now_hide') {
         this.emitter.emit('buy_now_hide', 'on');
       } else if (this.intervention.component === 'buy_now_fairness') {
@@ -100,6 +102,10 @@ export default {
         this.emitter.emit('disguised_ads_hide', 'on');
       } else if (this.intervention.component === 'disguised_ads_disclosure') {
         this.emitter.emit('disguised_ads_disclosure', 'on');
+      } 
+      // facebook
+      else if (this.intervention.component === 'facebook_suggsted_hide') {
+        this.emitter.emit('facebook_suggsted_hide', 'on');
       }
 
       if (this.intervention.component !== 'none') {

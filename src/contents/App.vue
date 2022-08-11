@@ -2,34 +2,26 @@
   <div id="DP_wrapper" :key="reload">
     <Alert v-if="isAlert" @toggleMask="toggleMask" @closeAlert="closeAlert" />
 
-    <Popup
-      class="DP_popup"
-      v-if="isPop"
-      :left="popupX"
-      :top="popupY"
-      :key="timer"
-      :target="currentTarget"
-      @closePop="closePop"
-    />
+    <Popup class="DP_popup" v-if="isPop" :left="popupX" :top="popupY" :key="timer" :target="currentTarget"
+      @closePop="closePop" />
 
     <canvas resize id="DP_canvas" style="display:none"></canvas>
 
     <div id="DP_mask" class="DP_mask" v-show="isMask"></div>
 
-    <div
-      v-for="(value, index) in targets"
-      :key="index"
-      :id="'DP_i_' + value"
-      class="DP_bounding_box"
-      @click="togglePopup($event, value, index)"
-      v-show="isMask"
-    ></div>
+    <div v-for="(value, index) in targets" :key="index" :id="'DP_i_' + value" class="DP_bounding_box"
+      @click="togglePopup($event, value, index)" v-show="isMask"></div>
 
+    // amazon
     <buy_now_hide />
     <buy_now_fairness />
     <buy_now_friction />
     <disguised_ads_hide />
     <disguised_ads_disclosure />
+
+    // facebook
+    <facebook_suggested_hide />
+
   </div>
 </template>
 
@@ -46,6 +38,7 @@ import buy_now_fairness from '@/contents/components/amazon/buy_now/buy_now_fairn
 import buy_now_friction from '@/contents/components/amazon/buy_now/buy_now_friction.vue';
 import disguised_ads_hide from '@/contents/components/amazon/disguised_ads/disguised_ads_hide.vue';
 import disguised_ads_disclosure from '@/contents/components/amazon/disguised_ads/disguised_ads_disclosure.vue';
+import facebook_suggested_hide from '@/contents/components/facebook/suggested/facebook_suggested_hide.vue';
 
 export default {
   data() {
@@ -85,7 +78,8 @@ export default {
     buy_now_fairness,
     buy_now_friction,
     disguised_ads_hide,
-    disguised_ads_disclosure
+    disguised_ads_disclosure,
+    facebook_suggested_hide
   },
   computed: {},
   watch: {
@@ -121,6 +115,9 @@ export default {
           } else if (url.search(/amazon.com/) !== -1) {
             this.label = 'id-regex';
             this.info = INDEX.amazon;
+          } else if (url.search(/facebook.com/) !== -1) {
+            this.label = 'aria-label';
+            this.info = INDEX.facebook;
           }
 
           // Collect dark patterns
@@ -239,7 +236,16 @@ export default {
           element = document.querySelectorAll(
             '[id^=' + this.targets[i] + ']'
           )[0];
-        }
+        } 
+        // else if (this.label === 'innerHTML') {
+        //   var retrievedHtmls = document.getElementsByTagName("");
+        //   for (var j = 0; j < retrievedHtmls.length; j++) {
+        //     if (retrievedHtmls[j].innerHTML.indexOf(this.targets[j]) != -1) {
+        //       element = retrievedHtmls[j];
+        //       console.log("Found the element:", element);
+        //     }
+        //   }
+        // }
 
         let boundingBox = element.getBoundingClientRect();
         boundingBox.id = this.targets[i];
