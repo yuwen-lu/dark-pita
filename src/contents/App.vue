@@ -117,7 +117,7 @@ export default {
             this.website = 'amazon';
             this.info = INDEX.amazon;
           } else if (url.search(/facebook.com/) !== -1) {
-            this.label = 'aria-label';
+            this.website = 'facebook';
             this.info = INDEX.facebook;
           }
 
@@ -238,25 +238,31 @@ export default {
             '[id^=' + this.targets[i] + ']'
           )[0];
         }
-        else if (this.label === 'facebook') {
-          // if (this.targets[i] === "innerHTML") {
-          //   var retrievedHtmls = document.getElementsByTagName("");
-          //   for (var j = 0; j < retrievedHtmls.length; j++) {
-          //     if (retrievedHtmls[j].innerHTML.indexOf(this.targets[j]) != -1) {
-          //       element = retrievedHtmls[j];
-          //       console.log("Found the element:", element);
-          //     }
-          //   }
-          // }
+        // facebook
+        else if (this.website === 'facebook') {
+          if (this.targets[i] == 'People You May Know') {
+            var retrievedHtmls = document.getElementsByTagName("h3");
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              if (retrievedHtmls[j].innerHTML.indexOf(this.targets[i]) != -1) {
+                // very ugly way, but the whole container is the 4th parent of the h3 tag
+                element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement;
+              }
+            }
+          }
         }
-
-        let boundingBox = element.getBoundingClientRect();
-        boundingBox.id = this.targets[i];
-        boundingBox.x = boundingBox.x - 10;
-        boundingBox.y = boundingBox.y - 10;
-        boundingBox.width = boundingBox.width + 20;
-        boundingBox.height = boundingBox.height + 20;
-        this.boundingBoxList.push(boundingBox);
+        
+        if (typeof element !== 'undefined') {
+          let boundingBox = element.getBoundingClientRect();
+          boundingBox.id = this.targets[i];
+          boundingBox.x = boundingBox.x - 10;
+          boundingBox.y = boundingBox.y - 10;
+          boundingBox.width = boundingBox.width + 20;
+          boundingBox.height = boundingBox.height + 20;
+          this.boundingBoxList.push(boundingBox);
+        } else {
+          console.log('element not found');
+        }
+        
       }
       // console.log(this.boundingBoxList);
     },
@@ -336,6 +342,6 @@ div {
 }
 
 .DP_bounding_box {
-  @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent hover: border-blue-500 z-overlay;
+  @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent hover:border-blue-500 z-overlay;
 }
 </style>

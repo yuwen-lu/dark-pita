@@ -313,7 +313,7 @@ export default {
   ],
   facebook: [
     {
-      id: 'People You May Know',
+      identifier: 'People You May Know',
       url: 'https://www.facebook.com/',
       type: 'financial loss',
       icon:

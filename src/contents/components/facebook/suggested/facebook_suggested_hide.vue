@@ -3,7 +3,7 @@
 </template>
 <script>
 export default {
-    data() {},
+    data() { },
     methods: {
         remove(selectors) {
             selectors.removeNode = [];
@@ -45,10 +45,11 @@ export default {
             if (massage === 'on') {
                 console.log('facebook suggested content hide on');
 
-                var retrievedHtmls = document.getElementsByClassName('d2edcug0 hpfvmrgz qv66sw1b c1et5uql oi732d6d ik7dh3pa ht8s03o8 a8c37x1j fe6kdd0r mau55g9w c8b282yb keod5gw0 nxhoafnm aigsh9s9 d9wwppkn iv3no6db jq4qci2q a3bd9o3v b1v8xokw m9osqain');
-                for (var i = 0; i < retrievedHtmls.length; i++) {
-                    if (retrievedHtmls[i].innerHTML.indexOf("People You May Know") != -1) {
-                        this.target = retrievedHtmls[i].innerHTML;
+                var retrievedHtmls = document.getElementsByTagName("h3");
+                for (var j = 0; j < retrievedHtmls.length; j++) {
+                    if (retrievedHtmls[j].innerHTML.indexOf(this.targets[i]) != -1) {
+                        // very ugly way, but the whole container is the 4th parent of the h3 tag
+                        element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement;
                     }
                 }
 

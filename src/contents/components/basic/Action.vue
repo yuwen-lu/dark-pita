@@ -179,7 +179,7 @@ div {
 }
 
 .DP_dropdown {
-  @apply w-full bg-dark p-[8px] border focus: ring-4 focus:outline-none font-medium rounded-[4px] items-center flex flex-row justify-between capitalize;
+  @apply w-full bg-dark p-[8px] border focus:ring-4 focus:outline-none font-medium rounded-[4px] items-center flex flex-row justify-between capitalize;
 
   >p {
     @apply font-cabin font-normal text-sm text-white;
@@ -197,7 +197,7 @@ div {
     }
 
     a {
-      @apply block py-[8px] px-[16px] hover: bg-background font-cabin font-normal text-sm text-white capitalize;
+      @apply block py-[8px] px-[16px] hover:bg-background font-cabin font-normal text-sm text-white capitalize;
     }
   }
 }
@@ -219,7 +219,7 @@ div {
 }
 
 .DP_action_demo {
-  @apply w-full rounded-[4px] transition ease-in-out delay-150 hover: -translate-y-1 cursor-pointer;
+  @apply w-full rounded-[4px] transition ease-in-out delay-150 hover:-translate-y-1 cursor-pointer;
 
   // &:hover {
   //   transform: scale(3);
@@ -245,31 +245,31 @@ div {
 
 .DP_money {
   .DP_dropdown {
-    @apply hover: bg-money border-money focus:ring-yellow-300;
+    @apply hover:bg-money border-money focus:ring-yellow-300;
   }
 
   .DP_button {
-    @apply hover: bg-money border-money;
+    @apply hover:bg-money border-money;
   }
 }
 
 .DP_privacy {
   .DP_dropdown {
-    @apply hover: bg-privacy border-privacy focus:ring-green-300;
+    @apply hover:bg-privacy border-privacy focus:ring-green-300;
   }
 
   .DP_button {
-    @apply hover: bg-privacy border-privacy;
+    @apply hover:bg-privacy border-privacy;
   }
 }
 
 .DP_cognition {
   .DP_dropdown {
-    @apply hover: bg-cognition border-cognition focus:ring-blue-300;
+    @apply hover:bg-cognition border-cognition focus:ring-blue-300;
   }
 
   .DP_button {
-    @apply hover: bg-cognition border-cognition;
+    @apply hover:bg-cognition border-cognition;
   }
 }
 
