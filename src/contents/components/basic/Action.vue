@@ -5,35 +5,19 @@
         <h2>choose action</h2>
       </div>
       <div class="DP_action_dropdown">
-        <button
-          id="dropdownDefault"
-          @click="toggleDropdown"
-          data-dropdown-toggle="dropdown"
-          class="DP_dropdown"
-          type="button"
-        >
+        <button id="dropdownDefault" @click="toggleDropdown" data-dropdown-toggle="dropdown" class="DP_dropdown"
+          type="button">
           <p>{{ intervention.name }}</p>
-          <svg
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M4.22 8.47a.75.75 0 0 1 1.06 0L12 15.19l6.72-6.72a.75.75 0 1 1 1.06 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L4.22 9.53a.75.75 0 0 1 0-1.06Z"
-              fill="#FFFFFF"
-            />
+              fill="#FFFFFF" />
           </svg>
         </button>
         <!-- Dropdown menu -->
         <div id="dropdown" v-show="dropdown" class="DP_dropdown_list">
           <ul aria-labelledby="dropdownDefault">
-            <li
-              v-for="(val, index) in action"
-              :key="index"
-              @click="alterIntervention(index)"
-            >
+            <li v-for="(val, index) in action" :key="index" @click="alterIntervention(index)">
               <a href="#">{{ val.name }}</a>
             </li>
           </ul>
@@ -43,12 +27,7 @@
         <div class="DP_description DP_no-scrollbar">
           <p>{{ intervention.description }}</p>
         </div>
-        <img
-          :src="intervention.image"
-          id="DP_action_demo"
-          class="DP_action_demo"
-          @click="zoomDemo"
-        />
+        <img :src="intervention.image" id="DP_action_demo" class="DP_action_demo" @click="zoomDemo" />
       </div>
     </div>
     <button class="DP_button" @click="triggerIntervention">
@@ -73,11 +52,11 @@ export default {
       intervention: this.action[0],
       interventionId: 0,
       interventionState: {
-        buy_now_hide: 'off',
-        buy_now_fairness: 'off',
-        buy_now_friction: 'off',
-        disguised_ads_hide: 'off',
-        disguised_ads_disclosure: 'off',
+        amazon_buy_now_hide: 'off',
+        amazon_buy_now_fairness: 'off',
+        amazon_buy_now_friction: 'off',
+        amazon_disguised_ads_hide: 'off',
+        amazon_disguised_ads_disclosure: 'off',
         facebook_suggsted_hide: 'off'
       }
     };
@@ -91,37 +70,37 @@ export default {
       this.interventionId = index;
 
       this.resetIntervention();
-      //amazon
-      if (this.intervention.component === 'buy_now_hide') {
-        this.emitter.emit('buy_now_hide', 'on');
-      } else if (this.intervention.component === 'buy_now_fairness') {
-        this.emitter.emit('buy_now_fairness', 'on');
-      } else if (this.intervention.component === 'buy_now_friction') {
-        this.emitter.emit('buy_now_friction', 'on');
-      } else if (this.intervention.component === 'disguised_ads_hide') {
-        this.emitter.emit('disguised_ads_hide', 'on');
-      } else if (this.intervention.component === 'disguised_ads_disclosure') {
-        this.emitter.emit('disguised_ads_disclosure', 'on');
-      } 
+
+      if (this.intervention.component === 'amazon_buy_now_hide') {
+        this.emitter.emit('amazon_buy_now_hide', 'on');
+      } else if (this.intervention.component === 'amazon_buy_now_fairness') {
+        this.emitter.emit('amazon_buy_now_fairness', 'on');
+      } else if (this.intervention.component === 'amazon_buy_now_friction') {
+        this.emitter.emit('amazon_buy_now_friction', 'on');
+      } else if (this.intervention.component === 'amazon_disguised_ads_hide') {
+        this.emitter.emit('amazon_disguised_ads_hide', 'on');
+      } else if (this.intervention.component === 'amazon_disguised_ads_disclosure') {
+        this.emitter.emit('amazon_disguised_ads_disclosure', 'on');
+      }
       // facebook
       else if (this.intervention.component === 'facebook_suggsted_hide') {
         this.emitter.emit('facebook_suggsted_hide', 'on');
-      }
 
-      if (this.intervention.component !== 'none') {
-        this.interventionState[this.intervention.component] = 'on';
-      }
+        if (this.intervention.component !== 'none') {
+          this.interventionState[this.intervention.component] = 'on';
+        }
 
-      this.toggleDropdown();
+        this.toggleDropdown();
+      }
     },
     triggerIntervention() {
       // this.resetIntervention();
-      // if (this.intervention.component === 'buy_now_hide') {
-      //   this.emitter.emit('buy_now_hide', 'on');
-      // } else if (this.intervention.component === 'buy_now_fairness') {
-      //   this.emitter.emit('buy_now_fairness', 'on');
-      // } else if (this.intervention.component === 'buy_now_friction') {
-      //   this.emitter.emit('buy_now_friction', 'on');
+      // if (this.intervention.component === 'amazon_buy_now_hide') {
+      //   this.emitter.emit('amazon_buy_now_hide', 'on');
+      // } else if (this.intervention.component === 'amazon_buy_now_fairness') {
+      //   this.emitter.emit('amazon_buy_now_fairness', 'on');
+      // } else if (this.intervention.component === 'amazon_buy_now_friction') {
+      //   this.emitter.emit('amazon_buy_now_friction', 'on');
       // }
       // if (this.intervention.component !== 'none') {
       //   this.interventionState[this.intervention.component] = 'on';
@@ -188,7 +167,7 @@ div {
     .DP_action_title {
       @apply flex flex-row justify-between items-center w-full;
 
-      > h2 {
+      >h2 {
         @apply font-cabin font-medium text-base uppercase text-white;
       }
     }
@@ -200,9 +179,9 @@ div {
 }
 
 .DP_dropdown {
-  @apply w-full bg-dark p-[8px] border focus:ring-4 focus:outline-none font-medium rounded-[4px] items-center flex flex-row justify-between capitalize;
+  @apply w-full bg-dark p-[8px] border focus: ring-4 focus:outline-none font-medium rounded-[4px] items-center flex flex-row justify-between capitalize;
 
-  > p {
+  >p {
     @apply font-cabin font-normal text-sm text-white;
   }
 }
@@ -218,7 +197,7 @@ div {
     }
 
     a {
-      @apply block py-[8px] px-[16px] hover:bg-background font-cabin font-normal text-sm text-white capitalize;
+      @apply block py-[8px] px-[16px] hover: bg-background font-cabin font-normal text-sm text-white capitalize;
     }
   }
 }
@@ -226,7 +205,7 @@ div {
 .DP_button {
   @apply w-full flex flex-row items-center justify-center rounded-[4px] bg-dark py-[8px] border gap-[8px];
 
-  > p {
+  >p {
     @apply font-cabin font-normal text-sm text-white;
   }
 }
@@ -234,13 +213,13 @@ div {
 .DP_description {
   @apply box-border w-full h-[96px] p-[8px] bg-dark rounded-[4px] overflow-scroll overscroll-none flex items-center;
 
-  > p {
+  >p {
     @apply font-cabin italic font-normal text-sm text-white;
   }
 }
 
 .DP_action_demo {
-  @apply w-full rounded-[4px] transition ease-in-out delay-150 hover:-translate-y-1 cursor-pointer;
+  @apply w-full rounded-[4px] transition ease-in-out delay-150 hover: -translate-y-1 cursor-pointer;
 
   // &:hover {
   //   transform: scale(3);
@@ -258,37 +237,39 @@ div {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .DP_no-scrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .DP_money {
   .DP_dropdown {
-    @apply hover:bg-money border-money focus:ring-yellow-300;
+    @apply hover: bg-money border-money focus:ring-yellow-300;
   }
 
   .DP_button {
-    @apply hover:bg-money border-money;
+    @apply hover: bg-money border-money;
   }
 }
 
 .DP_privacy {
   .DP_dropdown {
-    @apply hover:bg-privacy border-privacy focus:ring-green-300;
+    @apply hover: bg-privacy border-privacy focus:ring-green-300;
   }
 
   .DP_button {
-    @apply hover:bg-privacy border-privacy;
+    @apply hover: bg-privacy border-privacy;
   }
 }
 
 .DP_cognition {
   .DP_dropdown {
-    @apply hover:bg-cognition border-cognition focus:ring-blue-300;
+    @apply hover: bg-cognition border-cognition focus:ring-blue-300;
   }
 
   .DP_button {
-    @apply hover:bg-cognition border-cognition;
+    @apply hover: bg-cognition border-cognition;
   }
 }
 

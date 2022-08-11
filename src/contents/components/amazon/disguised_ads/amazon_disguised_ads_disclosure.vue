@@ -5,7 +5,10 @@
 export default {
   data() {
     return {
-      target: document.getElementById('buyNow_feature_div')
+      target: document.querySelectorAll('[id^=CardInstance]')[0],
+      sponsord: document.getElementById(
+        'ad-feedback-text-auto-sparkle-hsa-tetris'
+      )
     };
   },
   methods: {
@@ -45,17 +48,31 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('buy_now_hide', (massage) => {
+    this.emitter.on('amazon_disguised_ads_disclosure', (massage) => {
       if (massage === 'on') {
-        console.log('buy now hide on');
-        this.target = document.getElementById('buyNow_feature_div');
-        this.remove(this.target);
+        console.log('disguised ads disclosure on');
+        this.target = document.querySelectorAll('[id^=CardInstance]')[0];
+        this.sponsord = document.getElementById(
+          'ad-feedback-text-auto-sparkle-hsa-tetris'
+        );
+        this.remove(this.sponsord);
+        this.target.style.cssText =
+          'border-width: 4px; border-color: rgb(220 38 38);';
+        let tip = document.createElement('div');
+        tip.setAttribute('id','amazon_disguised_ads_disclosure_tip_id');
+        tip.appendChild(document.createTextNode('This is an ADVERTISEMENT.'));
+        tip.style.cssText =
+          'background-color: rgb(220 38 38); color: rgb(255 255 255); font-size: 24px; position: absolute; top: 0; right: 0; padding: 4px;';
+        this.target.appendChild(tip);
       } else if (massage === 'off') {
-        console.log('buy now hide off');
-        this.recover(this.target);
+        console.log('disguised ads disclosure off');
+        this.recover(this.sponsord);
+        this.target.style.cssText = '';
+        let tip = document.getElementById('amazon_disguised_ads_disclosure_tip_id')
+        this.target.removeChild(tip);
       }
     });
   }
 };
 </script>
-<style lang=""></style>
+<style lang="scss" scoped></style>

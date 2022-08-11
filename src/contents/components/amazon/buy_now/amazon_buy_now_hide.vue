@@ -5,7 +5,7 @@
 export default {
   data() {
     return {
-      target: document.querySelectorAll('[id^=CardInstance]')[0]
+      target: document.getElementById('buyNow_feature_div')
     };
   },
   methods: {
@@ -45,13 +45,13 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('disguised_ads_hide', (massage) => {
+    this.emitter.on('amazon_buy_now_hide', (massage) => {
       if (massage === 'on') {
-        console.log('disguised ads hide on');
-        this.target = document.querySelectorAll('[id^=CardInstance]')[0];
+        console.log('buy now hide on');
+        this.target = document.getElementById('buyNow_feature_div');
         this.remove(this.target);
       } else if (massage === 'off') {
-        console.log('disguised ads hide off');
+        console.log('buy now hide off');
         this.recover(this.target);
       }
     });

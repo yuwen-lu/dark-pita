@@ -13,11 +13,11 @@
       @click="togglePopup($event, value, index)" v-show="isMask"></div>
 
     // amazon
-    <buy_now_hide />
-    <buy_now_fairness />
-    <buy_now_friction />
-    <disguised_ads_hide />
-    <disguised_ads_disclosure />
+    <amazon_buy_now_hide />
+    <amazon_buy_now_fairness />
+    <amazon_buy_now_friction />
+    <amazon_disguised_ads_hide />
+    <amazon_disguised_ads_disclosure />
 
     // facebook
     <facebook_suggested_hide />
@@ -33,12 +33,13 @@ import Paper from 'paper';
 
 // Action components
 import template from '@/contents/components/tailwind/template.vue';
-import buy_now_hide from '@/contents/components/amazon/buy_now/buy_now_hide.vue';
-import buy_now_fairness from '@/contents/components/amazon/buy_now/buy_now_fairness.vue';
-import buy_now_friction from '@/contents/components/amazon/buy_now/buy_now_friction.vue';
-import disguised_ads_hide from '@/contents/components/amazon/disguised_ads/disguised_ads_hide.vue';
-import disguised_ads_disclosure from '@/contents/components/amazon/disguised_ads/disguised_ads_disclosure.vue';
+import amazon_buy_now_hide from '@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue';
+import amazon_buy_now_fairness from '@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue';
+import amazon_buy_now_friction from '@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue';
+import amazon_disguised_ads_hide from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_hide.vue';
+import amazon_disguised_ads_disclosure from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_disclosure.vue';
 import facebook_suggested_hide from '@/contents/components/facebook/suggested/facebook_suggested_hide.vue';
+
 
 export default {
   data() {
@@ -47,7 +48,7 @@ export default {
       timer: null,
       currentTab: null,
       info: [],
-      label: 'id',
+      website: '',
       targets: null,
       currentTarget: {},
       boundingBoxList: [],
@@ -74,11 +75,11 @@ export default {
     Alert,
     Popup,
     template,
-    buy_now_hide,
-    buy_now_fairness,
-    buy_now_friction,
-    disguised_ads_hide,
-    disguised_ads_disclosure,
+    amazon_buy_now_hide,
+    amazon_buy_now_fairness,
+    amazon_buy_now_friction,
+    amazon_disguised_ads_hide,
+    amazon_disguised_ads_disclosure,
     facebook_suggested_hide
   },
   computed: {},
@@ -107,13 +108,13 @@ export default {
 
           // Define the identifier
           if (url.search(/tailwindcss.com/) !== -1) {
-            this.label = 'id';
+            this.website = 'tailwind';
             this.info = INDEX.tailwind;
           } else if (url.search(/twitter.com/) !== -1) {
-            this.label = 'aria-label';
+            this.website = 'twitter';
             this.info = INDEX.twitter;
           } else if (url.search(/amazon.com/) !== -1) {
-            this.label = 'id-regex';
+            this.website = 'amazon';
             this.info = INDEX.amazon;
           } else if (url.search(/facebook.com/) !== -1) {
             this.label = 'aria-label';
@@ -127,7 +128,7 @@ export default {
               if (this.targets === null) {
                 this.targets = [];
               }
-              this.targets.push(target.id);
+              this.targets.push(target.identifier);
             }
           }
 
@@ -226,13 +227,13 @@ export default {
         let element;
 
         // Set the selector
-        if (this.label === 'id') {
+        if (this.website === 'tailwind') {
           element = document.getElementById(this.targets[i]);
-        } else if (this.label === 'aria-label') {
+        } else if (this.website === 'twitter') {
           element = document.querySelector(
             '[aria-label="' + this.targets[i] + '"]'
           );
-        } else if (this.label === 'id-regex') {
+        } else if (this.website === 'amazon') {
           element = document.querySelectorAll(
             '[id^=' + this.targets[i] + ']'
           )[0];
@@ -279,7 +280,7 @@ export default {
       console.log(value);
       this.isPop = false;
       for (let i = 0; i < this.info.length; i++) {
-        if (this.info[i].id === value) {
+        if (this.info[i].identifier === value) {
           this.currentTarget = this.info[i];
         }
       }

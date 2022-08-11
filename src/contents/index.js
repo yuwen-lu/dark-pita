@@ -1,7 +1,7 @@
 export default {
   amazon: [
     {
-      id: 'buyNow_feature_div',
+      identifier: 'buyNow_feature_div',
       url: 'www.amazon.com(\\S*)dp',
       type: 'financial loss',
       icon:
@@ -24,7 +24,7 @@ export default {
           name: 'hide',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'buy_now_hide',
+          component: 'amazon_buy_now_hide',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         },
@@ -32,7 +32,7 @@ export default {
           name: 'fairness',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'buy_now_fairness',
+          component: 'amazon_buy_now_fairness',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         },
@@ -40,14 +40,14 @@ export default {
           name: 'friction',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'buy_now_friction',
+          component: 'amazon_buy_now_friction',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         }
       ]
     },
     {
-      id: 'CardInstance',
+      identifier: 'CardInstance',
       url: 'www.amazon.com/s?',
       type: 'financial loss',
       icon:
@@ -70,7 +70,7 @@ export default {
           name: 'hide',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'disguised_ads_hide',
+          component: 'amazon_disguised_ads_hide',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         },
@@ -78,7 +78,7 @@ export default {
           name: 'information disclosure',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'disguised_ads_disclosure',
+          component: 'amazon_disguised_ads_disclosure',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         },
@@ -86,7 +86,7 @@ export default {
           name: 'counterfactual thinking',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'disguised_ads_counterfact',
+          component: 'amazon_disguised_ads_counterfact',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         }
@@ -95,7 +95,7 @@ export default {
   ],
   tailwind: [
     {
-      id: 'header',
+      identifier: 'header',
       url: 'https://tailwindcss.com/docs/',
       type: 'financial loss',
       icon:
@@ -133,7 +133,7 @@ export default {
       ]
     },
     {
-      id: 'basic-usage',
+      identifier: 'basic-usage',
       url: 'https://tailwindcss.com/docs/',
       type: 'privacy invasion',
       icon:
@@ -179,7 +179,7 @@ export default {
       ]
     },
     {
-      id: 'applying-conditionally',
+      identifier: 'applying-conditionally',
       url: 'https://tailwindcss.com/docs/',
       type: 'cognitive burden',
       icon:
@@ -227,7 +227,7 @@ export default {
   ],
   twitter: [
     {
-      id: 'Tweet',
+      identifier: 'Tweet',
       url: 'https://twitter.com/home',
       type: 'financial loss',
       icon:
@@ -265,7 +265,7 @@ export default {
       ]
     },
     {
-      id: 'Who to follow',
+      identifier: 'Who to follow',
       url: 'https://twitter.com/home',
       type: 'cognitive burden',
       icon:

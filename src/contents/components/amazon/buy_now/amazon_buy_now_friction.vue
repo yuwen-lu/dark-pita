@@ -29,7 +29,7 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('buy_now_friction', (massage) => {
+    this.emitter.on('amazon_buy_now_friction', (massage) => {
       if (massage === 'on') {
         console.log('buy now friction on');
         this.target = document.getElementById('submit.buy-now');
