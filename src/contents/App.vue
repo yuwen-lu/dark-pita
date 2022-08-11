@@ -236,16 +236,18 @@ export default {
           element = document.querySelectorAll(
             '[id^=' + this.targets[i] + ']'
           )[0];
-        } 
-        // else if (this.label === 'innerHTML') {
-        //   var retrievedHtmls = document.getElementsByTagName("");
-        //   for (var j = 0; j < retrievedHtmls.length; j++) {
-        //     if (retrievedHtmls[j].innerHTML.indexOf(this.targets[j]) != -1) {
-        //       element = retrievedHtmls[j];
-        //       console.log("Found the element:", element);
-        //     }
-        //   }
-        // }
+        }
+        else if (this.label === 'facebook') {
+          // if (this.targets[i] === "innerHTML") {
+          //   var retrievedHtmls = document.getElementsByTagName("");
+          //   for (var j = 0; j < retrievedHtmls.length; j++) {
+          //     if (retrievedHtmls[j].innerHTML.indexOf(this.targets[j]) != -1) {
+          //       element = retrievedHtmls[j];
+          //       console.log("Found the element:", element);
+          //     }
+          //   }
+          // }
+        }
 
         let boundingBox = element.getBoundingClientRect();
         boundingBox.id = this.targets[i];
@@ -333,6 +335,6 @@ div {
 }
 
 .DP_bounding_box {
-  @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent hover:border-blue-500 z-overlay;
+  @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent hover: border-blue-500 z-overlay;
 }
 </style>
