@@ -5,10 +5,7 @@
 export default {
   data() {
     return {
-      target: document.querySelectorAll('[id^=CardInstance]')[0],
-      sponsord: document.getElementById(
-        'ad-feedback-text-auto-sparkle-hsa-tetris'
-      )
+      target: document.querySelectorAll('[id^=CardInstance]')[0]
     };
   },
   methods: {
@@ -48,28 +45,17 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('disguised_ads_disclosure', (massage) => {
+    this.emitter.on('amazon_disguised_ads_hide', (massage) => {
       if (massage === 'on') {
-        console.log('disguised ads disclosure on');
+        console.log('disguised ads hide on');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
-        this.sponsord = document.getElementById(
-          'ad-feedback-text-auto-sparkle-hsa-tetris'
-        );
-        this.remove(this.sponsord);
-        this.target.style.cssText =
-          'border-width: 4px; border-color: rgb(220 38 38);';
-        let tip = document.createElement('div');
-        tip.appendChild(document.createTextNode('This is an ADVERTISEMENT.'));
-        tip.style.cssText =
-          'background-color: rgb(220 38 38); color: rgb(255 255 255); font-size: 24px; position: absolute; top: 0; right: 0; padding: 4px;';
-        this.target.appendChild(tip);
+        this.remove(this.target);
       } else if (massage === 'off') {
-        console.log('disguised ads disclosure off');
-        this.recover(this.sponsord);
-        this.target.style.cssText = '';
+        console.log('disguised ads hide off');
+        this.recover(this.target);
       }
     });
   }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang=""></style>

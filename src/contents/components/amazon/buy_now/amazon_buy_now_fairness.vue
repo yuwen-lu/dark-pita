@@ -9,7 +9,7 @@ export default {
     };
   },
   mounted() {
-    this.emitter.on('buy_now_fairness', (massage) => {
+    this.emitter.on('amazon_buy_now_fairness', (massage) => {
       if (massage === 'on') {
         console.log('buy now fairness on');
         this.target = document.getElementById('submit.buy-now');

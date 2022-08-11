@@ -73,11 +73,11 @@ export default {
       intervention: this.action[0],
       interventionId: 0,
       interventionState: {
-        buy_now_hide: 'off',
-        buy_now_fairness: 'off',
-        buy_now_friction: 'off',
-        disguised_ads_hide: 'off',
-        disguised_ads_disclosure: 'off'
+        amazon_buy_now_hide: 'off',
+        amazon_buy_now_fairness: 'off',
+        amazon_buy_now_friction: 'off',
+        amazon_disguised_ads_hide: 'off',
+        amazon_disguised_ads_disclosure: 'off'
       }
     };
   },
@@ -90,16 +90,16 @@ export default {
       this.interventionId = index;
 
       this.resetIntervention();
-      if (this.intervention.component === 'buy_now_hide') {
-        this.emitter.emit('buy_now_hide', 'on');
-      } else if (this.intervention.component === 'buy_now_fairness') {
-        this.emitter.emit('buy_now_fairness', 'on');
-      } else if (this.intervention.component === 'buy_now_friction') {
-        this.emitter.emit('buy_now_friction', 'on');
-      } else if (this.intervention.component === 'disguised_ads_hide') {
-        this.emitter.emit('disguised_ads_hide', 'on');
-      } else if (this.intervention.component === 'disguised_ads_disclosure') {
-        this.emitter.emit('disguised_ads_disclosure', 'on');
+      if (this.intervention.component === 'amazon_buy_now_hide') {
+        this.emitter.emit('amazon_buy_now_hide', 'on');
+      } else if (this.intervention.component === 'amazon_buy_now_fairness') {
+        this.emitter.emit('amazon_buy_now_fairness', 'on');
+      } else if (this.intervention.component === 'amazon_buy_now_friction') {
+        this.emitter.emit('amazon_buy_now_friction', 'on');
+      } else if (this.intervention.component === 'amazon_disguised_ads_hide') {
+        this.emitter.emit('amazon_disguised_ads_hide', 'on');
+      } else if (this.intervention.component === 'amazon_disguised_ads_disclosure') {
+        this.emitter.emit('amazon_disguised_ads_disclosure', 'on');
       }
 
       if (this.intervention.component !== 'none') {
@@ -110,12 +110,12 @@ export default {
     },
     triggerIntervention() {
       // this.resetIntervention();
-      // if (this.intervention.component === 'buy_now_hide') {
-      //   this.emitter.emit('buy_now_hide', 'on');
-      // } else if (this.intervention.component === 'buy_now_fairness') {
-      //   this.emitter.emit('buy_now_fairness', 'on');
-      // } else if (this.intervention.component === 'buy_now_friction') {
-      //   this.emitter.emit('buy_now_friction', 'on');
+      // if (this.intervention.component === 'amazon_buy_now_hide') {
+      //   this.emitter.emit('amazon_buy_now_hide', 'on');
+      // } else if (this.intervention.component === 'amazon_buy_now_fairness') {
+      //   this.emitter.emit('amazon_buy_now_fairness', 'on');
+      // } else if (this.intervention.component === 'amazon_buy_now_friction') {
+      //   this.emitter.emit('amazon_buy_now_friction', 'on');
       // }
       // if (this.intervention.component !== 'none') {
       //   this.interventionState[this.intervention.component] = 'on';

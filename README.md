@@ -125,22 +125,28 @@ alterIntervention(index) {
 ```javascript
 // Define the identifier
 if (url.search(/tailwindcss.com/) !== -1) {
-  this.label = 'id';
+  this.website = 'tailwind';
   this.info = INDEX.tailwind;
 } else if (url.search(/twitter.com/) !== -1) {
-  this.label = 'aria-label';
+  this.website = 'twitter';
   this.info = INDEX.twitter;
 } else if (url.search(/amazon.com/) !== -1) {
-  this.label = 'id';
+  this.website = 'amazon';
   this.info = INDEX.amazon;
 }
 ```
 
 ```javascript
 // Set the selector
-if (this.label === 'id') {
+if (this.website === 'tailwind') {
   element = document.getElementById(this.targets[i]);
-} else if (this.label === 'aria-label') {
-  element = document.querySelector('[aria-label="' + this.targets[i] + '"]');
+} else if (this.website === 'twitter') {
+  element = document.querySelector(
+    '[aria-label="' + this.targets[i] + '"]'
+  );
+} else if (this.website === 'amazon') {
+  element = document.querySelectorAll(
+    '[id^=' + this.targets[i] + ']'
+  )[0];
 }
 ```
