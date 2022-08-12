@@ -5,7 +5,7 @@
 export default {
   data() {
     return {
-      target: document.getElementById('buyNow_feature_div')
+      target: document.querySelectorAll('[id^=apex_desktop]')[0]
     };
   },
   methods: {
@@ -45,14 +45,14 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_buy_now_hide', (massage) => {
+    this.emitter.on('amazon_discount_price_hide', (massage) => {
       if (massage === 'on') {
-        console.log('buy now hide on');
-        this.target = document.getElementById('buyNow_feature_div');
+        console.log('discount price hide on');
+        this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
         this.remove(this.target);
         this.$emit('update');
       } else if (massage === 'off') {
-        console.log('buy now hide off');
+        console.log('discount price hide off');
         this.recover(this.target);
         this.$emit('update');
       }

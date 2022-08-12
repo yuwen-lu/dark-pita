@@ -5,7 +5,7 @@
       <h1>{{ type }}</h1>
     </div>
     <div class="DP_section">
-      <h2 class="DP_subtitle">{{ name }}</h2>
+      <h2 class="DP_subtitle">{{ pattern }}</h2>
       <div class="DP_description DP_no-scrollbar">
         <p>{{ description }}</p>
       </div>
@@ -59,7 +59,7 @@ export default {
       default:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388'
     },
-    name: {
+    pattern: {
       type: String,
       default: 'loss-gain framing'
     },
@@ -124,12 +124,12 @@ div {
     }
 
     h1 {
-      @apply font-cabin font-bold text-2xl pointer-events-none select-none capitalize;
+      @apply font-cabin font-bold text-[24px] pointer-events-none select-none capitalize;
     }
   }
 
   .DP_section {
-    @apply flex flex-col items-start gap-[8px] pointer-events-none select-none;
+    @apply flex flex-col items-start gap-[8px] select-none;
 
     > h2 {
       @apply font-cabin font-medium text-base uppercase;
@@ -150,7 +150,7 @@ div {
 }
 
 .DP_description {
-  @apply box-border p-[8px] h-[96px] bg-dark rounded-[4px] overflow-scroll overscroll-none flex items-center;
+  @apply box-border w-full h-[96px] p-[8px] bg-dark rounded-[4px] overflow-scroll overscroll-none;
 
   > p {
     @apply font-cabin italic font-normal text-sm text-white;
