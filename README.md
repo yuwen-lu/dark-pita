@@ -89,6 +89,8 @@ components: {
       v-if="targetNames.amazon_buy_now"
       @update="generateOverviewOverlay"
     />
+
+    ...
   </div>
 </template>
 ```
