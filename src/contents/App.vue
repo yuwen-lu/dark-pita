@@ -1,27 +1,87 @@
 <template>
   <div id="DP_wrapper" :key="reload">
-    <Alert v-if="isAlert" @toggleMask="toggleMask" @closeAlert="closeAlert" />
+    <amazon_buy_now_hide
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_buy_now_fairness
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_buy_now_friction
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_hide
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_friction
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_disclosure
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_counterfact
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_hide
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_disclosure
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_reflection
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_action
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
 
-    <Popup class="DP_popup" v-if="isPop" :left="popupX" :top="popupY" :key="timer" :target="currentTarget"
-      @closePop="closePop" />
+    // facebook
+    <facebook_suggsted_hide
+      v-if="targetNames.facebook_suggsted"
+      @update="generateOverviewOverlay"
+    />
+
+    <Alert
+      v-if="isAlert"
+      :targetNames="targetNames"
+      @toggleMask="toggleMask"
+      @closeAlert="closeAlert"
+    />
+
+    <Popup
+      class="DP_popup"
+      v-if="isPop"
+      :left="popupX"
+      :top="popupY"
+      :key="timer"
+      :target="currentTarget"
+      :savedSettings="savedSettings"
+      :targetNames="targetNames"
+      @closePop="closePop"
+    />
 
     <canvas resize id="DP_canvas" style="display:none"></canvas>
 
     <div id="DP_mask" class="DP_mask" v-show="isMask"></div>
 
-    <div v-for="(value, index) in targets" :key="index" :id="'DP_i_' + value" class="DP_bounding_box"
-      @click="togglePopup($event, value, index)" v-show="isMask"></div>
-
-    // amazon
-    <amazon_buy_now_hide />
-    <amazon_buy_now_fairness />
-    <amazon_buy_now_friction />
-    <amazon_disguised_ads_hide />
-    <amazon_disguised_ads_disclosure />
-
-    // facebook
-    <facebook_suggested_hide />
-
+    <div
+      v-for="(value, index) in targetIdentifiers"
+      :key="index"
+      :id="'DP_i_' + value"
+      class="DP_bounding_box"
+      @click="togglePopup($event, value, index)"
+      v-show="isMask"
+    ></div>
   </div>
 </template>
 
@@ -37,9 +97,15 @@ import amazon_buy_now_hide from '@/contents/components/amazon/buy_now/amazon_buy
 import amazon_buy_now_fairness from '@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue';
 import amazon_buy_now_friction from '@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue';
 import amazon_disguised_ads_hide from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_hide.vue';
+import amazon_disguised_ads_friction from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_friction.vue';
 import amazon_disguised_ads_disclosure from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_disclosure.vue';
-import facebook_suggested_hide from '@/contents/components/facebook/suggested/facebook_suggested_hide.vue';
+import amazon_disguised_ads_counterfact from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_counterfact.vue';
+import amazon_discount_price_hide from '@/contents/components/amazon/discount_price/amazon_discount_price_hide.vue';
+import amazon_discount_price_disclosure from '@/contents/components/amazon/discount_price/amazon_discount_price_disclosure.vue';
+import amazon_discount_price_reflection from '@/contents/components/amazon/discount_price/amazon_discount_price_reflection.vue';
+import amazon_discount_price_action from '@/contents/components/amazon/discount_price/amazon_discount_price_action.vue';
 
+import facebook_suggested_hide from '@/contents/components/facebook/suggested/facebook_suggested_hide.vue';
 
 export default {
   data() {
@@ -49,7 +115,7 @@ export default {
       currentTab: null,
       info: [],
       website: '',
-      targets: null,
+      targetIdentifiers: null,
       currentTarget: {},
       boundingBoxList: [],
       isPop: false,
@@ -67,8 +133,13 @@ export default {
         document.documentElement.clientHeight || 0,
         window.innerHeight || 0
       ),
-      mask: null
-      // driver: new Driver({ allowClose: false })
+      mask: null,
+      targetNames: {
+        amazon_buy_now: false,
+        amazon_disguised_ads: false,
+        amazon_discount_price: false
+      },
+      savedSettings: {}
     };
   },
   components: {
@@ -79,7 +150,15 @@ export default {
     amazon_buy_now_fairness,
     amazon_buy_now_friction,
     amazon_disguised_ads_hide,
+    amazon_disguised_ads_disclosure,    
+    amazon_disguised_ads_friction,
     amazon_disguised_ads_disclosure,
+    amazon_disguised_ads_counterfact,
+    amazon_discount_price_hide,
+    amazon_discount_price_disclosure,
+    amazon_discount_price_reflection,
+    amazon_discount_price_action,
+
     facebook_suggested_hide
   },
   computed: {},
@@ -94,7 +173,7 @@ export default {
     //   this.driver.highlight('#header');
     // },
     initialize() {
-      this.targets = null;
+      this.targetIdentifiers = null;
       this.isAlert = false;
       this.mask = document.getElementById('DP_mask');
 
@@ -125,17 +204,18 @@ export default {
           for (let target of this.info) {
             let re = new RegExp(target.url);
             if (url.search(re) !== -1) {
-              if (this.targets === null) {
-                this.targets = [];
+              if (this.targetIdentifiers === null) {
+                this.targetIdentifiers = [];
               }
-              this.targets.push(target.identifier);
+              this.targetIdentifiers.push(target.identifier);
+              this.targetNames[target.name] = true;
             }
           }
 
-          console.log('dark patterns on this site:', this.targets);
+          console.log('dark patterns on this site:', this.targetNames);
 
           // Initialize
-          if (this.targets !== null) {
+          if (this.targetIdentifiers !== null) {
             this.currentTarget = this.info[0];
             this.isAlert = true;
           }
@@ -165,11 +245,13 @@ export default {
     },
     generateSpotlightOverlay(id, left, top, width, height, opacity = 0.5) {
       let boundingBox = document.getElementById('DP_i_' + id);
-      boundingBox.style.left = left;
-      boundingBox.style.top = top;
-      boundingBox.style.width = width;
-      boundingBox.style.height = height;
-      boundingBox.style.opacity = opacity;
+      if (boundingBox !== undefined) {
+        boundingBox.style.left = left;
+        boundingBox.style.top = top;
+        boundingBox.style.width = width;
+        boundingBox.style.height = height;
+        boundingBox.style.opacity = opacity;
+      }
     },
     handleScroll() {
       let scrollTop =
@@ -223,21 +305,22 @@ export default {
     },
     getBoundingBoxList() {
       this.boundingBoxList = [];
-      for (let i = 0; i < this.targets.length; i++) {
+      for (let i = 0; i < this.targetIdentifiers.length; i++) {
         let element;
 
         // Set the selector
         if (this.website === 'tailwind') {
-          element = document.getElementById(this.targets[i]);
+          element = document.getElementById(this.targetIdentifiers[i]);
         } else if (this.website === 'twitter') {
           element = document.querySelector(
-            '[aria-label="' + this.targets[i] + '"]'
+            '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
         } else if (this.website === 'amazon') {
           element = document.querySelectorAll(
-            '[id^=' + this.targets[i] + ']'
+            '[id^=' + this.targetIdentifiers[i] + ']'
           )[0];
         }
+
         // facebook
         else if (this.website === 'facebook') {
           if (this.targets[i] == 'People You May Know') {
@@ -250,10 +333,10 @@ export default {
             }
           }
         }
-        
-        if (typeof element !== 'undefined') {
+
+        if (element !== undefined) {
           let boundingBox = element.getBoundingClientRect();
-          boundingBox.id = this.targets[i];
+          boundingBox.id = this.targetIdentifiers[i];
           boundingBox.x = boundingBox.x - 10;
           boundingBox.y = boundingBox.y - 10;
           boundingBox.width = boundingBox.width + 20;
@@ -275,6 +358,7 @@ export default {
         document.documentElement.clientWidth || 0,
         window.innerWidth || 0
       );
+
       this.overlayHeight = Math.max(
         document.documentElement.clientHeight || 0,
         window.innerHeight || 0
@@ -295,12 +379,12 @@ export default {
       if (target.x > this.overlayWidth / 2) {
         this.popupX = target.x - 300;
       } else {
-        this.popupX = target.x + 300;
+        this.popupX = target.x + 400;
       }
       if (target.y > this.overlayHeight / 2) {
         this.popupY = target.y - 400;
       } else {
-        this.popupY = target.y + 400;
+        this.popupY = target.y + 100;
       }
 
       this.isPop = true;
@@ -312,7 +396,7 @@ export default {
     closePop(value) {
       this.refresh();
       this.isPop = false;
-      this.isMask = false;
+      this.emitter.emit('alert_button_show', 'show');
     }
   },
   mounted() {
@@ -322,6 +406,15 @@ export default {
     Paper.setup(document.getElementById('DP_canvas'));
 
     this.initialize();
+
+    let that = this;
+    chrome.storage.sync.get('savedSettings', function(settings) {
+      if (JSON.stringify(settings) !== '{}') {
+        console.log('retrieve settings');
+        console.log(settings);
+        that.savedSettings = settings.savedSettings;
+      }
+    });
   }
 };
 </script>

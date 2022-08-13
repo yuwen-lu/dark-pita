@@ -14,8 +14,7 @@ export default {
       for (let i = 0; i < nodeList.length; i++) {
         let childNode = nodeList[i];
         if (childNode.nodeType == 1) {
-          childNode.style.cssText =
-            'cursor: url("https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cursor.cur?v=1660230130304"), auto;';
+          childNode.style.cursor = type;
           if (type === 'default') {
             childNode.style.cssText = '';
           }
@@ -25,14 +24,14 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_disguised_ads_counterfact', (massage) => {
+    this.emitter.on('amazon_disguised_ads_friction', (massage) => {
       if (massage === 'on') {
-        console.log('disguised ads counterfact on');
+        console.log('disguised ads friction on');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
-        this.changeCursor(this.target, 'warning');
+        this.changeCursor(this.target, 'none');
         this.$emit('update');
       } else if (massage === 'off') {
-        console.log('disguised ads counterfact off');
+        console.log('disguised ads friction off');
         this.changeCursor(this.target, 'default');
         this.$emit('update');
       }

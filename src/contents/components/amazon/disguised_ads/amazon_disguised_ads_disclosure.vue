@@ -64,12 +64,14 @@ export default {
         tip.style.cssText =
           'background-color: rgb(220 38 38); color: rgb(255 255 255); font-size: 24px; position: absolute; top: 0; right: 0; padding: 4px;';
         this.target.appendChild(tip);
+        this.$emit('update');
       } else if (massage === 'off') {
         console.log('disguised ads disclosure off');
         this.recover(this.sponsord);
         this.target.style.cssText = '';
         let tip = document.getElementById('amazon_disguised_ads_disclosure_tip_id')
         this.target.removeChild(tip);
+        this.$emit('update');
       }
     });
   }

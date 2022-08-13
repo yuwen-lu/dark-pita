@@ -24,6 +24,7 @@ export default {
           this.target.style.cssText =
             'background: #ffd814 !important; border-color: #fcd200 !important;';
         };
+        this.$emit('update');
       } else if (massage === 'off') {
         console.log('buy now fairness off');
         this.target.style.cssText = '';
@@ -34,6 +35,7 @@ export default {
         this.target.onmouseleave = () => {
           this.target.style.cssText = '';
         };
+        this.$emit('update');
       }
     });
   }

@@ -1,12 +1,13 @@
 export default {
   amazon: [
     {
+      name: 'amazon_buy_now',
       identifier: 'buyNow_feature_div',
-      url: 'www.amazon.com(\\S*)dp',
+      url: 'www.amazon.com(\\S*)/dp',
       type: 'financial loss',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      name: 'false hierarchy',
+      pattern: 'false hierarchy',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
       awareness:
@@ -47,12 +48,13 @@ export default {
       ]
     },
     {
+      name: 'amazon_disguised_ads',
       identifier: 'CardInstance',
-      url: 'www.amazon.com/s?',
+      url: 'www.amazon.com/s/?',
       type: 'financial loss',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      name: 'hidden information',
+      pattern: 'hidden information',
       description:
         'Disguising relevant information (options, actions) as irrelevant.',
       awareness:
@@ -75,6 +77,14 @@ export default {
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         },
         {
+          name: 'friction',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'amazon_disguised_ads_friction',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
           name: 'information disclosure',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
@@ -91,16 +101,72 @@ export default {
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         }
       ]
+    },
+    {
+      name: 'amazon_discount_price',
+      identifier: 'apex_desktop',
+      url: 'www.amazon.com(\\S*)/dp',
+      type: 'financial loss',
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+      pattern: 'loss-gain framing',
+      description:
+        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+      awareness:
+        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'none',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'hide',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'amazon_discount_price_hide',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'information disclosure',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'amazon_discount_price_disclosure',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'reflection',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'amazon_discount_price_reflection',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'action guide',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'amazon_discount_price_action',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        }
+      ]
     }
   ],
   tailwind: [
     {
+      name: 'tailwind_header',
       identifier: 'header',
       url: 'https://tailwindcss.com/docs/',
       type: 'financial loss',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      name: 'loss-gain framing',
+      pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -133,12 +199,13 @@ export default {
       ]
     },
     {
+      name: 'tailwind_basic_usage',
       identifier: 'basic-usage',
       url: 'https://tailwindcss.com/docs/',
       type: 'privacy invasion',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/privacy.png?v=1659250500782',
-      name: 'loss-gain framing',
+      pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -179,12 +246,13 @@ export default {
       ]
     },
     {
+      name: 'tailwind_applying_conditionally',
       identifier: 'applying-conditionally',
       url: 'https://tailwindcss.com/docs/',
       type: 'cognitive burden',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cognition.png?v=1659250494144',
-      name: 'loss-gain framing',
+      pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -227,12 +295,13 @@ export default {
   ],
   twitter: [
     {
+      name: 'twitter_tweet',
       identifier: 'Tweet',
       url: 'https://twitter.com/home',
       type: 'financial loss',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      name: 'loss-gain framing',
+      pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -265,12 +334,13 @@ export default {
       ]
     },
     {
+      twitter: 'twitter_who_to_follow',
       identifier: 'Who to follow',
       url: 'https://twitter.com/home',
       type: 'cognitive burden',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cognition.png?v=1659250494144',
-      name: 'loss-gain framing',
+      pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:

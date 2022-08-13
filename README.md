@@ -28,7 +28,7 @@ In order to test the package holding the extension in Chrome we need to:
 
 1. Create or Go to the folder named by the site in `src/contents/components`.
 2. Create a new folder named by your target dark pattern, e.g. `amazon/buy_now`.
-3. Create a new file named by your alternative design, e.g. `/buy_now/buy_now_hide.vue`.
+3. Create a new file named by your alternative design, e.g. `/buy_now/amazon_buy_now_hide.vue`.
 4. Copy the following to the new file.
 
 ```javascript
@@ -42,8 +42,10 @@ export default {
     this.emitter.on('template', (massage) => {
       if (massage === 'on') {
         console.log('template on');
+        this.$emit('update');
       } else if (massage === 'off') {
         console.log('template off');
+        this.$emit('update');
       }
     });
   }
@@ -52,55 +54,72 @@ export default {
 <style lang="scss" scoped></style>
 ```
 
-5. Import your alternative in `src/contents/App.vue`.
+5. add the name of your targeted dark pattern in `data() {}` of `src/contents/App.vue`.
+
+```javascript
+targetNames: {
+  ...,
+  amazon_buy_now: false
+}
+```
+
+6. Import your alternative in `src/contents/App.vue`.
 
 ```javascript
 // Action components
-import buy_now_hide from '@/contents/components/amazon/buy_now/buy_now_hide.vue';
+import amazon_buy_now_hide from '@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue';
 ```
 
-6. Register your alternative in `src/contents/App.vue`.
+7. Register your alternative in `src/contents/App.vue`.
 
 ```javascript
 components: {
   ...,
-  buy_now_hide,
+  amazon_buy_now_hide
 }
 ```
 
-7. Add your alternative in `src/contents/App.vue` template.
+8. Add your alternative in `src/contents/App.vue` template.
 
 ```javascript
 <template>
   <div id="DP_wrapper" :key="reload">
     ...
-    <buy_now_hide />
+    <amazon_buy_now_hide
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+
+    ...
   </div>
 </template>
 ```
 
-8. Add your alternative in `data() {}` of `src/contents/components/basic/Action.vue`.
+9. Add your alternative in `data() {}` of `src/contents/components/basic/Action.vue`.
 
 ```javascript
 interventionState: {
   ...
-  buy_now_hide: 'off'
+  amazon_buy_now_hide: 'off'
 }
 ```
 
-9.  Add your alternative in `alterIntervention(index)` of `src/contents/components/basic/Action.vue`.
+10. Add your alternative in `alterIntervention(index)` of `src/contents/components/basic/Action.vue`.
 
 ```javascript
 alterIntervention(index) {
   ...
-  else if (this.intervention.component === 'buy_now_hide') {
-    this.emitter.emit('buy_now_hide', 'on');
+  else if (this.intervention.component === 'amazon_buy_now_hide') {
+    this.emitter.emit('amazon_buy_now_hide', 'on');
   }
+
   ...
 },
 ```
 
-9. Now you can develop your alternative and test it by choosing and selecting in the action panel after you build and add the extension to Chrome.
+11. Now you can develop your alternative and test it by choosing and selecting in the action panel after you build and add the extension to Chrome.
+
+:exclamation:Note: the name of your targeted dark pattern (e.g. amazon_buy_now) and the name of your alternatives for it (e.g. amazon_buy_now_hide) should be kept same across all files, including `index.js`, `App.js`, and `Action.js`.
 
 ## Adding a new site
 
@@ -141,12 +160,8 @@ if (url.search(/tailwindcss.com/) !== -1) {
 if (this.website === 'tailwind') {
   element = document.getElementById(this.targets[i]);
 } else if (this.website === 'twitter') {
-  element = document.querySelector(
-    '[aria-label="' + this.targets[i] + '"]'
-  );
+  element = document.querySelector('[aria-label="' + this.targets[i] + '"]');
 } else if (this.website === 'amazon') {
-  element = document.querySelectorAll(
-    '[id^=' + this.targets[i] + ']'
-  )[0];
+  element = document.querySelectorAll('[id^=' + this.targets[i] + ']')[0];
 }
 ```

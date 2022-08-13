@@ -50,9 +50,11 @@ export default {
         console.log('disguised ads hide on');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
         this.remove(this.target);
+        this.$emit('update');
       } else if (massage === 'off') {
         console.log('disguised ads hide off');
         this.recover(this.target);
+        this.$emit('update');
       }
     });
   }

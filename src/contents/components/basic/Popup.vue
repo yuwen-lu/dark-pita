@@ -11,7 +11,7 @@
     <Awareness
       :type="target.type"
       :icon="target.icon"
-      :name="target.name"
+      :pattern="target.pattern"
       :description="target.description"
       :awareness="target.awareness"
       :color="color"
@@ -21,6 +21,8 @@
       :action="target.action"
       :color="color"
       :style="actionPosition"
+      :savedSettings="savedSettings"
+      :targetNames="targetNames"
       @toggleAction="toggleAction"
     />
   </div>
@@ -44,6 +46,12 @@ export default {
       default: 100
     },
     target: {
+      type: Object
+    },
+    savedSettings: {
+      type: Object
+    },
+    targetNames: {
       type: Object
     }
   },
@@ -101,8 +109,8 @@ export default {
     toggleAction(value) {
       console.log(value);
       if (this.actionX === 0) {
-        this.actionX = 260;
-      } else if (this.actionX === 260) {
+        this.actionX = 280;
+      } else if (this.actionX === 280) {
         this.actionX = 0;
       }
       let elt = document.getElementsByClassName('DP_body')[0];
@@ -142,6 +150,6 @@ div {
 .DP_wrapper {
   @apply flex flex-col justify-center items-center drop-shadow-lg;
 
-  width: 260px;
+  width: 280px;
 }
 </style>

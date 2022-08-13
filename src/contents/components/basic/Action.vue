@@ -44,6 +44,12 @@ export default {
     color: {
       type: String,
       default: 'money'
+    },
+    savedSettings: {
+      type: Object
+    },
+    targetNames: {
+      type: Object
     }
   },
   data() {
@@ -52,11 +58,20 @@ export default {
       intervention: this.action[0],
       interventionId: 0,
       interventionState: {
+        // amazon
         amazon_buy_now_hide: 'off',
         amazon_buy_now_fairness: 'off',
         amazon_buy_now_friction: 'off',
         amazon_disguised_ads_hide: 'off',
+        amazon_disguised_ads_friction: 'off',
         amazon_disguised_ads_disclosure: 'off',
+        amazon_disguised_ads_counterfact: 'off',
+        amazon_discount_price_hide: 'off',
+        amazon_discount_price_disclosure: 'off',
+        amazon_discount_price_reflection: 'off',
+        amazon_discount_price_action: 'off',
+
+        // facebook
         facebook_suggsted_hide: 'off'
       }
     };
@@ -79,8 +94,32 @@ export default {
         this.emitter.emit('amazon_buy_now_friction', 'on');
       } else if (this.intervention.component === 'amazon_disguised_ads_hide') {
         this.emitter.emit('amazon_disguised_ads_hide', 'on');
-      } else if (this.intervention.component === 'amazon_disguised_ads_disclosure') {
+      } else if (
+        this.intervention.component === 'amazon_disguised_ads_disclosure'
+      ) {
         this.emitter.emit('amazon_disguised_ads_disclosure', 'on');
+      } else if (
+        this.intervention.component === 'amazon_disguised_ads_counterfact'
+      ) {
+        this.emitter.emit('amazon_disguised_ads_counterfact', 'on');
+      } else if (
+        this.intervention.component === 'amazon_disguised_ads_friction'
+      ) {
+        this.emitter.emit('amazon_disguised_ads_friction', 'on');
+      } else if (this.intervention.component === 'amazon_discount_price_hide') {
+        this.emitter.emit('amazon_discount_price_hide', 'on');
+      } else if (
+        this.intervention.component === 'amazon_discount_price_disclosure'
+      ) {
+        this.emitter.emit('amazon_discount_price_disclosure', 'on');
+      } else if (
+        this.intervention.component === 'amazon_discount_price_reflection'
+      ) {
+        this.emitter.emit('amazon_discount_price_reflection', 'on');
+      } else if (
+        this.intervention.component === 'amazon_discount_price_action'
+      ) {
+        this.emitter.emit('amazon_discount_price_action', 'on');
       }
       // facebook
       else if (this.intervention.component === 'facebook_suggsted_hide') {
@@ -94,25 +133,26 @@ export default {
       }
     },
     triggerIntervention() {
-      // this.resetIntervention();
-      // if (this.intervention.component === 'amazon_buy_now_hide') {
-      //   this.emitter.emit('amazon_buy_now_hide', 'on');
-      // } else if (this.intervention.component === 'amazon_buy_now_fairness') {
-      //   this.emitter.emit('amazon_buy_now_fairness', 'on');
-      // } else if (this.intervention.component === 'amazon_buy_now_friction') {
-      //   this.emitter.emit('amazon_buy_now_friction', 'on');
-      // }
-      // if (this.intervention.component !== 'none') {
-      //   this.interventionState[this.intervention.component] = 'on';
-      // }
+      console.log('save settings');
+      chrome.storage.sync.set({ savedSettings: this.interventionState });
     },
     resetIntervention() {
-      console.log(this.interventionState);
-      Object.keys(this.interventionState).forEach((key, value) => {
+      let targets = [];
+      Object.keys(this.targetNames).forEach((key) => {
+        if (this.targetNames[key]) {
+          targets.push(key);
+        }
+      });
+
+      // console.log(this.interventionState);
+      Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
-          console.log(key);
-          this.emitter.emit(key, 'off');
-          this.interventionState[key] = 'off';
+          for (let i = 0; i < targets.length; i++) {
+            if (key.search(targets[i]) !== -1) {
+              this.emitter.emit(key, 'off');
+              this.interventionState[key] = 'off';
+            }
+          }
         }
       });
     },
@@ -143,6 +183,10 @@ export default {
     element.classList.remove('DP_cognition');
     element.classList.add('DP_' + this.color);
     // console.log(this.color);
+
+    if (JSON.stringify(this.savedSettings) !== '{}') {
+      this.interventionState = this.savedSettings;
+    }
   }
 };
 </script>
@@ -154,7 +198,7 @@ div {
 }
 
 .DP_action {
-  @apply absolute w-full top-0 flex flex-col justify-between gap-[16px] px-[12px] pt-[20px] pb-[12px] bg-background rounded-r-[4px] transition-left ease-in-out duration-1000 delay-0;
+  @apply absolute w-full top-0 flex flex-col justify-between gap-[14px] px-[12px] pt-[20px] pb-[12px] bg-background rounded-r-[4px] transition-left ease-in-out duration-1000 delay-0;
 
   z-index: -1;
   // &:hover {
@@ -211,7 +255,7 @@ div {
 }
 
 .DP_description {
-  @apply box-border w-full h-[96px] p-[8px] bg-dark rounded-[4px] overflow-scroll overscroll-none flex items-center;
+  @apply box-border w-full h-[96px] p-[8px] bg-dark rounded-[4px] overflow-scroll overscroll-none;
 
   >p {
     @apply font-cabin italic font-normal text-sm text-white;
@@ -227,7 +271,7 @@ div {
 }
 
 .DP_section {
-  @apply flex flex-col gap-[10px] mt-[2px];
+  @apply flex flex-col gap-[10px] mt-[2px] select-none;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

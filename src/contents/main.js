@@ -15,10 +15,13 @@ mountEl.setAttribute('id', MOUNT_EL_ID);
 document.body.appendChild(mountEl);
 
 const app = createApp(App);
+console.log('content is working');
+
 app.config.globalProperties.emitter = mitt();
+console.log('emitter is working');
+
 app.mount(mountEl);
 
-console.log('content is working');
 // chrome.runtime.onMessage.addListener((message) => {
 //   if (message.toggleVisible) {
 //     app.isAlert = !app.isAlert;

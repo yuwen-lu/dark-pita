@@ -37,8 +37,10 @@ export default {
           console.log('buy now friction overlay');
           this.on();
         };
+        this.$emit('update');
       } else if (massage === 'off') {
         console.log('buy now friction off');
+        this.$emit('update');
       }
     });
   }
