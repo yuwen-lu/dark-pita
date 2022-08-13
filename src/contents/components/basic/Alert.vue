@@ -5,7 +5,7 @@
         src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dawn.png?v=1659250496384"
       />
       <p>
-        <span>Dark Pita</span> detected dark patterns on this site that may be
+        <span>Dark Pita</span> detected dark patterns on {{website}} that may be
         affecting your personal wellbeing
       </p>
       <button @click="toggleMask" v-if="!isMask">
@@ -40,6 +40,9 @@ export default {
   props: {
     targetNames: {
       type: Object
+    },
+    website: {
+      type: String
     }
   },
   data() {
@@ -89,6 +92,13 @@ export default {
   mounted() {
     console.log('alert mounted');
     document.body.style.paddingTop = '64px';
+
+    if(this.website === "Facebook") {
+      let bannerElement = document.querySelectorAll('[role="banner"]')[0];
+      for(var i = 0; i < bannerElement.children.length; i++) {
+        bannerElement.children[i].style.top = '64px';
+      }
+    }
 
     this.emitter.on('alert_button_show', (massage) => {
       if (massage === 'show') {

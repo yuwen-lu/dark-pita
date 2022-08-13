@@ -54,6 +54,7 @@
     <Alert
       v-if="isAlert"
       :targetNames="targetNames"
+      :website="website"
       @toggleMask="toggleMask"
       @closeAlert="closeAlert"
     />
@@ -187,16 +188,16 @@ export default {
 
           // Define the identifier
           if (url.search(/tailwindcss.com/) !== -1) {
-            this.website = 'tailwind';
+            this.website = 'Tailwind';
             this.info = INDEX.tailwind;
           } else if (url.search(/twitter.com/) !== -1) {
-            this.website = 'twitter';
+            this.website = 'Twitter';
             this.info = INDEX.twitter;
           } else if (url.search(/amazon.com/) !== -1) {
-            this.website = 'amazon';
+            this.website = 'Amazon';
             this.info = INDEX.amazon;
           } else if (url.search(/facebook.com/) !== -1) {
-            this.website = 'facebook';
+            this.website = 'Facebook';
             this.info = INDEX.facebook;
           }
 
