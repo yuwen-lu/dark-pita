@@ -137,10 +137,10 @@ div {
 }
 
 .DP_alert {
-  @apply bg-dark w-full py-[12px] flex flex-row justify-center items-center gap-[16px] border-b border-gray-400;
+  @apply font-cabin bg-dark w-full py-[12px] flex flex-row justify-center items-center gap-[16px] border-b border-gray-400 #{!important};
 
   p {
-    @apply font-cabin font-medium text-base text-white;
+    @apply font-medium text-base text-white #{!important};
 
     span {
       @apply font-semibold uppercase;
