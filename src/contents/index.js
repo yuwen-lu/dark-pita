@@ -334,7 +334,7 @@ export default {
       ]
     },
     {
-      twitter: 'twitter_who_to_follow',
+      name: 'twitter_who_to_follow',
       identifier: 'Who to follow',
       url: 'https://twitter.com/home',
       type: 'cognitive burden',
@@ -383,6 +383,7 @@ export default {
   ],
   facebook: [
     {
+      name: 'facebook_suggested',
       identifier: 'People You May Know',
       url: 'https://www.facebook.com/',
       type: 'financial loss',

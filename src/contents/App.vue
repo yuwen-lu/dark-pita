@@ -323,12 +323,17 @@ export default {
 
         // facebook
         else if (this.website === 'facebook') {
-          if (this.targets[i] == 'People You May Know') {
+          if (this.targetIdentifiers[i] == 'People You May Know') {
             var retrievedHtmls = document.getElementsByTagName("h3");
+            console.log("retrieved htmls: ", retrievedHtmls);
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              if (retrievedHtmls[j].innerHTML.indexOf(this.targets[i]) != -1) {
+              console.log("currently checking html: ", retrievedHtmls[j]);
+              if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
                 // very ugly way, but the whole container is the 4th parent of the h3 tag
                 element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement;
+                console.log("matched element: ", element);
+              } else {
+                console.log("no match");
               }
             }
           }
