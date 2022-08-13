@@ -59,9 +59,9 @@ export default {
     return {
       x: this.left,
       y: this.top,
-      leftOffset: 0, // 鼠标距离移动窗口左侧偏移量
-      topOffset: 0, // 鼠标距离移动窗口顶部偏移量
-      isMove: false, // 是否移动标识
+      leftOffset: 0, // mouse position offset from left of popup
+      topOffset: 0, // mouse position offset from top of popup
+      isMove: false, // whether to move the popup
       actionX: 0,
       actionY: 36,
       actionHeight: 300,
@@ -76,7 +76,7 @@ export default {
     Action
   },
   computed: {
-    // top与left加上px
+    // add px to left and top
     position() {
       return `top:${this.y}px; left:${this.x}px;`;
     },
@@ -86,13 +86,13 @@ export default {
   },
   methods: {
     mousedown(event) {
-      //鼠标按下事件
+      // mouse click event
       console.log('mouse click');
       this.leftOffset = event.offsetX;
       this.topOffset = event.offsetY;
       this.isMove = true;
     },
-    // 鼠标移动
+    // mouse move event
     mousemove(event) {
       if (!this.isMove) {
         return;
@@ -102,7 +102,7 @@ export default {
       this.x = leftx;
       this.y = topy;
     },
-    // 鼠标抬起
+    // mouse up event
     mouseup() {
       this.isMove = false;
     },
