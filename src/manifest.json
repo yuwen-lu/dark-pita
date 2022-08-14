@@ -23,7 +23,8 @@
       "matches": [
         "https://tailwindcss.com/*",
         "https://twitter.com/*",
-        "https://www.amazon.com/*"
+        "https://www.amazon.com/*",
+        "https://www.youtube.com/*"
       ],
       "js": ["contents/main.js"]
     }

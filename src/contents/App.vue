@@ -44,6 +44,26 @@
       v-if="targetNames.amazon_discount_price"
       @update="generateOverviewOverlay"
     />
+    <amazon_home_card_focus
+      v-if="targetNames.amazon_home_card"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_home_card_reflection
+      v-if="targetNames.amazon_home_card"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_focus
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_preview
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_reflection
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
 
     <Alert
       v-if="isAlert"
@@ -84,6 +104,7 @@ import INDEX from '@/contents/index.js';
 import Alert from '@/contents/components/basic/Alert.vue';
 import Popup from '@/contents/components/basic/Popup.vue';
 import Paper from 'paper';
+import { incrementTime } from '@/contents/components/youtube/youtube_recommended_video/time_tracker/tracker';
 
 // Action components
 import template from '@/contents/components/tailwind/template.vue';
@@ -98,6 +119,11 @@ import amazon_discount_price_hide from '@/contents/components/amazon/discount_pr
 import amazon_discount_price_disclosure from '@/contents/components/amazon/discount_price/amazon_discount_price_disclosure.vue';
 import amazon_discount_price_reflection from '@/contents/components/amazon/discount_price/amazon_discount_price_reflection.vue';
 import amazon_discount_price_action from '@/contents/components/amazon/discount_price/amazon_discount_price_action.vue';
+import amazon_home_card_focus from '@/contents/components/amazon/home_card/amazon_home_card_focus.vue';
+import amazon_home_card_reflection from '@/contents/components/amazon/home_card/amazon_home_card_reflection.vue';
+import youtube_recommended_video_focus from '@/contents/components/youtube/youtube_recommended_video/youtube_recommended_video_focus.vue';
+import youtube_recommended_video_preview from '@/contents/components/youtube/youtube_recommended_video/youtube_recommended_video_preview.vue';
+import youtube_recommended_video_reflection from '@/contents/components/youtube/youtube_recommended_video/youtube_recommended_video_reflection.vue';
 
 export default {
   data() {
@@ -129,7 +155,9 @@ export default {
       targetNames: {
         amazon_buy_now: false,
         amazon_disguised_ads: false,
-        amazon_discount_price: false
+        amazon_discount_price: false,
+        amazon_home_card: false,
+        youtube_recommended_video: false
       },
       savedSettings: {}
     };
@@ -148,7 +176,12 @@ export default {
     amazon_discount_price_hide,
     amazon_discount_price_disclosure,
     amazon_discount_price_reflection,
-    amazon_discount_price_action
+    amazon_discount_price_action,
+    amazon_home_card_focus,
+    amazon_home_card_reflection,
+    youtube_recommended_video_focus,
+    youtube_recommended_video_preview,
+    youtube_recommended_video_reflection
   },
   computed: {},
   watch: {
@@ -184,6 +217,9 @@ export default {
           } else if (url.search(/amazon.com/) !== -1) {
             this.website = 'amazon';
             this.info = INDEX.amazon;
+          } else if (url.search(/youtube.com/) !== -1) {
+            this.website = 'youtube';
+            this.info = INDEX.youtube;
           }
 
           // Collect dark patterns
@@ -305,6 +341,16 @@ export default {
           element = document.querySelectorAll(
             '[id^=' + this.targetIdentifiers[i] + ']'
           )[0];
+        } else if (this.website === 'youtube') {
+          if (this.targetIdentifiers[i] === 'content') {
+            element = document.querySelectorAll(
+              '[id=' + this.targetIdentifiers[i] + ']'
+            )[2];
+          } else {
+            element = document.querySelectorAll(
+              '[id^=' + this.targetIdentifiers[i] + ']'
+            )[0];
+          }
         }
 
         if (element !== undefined) {
@@ -377,6 +423,25 @@ export default {
 
     this.initialize();
 
+    chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+      this.currentTab = await tab;
+
+      if (this.currentTab !== null) {
+        let url = this.currentTab.url;
+        if (url.search(/youtube.com/) !== -1) {
+          const HEARTBIT = 6; // sec
+          setInterval(function() {
+            incrementTime(HEARTBIT / 60, (data) => {
+              let timeTracker = document.getElementById('DP_time_tracker');
+              if (timeTracker !== null) {
+                timeTracker.innerHTML = Math.round(data.time_watched) + 'mins';
+              }
+            });
+          }, HEARTBIT * 1000);
+        }
+      }
+    });
+
     let that = this;
     chrome.storage.sync.get('savedSettings', function(settings) {
       if (JSON.stringify(settings) !== '{}') {
@@ -405,6 +470,6 @@ div {
 }
 
 .DP_bounding_box {
-  @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent hover:border-blue-500 z-overlay;
+  @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent border-solid hover:border-blue-500 z-overlay;
 }
 </style>

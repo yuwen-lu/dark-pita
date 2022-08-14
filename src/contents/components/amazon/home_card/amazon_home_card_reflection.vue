@@ -5,7 +5,15 @@
 export default {
   data() {
     return {
-      target: document.querySelectorAll('[id^=apex_desktop]')[0]
+      target: document.querySelectorAll('[id^=desktop]'),
+      viewpointWidth: Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+      ),
+      viewpointHeight: Math.max(
+        document.documentElement.clientHeight || 0,
+        window.innerHeight || 0
+      )
     };
   },
   methods: {
@@ -58,20 +66,24 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_discount_price_reflection', (massage) => {
+    this.emitter.on('amazon_home_card_reflection', (massage) => {
       if (massage === 'on') {
-        console.log('discount price reflection on');
-        this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
-        this.target.onmouseenter = () => {
-          let boundingBox = this.target.getBoundingClientRect();
-          let x = boundingBox.x;
-          let y = boundingBox.y;
-          this.explode(x, y);
-        };
+        console.log('home card reflection on');
+        this.target = document.querySelectorAll('[id^=desktop]');
+        let that = this;
+        this.target.forEach((item) => {
+          item.onmouseenter = () => {
+            let x = Math.random() * that.viewpointWidth;
+            let y = Math.random() * that.viewpointHeight;
+            that.explode(x, y);
+          };
+        });
         this.$emit('update');
       } else if (massage === 'off') {
-        console.log('discount price reflection off');
-        this.target.onmouseenter = () => {};
+        console.log('home card reflection off');
+        this.target.forEach((item) => {
+          item.onmouseenter = () => {};
+        });
         this.$emit('update');
       }
     });
@@ -81,7 +93,7 @@ export default {
 <style lang="scss">
 // explosion container
 .DP_explosion {
-  position: absolute; // required if positioned on click else 'relative'
+  position: fixed; // required if positioned on click else 'relative'
   width: 600px;
   height: 600px;
   pointer-events: none; // make it clickable trhough

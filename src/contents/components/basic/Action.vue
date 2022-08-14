@@ -34,7 +34,7 @@
               :key="index"
               @click="alterIntervention(index)"
             >
-              <a href="#">{{ val.name }}</a>
+              <a href="javascript:;">{{ val.name }}</a>
             </li>
           </ul>
         </div>
@@ -89,7 +89,12 @@ export default {
         amazon_discount_price_hide: 'off',
         amazon_discount_price_disclosure: 'off',
         amazon_discount_price_reflection: 'off',
-        amazon_discount_price_action: 'off'
+        amazon_discount_price_action: 'off',
+        amazon_home_card_focus: 'off',
+        amazon_home_card_reflection: 'off',
+        youtube_recommended_video_focus: 'off',
+        youtube_recommended_video_preview: 'off',
+        youtube_recommended_video_reflection: 'off'
       }
     };
   },
@@ -136,6 +141,24 @@ export default {
         this.intervention.component === 'amazon_discount_price_action'
       ) {
         this.emitter.emit('amazon_discount_price_action', 'on');
+      } else if (this.intervention.component === 'amazon_home_card_focus') {
+        this.emitter.emit('amazon_home_card_focus', 'on');
+      } else if (
+        this.intervention.component === 'amazon_home_card_reflection'
+      ) {
+        this.emitter.emit('amazon_home_card_reflection', 'on');
+      } else if (
+        this.intervention.component === 'youtube_recommended_video_focus'
+      ) {
+        this.emitter.emit('youtube_recommended_video_focus', 'on');
+      } else if (
+        this.intervention.component === 'youtube_recommended_video_preview'
+      ) {
+        this.emitter.emit('youtube_recommended_video_preview', 'on');
+      } else if (
+        this.intervention.component === 'youtube_recommended_video_reflection'
+      ) {
+        this.emitter.emit('youtube_recommended_video_reflection', 'on');
       }
 
       if (this.intervention.component !== 'none') {
@@ -328,6 +351,6 @@ div {
 }
 
 svg {
-  @apply w-5 h-5;
+  @apply w-[20px] h-[20px];
 }
 </style>
