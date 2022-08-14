@@ -132,12 +132,12 @@ div {
     @apply flex flex-col items-start gap-[8px] select-none;
 
     > h2 {
-      @apply font-cabin font-medium text-base uppercase;
+      @apply font-cabin font-medium text-[16px] uppercase;
     }
   }
 
   .DP_subtitle {
-    @apply text-white;
+    @apply text-white pb-[4px];
   }
 }
 
@@ -145,7 +145,7 @@ div {
   @apply w-full flex flex-row items-center justify-center rounded-[4px] bg-dark py-[8px] border gap-[8px];
 
   > p {
-    @apply font-cabin font-normal text-sm text-white;
+    @apply font-cabin font-normal text-[14px] text-white;
   }
 }
 
@@ -153,7 +153,7 @@ div {
   @apply box-border w-full h-[96px] p-[8px] bg-dark rounded-[4px] overflow-scroll overscroll-none;
 
   > p {
-    @apply font-cabin italic font-normal text-sm text-white;
+    @apply font-cabin italic font-normal text-[14px] text-white;
   }
 }
 
@@ -199,6 +199,6 @@ div {
 }
 
 svg {
-  @apply w-5 h-5;
+  @apply w-[20px] h-[20px];
 }
 </style>

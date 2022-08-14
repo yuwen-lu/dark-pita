@@ -87,6 +87,9 @@ export default {
         // console.log(that.interventionState);
         chrome.storage.sync.set({ savedSettings: that.interventionState });
       });
+
+      console.log('reset settings');
+      location.reload();
     }
   },
   mounted() {
@@ -117,7 +120,7 @@ export default {
     chrome.storage.sync.get('savedSettings', function(settings) {
       if (JSON.stringify(settings.savedSettings) !== '{}') {
         Object.keys(settings.savedSettings).forEach((key) => {
-          console.log(key, settings.savedSettings[key]);
+          // console.log(key, settings.savedSettings[key]);
           if (settings.savedSettings[key] === 'on') {
             for (let i = 0; i < targets.length; i++) {
               if (key.search(targets[i]) !== -1) {

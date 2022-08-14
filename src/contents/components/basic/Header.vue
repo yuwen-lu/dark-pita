@@ -72,6 +72,6 @@ div {
 }
 
 svg {
-  @apply w-5 h-5;
+  @apply w-[20px] h-[20px];
 }
 </style>

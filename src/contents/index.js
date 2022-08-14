@@ -156,6 +156,94 @@ export default {
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         }
       ]
+    },
+    {
+      name: 'amazon_home_card',
+      identifier: 'gw-card-layout',
+      url: 'https://www.amazon.com(/)?(#nav-top)?(#)?\$',
+      type: 'financial loss',
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+      pattern: 'sneaking advertising',
+      description:
+        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+      awareness:
+        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'none',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'focus mode',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'amazon_home_card_focus',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'reflection',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'amazon_home_card_reflection',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        }
+      ]
+    }
+  ],
+  youtube: [
+    {
+      name: 'youtube_recommended_video',
+      identifier: 'content',
+      url: 'https://www.youtube.com/\$',
+      type: 'cognitive burden',
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+      pattern: 'false hierarchy',
+      description:
+        'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
+      awareness:
+        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'none',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'focus mode',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'youtube_recommended_video_focus',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'block preview',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'youtube_recommended_video_preview',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'reflection',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'youtube_recommended_video_reflection',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        }
+      ]
     }
   ],
   tailwind: [
