@@ -1,129 +1,46 @@
 <template>
   <div id="DP_wrapper" :key="reload">
-    <amazon_buy_now_hide
-      v-if="targetNames.amazon_buy_now"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_buy_now_fairness
-      v-if="targetNames.amazon_buy_now"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_buy_now_friction
-      v-if="targetNames.amazon_buy_now"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_hide
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_friction
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_disclosure
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_counterfact
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_hide
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_disclosure
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_reflection
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_action
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_home_card_focus
-      v-if="targetNames.amazon_home_card"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_home_card_reflection
-      v-if="targetNames.amazon_home_card"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_recommended_video_focus
-      v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_recommended_video_preview
-      v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_recommended_video_reflection
-      v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_video_dislike_fairness
-      v-if="targetNames.youtube_video_dislike"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_sidebar_video_focus
-      v-if="targetNames.youtube_sidebar_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_sidebar_video_preview
-      v-if="targetNames.youtube_sidebar_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_sidebar_video_reflection
-      v-if="targetNames.youtube_sidebar_video"
-      @update="generateOverviewOverlay"
-    />
+    <amazon_buy_now_hide v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
+    <amazon_buy_now_fairness v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
+    <amazon_buy_now_friction v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
+    <amazon_disguised_ads_hide v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
+    <amazon_disguised_ads_friction v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
+    <amazon_disguised_ads_disclosure v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
+    <amazon_disguised_ads_counterfact v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
+    <amazon_discount_price_hide v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
+    <amazon_discount_price_disclosure v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
+    <amazon_discount_price_reflection v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
+    <amazon_discount_price_action v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
+    <amazon_home_card_focus v-if="targetNames.amazon_home_card" @update="generateOverviewOverlay" />
+    <amazon_home_card_reflection v-if="targetNames.amazon_home_card" @update="generateOverviewOverlay" />
+    <youtube_recommended_video_focus v-if="targetNames.youtube_recommended_video" @update="generateOverviewOverlay" />
+    <youtube_recommended_video_preview v-if="targetNames.youtube_recommended_video" @update="generateOverviewOverlay" />
+    <youtube_recommended_video_reflection v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay" />
+    <youtube_video_dislike_fairness v-if="targetNames.youtube_video_dislike" @update="generateOverviewOverlay" />
+    <youtube_sidebar_video_focus v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
+    <youtube_sidebar_video_preview v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
+    <youtube_sidebar_video_reflection v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
 
     // facebook
-    <facebook_suggsted_hide
-      v-if="targetNames.facebook_suggsted"
-      @update="generateOverviewOverlay"
-    />
+    <facebook_suggsted_hide v-if="targetNames.facebook_suggsted" @update="generateOverviewOverlay" />
 
-    <facebook_reels_hide
-      v-if="targetNames.facebook_reels"
-      @update="generateOverviewOverlay"
-    />
+    <facebook_reels_hide v-if="targetNames.facebook_reels" @update="generateOverviewOverlay" />
 
-    <Alert
-      v-if="isAlert"
-      :targetNames="targetNames"
-      :website="website"
-      @toggleMask="toggleMask"
-      @closeAlert="closeAlert"
-    />
+    <facebook_sponsored_hide v-if="targetNames.facebook_sponsored" @update="generateOverviewOverlay" />
 
-    <Popup
-      class="DP_popup"
-      v-if="isPop"
-      :left="popupX"
-      :top="popupY"
-      :key="timer"
-      :target="currentTarget"
-      :savedSettings="savedSettings"
-      :targetNames="targetNames"
-      @closePop="closePop"
-    />
+    <Alert v-if="isAlert" :targetNames="targetNames" :website="website" @toggleMask="toggleMask"
+      @closeAlert="closeAlert" />
+
+    <Popup class="DP_popup" v-if="isPop" :left="popupX" :top="popupY" :key="timer" :target="currentTarget"
+      :savedSettings="savedSettings" :targetNames="targetNames" @closePop="closePop" />
 
     <canvas resize id="DP_canvas" style="display:none"></canvas>
 
     <div id="DP_mask" class="DP_mask" v-show="isMask"></div>
 
-    <div
-      v-for="(value, index) in targetIdentifiers"
-      :key="index"
-      :id="'DP_i_' + value"
-      class="DP_bounding_box"
-      @click="togglePopup($event, value, index)"
-      v-show="isMask"
-    ></div>
+    <div v-for="(value, index) in targetIdentifiers" :key="index" :id="'DP_i_' + value" class="DP_bounding_box"
+      @click="togglePopup($event, value, index)" v-show="isMask"></div>
   </div>
 </template>
 
@@ -159,6 +76,7 @@ import youtube_sidebar_video_reflection from '@/contents/components/youtube/side
 
 import facebook_suggested_hide from '@/contents/components/facebook/suggested/facebook_suggested_hide.vue';
 import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
+import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sponsored_hide.vue';
 
 export default {
   data() {
@@ -195,7 +113,8 @@ export default {
 
         facebook_suggsted: false,
         facebook_reels: false,
-        
+        facebook_sponsored: false,
+
         youtube_recommended_video: false,
         youtube_video_dislike: false,
         youtube_sidebar_video: false
@@ -211,7 +130,7 @@ export default {
     amazon_buy_now_fairness,
     amazon_buy_now_friction,
     amazon_disguised_ads_hide,
-    amazon_disguised_ads_disclosure,    
+    amazon_disguised_ads_disclosure,
     amazon_disguised_ads_friction,
     amazon_disguised_ads_disclosure,
     amazon_disguised_ads_counterfact,
@@ -224,7 +143,8 @@ export default {
 
     facebook_suggested_hide,
     facebook_reels_hide,
-    
+    facebook_sponsored_hide,
+
     youtube_recommended_video_focus,
     youtube_recommended_video_preview,
     youtube_recommended_video_reflection,
@@ -380,6 +300,7 @@ export default {
       }
     },
     getBoundingBoxList() {
+      console.log("This website: " + this.website);
       this.boundingBoxList = [];
       for (let i = 0; i < this.targetIdentifiers.length; i++) {
         let element;
@@ -395,7 +316,7 @@ export default {
           element = document.querySelectorAll(
             '[id^=' + this.targetIdentifiers[i] + ']'
           )[0];
-        } else if (this.website === 'youtube') {
+        } else if (this.website === 'Youtube') {
           if (this.targetIdentifiers[i] === 'content') {
             element = document.querySelectorAll(
               '[id=' + this.targetIdentifiers[i] + ']'
@@ -417,33 +338,54 @@ export default {
             )[0];
           }
         }
-
         // facebook
         else if (this.website === 'Facebook') {
           if (this.targetIdentifiers[i] == 'People You May Know') {
+            console.log("Looking for facebook people you may know");
             var retrievedHtmls = document.getElementsByTagName("h3");
-            console.log("retrieved htmls: ", retrievedHtmls);
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              console.log("currently checking html: ", retrievedHtmls[j]);
               if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
                 // very ugly way, but the whole container is the 4th parent of the h3 tag
                 element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement;
-                console.log("matched element: ", element);
+                console.log("matched element for facebook suggsted people: ", element);
               } else {
-                console.log("no match");
+                console.log("no match for facebook suggsted people");
               }
             }
           } else if (this.targetIdentifiers[i] == "Reels and short videos") {
+            console.log("Looking for facebook reels");
             var retrievedHtmls = document.getElementsByTagName("span");
-            console.log("retrieved htmls: ", retrievedHtmls);
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              console.log("currently checking html: ", retrievedHtmls[j]);
               if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
                 // very ugly way, but the whole container is the 9th parent of the span tag
                 element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
-                console.log("matched element: ", element);
+                console.log("matched element for facebook reels: ", element);
+                console.log("matched element's bounding box for facebook reels: ", element.getBoundingClientRect());
               } else {
-                console.log("no match");
+                console.log("no match for facebook reels");
+              }
+            }
+          } else if (this.targetIdentifiers[i] == "ads/about") {
+            console.log("Looking for facebook ads/about");
+            var retrievedHtmls = document.getElementsByTagName("a");
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              var retrievedHref = retrievedHtmls[j].getAttribute("href");
+              console.log("retrievedHref: ", retrievedHref);
+              if (retrievedHref.indexOf(this.targetIdentifiers[i]) != -1) {
+                // not the most elegant solution, but the whole container is the 11th parent of the a tag
+                var parentLevel = 11;
+                element = retrievedHtmls[j];
+                for (var k = 0; k < parentLevel; k++) {
+                  if (element.parentElement !== null) {
+                    element = element.parentElement;
+                  } else {
+                    console.log("Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort");
+                    break;
+                  }
+                }
+                console.log("matched element for facebook sponsored ads: ", element);
+              } else {
+                console.log("no match for facebook sponsored ads");
               }
             }
           }
@@ -457,10 +399,11 @@ export default {
           boundingBox.width = boundingBox.width + 20;
           boundingBox.height = boundingBox.height + 20;
           this.boundingBoxList.push(boundingBox);
+          console.log("Bounding box pushed in ", boundingBox);
         } else {
-          console.log('element not found');
+          console.log('Cannot find element for bounding box');
         }
-        
+
       }
       // console.log(this.boundingBoxList);
     },
@@ -529,7 +472,7 @@ export default {
         let url = this.currentTab.url;
         if (url.search(/youtube.com/) !== -1) {
           const HEARTBIT = 6; // sec
-          setInterval(function() {
+          setInterval(function () {
             incrementTime(HEARTBIT / 60, (data) => {
               let timeTracker = document.getElementById('DP_time_tracker');
               if (timeTracker !== null) {
@@ -542,7 +485,7 @@ export default {
     });
 
     let that = this;
-    chrome.storage.sync.get('savedSettings', function(settings) {
+    chrome.storage.sync.get('savedSettings', function (settings) {
       if (JSON.stringify(settings) !== '{}') {
         console.log('retrieve settings');
         console.log(settings);

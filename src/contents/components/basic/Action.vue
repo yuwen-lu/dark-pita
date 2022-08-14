@@ -80,6 +80,7 @@ export default {
         // facebook
         facebook_suggsted_hide: 'off',
         facebook_reels_hide: 'off',
+        facebook_sponsored_hide: 'off',
 
         // youtube
         youtube_recommended_video_focus: 'off',
@@ -177,6 +178,8 @@ export default {
 
       } else if (this.intervention.component === "facebook_reels_hide") {
         this.emitter.emit('facebook_reels_hide', 'on');
+      } else if (this.intervention.component === "facebook_sponsored_hide") {
+        this.emitter.emit('facebook_sponsored_hide', 'on');
       }
 
       if (this.intervention.component !== 'none') {

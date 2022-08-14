@@ -44,16 +44,23 @@ export default {
         this.emitter.on('facebook_suggested_hide', (massage) => {
             if (massage === 'on') {
                 console.log('facebook suggested content hide on');
-
+                let element;
+                
                 var retrievedHtmls = document.getElementsByTagName("h3");
                 for (var j = 0; j < retrievedHtmls.length; j++) {
-                    if (retrievedHtmls[j].innerHTML.indexOf(this.targets[i]) != -1) {
+                    if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
                         // very ugly way, but the whole container is the 4th parent of the h3 tag
                         element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement;
                     }
                 }
+                if (element != null) {
+                    this.target = element;
+                    this.remove(this.target);
+                } else {
+                    console.log("cannot find target element for facebook suggested people");
+                }
 
-                this.remove(this.target);
+                
             } else if (massage === 'off') {
                 console.log('facebook suggested content hide off');
                 this.recover(this.target);
