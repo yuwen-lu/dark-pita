@@ -72,7 +72,8 @@ export default {
         amazon_discount_price_action: 'off',
 
         // facebook
-        facebook_suggsted_hide: 'off'
+        facebook_suggsted_hide: 'off',
+        facebook_reels_hide: 'off',
       }
     };
   },
@@ -125,12 +126,15 @@ export default {
       else if (this.intervention.component === 'facebook_suggsted_hide') {
         this.emitter.emit('facebook_suggsted_hide', 'on');
 
-        if (this.intervention.component !== 'none') {
-          this.interventionState[this.intervention.component] = 'on';
-        }
-
-        this.toggleDropdown();
+      } else if (this.intervention.component === "facebook_reels_hide") {
+        this.emitter.emit('facebook_reels_hide', 'on');
       }
+
+      if (this.intervention.component !== 'none') {
+        this.interventionState[this.intervention.component] = 'on';
+      }
+
+      this.toggleDropdown();
     },
     triggerIntervention() {
       console.log('save settings');

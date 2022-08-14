@@ -51,6 +51,11 @@
       @update="generateOverviewOverlay"
     />
 
+    <facebook_reels_hide
+      v-if="targetNames.facebook_reels"
+      @update="generateOverviewOverlay"
+    />
+
     <Alert
       v-if="isAlert"
       :targetNames="targetNames"
@@ -107,6 +112,7 @@ import amazon_discount_price_reflection from '@/contents/components/amazon/disco
 import amazon_discount_price_action from '@/contents/components/amazon/discount_price/amazon_discount_price_action.vue';
 
 import facebook_suggested_hide from '@/contents/components/facebook/suggested/facebook_suggested_hide.vue';
+import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
 
 export default {
   data() {
@@ -138,7 +144,9 @@ export default {
       targetNames: {
         amazon_buy_now: false,
         amazon_disguised_ads: false,
-        amazon_discount_price: false
+        amazon_discount_price: false,
+        facebook_suggsted: false,
+        facebook_reels: false,
       },
       savedSettings: {}
     };
@@ -160,7 +168,8 @@ export default {
     amazon_discount_price_reflection,
     amazon_discount_price_action,
 
-    facebook_suggested_hide
+    facebook_suggested_hide,
+    facebook_reels_hide
   },
   computed: {},
   watch: {
@@ -217,6 +226,7 @@ export default {
 
           // Initialize
           if (this.targetIdentifiers !== null) {
+            console.log(this.targetIdentifiers);
             this.currentTarget = this.info[0];
             this.isAlert = true;
           }
@@ -310,20 +320,20 @@ export default {
         let element;
 
         // Set the selector
-        if (this.website === 'tailwind') {
+        if (this.website === 'Tailwind') {
           element = document.getElementById(this.targetIdentifiers[i]);
-        } else if (this.website === 'twitter') {
+        } else if (this.website === 'Twitter') {
           element = document.querySelector(
             '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
-        } else if (this.website === 'amazon') {
+        } else if (this.website === 'Amazon') {
           element = document.querySelectorAll(
             '[id^=' + this.targetIdentifiers[i] + ']'
           )[0];
         }
 
         // facebook
-        else if (this.website === 'facebook') {
+        else if (this.website === 'Facebook') {
           if (this.targetIdentifiers[i] == 'People You May Know') {
             var retrievedHtmls = document.getElementsByTagName("h3");
             console.log("retrieved htmls: ", retrievedHtmls);
@@ -332,6 +342,19 @@ export default {
               if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
                 // very ugly way, but the whole container is the 4th parent of the h3 tag
                 element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement;
+                console.log("matched element: ", element);
+              } else {
+                console.log("no match");
+              }
+            }
+          } else if (this.targetIdentifiers[i] == "Reels and short videos") {
+            var retrievedHtmls = document.getElementsByTagName("span");
+            console.log("retrieved htmls: ", retrievedHtmls);
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              console.log("currently checking html: ", retrievedHtmls[j]);
+              if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
+                // very ugly way, but the whole container is the 9th parent of the span tag
+                element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
                 console.log("matched element: ", element);
               } else {
                 console.log("no match");
