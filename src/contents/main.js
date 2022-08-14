@@ -29,8 +29,9 @@ app.mount(mountEl);
 // });
 
 chrome.runtime.onMessage.addListener((message) => {
-  // console.log(message);
   if (message.type === 'URL_CHANGED') {
+    console.log('app reload');
     app.reload = app.reload + 1;
+    location.reload();
   }
 });

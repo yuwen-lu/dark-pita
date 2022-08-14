@@ -84,7 +84,11 @@ export default {
         // youtube
         youtube_recommended_video_focus: 'off',
         youtube_recommended_video_preview: 'off',
-        youtube_recommended_video_reflection: 'off'
+        youtube_recommended_video_reflection: 'off',
+        youtube_video_dislike_fairness: 'off',
+        youtube_sidebar_video_focus: 'off',
+        youtube_sidebar_video_preview: 'off',
+        youtube_sidebar_video_reflection: 'off'
       }
     };
   },
@@ -150,6 +154,22 @@ export default {
         this.intervention.component === 'youtube_recommended_video_reflection'
       ) {
         this.emitter.emit('youtube_recommended_video_reflection', 'on');
+      } else if (
+        this.intervention.component === 'youtube_video_dislike_fairness'
+      ) {
+        this.emitter.emit('youtube_video_dislike_fairness', 'on');
+      } else if (
+        this.intervention.component === 'youtube_sidebar_video_focus'
+      ) {
+        this.emitter.emit('youtube_sidebar_video_focus', 'on');
+      } else if (
+        this.intervention.component === 'youtube_sidebar_video_preview'
+      ) {
+        this.emitter.emit('youtube_sidebar_video_preview', 'on');
+      } else if (
+        this.intervention.component === 'youtube_sidebar_video_reflection'
+      ) {
+        this.emitter.emit('youtube_sidebar_video_reflection', 'on');
       }
       // facebook
       else if (this.intervention.component === 'facebook_suggsted_hide') {

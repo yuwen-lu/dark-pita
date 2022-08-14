@@ -64,6 +64,22 @@
       v-if="targetNames.youtube_recommended_video"
       @update="generateOverviewOverlay"
     />
+    <youtube_video_dislike_fairness
+      v-if="targetNames.youtube_video_dislike"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_focus
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_preview
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_reflection
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
 
     // facebook
     <facebook_suggsted_hide
@@ -116,7 +132,7 @@ import INDEX from '@/contents/index.js';
 import Alert from '@/contents/components/basic/Alert.vue';
 import Popup from '@/contents/components/basic/Popup.vue';
 import Paper from 'paper';
-import { incrementTime } from '@/contents/components/youtube/youtube_recommended_video/time_tracker/tracker';
+import { incrementTime } from '@/contents/components/youtube/recommended_video/time_tracker/tracker';
 
 // Action components
 import template from '@/contents/components/tailwind/template.vue';
@@ -133,9 +149,13 @@ import amazon_discount_price_reflection from '@/contents/components/amazon/disco
 import amazon_discount_price_action from '@/contents/components/amazon/discount_price/amazon_discount_price_action.vue';
 import amazon_home_card_focus from '@/contents/components/amazon/home_card/amazon_home_card_focus.vue';
 import amazon_home_card_reflection from '@/contents/components/amazon/home_card/amazon_home_card_reflection.vue';
-import youtube_recommended_video_focus from '@/contents/components/youtube/youtube_recommended_video/youtube_recommended_video_focus.vue';
-import youtube_recommended_video_preview from '@/contents/components/youtube/youtube_recommended_video/youtube_recommended_video_preview.vue';
-import youtube_recommended_video_reflection from '@/contents/components/youtube/youtube_recommended_video/youtube_recommended_video_reflection.vue';
+import youtube_recommended_video_focus from '@/contents/components/youtube/recommended_video/youtube_recommended_video_focus.vue';
+import youtube_recommended_video_preview from '@/contents/components/youtube/recommended_video/youtube_recommended_video_preview.vue';
+import youtube_recommended_video_reflection from '@/contents/components/youtube/recommended_video/youtube_recommended_video_reflection.vue';
+import youtube_video_dislike_fairness from '@/contents/components/youtube/video_dislike/youtube_video_dislike_fairness.vue';
+import youtube_sidebar_video_focus from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_focus.vue';
+import youtube_sidebar_video_preview from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue';
+import youtube_sidebar_video_reflection from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue';
 
 import facebook_suggested_hide from '@/contents/components/facebook/suggested/facebook_suggested_hide.vue';
 import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
@@ -176,7 +196,9 @@ export default {
         facebook_suggsted: false,
         facebook_reels: false,
         
-        youtube_recommended_video: false
+        youtube_recommended_video: false,
+        youtube_video_dislike: false,
+        youtube_sidebar_video: false
       },
       savedSettings: {}
     };
@@ -205,7 +227,11 @@ export default {
     
     youtube_recommended_video_focus,
     youtube_recommended_video_preview,
-    youtube_recommended_video_reflection
+    youtube_recommended_video_reflection,
+    youtube_video_dislike_fairness,
+    youtube_sidebar_video_focus,
+    youtube_sidebar_video_preview,
+    youtube_sidebar_video_reflection
   },
   computed: {},
   watch: {
@@ -374,6 +400,17 @@ export default {
             element = document.querySelectorAll(
               '[id=' + this.targetIdentifiers[i] + ']'
             )[2];
+          } else if (
+            this.targetIdentifiers[i] === 'top-level-buttons-computed'
+          ) {
+            element = document.getElementById(this.targetIdentifiers[i])
+              .childNodes[1];
+          } else if (
+            this.targetIdentifiers[i] === 'ytd-compact-video-renderer'
+          ) {
+            element = document.getElementsByTagName(
+              this.targetIdentifiers[i]
+            )[1];
           } else {
             element = document.querySelectorAll(
               '[id^=' + this.targetIdentifiers[i] + ']'

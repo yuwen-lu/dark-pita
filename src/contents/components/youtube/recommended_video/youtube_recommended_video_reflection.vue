@@ -2,7 +2,7 @@
   <div></div>
 </template>
 <script>
-import { readData } from '@/contents/components/youtube/youtube_recommended_video/time_tracker/tracker';
+import { readData } from '@/contents/components/youtube/recommended_video/time_tracker/tracker';
 
 export default {
   data() {

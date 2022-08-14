@@ -6,27 +6,32 @@ console.log('background is working');
 //   }
 // });
 
+let state = 'loading';
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   // read changeInfo data and do something with it
   // like send the new url to contentscripts.js
   console.log(changeInfo);
-  let re = /(tailwind.com)|(twitter.com)|(amazon.com)/;
+  let re = /(tailwind.com)|(twitter.com)|(amazon.com)|(youtube.com)/;
   if (changeInfo.url) {
     if (changeInfo.url.search(re) !== -1) {
       // conditional check prevents sending multiple messages per refresh
-      if (changeInfo.status === 'complete') {
-        chrome.tabs.sendMessage(tabId, {
-          type: 'URL_CHANGED',
-          url: changeInfo.url
-        });
-      }
+      state = 'complete';
     }
+  }
+
+  if (changeInfo.status === 'complete' && state === 'complete') {
+    console.log('url changed');
+    state = 'loading';
+    chrome.tabs.sendMessage(tabId, {
+      type: 'URL_CHANGED',
+      url: changeInfo.url
+    });
   }
 });
 
 async function getCurrentTab() {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  console.log({ tab });
+  // console.log({ tab });
   return tab;
 }
 
