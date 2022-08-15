@@ -159,7 +159,7 @@ div {
     }
 
     h1 {
-      @apply font-cabin font-bold text-[20px] pointer-events-none select-none capitalize;
+      @apply font-cabin font-bold text-[24px] pointer-events-none select-none capitalize;
     }
   }
 
