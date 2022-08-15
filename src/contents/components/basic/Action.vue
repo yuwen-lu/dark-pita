@@ -201,6 +201,7 @@ export default {
         if (this.interventionState[key] === 'on') {
           if (key.search(this.targetName) !== -1) {
 
+            // TODO: CHECK SAVED CONFIG AND SEE IF IT"S ALREADY SET
             if (key == selectedComponent) {
               console.log("This is setting the message for the previously configured component " + key + ", but new instance. No need to reset.");
             } else {

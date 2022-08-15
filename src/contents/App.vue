@@ -302,7 +302,7 @@ export default {
       }
     },
     getBoundingBoxList() {
-      console.log("This website: " + this.website);
+      console.log("Getting bounding box list");
       this.boundingBoxList = [];
       for (let i = 0; i < this.targetIdentifiers.length; i++) {
         let element;
