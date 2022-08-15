@@ -170,9 +170,9 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'sneaking advertising',
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'These are recommended items suggested by Amazon, and may partially based on user data. The interface design makes this part big and take the whole field of view.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'Users are more likely to deviate from their original purchase goals or spend more time browsing less relavant items.',
       action: [
         {
           name: 'none',
@@ -180,7 +180,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not Modified.'
         },
         {
           name: 'focus mode',
@@ -188,7 +188,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_home_card_focus',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Hide the recommended-items section on the home page.'
         },
         {
           name: 'reflection',
@@ -196,7 +196,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_home_card_reflection',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Dark Pita gives users a bit push-back when they are leaning to mindless browsing.'
         }
       ]
     }
