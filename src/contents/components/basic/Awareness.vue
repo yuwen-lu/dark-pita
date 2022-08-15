@@ -2,10 +2,12 @@
   <div class="DP_body" id="DP_awareness">
     <div class="DP_title">
       <img :src="icon" />
-      <h1>{{ type }}</h1>
+      <h1>{{ pattern }}</h1>
     </div>
     <div class="DP_section">
-      <h2 class="DP_subtitle">{{ pattern }}</h2>
+      <h2 class="DP_subtitle">
+        <span v-for="(value, index) in tag" class="DP_tag">{{ value }}</span>
+      </h2>
       <div class="DP_description DP_no-scrollbar">
         <p>{{ description }}</p>
       </div>
@@ -50,6 +52,10 @@
 <script>
 export default {
   props: {
+    tag: {
+      type: Array,
+      default: ['asymmetric', 'disparate treatment']
+    },
     type: {
       type: String,
       default: 'financial loss'
@@ -98,9 +104,9 @@ export default {
     console.log('action mounted');
 
     let element = document.getElementById('DP_awareness');
-    element.classList.remove('DP_money');
-    element.classList.remove('DP_privacy');
-    element.classList.remove('DP_cognition');
+    element.classList.remove('DP_online_shopping');
+    element.classList.remove('DP_social_media');
+    element.classList.remove('DP_video_streaming');
     element.classList.add('DP_' + this.color);
     // console.log(this.color);
   }
@@ -168,7 +174,7 @@ div {
   scrollbar-width: none; /* Firefox */
 }
 
-.DP_money {
+.DP_online_shopping {
   .DP_title {
     @apply text-money;
   }
@@ -178,7 +184,7 @@ div {
   }
 }
 
-.DP_privacy {
+.DP_social_media {
   .DP_title {
     @apply text-privacy;
   }
@@ -188,7 +194,7 @@ div {
   }
 }
 
-.DP_cognition {
+.DP_video_streaming {
   .DP_title {
     @apply text-cognition;
   }

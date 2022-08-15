@@ -34,9 +34,9 @@ export default {
   },
   mounted() {
     let element = document.getElementById('DP_header');
-    element.classList.remove('DP_money');
-    element.classList.remove('DP_privacy');
-    element.classList.remove('DP_cognition');
+    element.classList.remove('DP_online_shopping');
+    element.classList.remove('DP_social_media');
+    element.classList.remove('DP_video_streaming');
     element.classList.add('DP_' + this.color);
     // console.log(this.color);
   }
@@ -59,15 +59,15 @@ div {
   }
 }
 
-.DP_money {
+.DP_online_shopping {
   @apply border-money;
 }
 
-.DP_privacy {
+.DP_social_media {
   @apply border-privacy;
 }
 
-.DP_cognition {
+.DP_video_streaming {
   @apply border-cognition;
 }
 

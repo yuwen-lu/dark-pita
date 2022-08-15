@@ -190,7 +190,7 @@ export default {
       chrome.storage.sync.set({ savedSettings: this.interventionState });
     },
     resetIntervention() {
-      console.log(this.targetName, this.action);
+      // console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
           if (key.search(this.targetName) !== -1) {
@@ -222,9 +222,9 @@ export default {
     console.log('action mounted');
 
     let element = document.getElementById('DP_action');
-    element.classList.remove('DP_money');
-    element.classList.remove('DP_privacy');
-    element.classList.remove('DP_cognition');
+    element.classList.remove('DP_online_shopping');
+    element.classList.remove('DP_social_media');
+    element.classList.remove('DP_video_streaming');
     element.classList.add('DP_' + this.color);
     // console.log(this.color);
 
@@ -329,7 +329,7 @@ div {
   scrollbar-width: none; /* Firefox */
 }
 
-.DP_money {
+.DP_online_shopping {
   .DP_dropdown {
     @apply hover:bg-money border-money focus:ring-yellow-300;
   }
@@ -339,7 +339,7 @@ div {
   }
 }
 
-.DP_privacy {
+.DP_social_media {
   .DP_dropdown {
     @apply hover:bg-privacy border-privacy focus:ring-green-300;
   }
@@ -349,7 +349,7 @@ div {
   }
 }
 
-.DP_cognition {
+.DP_video_streaming {
   .DP_dropdown {
     @apply hover:bg-cognition border-cognition focus:ring-blue-300;
   }
