@@ -168,9 +168,9 @@ export default {
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'sneaking advertising',
+      pattern: 'Recommended Items',
       description:
-        'These are recommended items suggested by Amazon, and may partially based on user data. The interface design makes this part big and take the whole field of view.',
+        'These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.',
       awareness:
         'Users are more likely to deviate from their original purchase goals or spend more time browsing less relavant items.',
       action: [
@@ -210,11 +210,11 @@ export default {
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
-      pattern: 'false hierarchy',
+      pattern: 'Recommended Videos',
       description:
-        'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
+        'Individualized recommendations by YouTube',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'The videos are trying to cater to your tastes. You are more likely to consume more content than you originally intent to. ',
       action: [
         {
           name: 'none',
@@ -222,7 +222,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not Modified.'
         },
         {
           name: 'focus mode',
