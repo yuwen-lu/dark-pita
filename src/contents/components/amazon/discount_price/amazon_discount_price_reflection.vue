@@ -58,8 +58,8 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_discount_price_reflection', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_discount_price_reflection', (message) => {
+      if (message === 'on') {
         console.log('discount price reflection on');
         this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
         this.target.onmouseenter = () => {
@@ -69,7 +69,7 @@ export default {
           this.explode(x, y);
         };
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('discount price reflection off');
         this.target.onmouseenter = () => {};
         this.$emit('update');

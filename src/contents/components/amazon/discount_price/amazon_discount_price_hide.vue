@@ -45,13 +45,13 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_discount_price_hide', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_discount_price_hide', (message) => {
+      if (message === 'on') {
         console.log('discount price hide on');
         this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
         this.remove(this.target);
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('discount price hide off');
         this.recover(this.target);
         this.$emit('update');

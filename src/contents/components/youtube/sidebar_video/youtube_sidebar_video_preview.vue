@@ -45,13 +45,13 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('youtube_sidebar_video_preview', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('youtube_sidebar_video_preview', (message) => {
+      if (message === 'on') {
         console.log('youtube sidebar video block preview on');
         this.target = document.querySelectorAll('[id^=mouseover-overlay]');
         this.target.forEach((elt) => this.remove(elt));
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         this.target = document.querySelectorAll('[id^=mouseover-overlay]');
         this.target.forEach((elt) => this.recover(elt));
         this.$emit('update');

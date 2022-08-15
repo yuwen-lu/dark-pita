@@ -7,7 +7,7 @@ export default {
       type: 'online shopping platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'false hierarchy',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
@@ -55,7 +55,7 @@ export default {
       type: 'online shopping platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'hidden information',
       description:
         'Disguising relevant information (options, actions) as irrelevant.',
@@ -111,7 +111,7 @@ export default {
       type: 'online shopping platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
@@ -167,7 +167,7 @@ export default {
       type: 'online shopping platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'sneaking advertising',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
@@ -209,7 +209,7 @@ export default {
       type: 'video streaming platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'false hierarchy',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
@@ -257,7 +257,7 @@ export default {
       type: 'video streaming platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'false hierarchy',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
@@ -289,7 +289,7 @@ export default {
       type: 'video streaming platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'false hierarchy',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
@@ -477,7 +477,7 @@ export default {
       type: 'social media platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
       pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
@@ -517,7 +517,7 @@ export default {
       type: 'social media platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cognition.png?v=1659250494144',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
       pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',

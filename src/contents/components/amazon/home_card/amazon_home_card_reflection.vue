@@ -66,8 +66,8 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_home_card_reflection', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_home_card_reflection', (message) => {
+      if (message === 'on') {
         console.log('home card reflection on');
         this.target = document.querySelectorAll('[id^=desktop]');
         let that = this;
@@ -79,7 +79,7 @@ export default {
           };
         });
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('home card reflection off');
         this.target.forEach((item) => {
           item.onmouseenter = () => {};

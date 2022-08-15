@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="DP_section">
-        <div class="DP_description DP_no-scrollbar">
+        <div class="DP_description DP_no_scrollbar">
           <p>{{ intervention.description }}</p>
         </div>
         <img
@@ -319,12 +319,12 @@ div {
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.DP_no-scrollbar::-webkit-scrollbar {
+.DP_no_scrollbar::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.DP_no-scrollbar {
+.DP_no_scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }

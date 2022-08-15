@@ -45,13 +45,13 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_home_card_focus', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_home_card_focus', (message) => {
+      if (message === 'on') {
         console.log('home card focus mode on');
         this.target = document.querySelectorAll('[id^=pageContent]');
         this.remove(this.target);
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('home card focus mode off');
         this.recover(this.target);
         this.$emit('update');

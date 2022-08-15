@@ -29,8 +29,8 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_buy_now_friction', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_buy_now_friction', (message) => {
+      if (message === 'on') {
         console.log('buy now friction on');
         this.target = document.getElementById('submit.buy-now');
         this.target.onmouseenter = () => {
@@ -38,7 +38,7 @@ export default {
           this.on();
         };
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('buy now friction off');
         this.$emit('update');
       }
