@@ -42,30 +42,42 @@ export default {
     },
     mounted() {
         this.emitter.on('facebook_reels_hide', (massage) => {
-            console.log("facebook_reels_hide message", massage);
+            console.log("facebook_reels_hide message: ", massage);
+
+            let element;
+            // look for the reels component
+            var retrievedHtmls = document.getElementsByTagName("span");
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+                if (retrievedHtmls[j].innerHTML.indexOf("Reels and short videos") != -1) {
+                    // very ugly way, but the whole container is the 20th parent of the h3 tag
+                    var parentLevel = 20;
+                    element = retrievedHtmls[j];
+                    for (var k = 0; k < parentLevel; k++) {
+                        if (element.parentElement == null) break;
+                        element = element.parentElement;
+                    }
+                    console.log("element", element);
+                }
+            }
+
             if (massage === 'on') {
                 console.log('facebook reels content hide on');
-                let element;
-                // look for the reels component
-                var retrievedHtmls = document.getElementsByTagName("span");
-                for (var j = 0; j < retrievedHtmls.length; j++) {
-                    if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
-                        // very ugly way, but the whole container is the 9th parent of the h3 tag
-                        element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
-                    }
-                }
+                console.log("Trying to remove facebook reels, target: " + element.innerHTML);
 
-                console.log("Trying to remove facebook reels, target: " + element);
-
-                if (element != null) {
-                    this.target = element;
-                    this.remove(this.target);
+                if (element != null && element !== undefined) {
+                    this.remove(element)
+                    console.log("Removed facebook reels: " + element.innerHTML);
+                    console.log("New element style: " + element.style);
                 } else {
-                    console.log("cannot find target element for facebook reels");
+                    console.log("Message on, but cannot find target element for facebook reels");
                 }
             } else if (massage === 'off') {
                 console.log('facebook reels content hide off');
-                this.recover(this.target);
+                if (element != null) {
+                    this.recover(element);
+                } else {
+                    console.log("Message on, but cannot find target element for facebook reels");
+                }
             }
         });
     }

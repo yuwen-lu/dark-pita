@@ -350,8 +350,6 @@ export default {
                 // very ugly way, but the whole container is the 4th parent of the h3 tag
                 element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement;
                 console.log("matched element for facebook suggsted people: ", element);
-              } else {
-                console.log("no match for facebook suggsted people");
               }
             }
           } else if (this.targetIdentifiers[i] == "Reels and short videos") {
@@ -363,8 +361,6 @@ export default {
                 element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
                 console.log("matched element for facebook reels: ", element);
                 console.log("matched element's bounding box for facebook reels: ", element.getBoundingClientRect());
-              } else {
-                console.log("no match for facebook reels");
               }
             }
           } else if (this.targetIdentifiers[i] == "ads/about") {
@@ -385,8 +381,6 @@ export default {
                   }
                 }
                 console.log("matched element for facebook sponsored ads: ", element);
-              } else {
-                console.log("no match for facebook sponsored ads");
               }
             }
           } else if (this.targetIdentifiers[i] == "Suggested for you") {
@@ -463,10 +457,11 @@ export default {
       this.isPop = true;
       this.timer = new Date().getTime();
     },
-    closeAlert() {
-      this.isAlert = false;
-    },
     closePop(value) {
+      console.log(value);
+      this.isPop = false;
+    },
+    closeAll(value) {
       this.refresh();
       this.isPop = false;
       this.emitter.emit('alert_button_show', 'show');

@@ -5,7 +5,7 @@
       @mousemove="mousemove"
       @mouseup="mouseup"
       @mouseleave="mouseup"
-      @close="close"
+      @closeAll="closeAll"
       :color="color"
     />
     <Awareness
@@ -22,8 +22,8 @@
       :color="color"
       :style="actionPosition"
       :savedSettings="savedSettings"
-      :targetNames="targetNames"
-      @toggleAction="toggleAction"
+      :targetName="target.name"
+      @closePop="closePop"
     />
   </div>
 </template>
@@ -117,9 +117,12 @@ export default {
       elt.style.borderBottomRightRadius = '0px';
       this.actionHeight = elt.clientHeight;
     },
-    close(value) {
+    closeAll(value) {
       this.isPop = value;
-      this.$emit('closePop', this.isPop);
+      this.$emit('closeAll', this.isPop);
+    },
+    closePop(value) {
+      this.$emit('closePop', 'close popup');
     }
   },
   beforeMount() {
