@@ -6,7 +6,7 @@
       />
       <p>
         <span>Dark Pita</span>
-        <span style="padding-left: 20px">😈</span> Hello there, dark patterns
+        <span style="padding-left: 20px"> </span> Hello there, dark patterns
         detected
       </p>
       <button @click="toggleMask" v-if="!isMask">Show All</button>
