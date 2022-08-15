@@ -260,9 +260,9 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Hidden Dislike Counts',
       description:
-        'Usually only Like counts shows up while users have no clue how many dislikes the video gets.',
+        'Usually only Like counts shows up while users have no clue how many dislikes the video gets. One reasoning is that getting many Likes does not indicate it is getting few Dislikes.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'Users might mistakenly perceive a low-quality video as a high-quality video.',
       action: [
         {
           name: 'none',
