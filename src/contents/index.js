@@ -207,7 +207,7 @@ export default {
       identifier: 'content',
       url: 'https://www.youtube.com/\$',
       type: 'video streaming platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['asymmetric', 'disparate treatment', 'covert'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Recommended Videos',
@@ -255,12 +255,12 @@ export default {
       identifier: 'top-level-buttons-computed',
       url: 'https://www.youtube.com/watch\\?v=\*',
       type: 'video streaming platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
-      pattern: 'false hierarchy',
+      pattern: 'Hidden Dislike Counts',
       description:
-        'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
+        'Usually only Like counts shows up while users have no clue how many dislikes the video gets.',
       awareness:
         'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
       action: [
@@ -270,7 +270,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified.'
         },
         {
           name: 'fairness',
@@ -278,7 +278,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'youtube_video_dislike_fairness',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Show dislike counts.'
         }
       ]
     },
@@ -287,10 +287,10 @@ export default {
       identifier: 'ytd-compact-video-renderer',
       url: 'https://www.youtube.com/watch\\?v=\*',
       type: 'video streaming platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['asymmetric', 'disparate treatment', 'covert'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
-      pattern: 'false hierarchy',
+      pattern: 'Recommended Videos',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
       awareness:
