@@ -214,7 +214,7 @@ export default {
       description:
         'Individualized recommendations by YouTube',
       awareness:
-        'The videos are trying to cater to your tastes. You are more likely to consume more content than you originally intent to. ',
+        'The videos are trying to cater to your tastes. You are more likely to consume more content than you originally intent to. Auxilary functions such as preview will make it even easier to be distracted.',
       action: [
         {
           name: 'none',
@@ -230,7 +230,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'youtube_recommended_video_focus',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Hide all recommended videos on the homepage.'
         },
         {
           name: 'block preview',
@@ -238,7 +238,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'youtube_recommended_video_preview',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Disable the preview function.'
         },
         {
           name: 'reflection',
@@ -246,7 +246,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'youtube_recommended_video_reflection',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'A mini clock on the right top corner as reminder for you to track watch time.'
         }
       ]
     },
