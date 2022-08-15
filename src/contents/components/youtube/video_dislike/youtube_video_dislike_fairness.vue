@@ -21,8 +21,8 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('youtube_video_dislike_fairness', async (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('youtube_video_dislike_fairness', async (message) => {
+      if (message === 'on') {
         console.log('youtube video dislike fairness on');
         this.target = document.getElementById(
           'top-level-buttons-computed'
@@ -40,7 +40,7 @@ export default {
         });
 
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('youtube video dislike fairness off');
         this.target = document.getElementById(
           'top-level-buttons-computed'

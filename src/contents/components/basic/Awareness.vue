@@ -2,17 +2,28 @@
   <div class="DP_body" id="DP_awareness">
     <div class="DP_title">
       <img :src="icon" />
-      <h1>{{ type }}</h1>
+      <h1>{{ pattern }}</h1>
     </div>
     <div class="DP_section">
-      <h2 class="DP_subtitle">{{ pattern }}</h2>
-      <div class="DP_description DP_no-scrollbar">
+      <div class="DP_tag_wrapper">
+        <span v-for="(value, index) in tag" class="DP_tag">
+          <span
+            @mouseenter="tagInfoState[value] = true"
+            @mouseleave="tagInfoState[value] = false"
+            >{{ value }}</span
+          >
+          <span class="DP_tag_info" v-show="tagInfoState[value]">
+            {{ tagInfo[value] }}
+          </span>
+        </span>
+      </div>
+      <div class="DP_description DP_no_scrollbar">
         <p>{{ description }}</p>
       </div>
     </div>
     <div class="DP_section">
       <h2 class="DP_subtitle">potential impact</h2>
-      <div class="DP_description DP_no-scrollbar">
+      <div class="DP_description DP_no_scrollbar">
         <p>{{ awareness }}</p>
       </div>
     </div>
@@ -50,6 +61,10 @@
 <script>
 export default {
   props: {
+    tag: {
+      type: Array,
+      default: ['asymmetric', 'disparate treatment']
+    },
     type: {
       type: String,
       default: 'financial loss'
@@ -80,7 +95,27 @@ export default {
   },
   data() {
     return {
-      actionButton: 'Take Action'
+      actionButton: 'Take Action',
+      tagInfoState: {
+        asymmetric: false,
+        'disparate treatment': false,
+        'information hiding': false,
+        covert: false,
+        restrictive: false,
+        deceptive: false
+      },
+      tagInfo: {
+        asymmetric: 'Unequal burdens on choices available to the user',
+        'disparate treatment':
+          'Disadvantage and treat one group of users differently from another',
+        'information hiding':
+          'Obscure or delay the presentation of necessary information to users',
+        covert: 'Hiding the influence mechanism from users',
+        restrictive:
+          'Eliminate certain choices that should be available to users',
+        deceptive:
+          'Induce false beliefs in users either through affirmative misstatements, misleading statements, or omissions'
+      }
     };
   },
   methods: {
@@ -98,9 +133,9 @@ export default {
     console.log('action mounted');
 
     let element = document.getElementById('DP_awareness');
-    element.classList.remove('DP_money');
-    element.classList.remove('DP_privacy');
-    element.classList.remove('DP_cognition');
+    element.classList.remove('DP_online_shopping');
+    element.classList.remove('DP_social_media');
+    element.classList.remove('DP_video_streaming');
     element.classList.add('DP_' + this.color);
     // console.log(this.color);
   }
@@ -158,17 +193,17 @@ div {
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.DP_no-scrollbar::-webkit-scrollbar {
+.DP_no_scrollbar::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-.DP_no-scrollbar {
+.DP_no_scrollbar {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
 
-.DP_money {
+.DP_online_shopping {
   .DP_title {
     @apply text-money;
   }
@@ -176,9 +211,13 @@ div {
   .DP_button {
     @apply hover:bg-money border-money;
   }
+
+  .DP_tag {
+    @apply hover:bg-money border-money;
+  }
 }
 
-.DP_privacy {
+.DP_social_media {
   .DP_title {
     @apply text-privacy;
   }
@@ -186,15 +225,35 @@ div {
   .DP_button {
     @apply hover:bg-privacy border-privacy;
   }
+
+  .DP_tag {
+    @apply hover:bg-privacy border-privacy;
+  }
 }
 
-.DP_cognition {
+.DP_video_streaming {
   .DP_title {
     @apply text-cognition;
   }
 
   .DP_button {
     @apply hover:bg-cognition border-cognition;
+  }
+
+  .DP_tag {
+    @apply hover:bg-cognition border-cognition;
+  }
+}
+
+.DP_tag_wrapper {
+  @apply flex flex-wrap flex-row gap-[8px] justify-start items-start;
+
+  .DP_tag {
+    @apply relative text-[12px] capitalize py-[2px] px-[12px] text-white bg-dark border-[1px] border-solid rounded-[4px];
+
+    .DP_tag_info {
+      @apply absolute bottom-[28px] py-[6px] px-[12px] left-[-1px] w-[200px] bg-dark text-[12px] text-white z-infinite rounded-[4px] border-[1px] border-solid border-dark drop-shadow-xl backdrop-blur-xl bg-dark/60;
+    }
   }
 }
 

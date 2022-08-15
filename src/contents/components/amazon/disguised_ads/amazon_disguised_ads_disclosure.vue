@@ -48,8 +48,8 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_disguised_ads_disclosure', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_disguised_ads_disclosure', (message) => {
+      if (message === 'on') {
         console.log('disguised ads disclosure on');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
         this.sponsord = document.getElementById(
@@ -65,7 +65,7 @@ export default {
           'background-color: rgb(220 38 38); color: rgb(255 255 255); font-size: 24px; position: absolute; top: 0; right: 0; padding: 4px;';
         this.target.appendChild(tip);
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('disguised ads disclosure off');
         this.recover(this.sponsord);
         this.target.style.cssText = '';

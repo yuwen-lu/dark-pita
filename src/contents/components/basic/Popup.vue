@@ -9,6 +9,7 @@
       :color="color"
     />
     <Awareness
+      :tag="target.tag"
       :type="target.type"
       :icon="target.icon"
       :pattern="target.pattern"
@@ -65,7 +66,7 @@ export default {
       actionX: 0,
       actionY: 36,
       actionHeight: 300,
-      color: 'money',
+      color: 'online_shopping',
       isPop: true,
       buyNowHideState: false
     };
@@ -127,12 +128,12 @@ export default {
   },
   beforeMount() {
     // console.log(this.target);
-    if (this.target.type === 'financial loss') {
-      this.color = 'money';
-    } else if (this.target.type === 'privacy invasion') {
-      this.color = 'privacy';
-    } else if (this.target.type === 'cognitive burden') {
-      this.color = 'cognition';
+    if (this.target.type === 'online shopping platform') {
+      this.color = 'online_shopping';
+    } else if (this.target.type === 'social media platform') {
+      this.color = 'social_media';
+    } else if (this.target.type === 'video streaming platform') {
+      this.color = 'video_streaming';
     }
 
     // console.log(this.color);

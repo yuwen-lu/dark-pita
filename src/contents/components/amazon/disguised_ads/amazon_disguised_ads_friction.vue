@@ -24,13 +24,13 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_disguised_ads_friction', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_disguised_ads_friction', (message) => {
+      if (message === 'on') {
         console.log('disguised ads friction on');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
         this.changeCursor(this.target, 'none');
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('disguised ads friction off');
         this.changeCursor(this.target, 'default');
         this.$emit('update');

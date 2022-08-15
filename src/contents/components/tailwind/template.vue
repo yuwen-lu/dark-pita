@@ -5,11 +5,11 @@
 export default {
   data() {},
   mounted() {
-    this.emitter.on('template', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('template', (message) => {
+      if (message === 'on') {
         console.log('template on');
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('template off');
         this.$emit('update');
       }

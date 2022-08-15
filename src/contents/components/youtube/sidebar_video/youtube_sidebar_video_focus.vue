@@ -11,17 +11,16 @@ export default {
   },
   methods: {},
   mounted() {
-    this.emitter.on('youtube_sidebar_video_focus', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('youtube_sidebar_video_focus', (message) => {
+      this.elements = document.querySelectorAll('[id^=contents]');
+      this.target = this.elements[this.elements.length - 1];
+
+      if (message === 'on') {
         console.log('youtube sidebar video focus mode on');
-        this.elements = document.querySelectorAll('[id^=contents]');
-        this.target = this.elements[this.elements.length - 1];
         this.target.style.visibility = 'hidden';
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('youtube sidebar video focus mode off');
-        this.elements = document.querySelectorAll('[id^=contents]');
-        this.target = this.elements[this.elements.length - 1];
         this.target.style.visibility = 'visible';
         this.$emit('update');
       }

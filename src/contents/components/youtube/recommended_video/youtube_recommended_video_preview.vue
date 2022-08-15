@@ -45,13 +45,13 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('youtube_recommended_video_preview', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('youtube_recommended_video_preview', (message) => {
+      if (message === 'on') {
         console.log('youtube recommended video block preview on');
         this.target = document.getElementById('preview');
         this.remove(this.target);
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('youtube recommended video block preview off');
         this.recover(this.target);
         this.$emit('update');

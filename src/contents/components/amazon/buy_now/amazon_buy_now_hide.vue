@@ -45,13 +45,13 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_buy_now_hide', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_buy_now_hide', (message) => {
+      if (message === 'on') {
         console.log('buy now hide on');
         this.target = document.getElementById('buyNow_feature_div');
         this.remove(this.target);
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('buy now hide off');
         this.recover(this.target);
         this.$emit('update');

@@ -94,13 +94,46 @@ export default {
   },
   mounted() {
     console.log('alert mounted');
-    document.body.style.paddingTop = '64px';
 
     if(this.website === "Facebook") {
       let bannerElement = document.querySelectorAll('[role="banner"]')[0];
       for(var i = 0; i < bannerElement.children.length; i++) {
         bannerElement.children[i].style.top = '64px';
       }
+    } else if(this.website === "Youtube") {
+      // need to manually change the top position of each screen componet (header, main content, left bar)
+      let leftBar = document.getElementsByTagName("tp-yt-app-drawer")[0];
+      console.log("leftBar", leftBar);
+      // leftBar current position set to fixed, add its left value by 64 px;
+      if (leftBar != undefined) {
+        let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
+        leftBar.style.top = parseInt(leftBarCurrentTopValue) + 64 + "px";
+      }  else {
+        console.log("leftBar not retrieved")
+      }
+      
+
+      let headerBar = document.getElementById("masthead-container");
+      console.log("headerBar", headerBar);
+      // headerBar current position set to fixed, add its left value by 64 px;
+      if (headerBar != undefined) {
+        let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
+        headerBar.style.top = parseInt(headerBarCurrentTopValue) + 64 + "px";
+      } else {
+        console.log("headerBar not retrieved")
+      }
+
+      let bannerElement = document.getElementsByTagName("ytd-browse")[0];
+      if(bannerElement != undefined) {
+        console.log("bannerElement: " + bannerElement);
+        bannerElement.style.marginTop = "64px";
+      } else {
+        console.log("bannerElement not retrieved")
+      }
+
+
+    } else {
+      document.body.style.paddingTop = '64px';
     }
 
     this.emitter.on('alert_button_show', (massage) => {

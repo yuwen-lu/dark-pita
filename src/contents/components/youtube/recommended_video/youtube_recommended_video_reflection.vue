@@ -12,8 +12,8 @@ export default {
     };
   },
   mounted() {
-    this.emitter.on('youtube_recommended_video_reflection', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('youtube_recommended_video_reflection', (message) => {
+      if (message === 'on') {
         console.log('youtube recommended video reflection on');
         let elt = document.createElement('div');
         elt.className = 'DP_time_tracker';
@@ -30,7 +30,7 @@ export default {
         });
         document.body.appendChild(elt);
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('youtube recommended video reflection off');
         let elt = document.getElementById('DP_time_tracker_wrapper');
         document.body.removeChild(elt);

@@ -4,9 +4,10 @@ export default {
       name: 'amazon_buy_now',
       identifier: 'buyNow_feature_div',
       url: 'www.amazon.com(\\S*)/dp',
-      type: 'financial loss',
+      type: 'online shopping platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'false hierarchy',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
@@ -51,9 +52,10 @@ export default {
       name: 'amazon_disguised_ads',
       identifier: 'CardInstance',
       url: 'www.amazon.com/s\\?',
-      type: 'financial loss',
+      type: 'online shopping platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'hidden information',
       description:
         'Disguising relevant information (options, actions) as irrelevant.',
@@ -106,9 +108,10 @@ export default {
       name: 'amazon_discount_price',
       identifier: 'apex_desktop',
       url: 'www.amazon.com(\\S*)/dp',
-      type: 'financial loss',
+      type: 'online shopping platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
@@ -161,9 +164,10 @@ export default {
       name: 'amazon_home_card',
       identifier: 'gw-card-layout',
       url: 'https://www.amazon.com(/)?(#nav-top)?(#)?(ref=nav_logo)?\$',
-      type: 'financial loss',
+      type: 'online shopping platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'sneaking advertising',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
@@ -202,9 +206,10 @@ export default {
       name: 'youtube_recommended_video',
       identifier: 'content',
       url: 'https://www.youtube.com/\$',
-      type: 'cognitive burden',
+      type: 'video streaming platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'false hierarchy',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
@@ -249,9 +254,10 @@ export default {
       name: 'youtube_video_dislike',
       identifier: 'top-level-buttons-computed',
       url: 'https://www.youtube.com/watch\\?v=\*',
-      type: 'cognitive burden',
+      type: 'video streaming platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'false hierarchy',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
@@ -280,9 +286,10 @@ export default {
       name: 'youtube_sidebar_video',
       identifier: 'ytd-compact-video-renderer',
       url: 'https://www.youtube.com/watch\\?v=\*',
-      type: 'cognitive burden',
+      type: 'video streaming platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'false hierarchy',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
@@ -322,14 +329,15 @@ export default {
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         }
       ]
-    },
+    }
   ],
   tailwind: [
     {
       name: 'tailwind_header',
       identifier: 'header',
       url: 'https://tailwindcss.com/docs/',
-      type: 'financial loss',
+      type: 'video streaming platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
       pattern: 'loss-gain framing',
@@ -368,7 +376,8 @@ export default {
       name: 'tailwind_basic_usage',
       identifier: 'basic-usage',
       url: 'https://tailwindcss.com/docs/',
-      type: 'privacy invasion',
+      type: 'video streaming platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/privacy.png?v=1659250500782',
       pattern: 'loss-gain framing',
@@ -415,7 +424,8 @@ export default {
       name: 'tailwind_applying_conditionally',
       identifier: 'applying-conditionally',
       url: 'https://tailwindcss.com/docs/',
-      type: 'cognitive burden',
+      type: 'video streaming platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cognition.png?v=1659250494144',
       pattern: 'loss-gain framing',
@@ -464,9 +474,10 @@ export default {
       name: 'twitter_tweet',
       identifier: 'Tweet',
       url: 'https://twitter.com/home',
-      type: 'financial loss',
+      type: 'social media platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
       pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
@@ -503,9 +514,10 @@ export default {
       name: 'twitter_who_to_follow',
       identifier: 'Who to follow',
       url: 'https://twitter.com/home',
-      type: 'cognitive burden',
+      type: 'social media platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cognition.png?v=1659250494144',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
       pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',

@@ -25,13 +25,13 @@ export default {
     }
   },
   mounted() {
-    this.emitter.on('amazon_disguised_ads_counterfact', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_disguised_ads_counterfact', (message) => {
+      if (message === 'on') {
         console.log('disguised ads counterfact on');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
         this.changeCursor(this.target, 'warning');
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('disguised ads counterfact off');
         this.changeCursor(this.target, 'default');
         this.$emit('update');

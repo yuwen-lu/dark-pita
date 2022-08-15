@@ -9,8 +9,8 @@ export default {
     };
   },
   mounted() {
-    this.emitter.on('amazon_discount_price_disclosure', (massage) => {
-      if (massage === 'on') {
+    this.emitter.on('amazon_discount_price_disclosure', (message) => {
+      if (message === 'on') {
         console.log('discount price disclosure on');
         this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
 
@@ -42,7 +42,7 @@ export default {
           tooltip.style.visibility = 'hidden';
         };
         this.$emit('update');
-      } else if (massage === 'off') {
+      } else if (message === 'off') {
         console.log('discount price disclosure off');
         let tooltip = document.getElementById('DP_tooltip');
         this.target.removeChild(tooltip);
