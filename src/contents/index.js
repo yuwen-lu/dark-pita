@@ -5,14 +5,14 @@ export default {
       identifier: 'buyNow_feature_div',
       url: 'www.amazon.com(\\S*)/dp',
       type: 'online shopping platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['asymmetric', 'covert'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'false hierarchy',
+      pattern: 'Prominent Option',
       description:
-        'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
+        'The "Buy Now" button is in color orange, while the regular "Add to Cart" option is yellow.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'Users could choose "Buy Now" more easily, and sometimes even mistakenly make a purchase decision.',
       action: [
         {
           name: 'none',
@@ -28,7 +28,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_buy_now_hide',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Let the "Buy Now" button disappear.'
         },
         {
           name: 'fairness',
@@ -36,7 +36,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_buy_now_fairness',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Let the "Buy Now" button be in the same color as the regular "Add to Cart" option.'
         },
         {
           name: 'friction',
@@ -44,7 +44,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_buy_now_friction',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Add a bit friction before you actually proceed to purchase even you click buy now.'
         }
       ]
     },
@@ -53,7 +53,7 @@ export default {
       identifier: 'CardInstance',
       url: 'www.amazon.com/s\\?',
       type: 'online shopping platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['deceptive', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'hidden information',
@@ -109,10 +109,10 @@ export default {
       identifier: 'apex_desktop',
       url: 'www.amazon.com(\\S*)/dp',
       type: 'online shopping platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'loss-gain framing',
+      pattern: 'More than Discounts...',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
