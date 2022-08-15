@@ -81,12 +81,7 @@
       @update="generateOverviewOverlay"
     />
 
-    <Alert
-      v-if="isAlert"
-      :targetNames="targetNames"
-      @toggleMask="toggleMask"
-      @closeAlert="closeAlert"
-    />
+    <Alert v-if="isAlert" :targetNames="targetNames" @toggleMask="toggleMask" />
 
     <Popup
       class="DP_popup"
@@ -97,6 +92,7 @@
       :target="currentTarget"
       :savedSettings="savedSettings"
       :targetNames="targetNames"
+      @closeAll="closeAll"
       @closePop="closePop"
     />
 
@@ -443,10 +439,11 @@ export default {
       this.isPop = true;
       this.timer = new Date().getTime();
     },
-    closeAlert() {
-      this.isAlert = false;
-    },
     closePop(value) {
+      console.log(value);
+      this.isPop = false;
+    },
+    closeAll(value) {
       this.refresh();
       this.isPop = false;
       this.emitter.emit('alert_button_show', 'show');

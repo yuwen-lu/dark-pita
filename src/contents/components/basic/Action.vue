@@ -69,7 +69,7 @@ export default {
     savedSettings: {
       type: Object
     },
-    targetNames: {
+    targetName: {
       type: Object
     }
   },
@@ -103,9 +103,6 @@ export default {
     };
   },
   methods: {
-    toggleAction() {
-      this.$emit('toggleAction', 'toggle action');
-    },
     alterIntervention(index) {
       this.intervention = this.action[index];
       this.interventionId = index;
@@ -189,24 +186,16 @@ export default {
     },
     triggerIntervention() {
       console.log('save settings');
+      this.$emit('closePop', 'close popup');
       chrome.storage.sync.set({ savedSettings: this.interventionState });
     },
     resetIntervention() {
-      let targets = [];
-      Object.keys(this.targetNames).forEach((key) => {
-        if (this.targetNames[key]) {
-          targets.push(key);
-        }
-      });
-
-      // console.log(this.interventionState);
+      console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
-          for (let i = 0; i < targets.length; i++) {
-            if (key.search(targets[i]) !== -1) {
-              this.emitter.emit(key, 'off');
-              this.interventionState[key] = 'off';
-            }
+          if (key.search(this.targetName) !== -1) {
+            this.emitter.emit(key, 'off');
+            this.interventionState[key] = 'off';
           }
         }
       });
