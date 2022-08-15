@@ -1,5 +1,5 @@
 <template>
-  <div class="DP_heading" v-show="isAlert">
+  <div class="DP_heading">
     <div class="DP_alert">
       <img
         src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dawn.png?v=1659250496384"
@@ -48,7 +48,6 @@ export default {
   data() {
     return {
       isMask: false,
-      isAlert: true,
       interventionState: {}
     };
   },
@@ -58,7 +57,7 @@ export default {
       this.$emit('toggleMask', false);
     },
     closeAlert() {
-      this.isAlert = false;
+      this.$emit('closeAlert', false);
     },
     reset() {
       let targets = [];

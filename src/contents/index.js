@@ -3,7 +3,7 @@ export default {
     {
       name: 'amazon_buy_now',
       identifier: 'buyNow_feature_div',
-      url: 'www.amazon.com(\\S*)/dp',
+      url: 'www.amazon.com(\\S*)((/dp)|(/gp))',
       type: 'online shopping platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
@@ -162,13 +162,13 @@ export default {
     },
     {
       name: 'amazon_home_card',
-      identifier: 'gw-card-layout',
+      identifier: 'desktop-grid-1',
       url: 'https://www.amazon.com(/)?(#nav-top)?(#)?(ref=nav_logo)?\$',
       type: 'online shopping platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'sneaking advertising',
+      pattern: 'disguised ads',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:

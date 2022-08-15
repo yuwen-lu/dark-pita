@@ -1,45 +1,150 @@
 <template>
   <div id="DP_wrapper" :key="reload">
-    <amazon_buy_now_hide v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
-    <amazon_buy_now_fairness v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
-    <amazon_buy_now_friction v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
-    <amazon_disguised_ads_hide v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
-    <amazon_disguised_ads_friction v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
-    <amazon_disguised_ads_disclosure v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
-    <amazon_disguised_ads_counterfact v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
-    <amazon_discount_price_hide v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
-    <amazon_discount_price_disclosure v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
-    <amazon_discount_price_reflection v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
-    <amazon_discount_price_action v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
-    <amazon_home_card_focus v-if="targetNames.amazon_home_card" @update="generateOverviewOverlay" />
-    <amazon_home_card_reflection v-if="targetNames.amazon_home_card" @update="generateOverviewOverlay" />
-    <youtube_recommended_video_focus v-if="targetNames.youtube_recommended_video" @update="generateOverviewOverlay" />
-    <youtube_recommended_video_preview v-if="targetNames.youtube_recommended_video" @update="generateOverviewOverlay" />
-    <youtube_recommended_video_reflection v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay" />
-    <youtube_video_dislike_fairness v-if="targetNames.youtube_video_dislike" @update="generateOverviewOverlay" />
-    <youtube_sidebar_video_focus v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
-    <youtube_sidebar_video_preview v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
-    <youtube_sidebar_video_reflection v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
 
+    <amazon_buy_now_hide
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_buy_now_fairness
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_buy_now_friction
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_hide
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_friction
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_disclosure
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_counterfact
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_hide
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_disclosure
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_reflection
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_action
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_home_card_focus
+      v-if="targetNames.amazon_home_card"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_home_card_reflection
+      v-if="targetNames.amazon_home_card"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_focus
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_preview
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_reflection
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_video_dislike_fairness
+      v-if="targetNames.youtube_video_dislike"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_focus
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_preview
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_reflection
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
+    
     // facebook
     <facebook_suggested_hide v-if="targetNames.facebook_suggested" @update="generateOverviewOverlay" />
     <facebook_reels_hide v-if="targetNames.facebook_reels" @update="generateOverviewOverlay" />
     <facebook_sponsored_hide v-if="targetNames.facebook_sponsored" @update="generateOverviewOverlay" />
     <facebook_suggested_for_you_hide v-if="targetNames.facebook_suggested_for_you" @update="generateOverviewOverlay" />
 
-    <Alert v-if="isAlert" :targetNames="targetNames" :website="website" @toggleMask="toggleMask"
-      @closeAlert="closeAlert" />
 
-    <Popup class="DP_popup" v-if="isPop" :left="popupX" :top="popupY" :key="timer" :target="currentTarget"
-      :savedSettings="savedSettings" :targetNames="targetNames" @closePop="closePop" />
+    <Alert
+      :targetNames="targetNames"
+      @toggleMask="toggleMask"
+      @closeAlert="closeAlert"
+      v-show="isAlert"
+    />
+
+    <Popup
+      class="DP_popup"
+      v-if="isPop"
+      :left="popupX"
+      :top="popupY"
+      :key="timer"
+      :target="currentTarget"
+      :savedSettings="savedSettings"
+      :targetNames="targetNames"
+      @closeAll="closeAll"
+      @closePop="closePop"
+    />
+
 
     <canvas resize id="DP_canvas" style="display:none"></canvas>
 
     <div id="DP_mask" class="DP_mask" v-show="isMask"></div>
 
-    <div v-for="(value, index) in targetIdentifiers" :key="index" :id="'DP_i_' + value" class="DP_bounding_box"
-      @click="togglePopup($event, value, index)" v-show="isMask"></div>
+    <div
+      v-for="(value, index) in targetIdentifiers"
+      :key="index"
+      :id="'DP_i_' + value"
+      class="DP_bounding_box"
+      @click="togglePopup($event, value, index)"
+      v-show="isMask"
+    ></div>
+    <div id="DP_console" class="DP_console" v-show="isConsole">
+      <div class="mb-4 w-full rounded-lg border bg-gray-700 border-gray-600">
+        <div class="py-2 px-4 bg-gray-800 rounded-b-lg">
+          <label for="editor" class="sr-only">Publish post</label>
+          <textarea
+            id="editor"
+            rows="8"
+            class="block px-0 w-full text-sm border-0 bg-gray-800 focus:ring-0 text-white placeholder-gray-400"
+            placeholder="Write an article..."
+            required=""
+            v-model="diary"
+          ></textarea>
+        </div>
+      </div>
+      <button @click="sendDiary">
+        Screenshot & Send
+      </button>
+      <button @click="openAlert">
+        Toggle Alert
+      </button>
+      <p v-show="notSupport">This site is not supported by Dark Pita</p>
+    </div>
+
   </div>
 </template>
 
@@ -120,7 +225,10 @@ export default {
         youtube_video_dislike: false,
         youtube_sidebar_video: false
       },
-      savedSettings: {}
+      savedSettings: {},
+      isConsole: false,
+      notSupport: false,
+      diary: ''
     };
   },
   components: {
@@ -216,6 +324,8 @@ export default {
             console.log(this.targetIdentifiers);
             this.currentTarget = this.info[0];
             this.isAlert = true;
+          } else {
+            this.notSupport = true;
           }
         }
       });
@@ -457,6 +567,12 @@ export default {
       } else {
         this.popupY = target.y + 100;
       }
+      if (this.popupX < 0 || this.popupX > this.overlayWidth) {
+        this.popupX = 800;
+      }
+      if (this.popupY < 0 || this.popupY > this.overlayHeight) {
+        this.popupY = 300;
+      }
 
       this.isPop = true;
       this.timer = new Date().getTime();
@@ -465,10 +581,21 @@ export default {
       console.log(value);
       this.isPop = false;
     },
+    closeAlert() {
+      this.isAlert = false;
+      document.body.style.paddingTop = '0';
+    },
+    openAlert() {
+      this.isAlert = true;
+      document.body.style.paddingTop = '64px';
+    },
     closeAll(value) {
       this.refresh();
       this.isPop = false;
       this.emitter.emit('alert_button_show', 'show');
+    },
+    sendDiary() {
+      console.log(this.diary);
     }
   },
   mounted() {
@@ -527,5 +654,13 @@ div {
 
 .DP_bounding_box {
   @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent border-solid hover:border-blue-500 z-overlay;
+}
+
+.DP_console {
+  @apply fixed right-0 top-0 font-cabin bg-dark z-infinite text-white text-[48px];
+
+  button {
+    @apply bg-transparent w-[160px] hover:bg-white font-cabin font-normal text-sm text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border;
+  }
 }
 </style>
