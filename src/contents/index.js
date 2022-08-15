@@ -20,7 +20,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified.'
         },
         {
           name: 'hide',
@@ -56,11 +56,11 @@ export default {
       tag: ['deceptive', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'hidden information',
+      pattern: 'Disguised Ads',
       description:
-        'Disguising relevant information (options, actions) as irrelevant.',
+        'The interface design makes this section large and makes it less obvious that this is an inserted ads. The "sponsored" notice is minimal at the right bottom corner.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'It is harder to avoid clicking the ads. As a user, you may be confused that the product you are looking for is behind this link.',
       action: [
         {
           name: 'none',
@@ -68,7 +68,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified'
         },
         {
           name: 'hide',
@@ -76,7 +76,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_disguised_ads_hide',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Let the ads disappear.'
         },
         {
           name: 'friction',
@@ -84,7 +84,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_disguised_ads_friction',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Your cursor will disappear if it navigates through ads area.'
         },
         {
           name: 'information disclosure',
@@ -92,7 +92,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_disguised_ads_disclosure',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'We will detect and indicate the ads area explicitly for you.'
         },
         {
           name: 'counterfactual thinking',
@@ -100,7 +100,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_disguised_ads_counterfact',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Your cursor will become exclamation mark when it navigates through ads area.'
         }
       ]
     },
