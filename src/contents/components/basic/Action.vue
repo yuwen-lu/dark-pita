@@ -172,14 +172,17 @@ export default {
         this.emitter.emit('youtube_sidebar_video_reflection', 'on');
       }
       // facebook
-      else if (this.intervention.component === 'facebook_suggested_hide') {
+      if (this.intervention.component === 'facebook_suggested_hide') {
         this.emitter.emit('facebook_suggested_hide', 'on');
-      } else if (this.intervention.component === "facebook_reels_hide") {
+      }
+      if (this.intervention.component === "facebook_reels_hide") {
         this.emitter.emit('facebook_reels_hide', 'on');
-      } else if (this.intervention.component === "facebook_sponsored_hide") {
-        console.log("Emitting facebook_sponsored_hide message as on");
+      }
+      if (this.intervention.component === "facebook_sponsored_hide") {
         this.emitter.emit('facebook_sponsored_hide', 'on');
-      } else if (this.intervention.component === "facebook_suggested_for_you_hide") {
+        console.log("Emitting facebook_sponsored_hide message as on");
+      }
+      if (this.intervention.component === "facebook_suggested_for_you_hide") {
         this.emitter.emit('facebook_suggested_for_you_hide', 'on');
         console.log("Emitting facebook_suggested_for_you_hide message as on");
       }
