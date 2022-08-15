@@ -635,7 +635,7 @@ export default {
           name: 'hide / disable',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
+          component: 'facebook_sponsored_hide',
           description:
             'Contents that I don\'t desire would be prompted onto my homepage feed.'
         }

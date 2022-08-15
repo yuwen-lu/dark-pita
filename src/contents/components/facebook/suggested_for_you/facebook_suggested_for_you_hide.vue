@@ -42,32 +42,42 @@ export default {
     },
     mounted() {
         this.emitter.on('facebook_suggested_for_you_hide', (massage) => {
-            if (massage === 'on') {
-                console.log('facebook suggsted for you content hide on');
-                let element;
-                // look for the sponsored component
-                var retrievedHtmls = document.getElementsByTagName("span");
-                for (var j = 0; j < retrievedHtmls.length; j++) {
-                    if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
-                        // very ugly way, but the whole container is the 11th parent of the a tag
-                        var parentLevel = 7;
-                        element = retrievedHtmls[j];
-                        for (var k = 0; k < parentLevel; k++) {
-                            element = element.parentElement;
-                        }
-                    }
-                }
 
-                if (element != null) {
-                    this.target = element;
+            console.log("Received emitter message, " + massage);
+
+            let elementList = [];
+            let element;
+            // look for the sponsored component
+            var retrievedHtmls = document.getElementsByTagName("span");
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+                if (retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1) {
+                    // very ugly way, but the whole container is the 11th parent of the a tag
+                    var parentLevel = 7;
+                    element = retrievedHtmls[j];
+                    for (var k = 0; k < parentLevel; k++) {
+                        element = element.parentElement;
+                    }
+                    elementList.push(element);
+                }
+            }
+
+            if (massage === 'on') {
+                console.log('facebook suggested for you content hide on');
+
+                if (elementList.length > 0) {
+                    this.target = elementList;
                     this.remove(this.target);
                     console.log(this.target + " removed");
                 } else {
-                    console.log("cannot find target element for facebook suggsted for you content");
+                    console.log("cannot find target element for facebook suggested for you content");
                 }
             } else if (massage === 'off') {
-                console.log('facebook suggsted for you content hide off');
-                this.recover(this.target);
+                console.log('facebook suggested for you content hide off');
+                if (elementList.length > 0) {
+                    this.target = elementList;
+                    this.recover(this.target);
+                    console.log(this.target + " restored");
+                }
             }
         });
     }

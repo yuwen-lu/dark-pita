@@ -78,7 +78,7 @@ export default {
         amazon_home_card_reflection: 'off',
 
         // facebook
-        facebook_suggsted_hide: 'off',
+        facebook_suggested_hide: 'off',
         facebook_reels_hide: 'off',
         facebook_sponsored_hide: 'off',
 
@@ -175,12 +175,13 @@ export default {
       else if (this.intervention.component === 'facebook_suggested_hide') {
         this.emitter.emit('facebook_suggested_hide', 'on');
       } else if (this.intervention.component === "facebook_reels_hide") {
-        console.log("Emitting facebook_reels_hide message as on");
         this.emitter.emit('facebook_reels_hide', 'on');
       } else if (this.intervention.component === "facebook_sponsored_hide") {
+        console.log("Emitting facebook_sponsored_hide message as on");
         this.emitter.emit('facebook_sponsored_hide', 'on');
       } else if (this.intervention.component === "facebook_suggested_for_you_hide") {
         this.emitter.emit('facebook_suggested_for_you_hide', 'on');
+        console.log("Emitting facebook_suggested_for_you_hide message as on");
       }
 
       if (this.intervention.component !== 'none') {
