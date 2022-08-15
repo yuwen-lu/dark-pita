@@ -365,10 +365,11 @@ export default {
             }
           } else if (this.targetIdentifiers[i] == "ads/about") {
             console.log("Looking for facebook ads/about");
-            var retrievedHtmls = document.getElementsByTagName("a");
+            let retrievedHtmls = document.getElementsByTagName("a");
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              var retrievedHref = retrievedHtmls[j].getAttribute("href");
-              if (retrievedHref.indexOf(this.targetIdentifiers[i]) != -1) {
+              let retrievedHref = retrievedHtmls[j].getAttribute("href");
+              if (retrievedHref.indexOf("ads/about") != -1) {
+                console.log("Found ads/about content on facebook");
                 // not the most elegant solution, but the whole container is the 11th parent of the a tag
                 var parentLevel = 11;
                 element = retrievedHtmls[j];
@@ -377,6 +378,7 @@ export default {
                     element = element.parentElement;
                   } else {
                     console.log("Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort");
+                    console.log("current result: ", element);
                     break;
                   }
                 }

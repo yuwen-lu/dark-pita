@@ -564,10 +564,10 @@ export default {
       name: 'facebook_suggested',
       identifier: 'People You May Know',
       url: 'https://www.facebook.com/',
-      type: 'financial loss',
+      type: 'social media platform',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'loss-gain framing',
+      pattern: 'People you may know – Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -595,10 +595,10 @@ export default {
       name: 'facebook_reels',
       identifier: 'Reels and short videos',
       url: 'https://www.facebook.com/',
-      type: 'attention loss',
+      type: 'social media platform',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'loss-gain framing',
+      pattern: 'Reels – Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -626,10 +626,10 @@ export default {
       name: 'facebook_sponsored',
       identifier: 'ads/about',
       url: 'https://www.facebook.com/',
-      type: 'attention loss',
+      type: 'social media platform',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'loss-gain framing',
+      pattern: 'Sponsored – Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -657,10 +657,10 @@ export default {
       name: 'facebook_suggested_for_you',
       identifier: 'Suggested for you',
       url: 'https://www.facebook.com/',
-      type: 'attention loss',
+      type: 'social media platform',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'loss-gain framing',
+      pattern: 'Suggested for you - Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:

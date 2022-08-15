@@ -100,7 +100,7 @@ export default {
 
       console.log("this.intervention.component: " + this.intervention.component);
 
-      this.resetIntervention();
+      this.resetIntervention(this.intervention.component);
 
       if (this.intervention.component === 'amazon_buy_now_hide') {
         this.emitter.emit('amazon_buy_now_hide', 'on');
@@ -195,13 +195,20 @@ export default {
       this.$emit('closePop', 'close popup');
       chrome.storage.sync.set({ savedSettings: this.interventionState });
     },
-    resetIntervention() {
+    resetIntervention(selectedComponent) {
       // console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
           if (key.search(this.targetName) !== -1) {
-            this.emitter.emit(key, 'off');
-            this.interventionState[key] = 'off';
+
+            if (key == selectedComponent) {
+              console.log("This is setting the message for the previously configured component " + key + ", but new instance. No need to reset.");
+            } else {
+              console.log("reset message for intervention: " + key);
+              this.emitter.emit(key, 'off');
+              this.interventionState[key] = 'off';
+            }
+            
           }
         }
       });

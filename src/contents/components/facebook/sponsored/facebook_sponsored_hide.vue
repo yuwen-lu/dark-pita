@@ -48,7 +48,8 @@ export default {
                 // look for the sponsored component
                 var retrievedHtmls = document.getElementsByTagName("a");
                 for (var j = 0; j < retrievedHtmls.length; j++) {
-                    if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
+                    if (retrievedHtmls[j].innerHTML.indexOf("ads/about") != -1) {
+                        console.log("Found ads/about content on facebook");
                         // very ugly way, but the whole container is the 11th parent of the a tag
                         var parentLevel = 11;
                         element = retrievedHtmls[j];

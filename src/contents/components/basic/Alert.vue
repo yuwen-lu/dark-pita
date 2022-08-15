@@ -112,7 +112,6 @@ export default {
         console.log("leftBar not retrieved")
       }
       
-
       let headerBar = document.getElementById("masthead-container");
       console.log("headerBar", headerBar);
       // headerBar current position set to fixed, add its left value by 64 px;
@@ -130,8 +129,7 @@ export default {
       } else {
         console.log("bannerElement not retrieved")
       }
-
-
+      
     } else {
       document.body.style.paddingTop = '64px';
     }
