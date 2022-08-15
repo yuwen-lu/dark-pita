@@ -24,10 +24,9 @@
 
     // facebook
     <facebook_suggsted_hide v-if="targetNames.facebook_suggsted" @update="generateOverviewOverlay" />
-
     <facebook_reels_hide v-if="targetNames.facebook_reels" @update="generateOverviewOverlay" />
-
     <facebook_sponsored_hide v-if="targetNames.facebook_sponsored" @update="generateOverviewOverlay" />
+    <facebook_suggsted_for_you_hide v-if="targetNames.facebook_suggsted_for_you" @update="generateOverviewOverlay" />
 
     <Alert v-if="isAlert" :targetNames="targetNames" :website="website" @toggleMask="toggleMask"
       @closeAlert="closeAlert" />
@@ -74,9 +73,10 @@ import youtube_sidebar_video_focus from '@/contents/components/youtube/sidebar_v
 import youtube_sidebar_video_preview from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue';
 import youtube_sidebar_video_reflection from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue';
 
-import facebook_suggested_hide from '@/contents/components/facebook/suggested/facebook_suggested_hide.vue';
+import facebook_suggested_hide from '@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue';
 import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
 import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sponsored_hide.vue';
+import facebook_suggsted_for_you_hide from './components/facebook/suggested_for_you/facebook_suggsted_for_you_hide.vue';
 
 export default {
   data() {
@@ -114,6 +114,7 @@ export default {
         facebook_suggsted: false,
         facebook_reels: false,
         facebook_sponsored: false,
+        facebook_suggsted_for_you: false,
 
         youtube_recommended_video: false,
         youtube_video_dislike: false,
@@ -144,6 +145,7 @@ export default {
     facebook_suggested_hide,
     facebook_reels_hide,
     facebook_sponsored_hide,
+    facebook_suggsted_for_you_hide,
 
     youtube_recommended_video_focus,
     youtube_recommended_video_preview,
@@ -370,7 +372,6 @@ export default {
             var retrievedHtmls = document.getElementsByTagName("a");
             for (var j = 0; j < retrievedHtmls.length; j++) {
               var retrievedHref = retrievedHtmls[j].getAttribute("href");
-              console.log("retrievedHref: ", retrievedHref);
               if (retrievedHref.indexOf(this.targetIdentifiers[i]) != -1) {
                 // not the most elegant solution, but the whole container is the 11th parent of the a tag
                 var parentLevel = 11;
@@ -386,6 +387,20 @@ export default {
                 console.log("matched element for facebook sponsored ads: ", element);
               } else {
                 console.log("no match for facebook sponsored ads");
+              }
+            }
+          } else if (this.targetIdentifiers[i] == "Suggested for you") {
+            console.log("Looking for facebook Suggsted for you");
+            var retrievedHtmls = document.getElementsByTagName("span");
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
+                // very ugly way, but the whole container is the 7th parent of the a tag
+                var parentLevel = 7;
+                element = retrievedHtmls[j];
+                for (var k = 0; k < parentLevel; k++) {
+                  element = element.parentElement;
+                }
+                console.log("matched element for facebook Suggsted for you: ", element);
               }
             }
           }

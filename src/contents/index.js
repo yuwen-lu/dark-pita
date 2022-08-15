@@ -555,7 +555,7 @@ export default {
       type: 'financial loss',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      name: 'loss-gain framing',
+      pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -586,7 +586,7 @@ export default {
       type: 'attention loss',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      name: 'loss-gain framing',
+      pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -596,7 +596,38 @@ export default {
           name: 'none',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
+          component: 'none',
+          description:
+            ''
+        },
+        {
+          name: 'hide / disable',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'facebook_reels_hide',
+          description:
+            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+        }
+      ]
+    },
+    {
+      name: 'facebook_sponsored',
+      identifier: 'ads/about',
+      url: 'https://www.facebook.com/',
+      type: 'attention loss',
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+      pattern: 'loss-gain framing',
+      description:
+        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+      awareness:
+        'Contents that I don\'t desire would be prompted onto my homepage feed.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'facebook_sponsored_hide',
           description:
             ''
         },
@@ -611,13 +642,13 @@ export default {
       ]
     },
     {
-      name: 'facebook_sponsored',
-      identifier: 'ads/about',
+      name: 'facebook_suggested_for_you',
+      identifier: 'Suggested for you',
       url: 'https://www.facebook.com/',
       type: 'attention loss',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      name: 'loss-gain framing',
+      pattern: 'loss-gain framing',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -635,7 +666,7 @@ export default {
           name: 'hide / disable',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
+          component: 'facebook_suggested_for_you_hide',
           description:
             'Contents that I don\'t desire would be prompted onto my homepage feed.'
         }

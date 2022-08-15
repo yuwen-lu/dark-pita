@@ -41,30 +41,32 @@ export default {
         }
     },
     mounted() {
-        this.emitter.on('facebook_reels_hide', (massage) => {
-            console.log("facebook_reels_hide message", massage);
+        this.emitter.on('facebook_suggested_for_you_hide', (massage) => {
             if (massage === 'on') {
-                console.log('facebook reels content hide on');
+                console.log('facebook suggsted for you content hide on');
                 let element;
-                // look for the reels component
+                // look for the sponsored component
                 var retrievedHtmls = document.getElementsByTagName("span");
                 for (var j = 0; j < retrievedHtmls.length; j++) {
                     if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
-                        // very ugly way, but the whole container is the 9th parent of the h3 tag
-                        element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+                        // very ugly way, but the whole container is the 11th parent of the a tag
+                        var parentLevel = 7;
+                        element = retrievedHtmls[j];
+                        for (var k = 0; k < parentLevel; k++) {
+                            element = element.parentElement;
+                        }
                     }
                 }
-
-                console.log("Trying to remove facebook reels, target: " + element);
 
                 if (element != null) {
                     this.target = element;
                     this.remove(this.target);
+                    console.log(this.target + " removed");
                 } else {
-                    console.log("cannot find target element for facebook reels");
+                    console.log("cannot find target element for facebook suggsted for you content");
                 }
             } else if (massage === 'off') {
-                console.log('facebook reels content hide off');
+                console.log('facebook suggsted for you content hide off');
                 this.recover(this.target);
             }
         });

@@ -101,6 +101,8 @@ export default {
       this.intervention = this.action[index];
       this.interventionId = index;
 
+      console.log("this.intervention.component: " + this.intervention.component);
+
       this.resetIntervention();
 
       if (this.intervention.component === 'amazon_buy_now_hide') {
@@ -173,13 +175,15 @@ export default {
         this.emitter.emit('youtube_sidebar_video_reflection', 'on');
       }
       // facebook
-      else if (this.intervention.component === 'facebook_suggsted_hide') {
-        this.emitter.emit('facebook_suggsted_hide', 'on');
-
+      else if (this.intervention.component === 'facebook_suggested_hide') {
+        this.emitter.emit('facebook_suggested_hide', 'on');
       } else if (this.intervention.component === "facebook_reels_hide") {
+        console.log("Emitting facebook_reels_hide message as on");
         this.emitter.emit('facebook_reels_hide', 'on');
       } else if (this.intervention.component === "facebook_sponsored_hide") {
         this.emitter.emit('facebook_sponsored_hide', 'on');
+      } else if (this.intervention.component === "facebook_suggested_for_you_hide") {
+        this.emitter.emit('facebook_suggested_for_you_hide', 'on');
       }
 
       if (this.intervention.component !== 'none') {
@@ -200,7 +204,8 @@ export default {
         }
       });
 
-      // console.log(this.interventionState);
+      console.log(this.interventionState);
+      console.log(targets);
       Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
           for (let i = 0; i < targets.length; i++) {
@@ -211,6 +216,8 @@ export default {
           }
         }
       });
+
+      console.log("reset done", this.interventionState);
     },
     toggleDropdown() {
       this.dropdown = !this.dropdown;
