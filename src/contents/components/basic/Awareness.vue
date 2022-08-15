@@ -159,7 +159,7 @@ div {
     }
 
     h1 {
-      @apply font-cabin font-bold text-[24px] pointer-events-none select-none capitalize;
+      @apply font-cabin font-bold text-[24px] pointer-events-none select-none capitalize #{!important};
     }
   }
 
@@ -218,8 +218,8 @@ div {
 }
 
 .DP_social_media {
-  .DP_title {
-    @apply text-privacy;
+  .DP_title h1 {
+    @apply text-privacy #{!important};
   }
 
   .DP_button {

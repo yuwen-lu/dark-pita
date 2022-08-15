@@ -511,7 +511,7 @@ export default {
       ]
     },
     {
-      twitter: 'twitter_who_to_follow',
+      name: 'twitter_who_to_follow',
       identifier: 'Who to follow',
       url: 'https://twitter.com/home',
       type: 'social media platform',
@@ -555,6 +555,132 @@ export default {
           component: '',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        }
+      ]
+    }
+  ],
+  facebook: [
+    {
+      name: 'facebook_suggested',
+      identifier: 'People You May Know',
+      url: 'https://www.facebook.com/',
+      type: 'social media platform',
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+      pattern: 'People you may know – Hidden Information',
+      description:
+        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+      awareness:
+        'Contents that I don\'t desire would be prompted onto my homepage feed.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: '',
+          description:
+            ''
+        },
+        {
+          name: 'hide / disable',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: '',
+          description:
+            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+        }
+      ]
+    },
+    {
+      name: 'facebook_reels',
+      identifier: 'Reels and short videos',
+      url: 'https://www.facebook.com/',
+      type: 'social media platform',
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+      pattern: 'Reels – Hidden Information',
+      description:
+        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+      awareness:
+        'Contents that I don\'t desire would be prompted onto my homepage feed.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'none',
+          description:
+            ''
+        },
+        {
+          name: 'hide / disable',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'facebook_reels_hide',
+          description:
+            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+        }
+      ]
+    },
+    {
+      name: 'facebook_sponsored',
+      identifier: 'ads/about',
+      url: 'https://www.facebook.com/',
+      type: 'social media platform',
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+      pattern: 'Sponsored – Hidden Information',
+      description:
+        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+      awareness:
+        'Contents that I don\'t desire would be prompted onto my homepage feed.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'facebook_sponsored_hide',
+          description:
+            ''
+        },
+        {
+          name: 'hide / disable',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'facebook_sponsored_hide',
+          description:
+            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+        }
+      ]
+    },
+    {
+      name: 'facebook_suggested_for_you',
+      identifier: 'Suggested for you',
+      url: 'https://www.facebook.com/',
+      type: 'social media platform',
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+      pattern: 'Suggested for you - Hidden Information',
+      description:
+        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+      awareness:
+        'Contents that I don\'t desire would be prompted onto my homepage feed.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: '',
+          description:
+            ''
+        },
+        {
+          name: 'hide / disable',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'facebook_suggested_for_you_hide',
+          description:
+            'Contents that I don\'t desire would be prompted onto my homepage feed.'
         }
       ]
     }
