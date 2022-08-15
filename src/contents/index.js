@@ -100,7 +100,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_disguised_ads_counterfact',
           description:
-            'Your cursor will become exclamation mark when it navigates through ads area.'
+            'Your cursor will become exclamation marks when it navigates through ads area.'
         }
       ]
     },
@@ -114,9 +114,9 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'More than Discounts...',
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'Discounts information may be showed in an exaggerated way. Some key information about the price could be hidden.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'Users are more leaning to purchase with the given discounts information.',
       action: [
         {
           name: 'none',
@@ -124,7 +124,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified.'
         },
         {
           name: 'hide',
@@ -132,7 +132,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_discount_price_hide',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Hide the discounts alert to not let it influence your purchase decision.'
         },
         {
           name: 'information disclosure',
@@ -140,7 +140,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_discount_price_disclosure',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Discloses more information behind the price or helps explain the marketing jargons.'
         },
         {
           name: 'reflection',
@@ -148,7 +148,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_discount_price_reflection',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Add some frictions when you are navigating through this area so that you will give a second thought before making your purchase decision. (This is fun, maybe try it.)'
         },
         {
           name: 'action guide',
@@ -156,7 +156,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_discount_price_action',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Dark Pita suggested something you can do about this item.'
         }
       ]
     },
