@@ -76,7 +76,6 @@ export default {
           });
         }
         // console.log(that.interventionState);
-        alert(that.interventionState);
         chrome.storage.sync.set({ savedSettings: that.interventionState });
       });
 

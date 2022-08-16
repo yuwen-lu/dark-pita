@@ -65,9 +65,9 @@ export default {
                 console.log('facebook suggested content hide off');
                 if(this.target != null) {
                     this.recover(this.target);
-                    this.$emit('update');
                 }
             }
+            this.emitter.emit('update');  
         });
     }
 };

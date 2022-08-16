@@ -70,17 +70,16 @@ export default {
                     console.log("New element style: " + element.style);
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
-                }
-                this.emitter.emit('update');
+                }                
             } else if (massage === 'off') {
                 console.log('facebook reels content hide off');
                 if (element != null) {
                     this.recover(element);
-                    this.emitter.emit('update');    
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
                 }
             }
+            this.emitter.emit('update');
         });
     }
 };

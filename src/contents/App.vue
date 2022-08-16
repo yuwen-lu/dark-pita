@@ -1,140 +1,56 @@
 <template>
   <div id="DP_wrapper" :key="reload">
 
-    <amazon_buy_now_hide
-      v-if="targetNames.amazon_buy_now"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_buy_now_fairness
-      v-if="targetNames.amazon_buy_now"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_buy_now_friction
-      v-if="targetNames.amazon_buy_now"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_hide
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_friction
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_disclosure
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_counterfact
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_hide
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_disclosure
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_reflection
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_action
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_home_card_focus
-      v-if="targetNames.amazon_home_card"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_home_card_reflection
-      v-if="targetNames.amazon_home_card"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_recommended_video_focus
-      v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_recommended_video_preview
-      v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_recommended_video_reflection
-      v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_video_dislike_fairness
-      v-if="targetNames.youtube_video_dislike"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_sidebar_video_focus
-      v-if="targetNames.youtube_sidebar_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_sidebar_video_preview
-      v-if="targetNames.youtube_sidebar_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_sidebar_video_reflection
-      v-if="targetNames.youtube_sidebar_video"
-      @update="generateOverviewOverlay"
-    />
-    
+    <amazon_buy_now_hide v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
+    <amazon_buy_now_fairness v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
+    <amazon_buy_now_friction v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
+    <amazon_disguised_ads_hide v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
+    <amazon_disguised_ads_friction v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
+    <amazon_disguised_ads_disclosure v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
+    <amazon_disguised_ads_counterfact v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
+    <amazon_discount_price_hide v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
+    <amazon_discount_price_disclosure v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
+    <amazon_discount_price_reflection v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
+    <amazon_discount_price_action v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
+    <amazon_home_card_focus v-if="targetNames.amazon_home_card" @update="generateOverviewOverlay" />
+    <amazon_home_card_reflection v-if="targetNames.amazon_home_card" @update="generateOverviewOverlay" />
+    <youtube_recommended_video_focus v-if="targetNames.youtube_recommended_video" @update="generateOverviewOverlay" />
+    <youtube_recommended_video_preview v-if="targetNames.youtube_recommended_video" @update="generateOverviewOverlay" />
+    <youtube_recommended_video_reflection v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay" />
+    <youtube_video_dislike_fairness v-if="targetNames.youtube_video_dislike" @update="generateOverviewOverlay" />
+    <youtube_sidebar_video_focus v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
+    <youtube_sidebar_video_preview v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
+    <youtube_sidebar_video_reflection v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
+
     // facebook
     <facebook_suggested_hide v-if="targetNames.facebook_suggested" @update="generateOverviewOverlay" />
     <facebook_reels_hide v-if="targetNames.facebook_reels" @update="generateOverviewOverlay" />
     <facebook_sponsored_hide v-if="targetNames.facebook_sponsored" @update="generateOverviewOverlay" />
     <facebook_suggested_for_you_hide v-if="targetNames.facebook_suggested_for_you" @update="generateOverviewOverlay" />
-    <facebook_suggested_for_you_highlight v-if="targetNames.facebook_suggested_for_you" @update="generateOverviewOverlay" />
+    <facebook_suggested_for_you_highlight v-if="targetNames.facebook_suggested_for_you"
+      @update="generateOverviewOverlay" />
 
 
-    <Alert
-      :targetNames="targetNames"
-      @toggleMask="toggleMask"
-      @closeAlert="closeAlert"
-      v-show="isAlert"
-    />
+    <Alert :targetNames="targetNames" @toggleMask="toggleMask" @closeAlert="closeAlert" v-show="isAlert" />
 
-    <Popup
-      class="DP_popup"
-      v-if="isPop"
-      :left="popupX"
-      :top="popupY"
-      :key="timer"
-      :target="currentTarget"
-      :savedSettings="savedSettings"
-      :targetNames="targetNames"
-      @closeAll="closeAll"
-      @closePop="closePop"
-    />
+    <Popup class="DP_popup" v-if="isPop" :left="popupX" :top="popupY" :key="timer" :target="currentTarget"
+      :savedSettings="savedSettings" :targetNames="targetNames" @closeAll="closeAll" @closePop="closePop" />
 
 
     <canvas resize id="DP_canvas" style="display:none"></canvas>
 
     <div id="DP_mask" class="DP_mask" v-show="isMask"></div>
 
-    <div
-      v-for="(value, index) in targetIdentifiers"
-      :key="index"
-      :id="'DP_i_' + value"
-      class="DP_bounding_box"
-      @click="togglePopup($event, value, index)"
-      v-show="isMask"
-    ></div>
+    <div v-for="(value, index) in targetIdentifiers" :key="index" :id="'DP_i_' + value" class="DP_bounding_box"
+      @click="togglePopup($event, value, index)" v-show="isMask"></div>
     <div id="DP_console" class="DP_console" v-show="isConsole">
       <div class="mb-4 w-full rounded-lg border bg-gray-700 border-gray-600">
         <div class="py-2 px-4 bg-gray-800 rounded-b-lg">
           <label for="editor" class="sr-only">Publish post</label>
-          <textarea
-            id="editor"
-            rows="8"
+          <textarea id="editor" rows="8"
             class="block px-0 w-full text-sm border-0 bg-gray-800 focus:ring-0 text-white placeholder-gray-400"
-            placeholder="Write an article..."
-            required=""
-            v-model="diary"
-          ></textarea>
+            placeholder="Write an article..." required="" v-model="diary"></textarea>
         </div>
       </div>
       <button @click="sendDiary">
@@ -377,6 +293,8 @@ export default {
 
         this.refresh();
 
+        console.log("new after refresh this.boundingBoxList", this.boundingBoxList);
+
         const origin = new Paper.Point(0, 0);
         const rect = new Paper.Path.Rectangle({
           point: origin,
@@ -473,16 +391,14 @@ export default {
                 // very ugly way, but the whole container is the 9th parent of the span tag
                 element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
                 console.log("matched element for facebook reels: ", element);
-                console.log("matched element's bounding box for facebook reels: ", element.getBoundingClientRect());
               }
             }
           } else if (this.targetIdentifiers[i] == "ads/about") {
             console.log("Looking for facebook ads/about");
             let retrievedHtmls = document.getElementsByTagName("a");
-            console.log("retrievedHtmls: ", retrievedHtmls);
             for (var j = 0; j < retrievedHtmls.length; j++) {
               let retrievedHref = retrievedHtmls[j].getAttribute("href");
-              
+
               if (retrievedHref.indexOf("/ads/about") != -1) {
                 console.log("Found ads/about content on facebook");
                 // not the most elegant solution, but the whole container is the 11th parent of the a tag
@@ -531,7 +447,8 @@ export default {
         }
 
       }
-      // console.log(this.boundingBoxList);
+      console.log("Got new list of bounding boxes");
+      console.log(this.boundingBoxList);
     },
     refresh() {
       if (this.isMask) {
@@ -586,11 +503,108 @@ export default {
     },
     closeAlert() {
       this.isAlert = false;
-      document.body.style.paddingTop = '0';
+
+      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+        this.currentTab = await tab;
+        console.log(this.currentTab);
+
+        if (this.currentTab !== null) {
+          let url = this.currentTab.url;
+          console.log('current site in alert:', url);
+          if (url.search(/facebook.com/) !== -1) {
+            console.log("We are on Facebook");
+            let bannerElement = document.querySelectorAll('[role="banner"]')[0];
+            for (var i = 0; i < bannerElement.children.length; i++) {
+              bannerElement.children[i].style.top = '0';
+            }
+          } else if (url.search(/youtube.com/) !== -1) {
+            // need to manually change the top position of each screen componet (header, main content, left bar)
+            let leftBar = document.getElementsByTagName("tp-yt-app-drawer")[0];
+            console.log("leftBar", leftBar);
+            // leftBar current position set to fixed, add its left value by 64 px;
+            if (leftBar != undefined) {
+              let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
+              leftBar.style.top = parseInt(leftBarCurrentTopValue) - 64 + "px";
+            } else {
+              console.log("leftBar not retrieved")
+            }
+
+            let headerBar = document.getElementById("masthead-container");
+            console.log("headerBar", headerBar);
+            // headerBar current position set to fixed, add its left value by 64 px;
+            if (headerBar != undefined) {
+              let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
+              headerBar.style.top = parseInt(headerBarCurrentTopValue) - 64 + "px";
+            } else {
+              console.log("headerBar not retrieved")
+            }
+
+            let bannerElement = document.getElementsByTagName("ytd-browse")[0];
+            if (bannerElement != undefined) {
+              console.log("bannerElement: " + bannerElement);
+              bannerElement.style.marginTop = "0";
+            } else {
+              console.log("bannerElement not retrieved")
+            }
+
+          } else {
+            document.body.style.paddingTop = '0';
+          }
+        }
+
+      });
     },
     openAlert() {
       this.isAlert = true;
-      document.body.style.paddingTop = '64px';
+      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+        this.currentTab = await tab;
+        console.log(this.currentTab);
+
+        if (this.currentTab !== null) {
+          let url = this.currentTab.url;
+          console.log('current site in alert:', url);
+          if (url.search(/facebook.com/) !== -1) {
+            console.log("We are on Facebook");
+            let bannerElement = document.querySelectorAll('[role="banner"]')[0];
+            for (var i = 0; i < bannerElement.children.length; i++) {
+              bannerElement.children[i].style.top = '64px';
+            }
+          } else if (url.search(/youtube.com/) !== -1) {
+            // need to manually change the top position of each screen componet (header, main content, left bar)
+            let leftBar = document.getElementsByTagName("tp-yt-app-drawer")[0];
+            console.log("leftBar", leftBar);
+            // leftBar current position set to fixed, add its left value by 64 px;
+            if (leftBar != undefined) {
+              let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
+              leftBar.style.top = parseInt(leftBarCurrentTopValue) + 64 + "px";
+            } else {
+              console.log("leftBar not retrieved")
+            }
+
+            let headerBar = document.getElementById("masthead-container");
+            console.log("headerBar", headerBar);
+            // headerBar current position set to fixed, add its left value by 64 px;
+            if (headerBar != undefined) {
+              let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
+              headerBar.style.top = parseInt(headerBarCurrentTopValue) + 64 + "px";
+            } else {
+              console.log("headerBar not retrieved")
+            }
+
+            let bannerElement = document.getElementsByTagName("ytd-browse")[0];
+            if (bannerElement != undefined) {
+              console.log("bannerElement: " + bannerElement);
+              bannerElement.style.marginTop = "64px";
+            } else {
+              console.log("bannerElement not retrieved")
+            }
+
+          } else {
+            document.body.style.paddingTop = '64px';
+          }
+        }
+
+      });
     },
     closeAll(value) {
       this.refresh();

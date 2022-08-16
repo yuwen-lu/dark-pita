@@ -50,12 +50,12 @@ export default {
         console.log('youtube recommended video block preview on');
         this.target = document.getElementById('preview');
         this.remove(this.target);
-        this.$emit('update');
       } else if (message === 'off') {
         console.log('youtube recommended video block preview off');
         this.recover(this.target);
-        this.$emit('update');
+        
       }
+      this.$emit('update');
     });
   }
 };

@@ -67,11 +67,11 @@ export default {
                 }
             } else if (massage === 'off') {
                 console.log('facebook sponsored content hide off');
-                if(this.target != null) {
+                if (this.target != null) {
                     this.recover(this.target);
-                    this.$emit('update');
                 }
             }
+            this.$emit('update');
         });
     }
 };

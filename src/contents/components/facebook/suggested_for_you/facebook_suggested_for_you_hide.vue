@@ -77,9 +77,9 @@ export default {
                     this.target = elementList;
                     this.recover(this.target);
                     console.log(this.target + " restored");
-                    this.$emit('update');
                 }
             }
+            this.$emit('update');
         });
     }
 };
