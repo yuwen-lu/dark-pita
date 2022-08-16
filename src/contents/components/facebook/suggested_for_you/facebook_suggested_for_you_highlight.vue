@@ -15,7 +15,7 @@ export default {
             // look for the sponsored component
             var retrievedHtmls = document.getElementsByTagName("span");
             for (var j = 0; j < retrievedHtmls.length; j++) {
-                if (retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1) {
+                if (retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1 || retrievedHtmls[j].innerHTML.indexOf("Promoted by Facebook") != -1) {
                     element = retrievedHtmls[j];
                     elementList.push(element);
                     console.log("element found");
@@ -43,7 +43,10 @@ export default {
                 if (elementList.length > 0) {
                     for (var i = 0; i < elementList.length; i++) {
                         var tempElement = elementList[i];
-                        getComputedStyle(tempElement).color = 'inherit';
+                        tempElement.style.color = 'inherit';
+                        tempElement.style.fontWeight = 'inherit';
+                        tempElement.style.fontSize = 'inherit';
+                        tempElement.innerHTML = tempElement.innerHTML.replace("Promoted by Facebook, Not Followed By You", "Suggested for you");
                     }
                     console.log(this.target + " highlight removed");
                     this.$emit("update");

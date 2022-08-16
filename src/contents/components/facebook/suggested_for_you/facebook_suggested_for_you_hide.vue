@@ -50,7 +50,7 @@ export default {
             // look for the sponsored component
             var retrievedHtmls = document.getElementsByTagName("span");
             for (var j = 0; j < retrievedHtmls.length; j++) {
-                if (retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1) {
+                if (retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1 || retrievedHtmls[j].innerHTML.indexOf("Promoted by Facebook") != -1) {
                     // very ugly way, but the whole container is the 11th parent of the a tag
                     var parentLevel = 7;
                     element = retrievedHtmls[j];
