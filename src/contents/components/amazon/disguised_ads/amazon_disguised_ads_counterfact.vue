@@ -30,10 +30,27 @@ export default {
         console.log('disguised ads counterfact on');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
         this.changeCursor(this.target, 'warning');
+        this.target.style.cssText =
+          'border-width: 4px; border-color: rgb(220 38 38);';
+        let tip = document.createElement('div');
+        tip.setAttribute('id', 'amazon_disguised_ads_disclosure_tip_id');
+        tip.appendChild(
+          document.createTextNode(
+            'These may be recommended because the company paid Amazon, not because these fit your needs.'
+          )
+        );
+        tip.style.cssText =
+          'background-color: rgb(220 38 38); color: rgb(255 255 255); font-size: 20px; position: absolute; top: 0; right: 0; padding: 4px;';
+        this.target.appendChild(tip);
         this.$emit('update');
       } else if (message === 'off') {
         console.log('disguised ads counterfact off');
         this.changeCursor(this.target, 'default');
+        this.target.style.cssText = '';
+        let tip = document.getElementById(
+          'amazon_disguised_ads_disclosure_tip_id'
+        );
+        this.target.removeChild(tip);
         this.$emit('update');
       }
     });

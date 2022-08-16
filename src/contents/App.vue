@@ -81,7 +81,35 @@
       @update="generateOverviewOverlay"
     />
 
-    <Alert v-if="isAlert" :targetNames="targetNames" @toggleMask="toggleMask" />
+    // facebook
+    <facebook_suggested_hide
+      v-if="targetNames.facebook_suggested"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_reels_hide
+      v-if="targetNames.facebook_reels"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_sponsored_hide
+      v-if="targetNames.facebook_sponsored"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_suggested_for_you_hide
+      v-if="targetNames.facebook_suggested_for_you"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_suggested_for_you_highlight
+      v-if="targetNames.facebook_suggested_for_you"
+      @update="generateOverviewOverlay"
+    />
+
+    <Alert
+      :targetNames="targetNames"
+      :isAlert="isAlert"
+      @toggleMask="toggleMask"
+      @closeAlert="closeAlert"
+      v-show="isAlert"
+    />
 
     <Popup
       class="DP_popup"
@@ -108,6 +136,22 @@
       @click="togglePopup($event, value, index)"
       v-show="isMask"
     ></div>
+    <div id="DP_console" class="DP_console" v-show="isConsole">
+      <textarea
+        id="message"
+        rows="4"
+        class="DP_text_area"
+        placeholder="Your message..."
+        v-model="diary"
+      ></textarea>
+      <button @click="sendDiary">
+        Screenshot & Send
+      </button>
+      <button @click="openAlert">
+        Open Banner
+      </button>
+      <p v-show="notSupport">This site is not supported by Dark Pita</p>
+    </div>
   </div>
 </template>
 
@@ -141,6 +185,12 @@ import youtube_sidebar_video_focus from '@/contents/components/youtube/sidebar_v
 import youtube_sidebar_video_preview from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue';
 import youtube_sidebar_video_reflection from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue';
 
+import facebook_suggested_hide from '@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue';
+import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
+import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sponsored_hide.vue';
+import facebook_suggested_for_you_hide from './components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue';
+import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
+
 export default {
   data() {
     return {
@@ -173,11 +223,21 @@ export default {
         amazon_disguised_ads: false,
         amazon_discount_price: false,
         amazon_home_card: false,
+
+        facebook_suggested: false,
+        facebook_reels: false,
+        facebook_sponsored: false,
+        facebook_suggested_for_you: false,
+
         youtube_recommended_video: false,
         youtube_video_dislike: false,
         youtube_sidebar_video: false
       },
-      savedSettings: {}
+      savedSettings: {},
+      isConsole: false,
+      notSupport: false,
+      diary: '',
+      isApp: true
     };
   },
   components: {
@@ -188,6 +248,7 @@ export default {
     amazon_buy_now_fairness,
     amazon_buy_now_friction,
     amazon_disguised_ads_hide,
+    amazon_disguised_ads_disclosure,
     amazon_disguised_ads_friction,
     amazon_disguised_ads_disclosure,
     amazon_disguised_ads_counterfact,
@@ -197,6 +258,13 @@ export default {
     amazon_discount_price_action,
     amazon_home_card_focus,
     amazon_home_card_reflection,
+
+    facebook_suggested_hide,
+    facebook_reels_hide,
+    facebook_sponsored_hide,
+    facebook_suggested_for_you_hide,
+    facebook_suggested_for_you_highlight,
+
     youtube_recommended_video_focus,
     youtube_recommended_video_preview,
     youtube_recommended_video_reflection,
@@ -218,10 +286,11 @@ export default {
     // },
     initialize() {
       this.targetIdentifiers = null;
-      this.isAlert = false;
+      this.isPop = false;
       this.mask = document.getElementById('DP_mask');
 
       chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+        this.isAlert = false; // this line is put inside of here to prevent isAlert being set before <Alert> is mounted
         this.currentTab = await tab;
         // console.log(this.currentTab);
 
@@ -231,16 +300,19 @@ export default {
 
           // Define the identifier
           if (url.search(/tailwindcss.com/) !== -1) {
-            this.website = 'tailwind';
+            this.website = 'Tailwind';
             this.info = INDEX.tailwind;
           } else if (url.search(/twitter.com/) !== -1) {
-            this.website = 'twitter';
+            this.website = 'Twitter';
             this.info = INDEX.twitter;
           } else if (url.search(/amazon.com/) !== -1) {
-            this.website = 'amazon';
+            this.website = 'Amazon';
             this.info = INDEX.amazon;
+          } else if (url.search(/facebook.com/) !== -1) {
+            this.website = 'Facebook';
+            this.info = INDEX.facebook;
           } else if (url.search(/youtube.com/) !== -1) {
-            this.website = 'youtube';
+            this.website = 'Youtube';
             this.info = INDEX.youtube;
           }
 
@@ -260,8 +332,11 @@ export default {
 
           // Initialize
           if (this.targetIdentifiers !== null) {
+            console.log(this.targetIdentifiers);
             this.currentTarget = this.info[0];
             this.isAlert = true;
+          } else {
+            this.notSupport = true;
           }
         }
       });
@@ -289,7 +364,7 @@ export default {
     },
     generateSpotlightOverlay(id, left, top, width, height, opacity = 0.5) {
       let boundingBox = document.getElementById('DP_i_' + id);
-      if (boundingBox !== undefined) {
+      if (boundingBox !== undefined && boundingBox !== null) {
         boundingBox.style.left = left;
         boundingBox.style.top = top;
         boundingBox.style.width = width;
@@ -309,6 +384,11 @@ export default {
         console.log('generate overlay');
 
         this.refresh();
+
+        console.log(
+          'new after refresh this.boundingBoxList',
+          this.boundingBoxList
+        );
 
         const origin = new Paper.Point(0, 0);
         const rect = new Paper.Path.Rectangle({
@@ -348,22 +428,39 @@ export default {
       }
     },
     getBoundingBoxList() {
+      console.log('Getting bounding box list');
       this.boundingBoxList = [];
       for (let i = 0; i < this.targetIdentifiers.length; i++) {
         let element;
 
         // Set the selector
-        if (this.website === 'tailwind') {
+        if (this.website === 'Tailwind') {
           element = document.getElementById(this.targetIdentifiers[i]);
-        } else if (this.website === 'twitter') {
+        } else if (this.website === 'Twitter') {
           element = document.querySelector(
             '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
-        } else if (this.website === 'amazon') {
-          element = document.querySelectorAll(
-            '[id^=' + this.targetIdentifiers[i] + ']'
-          )[0];
-        } else if (this.website === 'youtube') {
+        } else if (this.website === 'Amazon') {
+          if (this.targetIdentifiers[i] === 'buyNow_feature_div') {
+            element = document.getElementById(this.targetIdentifiers[i]);
+          } else if (
+            this.targetIdentifiers[i] ===
+            'ad-feedback-text-auto-sparkle-hsa-tetris'
+          ) {
+            element = document.getElementById(this.targetIdentifiers[i]);
+            if (element !== null) {
+              element =
+                element.parentElement.parentElement.parentElement.parentElement
+                  .parentElement.parentElement.parentElement.parentElement;
+            }
+          } else if (this.targetIdentifiers[i] === 'apex_desktop') {
+            element = document.getElementById(this.targetIdentifiers[i]);
+          } else {
+            element = document.querySelectorAll(
+              '[id^=' + this.targetIdentifiers[i] + ']'
+            )[0];
+          }
+        } else if (this.website === 'Youtube') {
           if (this.targetIdentifiers[i] === 'content') {
             element = document.querySelectorAll(
               '[id=' + this.targetIdentifiers[i] + ']'
@@ -385,8 +482,97 @@ export default {
             )[0];
           }
         }
+        // facebook
+        else if (this.website === 'Facebook') {
+          if (this.targetIdentifiers[i] == 'People You May Know') {
+            console.log('Looking for facebook people you may know');
+            var retrievedHtmls = document.getElementsByTagName('h3');
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              if (
+                retrievedHtmls[j].innerHTML.indexOf(
+                  this.targetIdentifiers[i]
+                ) != -1
+              ) {
+                // very ugly way, but the whole container is the 4th parent of the h3 tag
+                element =
+                  retrievedHtmls[j].parentElement.parentElement.parentElement
+                    .parentElement;
+                console.log(
+                  'matched element for facebook suggested people: ',
+                  element
+                );
+              }
+            }
+          } else if (this.targetIdentifiers[i] == 'Reels and short videos') {
+            console.log('Looking for facebook reels');
+            var retrievedHtmls = document.getElementsByTagName('span');
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              if (
+                retrievedHtmls[j].innerHTML.indexOf(
+                  this.targetIdentifiers[i]
+                ) != -1
+              ) {
+                // very ugly way, but the whole container is the 9th parent of the span tag
+                element =
+                  retrievedHtmls[j].parentElement.parentElement.parentElement
+                    .parentElement.parentElement.parentElement.parentElement
+                    .parentElement.parentElement;
+                console.log('matched element for facebook reels: ', element);
+              }
+            }
+          } else if (this.targetIdentifiers[i] == 'ads/about') {
+            console.log('Looking for facebook ads/about');
+            let retrievedHtmls = document.getElementsByTagName('a');
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              let retrievedHref = retrievedHtmls[j].getAttribute('href');
 
-        if (element !== undefined) {
+              if (retrievedHref.indexOf('/ads/about') != -1) {
+                console.log('Found ads/about content on facebook');
+                // not the most elegant solution, but the whole container is the 11th parent of the a tag
+                var parentLevel = 11;
+                element = retrievedHtmls[j];
+                for (var k = 0; k < parentLevel; k++) {
+                  if (element.parentElement !== null) {
+                    element = element.parentElement;
+                  } else {
+                    console.log(
+                      'Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort'
+                    );
+                    console.log('current result: ', element);
+                    break;
+                  }
+                }
+                console.log(
+                  'matched element for facebook sponsored ads: ',
+                  element
+                );
+              }
+            }
+          } else if (this.targetIdentifiers[i] == 'Suggested for you') {
+            console.log('Looking for facebook Suggested for you');
+            var retrievedHtmls = document.getElementsByTagName('span');
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              if (
+                retrievedHtmls[j].innerHTML.indexOf(
+                  this.targetIdentifiers[i]
+                ) != -1
+              ) {
+                // very ugly way, but the whole container is the 7th parent of the a tag
+                var parentLevel = 7;
+                element = retrievedHtmls[j];
+                for (var k = 0; k < parentLevel; k++) {
+                  element = element.parentElement;
+                }
+                console.log(
+                  'matched element for facebook Suggested for you: ',
+                  element
+                );
+              }
+            }
+          }
+        }
+
+        if (element !== undefined && element !== null) {
           let boundingBox = element.getBoundingClientRect();
           boundingBox.id = this.targetIdentifiers[i];
           boundingBox.x = boundingBox.x - 10;
@@ -394,9 +580,25 @@ export default {
           boundingBox.width = boundingBox.width + 20;
           boundingBox.height = boundingBox.height + 20;
           this.boundingBoxList.push(boundingBox);
+          console.log('Bounding box pushed in ', boundingBox);
+        } else {
+          this.boundingBoxList.push({
+            id: this.targetIdentifiers[i],
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          });
+          console.log('Cannot find element for bounding box');
         }
       }
-      // console.log(this.boundingBoxList);
+
+      console.log('Got new list of bounding boxes');
+      console.log(this.boundingBoxList);
     },
     refresh() {
       if (this.isMask) {
@@ -435,6 +637,12 @@ export default {
       } else {
         this.popupY = target.y + 100;
       }
+      if (this.popupX < 0 || this.popupX > this.overlayWidth) {
+        this.popupX = 800;
+      }
+      if (this.popupY < 0 || this.popupY > this.overlayHeight) {
+        this.popupY = 300;
+      }
 
       this.isPop = true;
       this.timer = new Date().getTime();
@@ -443,11 +651,20 @@ export default {
       console.log(value);
       this.isPop = false;
     },
-    closeAll(value) {
-      this.refresh();
-      this.isPop = false;
-      this.emitter.emit('alert_button_show', 'show');
+    closeAlert() {
+      this.isAlert = false;
+    },
+    openAlert() {
+      this.isAlert = true;
     }
+  },
+  closeAll(value) {
+    this.refresh();
+    this.isPop = false;
+    this.emitter.emit('alert_button_show', 'show');
+  },
+  sendDiary() {
+    console.log(this.diary);
   },
   mounted() {
     console.log('app mounted');
@@ -505,5 +722,17 @@ div {
 
 .DP_bounding_box {
   @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent border-solid hover:border-blue-500 z-overlay;
+}
+
+.DP_console {
+  @apply flex flex-col gap-[8px] fixed right-0 top-0 p-[16px] w-[400px] font-cabin bg-background z-infinite text-white text-[14px];
+
+  .DP_text_area {
+    @apply block p-[10px] w-full h-[200px] text-[14px] rounded-lg border-[1px] bg-dark border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500;
+  }
+
+  button {
+    @apply bg-transparent w-full hover:bg-white font-cabin font-normal text-[14px] text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border;
+  }
 }
 </style>

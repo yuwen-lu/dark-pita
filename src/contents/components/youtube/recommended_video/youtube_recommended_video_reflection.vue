@@ -20,7 +20,7 @@ export default {
         elt.id = 'DP_time_tracker_wrapper';
         readData((data) => {
           elt.innerHTML =
-            '<h1>You have watched</h1>' +
+            '<h1>You have been on Youtube for</h1>' +
             '<p id = "DP_time_tracker">' +
             Math.round(data.time_watched) +
             'mins</p>' +

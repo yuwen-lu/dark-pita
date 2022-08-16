@@ -79,6 +79,7 @@ export default {
       intervention: this.action[0],
       interventionId: 0,
       interventionState: {
+        // amazon
         amazon_buy_now_hide: 'off',
         amazon_buy_now_fairness: 'off',
         amazon_buy_now_friction: 'off',
@@ -92,6 +93,15 @@ export default {
         amazon_discount_price_action: 'off',
         amazon_home_card_focus: 'off',
         amazon_home_card_reflection: 'off',
+
+        // facebook
+        facebook_suggested_hide: 'off',
+        facebook_reels_hide: 'off',
+        facebook_sponsored_hide: 'off',
+        facebook_suggested_for_you_hide: 'off',
+        facebook_suggested_for_you_highlight: 'off',
+
+        // youtube
         youtube_recommended_video_focus: 'off',
         youtube_recommended_video_preview: 'off',
         youtube_recommended_video_reflection: 'off',
@@ -107,7 +117,12 @@ export default {
       this.intervention = this.action[index];
       this.interventionId = index;
 
-      this.resetIntervention();
+      console.log(
+        'this.intervention.component: ' + this.intervention.component
+      );
+
+      this.resetIntervention(this.intervention.component);
+
       if (this.intervention.component === 'amazon_buy_now_hide') {
         this.emitter.emit('amazon_buy_now_hide', 'on');
       } else if (this.intervention.component === 'amazon_buy_now_fairness') {
@@ -177,6 +192,29 @@ export default {
       ) {
         this.emitter.emit('youtube_sidebar_video_reflection', 'on');
       }
+      // facebook
+      if (this.intervention.component === 'facebook_suggested_hide') {
+        this.emitter.emit('facebook_suggested_hide', 'on');
+      }
+      if (this.intervention.component === 'facebook_reels_hide') {
+        this.emitter.emit('facebook_reels_hide', 'on');
+      }
+      if (this.intervention.component === 'facebook_sponsored_hide') {
+        this.emitter.emit('facebook_sponsored_hide', 'on');
+        console.log('Emitting facebook_sponsored_hide message as on');
+      }
+      if (this.intervention.component === 'facebook_suggested_for_you_hide') {
+        this.emitter.emit('facebook_suggested_for_you_hide', 'on');
+        console.log('Emitting facebook_suggested_for_you_hide message as on');
+      }
+      if (
+        this.intervention.component === 'facebook_suggested_for_you_highlight'
+      ) {
+        this.emitter.emit('facebook_suggested_for_you_hightlight', 'on');
+        console.log(
+          'Emitting facebook_suggested_for_you_hightlight message as on'
+        );
+      }
 
       if (this.intervention.component !== 'none') {
         this.interventionState[this.intervention.component] = 'on';
@@ -189,16 +227,28 @@ export default {
       this.$emit('closePop', 'close popup');
       chrome.storage.sync.set({ savedSettings: this.interventionState });
     },
-    resetIntervention() {
+    resetIntervention(selectedComponent) {
       // console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
           if (key.search(this.targetName) !== -1) {
-            this.emitter.emit(key, 'off');
-            this.interventionState[key] = 'off';
+            // TODO: CHECK SAVED CONFIG AND SEE IF IT"S ALREADY SET
+            if (key == selectedComponent) {
+              console.log(
+                'This is setting the message for the previously configured component ' +
+                  key +
+                  ', but new instance. No need to reset.'
+              );
+            } else {
+              console.log('reset message for intervention: ' + key);
+              this.emitter.emit(key, 'off');
+              this.interventionState[key] = 'off';
+            }
           }
         }
       });
+
+      console.log('reset done', this.interventionState);
     },
     toggleDropdown() {
       this.dropdown = !this.dropdown;

@@ -20,18 +20,15 @@ console.log('content is working');
 app.config.globalProperties.emitter = mitt();
 console.log('emitter is working');
 
-app.mount(mountEl);
-
-// chrome.runtime.onMessage.addListener((message) => {
-//   if (message.toggleVisible) {
-//     app.isAlert = !app.isAlert;
-//   }
-// });
+const vm = app.mount(mountEl);
 
 chrome.runtime.onMessage.addListener((message) => {
   if (message.type === 'URL_CHANGED') {
     console.log('app reload');
-    app.reload = app.reload + 1;
-    location.reload();
+    vm.reload = vm.reload + 1;
+    // location.reload();
+  } else if (message.toggleConsole) {
+    vm.isConsole = !vm.isConsole;
+    console.log('toggle console');
   }
 });
