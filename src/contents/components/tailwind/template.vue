@@ -8,11 +8,11 @@ export default {
     this.emitter.on('template', (message) => {
       if (message === 'on') {
         console.log('template on');
-        this.$emit('update');
       } else if (message === 'off') {
         console.log('template off');
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };

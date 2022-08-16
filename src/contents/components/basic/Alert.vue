@@ -5,15 +5,19 @@
         src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dawn.png?v=1659250496384"
       />
       <p>
-
         <span>Dark Pita</span>
         <span style="padding-left: 20px"> </span> Hello there, dark patterns
         detected
-
       </p>
-      <button @click="toggleMask" v-if="!isMask">Show All</button>
-      <button @click="toggleMask" v-if="isMask">Close</button>
-      <button @click="reset">Reset</button>
+      <button @click="toggleMask" v-if="!isMask">
+        Show All
+      </button>
+      <button @click="toggleMask" v-if="isMask">
+        Close
+      </button>
+      <button @click="reset">
+        Reset
+      </button>
     </div>
 
     <button @click="closeAlert">
@@ -36,7 +40,6 @@
 export default {
   props: {
     targetNames: {
-
       type: Object
     },
     website: {
@@ -150,20 +153,17 @@ export default {
         }
       });
     }
-
   },
   data() {
     return {
       isMask: false,
-
       interventionState: {}
-
     };
   },
   methods: {
     toggleMask() {
       this.isMask = !this.isMask;
-      this.$emit("toggleMask", false);
+      this.$emit('toggleMask', false);
     },
     closeAlert() {
       alert('You can reopen the banner by clicking the Dark Pita icon.');
@@ -178,17 +178,16 @@ export default {
       });
 
       let that = this;
-      chrome.storage.sync.get('savedSettings', function (settings) {
+      chrome.storage.sync.get('savedSettings', function(settings) {
         that.interventionState = settings.savedSettings;
-        if (JSON.stringify(settings.savedSettings) !== "{}") {
+        if (JSON.stringify(settings.savedSettings) !== '{}') {
           Object.keys(settings.savedSettings).forEach((key) => {
-            console.log(key, settings.savedSettings[key]);
+            // console.log(key, settings.savedSettings[key]);
             if (settings.savedSettings[key] === 'on') {
-              console.log('Resetting ' + key);
               for (let i = 0; i < targets.length; i++) {
                 if (key.search(targets[i]) !== -1) {
-                  that.emitter.emit(key, "off");
-                  that.interventionState[key] = "off";
+                  that.emitter.emit(key, 'off');
+                  that.interventionState[key] = 'off';
                 }
               }
             }
@@ -198,41 +197,16 @@ export default {
         chrome.storage.sync.set({ savedSettings: that.interventionState });
       });
 
-      console.log("reset settings");
+      console.log('reset settings');
       location.reload();
-    },
+    }
   },
   mounted() {
-
     console.log('alert mounted');
 
-
-    this.emitter.on("alert_button_show", (message) => {
-      if (message === "show") {
+    this.emitter.on('alert_button_show', (message) => {
+      if (message === 'show') {
         this.toggleMask();
-      }
-    });
-
-    let targets = [];
-    Object.keys(this.targetNames).forEach((key) => {
-      if (this.targetNames[key]) {
-        targets.push(key);
-      }
-    });
-
-    let that = this;
-    chrome.storage.sync.get('savedSettings', function (settings) {
-      if (JSON.stringify(settings.savedSettings) !== '{}') {
-        Object.keys(settings.savedSettings).forEach((key) => {
-          console.log(key, settings.savedSettings[key]);
-          if (settings.savedSettings[key] === 'on') {
-            for (let i = 0; i < targets.length; i++) {
-              if (key.search(targets[i]) !== -1) {
-                that.emitter.emit(key, 'on');
-              }
-            }
-          }
-        });
       }
     });
   }

@@ -199,6 +199,14 @@ export default {
           component: 'amazon_home_card_reflection',
           description:
             'Dark Pita gives you a bit push-back when you might be mindlessly browsing.'
+        },
+        {
+          name: 'progress bar',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'amazon_home_card_progress',
+          description:
+            'Dark Pita gives you a bit push-back when you might be mindlessly browsing.'
         }
       ]
     }
