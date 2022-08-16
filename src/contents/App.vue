@@ -1,5 +1,6 @@
 <template>
   <div id="DP_wrapper" :key="reload">
+
     <amazon_buy_now_hide
       v-if="targetNames.amazon_buy_now"
       @update="generateOverviewOverlay"
@@ -80,6 +81,14 @@
       v-if="targetNames.youtube_sidebar_video"
       @update="generateOverviewOverlay"
     />
+    
+    // facebook
+    <facebook_suggested_hide v-if="targetNames.facebook_suggested" @update="generateOverviewOverlay" />
+    <facebook_reels_hide v-if="targetNames.facebook_reels" @update="generateOverviewOverlay" />
+    <facebook_sponsored_hide v-if="targetNames.facebook_sponsored" @update="generateOverviewOverlay" />
+    <facebook_suggested_for_you_hide v-if="targetNames.facebook_suggested_for_you" @update="generateOverviewOverlay" />
+    <facebook_suggested_for_you_highlight v-if="targetNames.facebook_suggested_for_you" @update="generateOverviewOverlay" />
+
 
     <Alert
       :targetNames="targetNames"
@@ -100,6 +109,7 @@
       @closeAll="closeAll"
       @closePop="closePop"
     />
+
 
     <canvas resize id="DP_canvas" style="display:none"></canvas>
 
@@ -129,6 +139,7 @@
       </button>
       <p v-show="notSupport">This site is not supported by Dark Pita</p>
     </div>
+
   </div>
 </template>
 
@@ -162,6 +173,12 @@ import youtube_sidebar_video_focus from '@/contents/components/youtube/sidebar_v
 import youtube_sidebar_video_preview from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue';
 import youtube_sidebar_video_reflection from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue';
 
+import facebook_suggested_hide from '@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue';
+import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
+import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sponsored_hide.vue';
+import facebook_suggested_for_you_hide from './components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue';
+import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
+
 export default {
   data() {
     return {
@@ -194,6 +211,12 @@ export default {
         amazon_disguised_ads: false,
         amazon_discount_price: false,
         amazon_home_card: false,
+
+        facebook_suggested: false,
+        facebook_reels: false,
+        facebook_sponsored: false,
+        facebook_suggested_for_you: false,
+
         youtube_recommended_video: false,
         youtube_video_dislike: false,
         youtube_sidebar_video: false
@@ -212,6 +235,7 @@ export default {
     amazon_buy_now_fairness,
     amazon_buy_now_friction,
     amazon_disguised_ads_hide,
+    amazon_disguised_ads_disclosure,
     amazon_disguised_ads_friction,
     amazon_disguised_ads_disclosure,
     amazon_disguised_ads_counterfact,
@@ -221,6 +245,13 @@ export default {
     amazon_discount_price_action,
     amazon_home_card_focus,
     amazon_home_card_reflection,
+
+    facebook_suggested_hide,
+    facebook_reels_hide,
+    facebook_sponsored_hide,
+    facebook_suggested_for_you_hide,
+    facebook_suggested_for_you_highlight,
+
     youtube_recommended_video_focus,
     youtube_recommended_video_preview,
     youtube_recommended_video_reflection,
@@ -255,16 +286,19 @@ export default {
 
           // Define the identifier
           if (url.search(/tailwindcss.com/) !== -1) {
-            this.website = 'tailwind';
+            this.website = 'Tailwind';
             this.info = INDEX.tailwind;
           } else if (url.search(/twitter.com/) !== -1) {
-            this.website = 'twitter';
+            this.website = 'Twitter';
             this.info = INDEX.twitter;
           } else if (url.search(/amazon.com/) !== -1) {
-            this.website = 'amazon';
+            this.website = 'Amazon';
             this.info = INDEX.amazon;
+          } else if (url.search(/facebook.com/) !== -1) {
+            this.website = 'Facebook';
+            this.info = INDEX.facebook;
           } else if (url.search(/youtube.com/) !== -1) {
-            this.website = 'youtube';
+            this.website = 'Youtube';
             this.info = INDEX.youtube;
           }
 
@@ -284,6 +318,7 @@ export default {
 
           // Initialize
           if (this.targetIdentifiers !== null) {
+            console.log(this.targetIdentifiers);
             this.currentTarget = this.info[0];
             this.isAlert = true;
           } else {
@@ -374,22 +409,23 @@ export default {
       }
     },
     getBoundingBoxList() {
+      console.log("Getting bounding box list");
       this.boundingBoxList = [];
       for (let i = 0; i < this.targetIdentifiers.length; i++) {
         let element;
 
         // Set the selector
-        if (this.website === 'tailwind') {
+        if (this.website === 'Tailwind') {
           element = document.getElementById(this.targetIdentifiers[i]);
-        } else if (this.website === 'twitter') {
+        } else if (this.website === 'Twitter') {
           element = document.querySelector(
             '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
-        } else if (this.website === 'amazon') {
+        } else if (this.website === 'Amazon') {
           element = document.querySelectorAll(
             '[id^=' + this.targetIdentifiers[i] + ']'
           )[0];
-        } else if (this.website === 'youtube') {
+        } else if (this.website === 'Youtube') {
           if (this.targetIdentifiers[i] === 'content') {
             element = document.querySelectorAll(
               '[id=' + this.targetIdentifiers[i] + ']'
@@ -411,6 +447,69 @@ export default {
             )[0];
           }
         }
+        // facebook
+        else if (this.website === 'Facebook') {
+          if (this.targetIdentifiers[i] == 'People You May Know') {
+            console.log("Looking for facebook people you may know");
+            var retrievedHtmls = document.getElementsByTagName("h3");
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
+                // very ugly way, but the whole container is the 4th parent of the h3 tag
+                element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement;
+                console.log("matched element for facebook suggested people: ", element);
+              }
+            }
+          } else if (this.targetIdentifiers[i] == "Reels and short videos") {
+            console.log("Looking for facebook reels");
+            var retrievedHtmls = document.getElementsByTagName("span");
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
+                // very ugly way, but the whole container is the 9th parent of the span tag
+                element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+                console.log("matched element for facebook reels: ", element);
+                console.log("matched element's bounding box for facebook reels: ", element.getBoundingClientRect());
+              }
+            }
+          } else if (this.targetIdentifiers[i] == "ads/about") {
+            console.log("Looking for facebook ads/about");
+            let retrievedHtmls = document.getElementsByTagName("a");
+            console.log("retrievedHtmls: ", retrievedHtmls);
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              let retrievedHref = retrievedHtmls[j].getAttribute("href");
+              
+              if (retrievedHref.indexOf("/ads/about") != -1) {
+                console.log("Found ads/about content on facebook");
+                // not the most elegant solution, but the whole container is the 11th parent of the a tag
+                var parentLevel = 11;
+                element = retrievedHtmls[j];
+                for (var k = 0; k < parentLevel; k++) {
+                  if (element.parentElement !== null) {
+                    element = element.parentElement;
+                  } else {
+                    console.log("Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort");
+                    console.log("current result: ", element);
+                    break;
+                  }
+                }
+                console.log("matched element for facebook sponsored ads: ", element);
+              }
+            }
+          } else if (this.targetIdentifiers[i] == "Suggested for you") {
+            console.log("Looking for facebook Suggested for you");
+            var retrievedHtmls = document.getElementsByTagName("span");
+            for (var j = 0; j < retrievedHtmls.length; j++) {
+              if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
+                // very ugly way, but the whole container is the 7th parent of the a tag
+                var parentLevel = 7;
+                element = retrievedHtmls[j];
+                for (var k = 0; k < parentLevel; k++) {
+                  element = element.parentElement;
+                }
+                console.log("matched element for facebook Suggested for you: ", element);
+              }
+            }
+          }
+        }
 
         if (element !== undefined) {
           let boundingBox = element.getBoundingClientRect();
@@ -420,7 +519,11 @@ export default {
           boundingBox.width = boundingBox.width + 20;
           boundingBox.height = boundingBox.height + 20;
           this.boundingBoxList.push(boundingBox);
+          console.log("Bounding box pushed in ", boundingBox);
+        } else {
+          console.log('Cannot find element for bounding box');
         }
+
       }
       // console.log(this.boundingBoxList);
     },
@@ -507,7 +610,7 @@ export default {
         let url = this.currentTab.url;
         if (url.search(/youtube.com/) !== -1) {
           const HEARTBIT = 6; // sec
-          setInterval(function() {
+          setInterval(function () {
             incrementTime(HEARTBIT / 60, (data) => {
               let timeTracker = document.getElementById('DP_time_tracker');
               if (timeTracker !== null) {
@@ -520,7 +623,7 @@ export default {
     });
 
     let that = this;
-    chrome.storage.sync.get('savedSettings', function(settings) {
+    chrome.storage.sync.get('savedSettings', function (settings) {
       if (JSON.stringify(settings) !== '{}') {
         console.log('retrieve settings');
         console.log(settings);
