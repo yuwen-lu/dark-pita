@@ -229,7 +229,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_homepage_before.png?v=1660683118921',
           component: 'none',
           description:
             'Not Modified.'
@@ -237,26 +237,26 @@ export default {
         {
           name: 'focus mode',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_homepage_focus.gif?v=1660683222367',
           component: 'youtube_recommended_video_focus',
           description:
-            'Hide all recommended videos on the homepage.'
+            'Dark Pita will hide ALL recommended videos on the homepage. This is especially helpful when you visit YouTube for a study lecture or work-relevant tasks.'
         },
         {
           name: 'block preview',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_homepage_blkpreview.gif?v=1660683589579',
           component: 'youtube_recommended_video_preview',
           description:
-            'Disable the preview function.'
+            'Dark Pita will disable the preview function. This may prevent you from being distracted by less relevant content.'
         },
         {
           name: 'reflection',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_time_tracker.png?v=1660683895184',
           component: 'youtube_recommended_video_reflection',
           description:
-            'A mini clock on the right top corner as reminder for you to track time you spend on YouTube.'
+            'Dark Pita puts a mini clock on the right top corner as a reminder to track time you spend on YouTube. This may help prevent overconsumption of YouTube videos.'
         }
       ]
     },
@@ -277,7 +277,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dislike-before?v=1660625022841',
           component: 'none',
           description:
             'Not modified.'
@@ -285,7 +285,7 @@ export default {
         {
           name: 'fairness',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dislike-after.gif?v=1660625143724',
           component: 'youtube_video_dislike_fairness',
           description:
             'Show dislike counts.'
@@ -302,14 +302,14 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Recommended Videos',
       description:
-        'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
+        'Videos on the sidebar are individualized recommendations by YouTube based on your watch history and the video that you are currently watching. It is more likely that you will be watch more similar videos after you finish the current one.',
       awareness:
         'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
       action: [
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_sidebar_before.png?v=1660684441064',
           component: 'none',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
@@ -325,7 +325,7 @@ export default {
         {
           name: 'block preview',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_side_blkpreview.gif?v=1660685057356',
           component: 'youtube_sidebar_video_preview',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
