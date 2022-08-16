@@ -29,7 +29,6 @@ export default {
         },
         recover(selectors) {
             let len = selectors.removeNode.length;
-            console.log("Recovering..." + selectors.removeNode);
             for (let i = 0; i < len; i++) {
                 let node = selectors.removeNode[i];
                 if (node.next == null) node.parent.innerHTML += node.inner;

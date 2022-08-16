@@ -65,7 +65,8 @@ export default {
                 console.log("Trying to remove facebook reels, target: " + element.innerHTML);
 
                 if (element != null && element !== undefined) {
-                    this.remove(element)
+                    this.target = element;
+                    this.remove(this.target)
                     console.log("Removed facebook reels: " + element.innerHTML);
                     console.log("New element style: " + element.style);
                 } else {
@@ -73,8 +74,8 @@ export default {
                 }                
             } else if (message === 'off') {
                 console.log('facebook reels content hide off');
-                if (element != null) {
-                    this.recover(element);
+                if (this.target != null) {
+                    this.recover(this.target);
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
                 }
