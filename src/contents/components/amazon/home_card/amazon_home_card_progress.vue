@@ -5,28 +5,28 @@
 export default {
   data() {},
   mounted() {
-    this.emitter.on('amazon_home_card_progress', (message) => {
-      if (message === 'on') {
-        console.log('amazon home card progress on');
-        let elt = document.createElement('div');
-        elt.className = 'DP_money_tracker';
-        elt.id = 'DP_money_tracker_wrapper';
+    this.emitter.on("amazon_home_card_progress", (message) => {
+      if (message === "on") {
+        console.log("amazon home card progress on");
+        let elt = document.createElement("div");
+        elt.className = "DP_money_tracker";
+        elt.id = "DP_money_tracker_wrapper";
         // elt.innerHTML =
         //   '<h1>You have already spent</h1>' +
         //   '<p id = "DP_money_tracker">$126</p>' +
         //   '<h1>Since - 2022-08-16</h1>';
         elt.innerHTML =
-          '<h1>You have been lost</h1><div class="circular-progress"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-labelledby="title" role="graphic"> <title id="title">svg circular progress bar</title> <circle cx="50" cy="50" r="40" ></circle> <circle cx="50" cy="50" r="40" id="pct-ind"></circle> </svg> <p class="pct">$126</p></div>';
+          '<h1>You have spent</h1><div class="circular-progress"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-labelledby="title" role="graphic"> <title id="title">svg circular progress bar</title> <circle cx="50" cy="50" r="40" ></circle> <circle cx="50" cy="50" r="40" id="pct-ind"></circle> </svg> <p class="pct">$126</p></div>';
         document.body.appendChild(elt);
-      } else if (message === 'off') {
-        console.log('amazon home card progress off');
-        let elt = document.getElementById('DP_time_tracker_wrapper');
+      } else if (message === "off") {
+        console.log("amazon home card progress off");
+        let elt = document.getElementById("DP_time_tracker_wrapper");
         document.body.removeChild(elt);
       }
 
-      this.$emit('update');
+      this.$emit("update");
     });
-  }
+  },
 };
 </script>
 <style lang="scss">
