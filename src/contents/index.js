@@ -5,14 +5,14 @@ export default {
       identifier: 'buyNow_feature_div',
       url: 'www.amazon.com(\\S*)((/dp)|(/gp))',
       type: 'online shopping platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['asymmetric', 'covert'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'false hierarchy',
+      pattern: 'Prominent Option',
       description:
-        'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
+        'The "Buy Now" button is in color orange, while the regular "Add to Cart" option is yellow.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'Users could choose "Buy Now" more easily, and sometimes even mistakenly make a purchase decision.',
       action: [
         {
           name: 'none',
@@ -20,7 +20,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified.'
         },
         {
           name: 'hide',
@@ -28,7 +28,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_buy_now_hide',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Let the "Buy Now" button disappear.'
         },
         {
           name: 'fairness',
@@ -36,7 +36,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_buy_now_fairness',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Let the "Buy Now" button be in the same color as the regular "Add to Cart" option.'
         },
         {
           name: 'friction',
@@ -44,7 +44,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_buy_now_friction',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Add a bit friction before you actually proceed to purchase even you click buy now.'
         }
       ]
     },
@@ -53,14 +53,14 @@ export default {
       identifier: 'ad-feedback-text-auto-sparkle-hsa-tetris',
       url: 'www.amazon.com/s\\?',
       type: 'online shopping platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['deceptive', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'hidden information',
+      pattern: 'Disguised Ads',
       description:
-        'Disguising relevant information (options, actions) as irrelevant.',
+        'The interface design makes this section large and makes it less obvious that this is an inserted ads. The "sponsored" notice is minimal at the right bottom corner.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'It is harder to avoid clicking the ads. As a user, you may be confused that the product you are looking for is behind this link.',
       action: [
         {
           name: 'none',
@@ -68,7 +68,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified'
         },
         {
           name: 'hide',
@@ -76,7 +76,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_disguised_ads_hide',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Let the ads disappear.'
         },
         {
           name: 'friction',
@@ -84,7 +84,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_disguised_ads_friction',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Your cursor will disappear if it navigates through ads area.'
         },
         {
           name: 'information disclosure',
@@ -92,7 +92,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_disguised_ads_disclosure',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'We will detect and indicate the ads area explicitly for you.'
         },
         {
           name: 'counterfactual thinking',
@@ -100,7 +100,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_disguised_ads_counterfact',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Your cursor will become exclamation marks when it navigates through ads area.'
         }
       ]
     },
@@ -109,14 +109,14 @@ export default {
       identifier: 'apex_desktop',
       url: 'www.amazon.com(\\S*)/dp',
       type: 'online shopping platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'loss-gain framing',
+      pattern: 'Confusing Discount Labels...',
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'Discounts information may be showed in an exaggerated way. Some key information about the price could be hidden.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'You may be are more likely to purchase with the given discounts information.',
       action: [
         {
           name: 'none',
@@ -124,7 +124,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified.'
         },
         {
           name: 'hide',
@@ -132,7 +132,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_discount_price_hide',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Hide the discounts alert to not let it influence your purchase decision.'
         },
         {
           name: 'information disclosure',
@@ -140,7 +140,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_discount_price_disclosure',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Discloses more information behind the price or helps explain the marketing jargons.'
         },
         {
           name: 'reflection',
@@ -148,7 +148,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_discount_price_reflection',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Add some frictions when you are navigating through this area so that you will give a second thought before making your purchase decision. (This is fun, maybe try it.)'
         },
         {
           name: 'action guide',
@@ -156,7 +156,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_discount_price_action',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Dark Pita suggested something you can do about this item.'
         }
       ]
     },
@@ -168,11 +168,13 @@ export default {
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'disguised ads',
+
+      pattern: 'Recommended Items',
+
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'Users are more likely to deviate from their original purchase goals or spend more time browsing less relavant items.',
       action: [
         {
           name: 'none',
@@ -180,7 +182,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not Modified.'
         },
         {
           name: 'focus mode',
@@ -188,7 +190,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_home_card_focus',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Hide the recommended-items section on the home page.'
         },
         {
           name: 'reflection',
@@ -196,7 +198,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_home_card_reflection',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Dark Pita gives you a bit push-back when you might be mindlessly browsing.'
         }
       ]
     }
@@ -207,14 +209,14 @@ export default {
       identifier: 'content',
       url: 'https://www.youtube.com/\$',
       type: 'video streaming platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['asymmetric', 'disparate treatment', 'covert'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
-      pattern: 'false hierarchy',
+      pattern: 'Recommended Videos',
       description:
-        'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
+        'Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'The videos are trying to cater to your tastes. You are more likely to consume more content than you originally intent to. Auxilary functions such as preview will make it even easier to be distracted.',
       action: [
         {
           name: 'none',
@@ -222,7 +224,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not Modified.'
         },
         {
           name: 'focus mode',
@@ -230,7 +232,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'youtube_recommended_video_focus',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Hide all recommended videos on the homepage.'
         },
         {
           name: 'block preview',
@@ -238,7 +240,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'youtube_recommended_video_preview',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Disable the preview function.'
         },
         {
           name: 'reflection',
@@ -246,7 +248,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'youtube_recommended_video_reflection',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'A mini clock on the right top corner as reminder for you to track time you spend on YouTube.'
         }
       ]
     },
@@ -255,14 +257,14 @@ export default {
       identifier: 'top-level-buttons-computed',
       url: 'https://www.youtube.com/watch\\?v=\*',
       type: 'video streaming platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
-      pattern: 'false hierarchy',
+      pattern: 'Hidden Dislike Counts',
       description:
-        'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
+        'Only Like counts shows up, but you cannot see how many Dislikes the video gets.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'You might mistakenly perceive pupularity of the video while being unaware of its controversy.',
       action: [
         {
           name: 'none',
@@ -270,7 +272,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'none',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified.'
         },
         {
           name: 'fairness',
@@ -278,7 +280,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'youtube_video_dislike_fairness',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Show dislike counts.'
         }
       ]
     },
@@ -287,10 +289,10 @@ export default {
       identifier: 'ytd-compact-video-renderer',
       url: 'https://www.youtube.com/watch\\?v=\*',
       type: 'video streaming platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['asymmetric', 'disparate treatment', 'covert'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
-      pattern: 'false hierarchy',
+      pattern: 'Recommended Videos',
       description:
         'Visual or interactive prominence of one option over others, whereas available choices should be evenly leveled rather than hierarchical.',
       awareness:
