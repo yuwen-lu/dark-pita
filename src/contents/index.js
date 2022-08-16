@@ -53,7 +53,7 @@ export default {
       identifier: 'ad-feedback-text-auto-sparkle-hsa-tetris',
       url: 'www.amazon.com/s\\?',
       type: 'online shopping platform',
-      tag: ['deceptive', 'information hiding'],
+      tag: ['covert', 'deceptive', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'Disguised Ads',
@@ -645,21 +645,22 @@ export default {
       identifier: 'ads/about',
       url: 'https://www.facebook.com/',
       type: 'social media platform',
+      tag: ['covert', 'deceptive', 'information hiding'],
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'Sponsored – Hidden Information',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
+      pattern: 'Sponsored Feed',
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'These are sponsored/promoted posts prompted onto your homepage feed, instead of being posted by your friends.',
       awareness:
-        'Contents that I don\'t desire would be prompted onto my homepage feed.',
+        'You will possibly consume them as posts from your friends or people you follow. These posts are possibly exploiting your attention.',
       action: [
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/fb_spons_before.png?v=1660686155283',
           component: '',
           description:
-            ''
+            'Not modified.'
         },
         {
           name: 'hide / disable',
@@ -667,7 +668,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'facebook_sponsored_hide',
           description:
-            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+            'Dark Pita will hide the sponsored posts for you.'
         }
       ]
     },
