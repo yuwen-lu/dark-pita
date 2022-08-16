@@ -65,7 +65,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_before.png?v=1660681628026',
           component: 'none',
           description:
             'Not modified'
@@ -73,7 +73,7 @@ export default {
         {
           name: 'hide',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_hide.gif?v=1660681502216',
           component: 'amazon_disguised_ads_hide',
           description:
             'Let the ads disappear.'
@@ -81,7 +81,7 @@ export default {
         {
           name: 'friction',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_friction.gif?v=1660681503661',
           component: 'amazon_disguised_ads_friction',
           description:
             'Your cursor will disappear if it navigates through ads area.'
@@ -89,7 +89,7 @@ export default {
         {
           name: 'information disclosure',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_info_disc.png?v=1660681526249',
           component: 'amazon_disguised_ads_disclosure',
           description:
             'We will detect and indicate the ads area explicitly for you.'
@@ -97,7 +97,7 @@ export default {
         {
           name: 'counterfactual thinking',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_count_th.png?v=1660681591634',
           component: 'amazon_disguised_ads_counterfact',
           description:
             'Your cursor will become exclamation marks when it navigates through ads area.'
