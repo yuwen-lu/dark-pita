@@ -50,7 +50,7 @@ export default {
     },
     {
       name: 'amazon_disguised_ads',
-      identifier: 'CardInstance',
+      identifier: 'ad-feedback-text-auto-sparkle-hsa-tetris',
       url: 'www.amazon.com/s\\?',
       type: 'online shopping platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],
