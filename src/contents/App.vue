@@ -286,7 +286,7 @@ export default {
     // },
     initialize() {
       this.targetIdentifiers = null;
-      
+      this.isPop = false;
       this.mask = document.getElementById('DP_mask');
 
       chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
