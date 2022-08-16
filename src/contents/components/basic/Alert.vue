@@ -74,6 +74,7 @@ export default {
           Object.keys(settings.savedSettings).forEach((key) => {
             console.log(key, settings.savedSettings[key]);
             if (settings.savedSettings[key] === 'on') {
+              console.log("Resetting " + key);
               for (let i = 0; i < targets.length; i++) {
                 if (key.search(targets[i]) !== -1) {
                   that.emitter.emit(key, 'off');
@@ -84,6 +85,7 @@ export default {
           });
         }
         // console.log(that.interventionState);
+        alert(that.interventionState);
         chrome.storage.sync.set({ savedSettings: that.interventionState });
       });
 

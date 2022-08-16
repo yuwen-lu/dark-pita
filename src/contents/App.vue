@@ -87,6 +87,7 @@
     <facebook_reels_hide v-if="targetNames.facebook_reels" @update="generateOverviewOverlay" />
     <facebook_sponsored_hide v-if="targetNames.facebook_sponsored" @update="generateOverviewOverlay" />
     <facebook_suggested_for_you_hide v-if="targetNames.facebook_suggested_for_you" @update="generateOverviewOverlay" />
+    <facebook_suggested_for_you_highlight v-if="targetNames.facebook_suggested_for_you" @update="generateOverviewOverlay" />
 
 
     <Alert
@@ -182,6 +183,7 @@ import facebook_suggested_hide from '@/contents/components/facebook/people_sugge
 import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
 import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sponsored_hide.vue';
 import facebook_suggested_for_you_hide from './components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue';
+import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
 
 export default {
   data() {
@@ -254,6 +256,7 @@ export default {
     facebook_reels_hide,
     facebook_sponsored_hide,
     facebook_suggested_for_you_hide,
+    facebook_suggested_for_you_highlight,
 
     youtube_recommended_video_focus,
     youtube_recommended_video_preview,

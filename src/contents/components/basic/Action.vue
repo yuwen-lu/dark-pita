@@ -81,6 +81,8 @@ export default {
         facebook_suggested_hide: 'off',
         facebook_reels_hide: 'off',
         facebook_sponsored_hide: 'off',
+        facebook_suggested_for_you_hide: 'off',
+        facebook_suggested_for_you_highlight: 'off',
 
         // youtube
         youtube_recommended_video_focus: 'off',
@@ -185,6 +187,10 @@ export default {
       if (this.intervention.component === "facebook_suggested_for_you_hide") {
         this.emitter.emit('facebook_suggested_for_you_hide', 'on');
         console.log("Emitting facebook_suggested_for_you_hide message as on");
+      }
+      if (this.intervention.component === "facebook_suggested_for_you_highlight") {
+        this.emitter.emit('facebook_suggested_for_you_hightlight', 'on');
+        console.log("Emitting facebook_suggested_for_you_hightlight message as on");
       }
 
       if (this.intervention.component !== 'none') {

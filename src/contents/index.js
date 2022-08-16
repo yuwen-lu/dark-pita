@@ -608,7 +608,7 @@ export default {
           name: 'none',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'none',
+          component: '',
           description:
             ''
         },
@@ -639,7 +639,7 @@ export default {
           name: 'none',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'facebook_sponsored_hide',
+          component: '',
           description:
             ''
         },
@@ -679,6 +679,14 @@ export default {
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'facebook_suggested_for_you_hide',
+          description:
+            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+        },
+        {
+          name: 'highlight',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'facebook_suggested_for_you_highlight',
           description:
             'Contents that I don\'t desire would be prompted onto my homepage feed.'
         }

@@ -63,7 +63,9 @@ export default {
                 
             } else if (massage === 'off') {
                 console.log('facebook suggested content hide off');
-                this.recover(this.target);
+                if(this.target != null) {
+                    this.recover(this.target);
+                }
             }
         });
     }
