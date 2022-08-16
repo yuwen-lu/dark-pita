@@ -29,6 +29,7 @@ export default {
         },
         recover(selectors) {
             let len = selectors.removeNode.length;
+            console.log("Recovering..." + selectors.removeNode);
             for (let i = 0; i < len; i++) {
                 let node = selectors.removeNode[i];
                 if (node.next == null) node.parent.innerHTML += node.inner;
@@ -66,7 +67,7 @@ export default {
 
                 if (elementList.length > 0) {
                     this.target = elementList;
-                    this.remove(elementList);
+                    this.remove(this.target);
                     console.log(this.target + " removed");
                 } else {
                     console.log("cannot find target element for facebook suggested for you content");
@@ -74,7 +75,6 @@ export default {
             } else if (message === 'off') {
                 console.log('facebook suggested for you content hide off');
                 if (elementList.length > 0) {
-                    this.target = elementList;
                     this.recover(this.target);
                     console.log(this.target + " restored");
                 }
