@@ -76,10 +76,10 @@ export default {
                 console.log('facebook reels content hide off');
                 if (element != null) {
                     this.recover(element);
+                    this.emitter.emit('update');    
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
                 }
-                this.emitter.emit('update');
             }
         });
     }

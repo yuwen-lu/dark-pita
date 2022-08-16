@@ -69,6 +69,7 @@ export default {
                 console.log('facebook sponsored content hide off');
                 if(this.target != null) {
                     this.recover(this.target);
+                    this.$emit('update');
                 }
             }
         });
