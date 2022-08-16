@@ -68,7 +68,6 @@ export default {
                     this.target = element;
                     this.remove(this.target)
                     console.log("Removed facebook reels: " + element.innerHTML);
-                    console.log("New element style: " + element.style);
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
                 }                

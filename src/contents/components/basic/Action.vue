@@ -207,6 +207,9 @@ export default {
       if (this.intervention.component === 'facebook_reels_hide') {
         this.emitter.emit('facebook_reels_hide', 'on');
       }
+      if (this.intervention.component === 'facebook_reels_counterfact') {
+        this.emitter.emit('facebook_reels_counterfact', 'on');
+      }
       if (this.intervention.component === 'facebook_sponsored_hide') {
         this.emitter.emit('facebook_sponsored_hide', 'on');
         console.log('Emitting facebook_sponsored_hide message as on');

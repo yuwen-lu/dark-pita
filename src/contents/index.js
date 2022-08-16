@@ -629,6 +629,14 @@ export default {
           component: 'facebook_reels_hide',
           description:
             'Contents that I don\'t desire would be prompted onto my homepage feed.'
+        },
+        {
+          name: 'counterfactual thinking',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'facebook_reels_counterfact',
+          description:
+            'Contents that I don\'t desire would be prompted onto my homepage feed.'
         }
       ]
     },
