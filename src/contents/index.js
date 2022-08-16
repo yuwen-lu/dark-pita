@@ -577,7 +577,7 @@ export default {
       type: 'social media platform',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'People you may know – Hidden Information',
+      pattern: 'Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -608,7 +608,7 @@ export default {
       type: 'social media platform',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'Reels – Hidden Information',
+      pattern: 'Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -637,6 +637,14 @@ export default {
           component: 'facebook_reels_counterfact',
           description:
             'Contents that I don\'t desire would be prompted onto my homepage feed.'
+        },
+        {
+          name: 'add friction',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'facebook_reels_friction',
+          description:
+            'Contents that I don\'t desire would be prompted onto my homepage feed.'
         }
       ]
     },
@@ -647,7 +655,7 @@ export default {
       type: 'social media platform',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'Sponsored – Hidden Information',
+      pattern: 'Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
@@ -678,7 +686,7 @@ export default {
       type: 'social media platform',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'Suggested for you - Hidden Information',
+      pattern: 'Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
