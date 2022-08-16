@@ -116,7 +116,7 @@ export default {
       description:
         'Discounts information may be showed in an exaggerated way. Some key information about the price could be hidden.',
       awareness:
-        'You may be are more likely to purchase this item with the given discounts information.',
+        'You may be more likely to purchase this item with the given discounts information.',
       action: [
         {
           name: 'none',
@@ -179,7 +179,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_homepage_before.png?v=1660682739077',
           component: 'none',
           description:
             'Not Modified.'
@@ -195,10 +195,10 @@ export default {
         {
           name: 'reflection',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amazon_homepage_reflection.gif?v=1660676754864',
           component: 'amazon_home_card_reflection',
           description:
-            'Dark Pita gives you a bit push-back when you might be mindlessly browsing.'
+            'Dark Pita adds a bit push-back to help you avoid mindless browsing.'
         },
         {
           name: 'cost tracker',
@@ -206,7 +206,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/progress.png?v=1660678117572',
           component: 'amazon_home_card_progress',
           description:
-            'A progress circle that helps you track your daily cost on Amazon.'
+            'A progress circle that helps you track your daily cost on Amazon, with which you can better avoid binge shopping.'
         }
       ]
     }
