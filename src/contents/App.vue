@@ -85,7 +85,7 @@
       :targetNames="targetNames"
       @toggleMask="toggleMask"
       @closeAlert="closeAlert"
-      v-show="isAlert"
+      v-if="isAlert"
     />
 
     <Popup
@@ -114,19 +114,13 @@
       v-show="isMask"
     ></div>
     <div id="DP_console" class="DP_console" v-show="isConsole">
-      <div class="mb-4 w-full rounded-lg border bg-gray-700 border-gray-600">
-        <div class="py-2 px-4 bg-gray-800 rounded-b-lg">
-          <label for="editor" class="sr-only">Publish post</label>
-          <textarea
-            id="editor"
-            rows="8"
-            class="block px-0 w-full text-sm border-0 bg-gray-800 focus:ring-0 text-white placeholder-gray-400"
-            placeholder="Write an article..."
-            required=""
-            v-model="diary"
-          ></textarea>
-        </div>
-      </div>
+      <textarea
+        id="message"
+        rows="4"
+        class="DP_text_area"
+        placeholder="Your message..."
+        v-model="diary"
+      ></textarea>
       <button @click="sendDiary">
         Screenshot & Send
       </button>
@@ -557,10 +551,14 @@ div {
 }
 
 .DP_console {
-  @apply fixed right-0 top-0 font-cabin bg-dark z-infinite text-white text-[48px];
+  @apply flex flex-col gap-[8px] fixed right-0 top-0 p-[16px] w-[400px] font-cabin bg-background z-infinite text-white text-[48px];
+
+  .DP_text_area {
+    @apply block p-[10px] w-full h-[200px] text-sm rounded-lg border-[1px] bg-dark border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500;
+  }
 
   button {
-    @apply bg-transparent w-[160px] hover:bg-white font-cabin font-normal text-sm text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border;
+    @apply bg-transparent w-full hover:bg-white font-cabin font-normal text-sm text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border;
   }
 }
 </style>
