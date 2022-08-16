@@ -43,6 +43,7 @@ export default {
     isAlert: function (newValue, oldValue) {
       // if the banner is on, move the top bar lower
       // otherwise, move the top bar higher
+      console.log("isAlert changed to " + newValue);
       chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
         this.currentTab = await tab;
         console.log(this.currentTab);
@@ -67,8 +68,10 @@ export default {
             if (leftBar != undefined) {
               let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
               if (newValue) {
+                console.log("moving left bar down");
                 leftBar.style.top = parseInt(leftBarCurrentTopValue) + 64 + 'px';
               } else {
+                console.log("moving left bar back to original position");
                 leftBar.style.top = parseInt(leftBarCurrentTopValue) - 64 + 'px';
               }
             } else {
@@ -162,9 +165,6 @@ export default {
   },
   mounted() {
     console.log('alert mounted');
-
-
-
 
     this.emitter.on('alert_button_show', (message) => {
       if (message === 'show') {

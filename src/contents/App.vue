@@ -187,10 +187,11 @@ export default {
     // },
     initialize() {
       this.targetIdentifiers = null;
-      this.isAlert = false;
+      
       this.mask = document.getElementById('DP_mask');
 
       chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+        this.isAlert = false; // this line is put inside of here to prevent isAlert being set before <Alert> is mounted
         this.currentTab = await tab;
         // console.log(this.currentTab);
 
