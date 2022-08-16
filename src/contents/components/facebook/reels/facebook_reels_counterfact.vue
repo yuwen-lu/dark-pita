@@ -24,10 +24,10 @@ export default {
 
                 if (element != null && element !== undefined) {
                     this.target = element;
-                    this.target.style.color = '#2D88FF';
+                    // this.target.style.color = '#2D88FF';
                     this.target.style.fontWeight = 'bold';
                     this.target.style.fontSize = '1.5em';
-                    this.target.innerHTML = this.target.innerHTML.replace("Reels and short videos", "Reels Promoted by Facebook, Not Followed by You");
+                    this.target.innerHTML = this.target.innerHTML.replace("Reels and short videos", "Reels Not Followed by You, Promoted by Facebook Algorithm");
                     console.log(this.target + " counterfactual thinking added");
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
@@ -35,10 +35,10 @@ export default {
             } else if (message === 'off') {
                 console.log('facebook reels content counterfact off');
                 if (this.target != null) {
-                    this.target.style.style.color = 'inherit';
+                    // this.target.style.style.color = 'inherit';
                     this.target.style.fontWeight = 'inherit';
                     this.target.style.fontSize = 'inherit';
-                    this.target.innerHTML = this.target.innerHTML.replace("Reels Promoted by Facebook, Not Followed by You", "Reels and short videos");
+                    this.target.innerHTML = this.target.innerHTML.replace("Reels Not Followed by You, Promoted by Facebook Algorithm", "Reels and short videos");
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
                 }

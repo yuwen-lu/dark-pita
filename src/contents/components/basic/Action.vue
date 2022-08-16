@@ -239,10 +239,10 @@ export default {
       chrome.storage.sync.set({ savedSettings: this.interventionState });
     },
     resetIntervention(selectedComponent) {
+      console.log("Resetting interventions, selectedComponent: ", selectedComponent);
       // console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
-          if (key.search(this.targetName) !== -1) {
             // TODO: CHECK SAVED CONFIG AND SEE IF IT"S ALREADY SET
             if (key == selectedComponent) {
               console.log(
@@ -256,7 +256,6 @@ export default {
               this.interventionState[key] = 'off';
             }
           }
-        }
       });
 
       console.log('reset done', this.interventionState);

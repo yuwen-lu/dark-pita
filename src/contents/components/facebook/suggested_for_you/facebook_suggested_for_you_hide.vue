@@ -73,7 +73,8 @@ export default {
                 }
             } else if (message === 'off') {
                 console.log('facebook suggested for you content hide off');
-                if (elementList.length > 0) {
+                console.log("this.target: ", this.target);
+                if (this.target.length > 0) {
                     this.recover(this.target);
                     console.log(this.target + " restored");
                 }

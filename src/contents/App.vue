@@ -618,7 +618,9 @@ export default {
         if (elementList.length > 0) {
           for (var j = 0; j < elementList.length; j++) {
             if (elementList[j] !== undefined && elementList[j] !== null) {
-              let boundingBox = element.getBoundingClientRect();
+              console.log("Got a list to generate bounding box");
+              let boundingBox = elementList[j].getBoundingClientRect();
+              console.log("For boundingbox list, retrieved element: ", elementList[j], " with its bounding box: ", boundingBox);
               boundingBox.id = this.targetIdentifiers[i];
               boundingBox.x = boundingBox.x - 10;
               boundingBox.y = boundingBox.y - 10;
@@ -643,6 +645,7 @@ export default {
           }
         } else {
           if (element !== undefined && element !== null) {
+            console.log("Got a single element to generate bounding box, element: ", element);
             let boundingBox = element.getBoundingClientRect();
             boundingBox.id = this.targetIdentifiers[i];
             boundingBox.x = boundingBox.x - 10;
