@@ -59,21 +59,22 @@ export default {
   },
   mounted() {
     this.emitter.on('amazon_discount_price_reflection', (message) => {
+      this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
+
       if (message === 'on') {
-        console.log('discount price reflection on');
-        this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
+        console.log('amazon discount price reflection on');
         this.target.onmouseenter = () => {
           let boundingBox = this.target.getBoundingClientRect();
           let x = boundingBox.x;
           let y = boundingBox.y;
           this.explode(x, y);
         };
-        this.$emit('update');
       } else if (message === 'off') {
-        console.log('discount price reflection off');
+        console.log('amazon discount price reflection off');
         this.target.onmouseenter = () => {};
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };

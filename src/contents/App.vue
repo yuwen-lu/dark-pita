@@ -1,5 +1,6 @@
 <template>
   <div id="DP_wrapper" :key="reload">
+    // amazon
     <amazon_buy_now_hide
       v-if="targetNames.amazon_buy_now"
       @update="generateOverviewOverlay"
@@ -52,6 +53,12 @@
       v-if="targetNames.amazon_home_card"
       @update="generateOverviewOverlay"
     />
+    <amazon_home_card_progress
+      v-if="targetNames.amazon_home_card"
+      @update="generateOverviewOverlay"
+    />
+
+    // youtube
     <youtube_recommended_video_focus
       v-if="targetNames.youtube_recommended_video"
       @update="generateOverviewOverlay"
@@ -136,56 +143,53 @@
       @click="togglePopup($event, value, index)"
       v-show="isMask"
     ></div>
-    <div id="DP_console" class="DP_console" v-show="isConsole">
-      <textarea
-        id="message"
-        rows="4"
-        class="DP_text_area"
-        placeholder="Your message..."
-        v-model="diary"
-      ></textarea>
-      <button @click="sendDiary">Screenshot & Send</button>
-      <button @click="openAlert">Open Banner</button>
-      <p v-show="notSupport">This site is not supported by Dark Pita</p>
-    </div>
+
+    <Console
+      v-if="isConsole"
+      :notSupport="notSupport"
+      :isAlert="isAlert"
+      @openAlert="openAlert"
+    />
   </div>
 </template>
 
 <script>
-import INDEX from "@/contents/index.js";
-import Alert from "@/contents/components/basic/Alert.vue";
-import Popup from "@/contents/components/basic/Popup.vue";
-import Paper from "paper";
-import { incrementTime } from "@/contents/components/youtube/recommended_video/time_tracker/tracker";
+import INDEX from '@/contents/index.js';
+import Alert from '@/contents/components/basic/Alert.vue';
+import Popup from '@/contents/components/basic/Popup.vue';
+import Console from '@/contents/components/basic/Console.vue';
+import Paper from 'paper';
+import { incrementTime } from '@/contents/components/youtube/recommended_video/time_tracker/tracker';
 
 // Action components
-import template from "@/contents/components/tailwind/template.vue";
-import amazon_buy_now_hide from "@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue";
-import amazon_buy_now_fairness from "@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue";
-import amazon_buy_now_friction from "@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue";
-import amazon_disguised_ads_hide from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_hide.vue";
-import amazon_disguised_ads_friction from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_friction.vue";
-import amazon_disguised_ads_disclosure from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_disclosure.vue";
-import amazon_disguised_ads_counterfact from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_counterfact.vue";
-import amazon_discount_price_hide from "@/contents/components/amazon/discount_price/amazon_discount_price_hide.vue";
-import amazon_discount_price_disclosure from "@/contents/components/amazon/discount_price/amazon_discount_price_disclosure.vue";
-import amazon_discount_price_reflection from "@/contents/components/amazon/discount_price/amazon_discount_price_reflection.vue";
-import amazon_discount_price_action from "@/contents/components/amazon/discount_price/amazon_discount_price_action.vue";
-import amazon_home_card_focus from "@/contents/components/amazon/home_card/amazon_home_card_focus.vue";
-import amazon_home_card_reflection from "@/contents/components/amazon/home_card/amazon_home_card_reflection.vue";
-import youtube_recommended_video_focus from "@/contents/components/youtube/recommended_video/youtube_recommended_video_focus.vue";
-import youtube_recommended_video_preview from "@/contents/components/youtube/recommended_video/youtube_recommended_video_preview.vue";
-import youtube_recommended_video_reflection from "@/contents/components/youtube/recommended_video/youtube_recommended_video_reflection.vue";
-import youtube_video_dislike_fairness from "@/contents/components/youtube/video_dislike/youtube_video_dislike_fairness.vue";
-import youtube_sidebar_video_focus from "@/contents/components/youtube/sidebar_video/youtube_sidebar_video_focus.vue";
-import youtube_sidebar_video_preview from "@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue";
-import youtube_sidebar_video_reflection from "@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue";
+import amazon_buy_now_hide from '@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue';
+import amazon_buy_now_fairness from '@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue';
+import amazon_buy_now_friction from '@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue';
+import amazon_disguised_ads_hide from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_hide.vue';
+import amazon_disguised_ads_friction from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_friction.vue';
+import amazon_disguised_ads_disclosure from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_disclosure.vue';
+import amazon_disguised_ads_counterfact from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_counterfact.vue';
+import amazon_discount_price_hide from '@/contents/components/amazon/discount_price/amazon_discount_price_hide.vue';
+import amazon_discount_price_disclosure from '@/contents/components/amazon/discount_price/amazon_discount_price_disclosure.vue';
+import amazon_discount_price_reflection from '@/contents/components/amazon/discount_price/amazon_discount_price_reflection.vue';
+import amazon_discount_price_action from '@/contents/components/amazon/discount_price/amazon_discount_price_action.vue';
+import amazon_home_card_focus from '@/contents/components/amazon/home_card/amazon_home_card_focus.vue';
+import amazon_home_card_reflection from '@/contents/components/amazon/home_card/amazon_home_card_reflection.vue';
+import amazon_home_card_progress from '@/contents/components/amazon/home_card/amazon_home_card_progress.vue';
 
-import facebook_suggested_hide from "@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue";
-import facebook_reels_hide from "@/contents/components/facebook/reels/facebook_reels_hide.vue";
-import facebook_sponsored_hide from "./components/facebook/sponsored/facebook_sponsored_hide.vue";
-import facebook_suggested_for_you_hide from "./components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue";
-import facebook_suggested_for_you_highlight from "./components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue";
+import youtube_recommended_video_focus from '@/contents/components/youtube/recommended_video/youtube_recommended_video_focus.vue';
+import youtube_recommended_video_preview from '@/contents/components/youtube/recommended_video/youtube_recommended_video_preview.vue';
+import youtube_recommended_video_reflection from '@/contents/components/youtube/recommended_video/youtube_recommended_video_reflection.vue';
+import youtube_video_dislike_fairness from '@/contents/components/youtube/video_dislike/youtube_video_dislike_fairness.vue';
+import youtube_sidebar_video_focus from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_focus.vue';
+import youtube_sidebar_video_preview from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue';
+import youtube_sidebar_video_reflection from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue';
+
+import facebook_suggested_hide from '@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue';
+import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
+import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sponsored_hide.vue';
+import facebook_suggested_for_you_hide from './components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue';
+import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
 
 export default {
   data() {
@@ -231,15 +235,13 @@ export default {
       },
       savedSettings: {},
       isConsole: false,
-      notSupport: false,
-      diary: "",
-      isApp: true,
+      notSupport: false
     };
   },
   components: {
     Alert,
     Popup,
-    template,
+    Console,
     amazon_buy_now_hide,
     amazon_buy_now_fairness,
     amazon_buy_now_friction,
@@ -254,6 +256,7 @@ export default {
     amazon_discount_price_action,
     amazon_home_card_focus,
     amazon_home_card_reflection,
+    amazon_home_card_progress,
 
     facebook_suggested_hide,
     facebook_reels_hide,
@@ -277,10 +280,13 @@ export default {
     },
   },
   methods: {
-    // highlight() {
-    //   this.driver.highlight('#header');
-    // },
     initialize() {
+      console.log('app initialize');
+      window.addEventListener('scroll', this.generateOverviewOverlay);
+      window.addEventListener('resize', this.generateOverviewOverlay);
+      Paper.setup(document.getElementById('DP_canvas'));
+
+      this.notSupport = false;
       this.targetIdentifiers = null;
       this.isPop = false;
       this.mask = document.getElementById("DP_mask");
@@ -315,10 +321,12 @@ export default {
           // Collect dark patterns
           for (let target of this.info) {
             let re = new RegExp(target.url);
+            // console.log('initialize', url);
             if (url.search(re) !== -1) {
               if (this.targetIdentifiers === null) {
                 this.targetIdentifiers = [];
               }
+              // console.log('initialize', target);
               this.targetIdentifiers.push(target.identifier);
               this.targetNames[target.name] = true;
             }
@@ -334,6 +342,29 @@ export default {
           } else {
             this.notSupport = true;
           }
+
+          // Start time tracker
+          if (url.search(/youtube.com/) !== -1) {
+            const HEARTBIT = 6; // sec
+            setInterval(function() {
+              incrementTime(HEARTBIT / 60, (data) => {
+                let timeTracker = document.getElementById('DP_time_tracker');
+                if (timeTracker !== null) {
+                  timeTracker.innerHTML =
+                    Math.round(data.time_watched) + 'mins';
+                }
+              });
+            }, HEARTBIT * 1000);
+          }
+        }
+      });
+
+      let that = this;
+      chrome.storage.sync.get('savedSettings', function(settings) {
+        if (JSON.stringify(settings) !== '{}') {
+          console.log('retrieve settings');
+          console.log(settings);
+          that.savedSettings = settings.savedSettings;
         }
       });
     },
@@ -421,6 +452,7 @@ export default {
         svg.setAttribute("width", this.overlayWidth);
         svg.setAttribute("height", this.overlayHeight);
         svg.appendChild(this.overlayPath);
+        this.mask = document.getElementById('DP_mask');
         this.mask.appendChild(svg);
 
         this.generateTouchableArea();
@@ -441,8 +473,8 @@ export default {
           element = document.querySelector(
             '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
-        } else if (this.website === "Amazon") {
-          if (this.targetIdentifiers[i] === "buyNow_feature_div") {
+        } else if (this.website === 'Amazon') {
+          if (this.targetIdentifiers[i] === 'submit.buy-now') {
             element = document.getElementById(this.targetIdentifiers[i]);
           } else if (
             this.targetIdentifiers[i] ===
@@ -690,51 +722,16 @@ export default {
     openAlert() {
       this.isAlert = true;
     },
-  },
-  closeAll(value) {
-    this.refresh();
-    this.isPop = false;
-    this.emitter.emit("alert_button_show", "show");
-  },
-  sendDiary() {
-    console.log(this.diary);
+    closeAll(value) {
+      this.refresh();
+      this.isPop = false;
+      this.emitter.emit('alert_button_show', 'show');
+    }
   },
   mounted() {
-    console.log("app mounted");
-    window.addEventListener("scroll", this.generateOverviewOverlay);
-    window.addEventListener("resize", this.generateOverviewOverlay);
-    Paper.setup(document.getElementById("DP_canvas"));
-
+    console.log('app mounted');
     this.initialize();
-
-    chrome.runtime.sendMessage({ type: "APP_INIT" }, async (tab) => {
-      this.currentTab = await tab;
-
-      if (this.currentTab !== null) {
-        let url = this.currentTab.url;
-        if (url.search(/youtube.com/) !== -1) {
-          const HEARTBIT = 6; // sec
-          setInterval(function () {
-            incrementTime(HEARTBIT / 60, (data) => {
-              let timeTracker = document.getElementById("DP_time_tracker");
-              if (timeTracker !== null) {
-                timeTracker.innerHTML = Math.round(data.time_watched) + "mins";
-              }
-            });
-          }, HEARTBIT * 1000);
-        }
-      }
-    });
-
-    let that = this;
-    chrome.storage.sync.get("savedSettings", function (settings) {
-      if (JSON.stringify(settings) !== "{}") {
-        console.log("retrieve settings");
-        console.log(settings);
-        that.savedSettings = settings.savedSettings;
-      }
-    });
-  },
+  }
 };
 </script>
 
@@ -755,17 +752,5 @@ div {
 
 .DP_bounding_box {
   @apply fixed bg-transparent rounded-[4px] border-[4px] border-transparent border-solid hover:border-blue-500 z-overlay;
-}
-
-.DP_console {
-  @apply flex flex-col gap-[8px] fixed right-0 top-0 p-[16px] w-[400px] font-cabin bg-background z-infinite text-white text-[14px];
-
-  .DP_text_area {
-    @apply block p-[10px] w-full h-[200px] text-[14px] rounded-lg border-[1px] bg-dark border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500;
-  }
-
-  button {
-    @apply bg-transparent w-full hover:bg-white font-cabin font-normal text-[14px] text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border;
-  }
 }
 </style>

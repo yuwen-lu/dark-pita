@@ -12,18 +12,21 @@ export default {
   methods: {},
   mounted() {
     this.emitter.on('youtube_sidebar_video_focus', (message) => {
-      this.elements = document.querySelectorAll('[id^=contents]');
-      this.target = this.elements[this.elements.length - 1];
+      let that = this;
+      setTimeout(() => {
+        that.elements = document.querySelectorAll('[id^=contents]');
+        that.target = that.elements[that.elements.length - 1];
 
-      if (message === 'on') {
-        console.log('youtube sidebar video focus mode on');
-        this.target.style.visibility = 'hidden';
-        this.$emit('update');
-      } else if (message === 'off') {
-        console.log('youtube sidebar video focus mode off');
-        this.target.style.visibility = 'visible';
-        this.$emit('update');
-      }
+        if (message === 'on') {
+          console.log('youtube sidebar video focus mode on');
+          that.target.style.visibility = 'hidden';
+        } else if (message === 'off') {
+          console.log('youtube sidebar video focus mode off');
+          that.target.style.visibility = 'visible';
+        }
+
+        that.$emit('update');
+      }, 3000);
     });
   }
 };

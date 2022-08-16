@@ -93,6 +93,7 @@ export default {
         amazon_discount_price_action: 'off',
         amazon_home_card_focus: 'off',
         amazon_home_card_reflection: 'off',
+        amazon_home_card_progress: 'off',
 
         // facebook
         facebook_suggested_hide: 'off',
@@ -123,6 +124,7 @@ export default {
 
       this.resetIntervention(this.intervention.component);
 
+      // amazon
       if (this.intervention.component === 'amazon_buy_now_hide') {
         this.emitter.emit('amazon_buy_now_hide', 'on');
       } else if (this.intervention.component === 'amazon_buy_now_fairness') {
@@ -163,7 +165,12 @@ export default {
         this.intervention.component === 'amazon_home_card_reflection'
       ) {
         this.emitter.emit('amazon_home_card_reflection', 'on');
-      } else if (
+      } else if (this.intervention.component === 'amazon_home_card_progress') {
+        this.emitter.emit('amazon_home_card_progress', 'on');
+      }
+
+      // youtube
+      else if (
         this.intervention.component === 'youtube_recommended_video_focus'
       ) {
         this.emitter.emit('youtube_recommended_video_focus', 'on');
@@ -192,6 +199,7 @@ export default {
       ) {
         this.emitter.emit('youtube_sidebar_video_reflection', 'on');
       }
+
       // facebook
       if (this.intervention.component === 'facebook_suggested_hide') {
         this.emitter.emit('facebook_suggested_hide', 'on');

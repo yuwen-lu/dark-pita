@@ -47,15 +47,15 @@ export default {
   mounted() {
     this.emitter.on('amazon_home_card_focus', (message) => {
       if (message === 'on') {
-        console.log('home card focus mode on');
+        console.log('amazon home card focus mode on');
         this.target = document.querySelectorAll('[id^=pageContent]');
         this.remove(this.target);
-        this.$emit('update');
       } else if (message === 'off') {
-        console.log('home card focus mode off');
+        console.log('amazon home card focus mode off');
         this.recover(this.target);
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };

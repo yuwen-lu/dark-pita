@@ -1,10 +1,13 @@
 <template>
   <div class="DP_heading">
     <div class="DP_alert">
-      <img src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dawn.png?v=1659250496384" />
+      <img
+        src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dawn.png?v=1659250496384"
+      />
       <p>
-        <span>Dark Pita</span> detected dark patterns on {{ website }} that may
-        be affecting your personal wellbeing
+        <span>Dark Pita</span>
+        <span style="padding-left: 20px"> </span> Hello there, dark patterns
+        detected
       </p>
       <button @click="toggleMask" v-if="!isMask">
         Show All
@@ -18,10 +21,17 @@
     </div>
 
     <button @click="closeAlert">
-      <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="m4.397 4.554.073-.084a.75.75 0 0 1 .976-.073l.084.073L12 10.939l6.47-6.47a.75.75 0 1 1 1.06 1.061L13.061 12l6.47 6.47a.75.75 0 0 1 .072.976l-.073.084a.75.75 0 0 1-.976.073l-.084-.073L12 13.061l-6.47 6.47a.75.75 0 0 1-1.06-1.061L10.939 12l-6.47-6.47a.75.75 0 0 1-.072-.976l.073-.084-.073.084Z"
-          fill="#FFFFFF" />
+          fill="#FFFFFF"
+        />
       </svg>
     </button>
   </div>
@@ -40,10 +50,36 @@ export default {
     }
   },
   watch: {
-    isAlert: function (newValue, oldValue) {
+    isAlert(newValue, oldValue) {
+      // Trigger saved changes
+      if (newValue) {
+        let that = this;
+        let targets = [];
+        Object.keys(this.targetNames).forEach((key) => {
+          if (that.targetNames[key]) {
+            targets.push(key);
+          }
+        });
+
+        chrome.storage.sync.get('savedSettings', function(settings) {
+          if (JSON.stringify(settings.savedSettings) !== '{}') {
+            Object.keys(settings.savedSettings).forEach((key) => {
+              // console.log(key, settings.savedSettings[key]);
+              if (settings.savedSettings[key] === 'on') {
+                for (let i = 0; i < targets.length; i++) {
+                  if (key.search(targets[i]) !== -1) {
+                    that.emitter.emit(key, 'on');
+                  }
+                }
+              }
+            });
+          }
+        });
+      }
+
       // if the banner is on, move the top bar lower
       // otherwise, move the top bar higher
-      console.log("isAlert changed to " + newValue);
+      console.log('isAlert changed to ' + newValue);
       chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
         this.currentTab = await tab;
         console.log(this.currentTab);
@@ -68,11 +104,13 @@ export default {
             if (leftBar != undefined) {
               let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
               if (newValue) {
-                console.log("moving left bar down");
-                leftBar.style.top = parseInt(leftBarCurrentTopValue) + 64 + 'px';
+                console.log('moving left bar down');
+                leftBar.style.top =
+                  parseInt(leftBarCurrentTopValue) + 64 + 'px';
               } else {
-                console.log("moving left bar back to original position");
-                leftBar.style.top = parseInt(leftBarCurrentTopValue) - 64 + 'px';
+                console.log('moving left bar back to original position');
+                leftBar.style.top =
+                  parseInt(leftBarCurrentTopValue) - 64 + 'px';
               }
             } else {
               console.log('leftBar not retrieved');
@@ -84,9 +122,11 @@ export default {
             if (headerBar != undefined) {
               let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
               if (newValue) {
-                headerBar.style.top = parseInt(headerBarCurrentTopValue) + 64 + 'px';
+                headerBar.style.top =
+                  parseInt(headerBarCurrentTopValue) + 64 + 'px';
               } else {
-                headerBar.style.top = parseInt(headerBarCurrentTopValue) - 64 + 'px';
+                headerBar.style.top =
+                  parseInt(headerBarCurrentTopValue) - 64 + 'px';
               }
             } else {
               console.log('headerBar not retrieved');
@@ -112,7 +152,6 @@ export default {
           }
         }
       });
-
     }
   },
   data() {
@@ -139,13 +178,12 @@ export default {
       });
 
       let that = this;
-      chrome.storage.sync.get('savedSettings', function (settings) {
+      chrome.storage.sync.get('savedSettings', function(settings) {
         that.interventionState = settings.savedSettings;
         if (JSON.stringify(settings.savedSettings) !== '{}') {
           Object.keys(settings.savedSettings).forEach((key) => {
-            console.log(key, settings.savedSettings[key]);
+            // console.log(key, settings.savedSettings[key]);
             if (settings.savedSettings[key] === 'on') {
-              console.log('Resetting ' + key);
               for (let i = 0; i < targets.length; i++) {
                 if (key.search(targets[i]) !== -1) {
                   that.emitter.emit(key, 'off');
@@ -155,7 +193,7 @@ export default {
             }
           });
         }
-        // console.log(that.interventionState);
+
         chrome.storage.sync.set({ savedSettings: that.interventionState });
       });
 
@@ -169,29 +207,6 @@ export default {
     this.emitter.on('alert_button_show', (message) => {
       if (message === 'show') {
         this.toggleMask();
-      }
-    });
-
-    let targets = [];
-    Object.keys(this.targetNames).forEach((key) => {
-      if (this.targetNames[key]) {
-        targets.push(key);
-      }
-    });
-
-    let that = this;
-    chrome.storage.sync.get('savedSettings', function (settings) {
-      if (JSON.stringify(settings.savedSettings) !== '{}') {
-        Object.keys(settings.savedSettings).forEach((key) => {
-          console.log(key, settings.savedSettings[key]);
-          if (settings.savedSettings[key] === 'on') {
-            for (let i = 0; i < targets.length; i++) {
-              if (key.search(targets[i]) !== -1) {
-                that.emitter.emit(key, 'on');
-              }
-            }
-          }
-        });
       }
     });
   }

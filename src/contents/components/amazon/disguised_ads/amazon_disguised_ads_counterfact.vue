@@ -26,9 +26,10 @@ export default {
   },
   mounted() {
     this.emitter.on('amazon_disguised_ads_counterfact', (message) => {
+      this.target = document.querySelectorAll('[id^=CardInstance]')[0];
+
       if (message === 'on') {
-        console.log('disguised ads counterfact on');
-        this.target = document.querySelectorAll('[id^=CardInstance]')[0];
+        console.log('amazon disguised ads counterfact on');
         this.changeCursor(this.target, 'warning');
         this.target.style.cssText =
           'border-width: 4px; border-color: rgb(220 38 38);';
@@ -42,17 +43,17 @@ export default {
         tip.style.cssText =
           'background-color: rgb(220 38 38); color: rgb(255 255 255); font-size: 20px; position: absolute; top: 0; right: 0; padding: 4px;';
         this.target.appendChild(tip);
-        this.$emit('update');
       } else if (message === 'off') {
-        console.log('disguised ads counterfact off');
+        console.log('amazon disguised ads counterfact off');
         this.changeCursor(this.target, 'default');
         this.target.style.cssText = '';
         let tip = document.getElementById(
           'amazon_disguised_ads_disclosure_tip_id'
         );
         this.target.removeChild(tip);
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };

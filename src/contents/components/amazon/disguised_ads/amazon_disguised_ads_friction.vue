@@ -25,16 +25,17 @@ export default {
   },
   mounted() {
     this.emitter.on('amazon_disguised_ads_friction', (message) => {
+      this.target = document.querySelectorAll('[id^=CardInstance]')[0];
+
       if (message === 'on') {
-        console.log('disguised ads friction on');
-        this.target = document.querySelectorAll('[id^=CardInstance]')[0];
+        console.log('amazon disguised ads friction on');
         this.changeCursor(this.target, 'none');
-        this.$emit('update');
       } else if (message === 'off') {
-        console.log('disguised ads friction off');
+        console.log('amazon disguised ads friction off');
         this.changeCursor(this.target, 'default');
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };
