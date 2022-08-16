@@ -30,18 +30,20 @@ export default {
   },
   mounted() {
     this.emitter.on('amazon_buy_now_friction', (message) => {
+      this.target = document.getElementById('submit.buy-now');
+
       if (message === 'on') {
-        console.log('buy now friction on');
-        this.target = document.getElementById('submit.buy-now');
+        console.log('amazon buy now friction on');
         this.target.onmouseenter = () => {
           console.log('buy now friction overlay');
           this.on();
         };
-        this.$emit('update');
       } else if (message === 'off') {
-        console.log('buy now friction off');
-        this.$emit('update');
+        console.log('amazon buy now friction off');
+        this.off();
       }
+
+      this.$emit('update');
     });
   }
 };

@@ -2,7 +2,7 @@ export default {
   amazon: [
     {
       name: 'amazon_buy_now',
-      identifier: 'buyNow_feature_div',
+      identifier: 'submit.buy-now',
       url: 'www.amazon.com(\\S*)((/dp)|(/gp))',
       type: 'online shopping platform',
       tag: ['asymmetric', 'disparate treatment', 'information hiding'],

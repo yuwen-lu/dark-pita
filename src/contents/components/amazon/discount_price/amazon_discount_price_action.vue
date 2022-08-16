@@ -10,10 +10,10 @@ export default {
   },
   mounted() {
     this.emitter.on('amazon_discount_price_action', (message) => {
-      if (message === 'on') {
-        console.log('discount price action guide on');
-        this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
+      this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
 
+      if (message === 'on') {
+        console.log('amazon discount price action guide on');
         let tag = this.target.getElementsByTagName('tr')[0].childNodes[0]
           .textContent;
         let tooltipContent = 'NO Buying, 100% Saving.';
@@ -31,16 +31,16 @@ export default {
         this.target.onmouseleave = () => {
           tooltip.style.visibility = 'hidden';
         };
-        this.$emit('update');
       } else if (message === 'off') {
-        console.log('discount price action guide off');
+        console.log('amazon discount price action guide off');
         let tooltip = document.getElementById('DP_tooltip');
         this.target.removeChild(tooltip);
         this.target.style.cssText = '';
         this.target.onmouseenter = () => {};
         this.target.onmouseleave = () => {};
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };

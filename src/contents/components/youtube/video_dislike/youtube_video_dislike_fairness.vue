@@ -22,32 +22,31 @@ export default {
   },
   mounted() {
     this.emitter.on('youtube_video_dislike_fairness', async (message) => {
-      if (message === 'on') {
-        console.log('youtube video dislike fairness on');
-        this.target = document.getElementById(
+      let that = this;
+      setTimeout(() => {
+        that.target = document.getElementById(
           'top-level-buttons-computed'
         ).childNodes[1];
 
-        chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
-          let currentTab = await tab;
-          if (currentTab !== null) {
-            let url = currentTab.url;
-            let id = this.getValueArray(url)[0];
-            this.target.querySelector(
-              '#text'
-            ).innerText = await this.fetchPrice(id);
-          }
-        });
+        if (message === 'on') {
+          console.log('youtube video dislike fairness on');
+          chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+            let currentTab = await tab;
+            if (currentTab !== null) {
+              let url = currentTab.url;
+              let id = that.getValueArray(url)[0];
+              that.target.querySelector(
+                '#text'
+              ).innerText = await that.fetchPrice(id);
+            }
+          });
+        } else if (message === 'off') {
+          console.log('youtube video dislike fairness off');
+          that.target.querySelector('#text').innerText = 'Dislike';
+        }
 
-        this.$emit('update');
-      } else if (message === 'off') {
-        console.log('youtube video dislike fairness off');
-        this.target = document.getElementById(
-          'top-level-buttons-computed'
-        ).childNodes[1];
-        this.target.querySelector('#text').innerText = 'Dislike';
-        this.$emit('update');
-      }
+        that.$emit('update');
+      }, 3000);
     });
   }
 };

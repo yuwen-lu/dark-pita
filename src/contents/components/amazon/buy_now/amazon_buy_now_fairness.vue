@@ -10,9 +10,10 @@ export default {
   },
   mounted() {
     this.emitter.on('amazon_buy_now_fairness', (message) => {
+      this.target = document.getElementById('submit.buy-now');
+
       if (message === 'on') {
-        console.log('buy now fairness on');
-        this.target = document.getElementById('submit.buy-now');
+        console.log('amazon buy now fairness on');
         this.target.style.cssText =
           'background: #ffd814 !important; border-color: #fcd200 !important;';
         this.target.classList.remove('a-button-oneclick');
@@ -24,9 +25,8 @@ export default {
           this.target.style.cssText =
             'background: #ffd814 !important; border-color: #fcd200 !important;';
         };
-        this.$emit('update');
       } else if (message === 'off') {
-        console.log('buy now fairness off');
+        console.log('amazon buy now fairness off');
         this.target.style.cssText = '';
         this.target.classList.add('a-button-oneclick');
         this.target.onmouseenter = () => {
@@ -35,8 +35,9 @@ export default {
         this.target.onmouseleave = () => {
           this.target.style.cssText = '';
         };
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };

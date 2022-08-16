@@ -46,16 +46,19 @@ export default {
   },
   mounted() {
     this.emitter.on('youtube_sidebar_video_preview', (message) => {
-      if (message === 'on') {
-        console.log('youtube sidebar video block preview on');
-        this.target = document.querySelectorAll('[id^=mouseover-overlay]');
-        this.target.forEach((elt) => this.remove(elt));
-        this.$emit('update');
-      } else if (message === 'off') {
-        this.target = document.querySelectorAll('[id^=mouseover-overlay]');
-        this.target.forEach((elt) => this.recover(elt));
-        this.$emit('update');
-      }
+      let that = this;
+      setTimeout(() => {
+        that.target = document.querySelectorAll('[id^=mouseover-overlay]');
+
+        if (message === 'on') {
+          console.log('youtube sidebar video block preview on');
+          that.target.forEach((elt) => that.remove(elt));
+        } else if (message === 'off') {
+          that.target.forEach((elt) => that.recover(elt));
+        }
+
+        that.$emit('update');
+      }, 3000);
     });
   }
 };

@@ -47,15 +47,15 @@ export default {
   mounted() {
     this.emitter.on('amazon_disguised_ads_hide', (message) => {
       if (message === 'on') {
-        console.log('disguised ads hide on');
+        console.log('amazon disguised ads hide on');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
         this.remove(this.target);
-        this.$emit('update');
       } else if (message === 'off') {
-        console.log('disguised ads hide off');
+        console.log('amazon disguised ads hide off');
         this.recover(this.target);
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };

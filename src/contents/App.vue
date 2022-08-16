@@ -281,48 +281,16 @@ export default {
   watch: {
     reload(newVal, oldVal) {
       console.log('app reload');
+      this.initialize();
+    }
+  },
+  methods: {
+    initialize() {
+      console.log('app initialize');
       window.addEventListener('scroll', this.generateOverviewOverlay);
       window.addEventListener('resize', this.generateOverviewOverlay);
       Paper.setup(document.getElementById('DP_canvas'));
 
-      this.initialize();
-
-      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
-        this.currentTab = await tab;
-
-        if (this.currentTab !== null) {
-          let url = this.currentTab.url;
-          if (url.search(/youtube.com/) !== -1) {
-            const HEARTBIT = 6; // sec
-            setInterval(function() {
-              incrementTime(HEARTBIT / 60, (data) => {
-                let timeTracker = document.getElementById('DP_time_tracker');
-                if (timeTracker !== null) {
-                  timeTracker.innerHTML =
-                    Math.round(data.time_watched) + 'mins';
-                }
-              });
-            }, HEARTBIT * 1000);
-          }
-        }
-      });
-
-      let that = this;
-      chrome.storage.sync.get('savedSettings', function(settings) {
-        if (JSON.stringify(settings) !== '{}') {
-          console.log('retrieve settings');
-          console.log(settings);
-          that.savedSettings = settings.savedSettings;
-        }
-      });
-    }
-  },
-  methods: {
-    // highlight() {
-    //   this.driver.highlight('#header');
-    // },
-    initialize() {
-      console.log('app initialize');
       this.targetIdentifiers = null;
       this.isPop = false;
       this.mask = document.getElementById('DP_mask');
@@ -357,12 +325,12 @@ export default {
           // Collect dark patterns
           for (let target of this.info) {
             let re = new RegExp(target.url);
-            console.log('initialize', url);
+            // console.log('initialize', url);
             if (url.search(re) !== -1) {
               if (this.targetIdentifiers === null) {
                 this.targetIdentifiers = [];
               }
-              console.log('initialize', target);
+              // console.log('initialize', target);
               this.targetIdentifiers.push(target.identifier);
               this.targetNames[target.name] = true;
             }
@@ -378,6 +346,29 @@ export default {
           } else {
             this.notSupport = true;
           }
+
+          // Start time tracker
+          if (url.search(/youtube.com/) !== -1) {
+            const HEARTBIT = 6; // sec
+            setInterval(function() {
+              incrementTime(HEARTBIT / 60, (data) => {
+                let timeTracker = document.getElementById('DP_time_tracker');
+                if (timeTracker !== null) {
+                  timeTracker.innerHTML =
+                    Math.round(data.time_watched) + 'mins';
+                }
+              });
+            }, HEARTBIT * 1000);
+          }
+        }
+      });
+
+      let that = this;
+      chrome.storage.sync.get('savedSettings', function(settings) {
+        if (JSON.stringify(settings) !== '{}') {
+          console.log('retrieve settings');
+          console.log(settings);
+          that.savedSettings = settings.savedSettings;
         }
       });
     },
@@ -482,7 +473,7 @@ export default {
             '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
         } else if (this.website === 'Amazon') {
-          if (this.targetIdentifiers[i] === 'buyNow_feature_div') {
+          if (this.targetIdentifiers[i] === 'submit.buy-now') {
             element = document.getElementById(this.targetIdentifiers[i]);
           } else if (
             this.targetIdentifiers[i] ===
@@ -709,39 +700,7 @@ export default {
   },
   mounted() {
     console.log('app mounted');
-    window.addEventListener('scroll', this.generateOverviewOverlay);
-    window.addEventListener('resize', this.generateOverviewOverlay);
-    Paper.setup(document.getElementById('DP_canvas'));
-
     this.initialize();
-
-    chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
-      this.currentTab = await tab;
-
-      if (this.currentTab !== null) {
-        let url = this.currentTab.url;
-        if (url.search(/youtube.com/) !== -1) {
-          const HEARTBIT = 6; // sec
-          setInterval(function() {
-            incrementTime(HEARTBIT / 60, (data) => {
-              let timeTracker = document.getElementById('DP_time_tracker');
-              if (timeTracker !== null) {
-                timeTracker.innerHTML = Math.round(data.time_watched) + 'mins';
-              }
-            });
-          }, HEARTBIT * 1000);
-        }
-      }
-    });
-
-    let that = this;
-    chrome.storage.sync.get('savedSettings', function(settings) {
-      if (JSON.stringify(settings) !== '{}') {
-        console.log('retrieve settings');
-        console.log(settings);
-        that.savedSettings = settings.savedSettings;
-      }
-    });
   }
 };
 </script>

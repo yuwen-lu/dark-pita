@@ -67,9 +67,10 @@ export default {
   },
   mounted() {
     this.emitter.on('amazon_home_card_reflection', (message) => {
+      this.target = document.querySelectorAll('[id^=desktop]');
+
       if (message === 'on') {
         console.log('home card reflection on');
-        this.target = document.querySelectorAll('[id^=desktop]');
         let that = this;
         this.target.forEach((item) => {
           item.onmouseenter = () => {
@@ -78,14 +79,14 @@ export default {
             that.explode(x, y);
           };
         });
-        this.$emit('update');
       } else if (message === 'off') {
         console.log('home card reflection off');
         this.target.forEach((item) => {
           item.onmouseenter = () => {};
         });
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };

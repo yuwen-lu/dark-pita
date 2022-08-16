@@ -29,13 +29,13 @@ export default {
             '</h1>';
         });
         document.body.appendChild(elt);
-        this.$emit('update');
       } else if (message === 'off') {
         console.log('youtube recommended video reflection off');
         let elt = document.getElementById('DP_time_tracker_wrapper');
         document.body.removeChild(elt);
-        this.$emit('update');
       }
+
+      this.$emit('update');
     });
   }
 };
