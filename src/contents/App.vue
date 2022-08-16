@@ -32,7 +32,7 @@
       @update="generateOverviewOverlay" />
 
 
-    <Alert :targetNames="targetNames" @toggleMask="toggleMask" @closeAlert="closeAlert" v-show="isAlert" />
+    <Alert :targetNames="targetNames" :isAlert="isAlert" @toggleMask="toggleMask" @closeAlert="closeAlert" v-show="isAlert" />
 
     <Popup class="DP_popup" v-if="isPop" :left="popupX" :top="popupY" :key="timer" :target="currentTarget"
       :savedSettings="savedSettings" :targetNames="targetNames" @closeAll="closeAll" @closePop="closePop" />
@@ -235,8 +235,6 @@ export default {
             console.log(this.targetIdentifiers);
             this.currentTarget = this.info[0];
             this.isAlert = true;
-            this.$emit("isAlert", 'on');
-            alert('isAlert on');
           } else {
             this.notSupport = true;
           }
@@ -521,11 +519,9 @@ export default {
     },
     closeAlert() {
       this.isAlert = false;
-      this.$emit("isAlert", 'off');
     },
     openAlert() {
       this.isAlert = true;
-      this.$emit("isAlert", 'on');
     }
   },
   closeAll(value) {

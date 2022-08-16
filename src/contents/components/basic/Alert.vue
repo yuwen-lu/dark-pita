@@ -34,6 +34,82 @@ export default {
     },
     website: {
       type: String
+    },
+    isAlert: {
+      type: Boolean
+    }
+  },
+  watch: {
+    isAlert: function (newValue, oldValue) {
+      // if the banner is on, move the top bar lower
+      // otherwise, move the top bar higher
+      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+        this.currentTab = await tab;
+        console.log(this.currentTab);
+
+        if (this.currentTab !== null) {
+          let url = this.currentTab.url;
+          console.log('current site in alert:', url);
+          if (url.search(/facebook.com/) !== -1) {
+            let bannerElement = document.querySelectorAll('[role="banner"]')[0];
+            for (var i = 0; i < bannerElement.children.length; i++) {
+              if (newValue) {
+                bannerElement.children[i].style.top = '64px';
+              } else {
+                bannerElement.children[i].style.top = '0px';
+              }
+            }
+          } else if (url.search(/youtube.com/) !== -1) {
+            // need to manually change the top position of each screen componet (header, main content, left bar)
+            let leftBar = document.getElementsByTagName('tp-yt-app-drawer')[0];
+            console.log('leftBar', leftBar);
+            // leftBar current position set to fixed, add its left value by 64 px;
+            if (leftBar != undefined) {
+              let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
+              if (newValue) {
+                leftBar.style.top = parseInt(leftBarCurrentTopValue) + 64 + 'px';
+              } else {
+                leftBar.style.top = parseInt(leftBarCurrentTopValue) - 64 + 'px';
+              }
+            } else {
+              console.log('leftBar not retrieved');
+            }
+
+            let headerBar = document.getElementById('masthead-container');
+            console.log('headerBar', headerBar);
+            // headerBar current position set to fixed, add its left value by 64 px;
+            if (headerBar != undefined) {
+              let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
+              if (newValue) {
+                headerBar.style.top = parseInt(headerBarCurrentTopValue) + 64 + 'px';
+              } else {
+                headerBar.style.top = parseInt(headerBarCurrentTopValue) - 64 + 'px';
+              }
+            } else {
+              console.log('headerBar not retrieved');
+            }
+
+            let bannerElement = document.getElementsByTagName('ytd-browse')[0];
+            if (bannerElement != undefined) {
+              console.log('bannerElement: ' + bannerElement);
+              if (newValue) {
+                bannerElement.style.marginTop = '64px';
+              } else {
+                bannerElement.style.marginTop = '0px';
+              }
+            } else {
+              console.log('bannerElement not retrieved');
+            }
+          } else {
+            if (newValue) {
+              document.body.style.paddingTop = '64px';
+            } else {
+              document.body.style.paddingTop = '0px';
+            }
+          }
+        }
+      });
+
     }
   },
   data() {
@@ -87,114 +163,14 @@ export default {
   mounted() {
     console.log('alert mounted');
 
-    this.emitter.on('isAlert', (massage) => {
-      console.log("Received isAlert emitter message, " + massage);
-      if (massage === 'on') {
-        chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
-          this.currentTab = await tab;
-          console.log(this.currentTab);
 
-          if (this.currentTab !== null) {
-            let url = this.currentTab.url;
-            console.log('current site in alert:', url);
-            if (url.search(/facebook.com/) !== -1) {
-              let bannerElement = document.querySelectorAll('[role="banner"]')[0];
-              for (var i = 0; i < bannerElement.children.length; i++) {
-                bannerElement.children[i].style.top = '64px';
-              }
-            } else if (url.search(/youtube.com/) !== -1) {
-              // need to manually change the top position of each screen componet (header, main content, left bar)
-              let leftBar = document.getElementsByTagName('tp-yt-app-drawer')[0];
-              console.log('leftBar', leftBar);
-              // leftBar current position set to fixed, add its left value by 64 px;
-              if (leftBar != undefined) {
-                let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
-                leftBar.style.top = parseInt(leftBarCurrentTopValue) + 64 + 'px';
-              } else {
-                console.log('leftBar not retrieved');
-              }
 
-              let headerBar = document.getElementById('masthead-container');
-              console.log('headerBar', headerBar);
-              // headerBar current position set to fixed, add its left value by 64 px;
-              if (headerBar != undefined) {
-                let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
-                headerBar.style.top =
-                  parseInt(headerBarCurrentTopValue) + 64 + 'px';
-              } else {
-                console.log('headerBar not retrieved');
-              }
 
-              let bannerElement = document.getElementsByTagName('ytd-browse')[0];
-              if (bannerElement != undefined) {
-                console.log('bannerElement: ' + bannerElement);
-                bannerElement.style.marginTop = '64px';
-              } else {
-                console.log('bannerElement not retrieved');
-              }
-            } else {
-              document.body.style.paddingTop = '64px';
-            }
-          }
-        });
-      } else if (massage === 'off') {
-        chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
-          this.currentTab = await tab;
-          console.log(this.currentTab);
-
-          if (this.currentTab !== null) {
-            let url = this.currentTab.url;
-            console.log('current site in alert:', url);
-            if (url.search(/facebook.com/) !== -1) {
-              let bannerElement = document.querySelectorAll('[role="banner"]')[0];
-              for (var i = 0; i < bannerElement.children.length; i++) {
-                bannerElement.children[i].style.top = '0px';
-              }
-            } else if (url.search(/youtube.com/) !== -1) {
-              // need to manually change the top position of each screen componet (header, main content, left bar)
-              let leftBar = document.getElementsByTagName('tp-yt-app-drawer')[0];
-              console.log('leftBar', leftBar);
-              // leftBar current position set to fixed, add its left value by 64 px;
-              if (leftBar != undefined) {
-                let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
-                leftBar.style.top = parseInt(leftBarCurrentTopValue) - 64 + 'px';
-              } else {
-                console.log('leftBar not retrieved');
-              }
-
-              let headerBar = document.getElementById('masthead-container');
-              console.log('headerBar', headerBar);
-              // headerBar current position set to fixed, add its left value by 64 px;
-              if (headerBar != undefined) {
-                let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
-                headerBar.style.top =
-                  parseInt(headerBarCurrentTopValue) - 64 + 'px';
-              } else {
-                console.log('headerBar not retrieved');
-              }
-
-              let bannerElement = document.getElementsByTagName('ytd-browse')[0];
-              if (bannerElement != undefined) {
-                console.log('bannerElement: ' + bannerElement);
-                bannerElement.style.marginTop = '0px';
-              } else {
-                console.log('bannerElement not retrieved');
-              }
-            } else {
-              document.body.style.paddingTop = '0px';
-            }
-          }
-        });
-
+    this.emitter.on('alert_button_show', (massage) => {
+      if (massage === 'show') {
+        this.toggleMask();
       }
-    }),
-
-
-      this.emitter.on('alert_button_show', (massage) => {
-        if (massage === 'show') {
-          this.toggleMask();
-        }
-      });
+    });
 
     let targets = [];
     Object.keys(this.targetNames).forEach((key) => {
