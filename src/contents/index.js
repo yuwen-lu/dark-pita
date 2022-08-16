@@ -10,14 +10,14 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
       pattern: 'Prominent Option',
       description:
-        'The "Buy Now" button is in color orange, while the regular "Add to Cart" option is yellow.',
+        'The "Buy Now" button is in color orange, while the regular "Add to Cart" button is yellow.',
       awareness:
-        'Users could choose "Buy Now" more easily, and sometimes even mistakenly make a purchase decision.',
+        'You could choose the "Buy Now" option more easily, and sometimes even mistakenly make a purchase.',
       action: [
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/buy_now_before.png?v=1660677100767',
           component: 'none',
           description:
             'Not modified.'
@@ -25,7 +25,7 @@ export default {
         {
           name: 'hide',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/buy_now_hide.gif?v=1660676427334',
           component: 'amazon_buy_now_hide',
           description:
             'Let the "Buy Now" button disappear.'
@@ -33,7 +33,7 @@ export default {
         {
           name: 'fairness',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amazon_buy_now_fairness.gif?v=1660676951948',
           component: 'amazon_buy_now_fairness',
           description:
             'Let the "Buy Now" button be in the same color as the regular "Add to Cart" option.'
@@ -41,10 +41,10 @@ export default {
         {
           name: 'friction',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/buy_now_friction.gif?v=1660676374305',
           component: 'amazon_buy_now_friction',
           description:
-            'Add a bit friction before you actually proceed to purchase even you click buy now.'
+            'Add a bit friction before you actually proceed to purchase, even you click buy now.'
         }
       ]
     },
@@ -112,16 +112,16 @@ export default {
       tag: ['information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'Confusing Discount Labels...',
+      pattern: 'Confusing Price Labels',
       description:
         'Discounts information may be showed in an exaggerated way. Some key information about the price could be hidden.',
       awareness:
-        'You may be are more likely to purchase with the given discounts information.',
+        'You may be are more likely to purchase this item with the given discounts information.',
       action: [
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_before.png?v=1660680258968',
           component: 'none',
           description:
             'Not modified.'
@@ -137,26 +137,26 @@ export default {
         {
           name: 'information disclosure',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_info_disc.png?v=1660680264263',
           component: 'amazon_discount_price_disclosure',
           description:
-            'Discloses more information behind the price or helps explain the marketing jargons.'
+            'Dark pita will help you understand more information behind the price and the marketing jargons.'
         },
         {
           name: 'reflection',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_reflection.png?v=1660680246692',
           component: 'amazon_discount_price_reflection',
           description:
-            'Add some frictions when you are navigating through this area so that you will give a second thought before making your purchase decision. (This is fun, maybe try it.)'
+            'When you are navigating through this area, Dark Pita will add some visual effects so that you will be reminded to give a second thought before making your purchase decision.'
         },
         {
           name: 'action guide',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_action_guide.png?v=1660680267948',
           component: 'amazon_discount_price_action',
           description:
-            'Dark Pita suggested something you can do about this item.'
+            'Dark Pita will suggest something you can do about this item.'
         }
       ]
     },
@@ -201,12 +201,12 @@ export default {
             'Dark Pita gives you a bit push-back when you might be mindlessly browsing.'
         },
         {
-          name: 'progress bar',
+          name: 'cost tracker',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/progress.png?v=1660678117572',
           component: 'amazon_home_card_progress',
           description:
-            'Dark Pita gives you a bit push-back when you might be mindlessly browsing.'
+            'A progress circle that helps you track your daily cost on Amazon.'
         }
       ]
     }
