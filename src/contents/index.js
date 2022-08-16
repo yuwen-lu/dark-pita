@@ -112,11 +112,11 @@ export default {
       tag: ['information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626',
-      pattern: 'More than Discounts...',
+      pattern: 'Confusing Discount Labels...',
       description:
         'Discounts information may be showed in an exaggerated way. Some key information about the price could be hidden.',
       awareness:
-        'Users are more leaning to purchase with the given discounts information.',
+        'You may be are more likely to purchase with the given discounts information.',
       action: [
         {
           name: 'none',
@@ -196,7 +196,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'amazon_home_card_reflection',
           description:
-            'Dark Pita gives users a bit push-back when they are leaning to mindless browsing.'
+            'Dark Pita gives you a bit push-back when you might be mindlessly browsing.'
         }
       ]
     }
@@ -212,7 +212,7 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Recommended Videos',
       description:
-        'Individualized recommendations by YouTube',
+        'Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.',
       awareness:
         'The videos are trying to cater to your tastes. You are more likely to consume more content than you originally intent to. Auxilary functions such as preview will make it even easier to be distracted.',
       action: [
@@ -246,7 +246,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'youtube_recommended_video_reflection',
           description:
-            'A mini clock on the right top corner as reminder for you to track watch time.'
+            'A mini clock on the right top corner as reminder for you to track time you spend on YouTube.'
         }
       ]
     },
@@ -260,9 +260,9 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Hidden Dislike Counts',
       description:
-        'Usually only Like counts shows up while users have no clue how many dislikes the video gets. One reasoning is that getting many Likes does not indicate it is getting few Dislikes.',
+        'Only Like counts shows up, but you cannot see how many Dislikes the video gets.',
       awareness:
-        'Users might mistakenly perceive a low-quality video as a high-quality video.',
+        'You might mistakenly perceive pupularity of the video while being unaware of its controversy.',
       action: [
         {
           name: 'none',
