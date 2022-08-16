@@ -5,13 +5,25 @@
         <h2>choose action</h2>
       </div>
       <div class="DP_action_dropdown">
-        <button id="dropdownDefault" @click="toggleDropdown" data-dropdown-toggle="dropdown" class="DP_dropdown"
-          type="button">
+        <button
+          id="dropdownDefault"
+          @click="toggleDropdown"
+          data-dropdown-toggle="dropdown"
+          class="DP_dropdown"
+          type="button"
+        >
           <p>{{ intervention.name }}</p>
-          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               d="M4.22 8.47a.75.75 0 0 1 1.06 0L12 15.19l6.72-6.72a.75.75 0 1 1 1.06 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L4.22 9.53a.75.75 0 0 1 0-1.06Z"
-              fill="#FFFFFF" />
+              fill="#FFFFFF"
+            />
           </svg>
         </button>
         <!-- Dropdown menu -->
@@ -31,7 +43,12 @@
         <div class="DP_description DP_no_scrollbar">
           <p>{{ intervention.description }}</p>
         </div>
-        <img :src="intervention.image" id="DP_action_demo" class="DP_action_demo" @click="zoomDemo" />
+        <img
+          :src="intervention.image"
+          id="DP_action_demo"
+          class="DP_action_demo"
+          @click="zoomDemo"
+        />
       </div>
     </div>
     <button class="DP_button" @click="triggerIntervention">
@@ -100,7 +117,9 @@ export default {
       this.intervention = this.action[index];
       this.interventionId = index;
 
-      console.log("this.intervention.component: " + this.intervention.component);
+      console.log(
+        'this.intervention.component: ' + this.intervention.component
+      );
 
       this.resetIntervention(this.intervention.component);
 
@@ -177,20 +196,24 @@ export default {
       if (this.intervention.component === 'facebook_suggested_hide') {
         this.emitter.emit('facebook_suggested_hide', 'on');
       }
-      if (this.intervention.component === "facebook_reels_hide") {
+      if (this.intervention.component === 'facebook_reels_hide') {
         this.emitter.emit('facebook_reels_hide', 'on');
       }
-      if (this.intervention.component === "facebook_sponsored_hide") {
+      if (this.intervention.component === 'facebook_sponsored_hide') {
         this.emitter.emit('facebook_sponsored_hide', 'on');
-        console.log("Emitting facebook_sponsored_hide message as on");
+        console.log('Emitting facebook_sponsored_hide message as on');
       }
-      if (this.intervention.component === "facebook_suggested_for_you_hide") {
+      if (this.intervention.component === 'facebook_suggested_for_you_hide') {
         this.emitter.emit('facebook_suggested_for_you_hide', 'on');
-        console.log("Emitting facebook_suggested_for_you_hide message as on");
+        console.log('Emitting facebook_suggested_for_you_hide message as on');
       }
-      if (this.intervention.component === "facebook_suggested_for_you_highlight") {
+      if (
+        this.intervention.component === 'facebook_suggested_for_you_highlight'
+      ) {
         this.emitter.emit('facebook_suggested_for_you_hightlight', 'on');
-        console.log("Emitting facebook_suggested_for_you_hightlight message as on");
+        console.log(
+          'Emitting facebook_suggested_for_you_hightlight message as on'
+        );
       }
 
       if (this.intervention.component !== 'none') {
@@ -209,21 +232,23 @@ export default {
       Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
           if (key.search(this.targetName) !== -1) {
-
             // TODO: CHECK SAVED CONFIG AND SEE IF IT"S ALREADY SET
             if (key == selectedComponent) {
-              console.log("This is setting the message for the previously configured component " + key + ", but new instance. No need to reset.");
+              console.log(
+                'This is setting the message for the previously configured component ' +
+                  key +
+                  ', but new instance. No need to reset.'
+              );
             } else {
-              console.log("reset message for intervention: " + key);
+              console.log('reset message for intervention: ' + key);
               this.emitter.emit(key, 'off');
               this.interventionState[key] = 'off';
             }
-            
           }
         }
       });
 
-      console.log("reset done", this.interventionState);
+      console.log('reset done', this.interventionState);
     },
     toggleDropdown() {
       this.dropdown = !this.dropdown;
@@ -280,7 +305,7 @@ div {
     .DP_action_title {
       @apply flex flex-row justify-between items-center w-full;
 
-      >h2 {
+      > h2 {
         @apply font-cabin font-medium text-base uppercase text-white;
       }
     }
@@ -294,7 +319,7 @@ div {
 .DP_dropdown {
   @apply w-full bg-dark p-[8px] border focus:ring-4 focus:outline-none font-medium rounded-[4px] items-center flex flex-row justify-between capitalize;
 
-  >p {
+  > p {
     @apply font-cabin font-normal text-sm text-white;
   }
 }
@@ -318,7 +343,7 @@ div {
 .DP_button {
   @apply w-full flex flex-row items-center justify-center rounded-[4px] bg-dark py-[8px] border gap-[8px];
 
-  >p {
+  > p {
     @apply font-cabin font-normal text-sm text-white;
   }
 }
@@ -326,7 +351,7 @@ div {
 .DP_description {
   @apply box-border w-full h-[96px] p-[8px] bg-dark rounded-[4px] overflow-scroll overscroll-none;
 
-  >p {
+  > p {
     @apply font-cabin italic font-normal text-sm text-white;
   }
 }

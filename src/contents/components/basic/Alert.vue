@@ -57,6 +57,7 @@ export default {
       this.$emit('toggleMask', false);
     },
     closeAlert() {
+      alert('You can reopen the banner by clicking the Dark Pita icon.');
       this.$emit('closeAlert', false);
     },
     reset() {
@@ -85,7 +86,7 @@ export default {
           });
         }
         // console.log(that.interventionState);
-        alert(that.interventionState);
+        // alert(that.interventionState);
         chrome.storage.sync.set({ savedSettings: that.interventionState });
       });
 

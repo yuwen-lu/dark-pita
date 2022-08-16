@@ -16,7 +16,7 @@ export default {
 
         let tag = this.target.getElementsByTagName('tr')[0].childNodes[0]
           .textContent;
-        let tooltipContent = 'click Details to know more.';
+        let tooltipContent = 'This price may not be the cheapest.';
         if (tag.search(/was/i) !== -1) {
           tooltipContent =
             'The <strong>Was Price</strong> is determined using the 90-day median price paid by customers for the product on Amazon. That means there could still have been lower prices than now.';
