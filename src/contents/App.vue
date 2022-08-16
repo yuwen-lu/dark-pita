@@ -44,13 +44,7 @@
     <div v-for="(value, index) in targetIdentifiers" :key="index" :id="'DP_i_' + value" class="DP_bounding_box"
       @click="togglePopup($event, value, index)" v-show="isMask"></div>
     <div id="DP_console" class="DP_console" v-show="isConsole">
-      <textarea
-        id="message"
-        rows="4"
-        class="DP_text_area"
-        placeholder="Your message..."
-        v-model="diary"
-      ></textarea>
+      <textarea id="message" rows="4" class="DP_text_area" placeholder="Your message..." v-model="diary"></textarea>
       <button @click="sendDiary">
         Screenshot & Send
       </button>
@@ -241,6 +235,8 @@ export default {
             console.log(this.targetIdentifiers);
             this.currentTarget = this.info[0];
             this.isAlert = true;
+            this.$emit("isAlert", 'on');
+            alert('isAlert on');
           } else {
             this.notSupport = true;
           }
@@ -525,117 +521,20 @@ export default {
     },
     closeAlert() {
       this.isAlert = false;
-
-      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
-        this.currentTab = await tab;
-        console.log(this.currentTab);
-
-        if (this.currentTab !== null) {
-          let url = this.currentTab.url;
-          console.log('current site in alert:', url);
-          if (url.search(/facebook.com/) !== -1) {
-            console.log("We are on Facebook");
-            let bannerElement = document.querySelectorAll('[role="banner"]')[0];
-            for (var i = 0; i < bannerElement.children.length; i++) {
-              bannerElement.children[i].style.top = '0';
-            }
-          } else if (url.search(/youtube.com/) !== -1) {
-            // need to manually change the top position of each screen componet (header, main content, left bar)
-            let leftBar = document.getElementsByTagName("tp-yt-app-drawer")[0];
-            console.log("leftBar", leftBar);
-            // leftBar current position set to fixed, add its left value by 64 px;
-            if (leftBar != undefined) {
-              let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
-              leftBar.style.top = parseInt(leftBarCurrentTopValue) - 64 + "px";
-            } else {
-              console.log("leftBar not retrieved")
-            }
-
-            let headerBar = document.getElementById("masthead-container");
-            console.log("headerBar", headerBar);
-            // headerBar current position set to fixed, add its left value by 64 px;
-            if (headerBar != undefined) {
-              let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
-              headerBar.style.top = parseInt(headerBarCurrentTopValue) - 64 + "px";
-            } else {
-              console.log("headerBar not retrieved")
-            }
-
-            let bannerElement = document.getElementsByTagName("ytd-browse")[0];
-            if (bannerElement != undefined) {
-              console.log("bannerElement: " + bannerElement);
-              bannerElement.style.marginTop = "0";
-            } else {
-              console.log("bannerElement not retrieved")
-            }
-
-          } else {
-            document.body.style.paddingTop = '0';
-          }
-        }
-
-      });
+      this.$emit("isAlert", 'off');
     },
     openAlert() {
       this.isAlert = true;
-      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
-        this.currentTab = await tab;
-        console.log(this.currentTab);
-
-        if (this.currentTab !== null) {
-          let url = this.currentTab.url;
-          console.log('current site in alert:', url);
-          if (url.search(/facebook.com/) !== -1) {
-            console.log("We are on Facebook");
-            let bannerElement = document.querySelectorAll('[role="banner"]')[0];
-            for (var i = 0; i < bannerElement.children.length; i++) {
-              bannerElement.children[i].style.top = '64px';
-            }
-          } else if (url.search(/youtube.com/) !== -1) {
-            // need to manually change the top position of each screen componet (header, main content, left bar)
-            let leftBar = document.getElementsByTagName("tp-yt-app-drawer")[0];
-            console.log("leftBar", leftBar);
-            // leftBar current position set to fixed, add its left value by 64 px;
-            if (leftBar != undefined) {
-              let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
-              leftBar.style.top = parseInt(leftBarCurrentTopValue) + 64 + "px";
-            } else {
-              console.log("leftBar not retrieved")
-            }
-
-            let headerBar = document.getElementById("masthead-container");
-            console.log("headerBar", headerBar);
-            // headerBar current position set to fixed, add its left value by 64 px;
-            if (headerBar != undefined) {
-              let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
-              headerBar.style.top = parseInt(headerBarCurrentTopValue) + 64 + "px";
-            } else {
-              console.log("headerBar not retrieved")
-            }
-
-            let bannerElement = document.getElementsByTagName("ytd-browse")[0];
-            if (bannerElement != undefined) {
-              console.log("bannerElement: " + bannerElement);
-              bannerElement.style.marginTop = "64px";
-            } else {
-              console.log("bannerElement not retrieved")
-            }
-
-          } else {
-            document.body.style.paddingTop = '64px';
-          }
-        }
-
-      });
-    },
-    closeAll(value) {
-      this.refresh();
-      this.isPop = false;
-      this.emitter.emit('alert_button_show', 'show');
-    },
-    sendDiary() {
-      console.log(this.diary);
+      this.$emit("isAlert", 'on');
     }
+  },
+  closeAll(value) {
+    this.refresh();
+    this.isPop = false;
+    this.emitter.emit('alert_button_show', 'show');
+  },
+  sendDiary() {
+    console.log(this.diary);
   },
   mounted() {
     console.log('app mounted');
@@ -652,7 +551,7 @@ export default {
         let url = this.currentTab.url;
         if (url.search(/youtube.com/) !== -1) {
           const HEARTBIT = 6; // sec
-          setInterval(function() {
+          setInterval(function () {
             incrementTime(HEARTBIT / 60, (data) => {
               let timeTracker = document.getElementById('DP_time_tracker');
               if (timeTracker !== null) {
@@ -665,7 +564,7 @@ export default {
     });
 
     let that = this;
-    chrome.storage.sync.get('savedSettings', function(settings) {
+    chrome.storage.sync.get('savedSettings', function (settings) {
       if (JSON.stringify(settings) !== '{}') {
         console.log('retrieve settings');
         console.log(settings);
