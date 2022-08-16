@@ -92,7 +92,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_info_disc.png?v=1660681526249',
           component: 'amazon_disguised_ads_disclosure',
           description:
-            'We will detect and indicate the ads area explicitly for you.'
+            'Dark Pita will detect and indicate the ads area explicitly for you.'
         },
         {
           name: 'counterfactual thinking',
@@ -100,7 +100,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_count_th.png?v=1660681591634',
           component: 'amazon_disguised_ads_counterfact',
           description:
-            'Your cursor will become exclamation marks when it navigates through ads area.'
+            'Dark Pita will motivate you to give a second thought before you proceed. This may also help you avoid unnecessary browsing.'
         }
       ]
     },
