@@ -51,6 +51,9 @@ export default {
                 buttonNode.style.color = "#E3E6EA";
                 buttonNode.style.textDecoration = "underline";
                 buttonNode.style.backgroundColor = "transparent";
+                buttonNode.addEventListener("click", () => {
+                    this.frictionOverlayElement.style.display = "none";
+                });
 
 
                 if (this.frictionOverlayElement === null) {
