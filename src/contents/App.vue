@@ -1,5 +1,6 @@
 <template>
   <div id="DP_wrapper" :key="reload">
+    // amazon
     <amazon_buy_now_hide
       v-if="targetNames.amazon_buy_now"
       @update="generateOverviewOverlay"
@@ -52,6 +53,8 @@
       v-if="targetNames.amazon_home_card"
       @update="generateOverviewOverlay"
     />
+
+    // youtube
     <youtube_recommended_video_focus
       v-if="targetNames.youtube_recommended_video"
       @update="generateOverviewOverlay"
@@ -177,6 +180,7 @@ import amazon_discount_price_reflection from '@/contents/components/amazon/disco
 import amazon_discount_price_action from '@/contents/components/amazon/discount_price/amazon_discount_price_action.vue';
 import amazon_home_card_focus from '@/contents/components/amazon/home_card/amazon_home_card_focus.vue';
 import amazon_home_card_reflection from '@/contents/components/amazon/home_card/amazon_home_card_reflection.vue';
+
 import youtube_recommended_video_focus from '@/contents/components/youtube/recommended_video/youtube_recommended_video_focus.vue';
 import youtube_recommended_video_preview from '@/contents/components/youtube/recommended_video/youtube_recommended_video_preview.vue';
 import youtube_recommended_video_reflection from '@/contents/components/youtube/recommended_video/youtube_recommended_video_reflection.vue';
@@ -277,7 +281,40 @@ export default {
   watch: {
     reload(newVal, oldVal) {
       console.log('app reload');
+      window.addEventListener('scroll', this.generateOverviewOverlay);
+      window.addEventListener('resize', this.generateOverviewOverlay);
+      Paper.setup(document.getElementById('DP_canvas'));
+
       this.initialize();
+
+      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+        this.currentTab = await tab;
+
+        if (this.currentTab !== null) {
+          let url = this.currentTab.url;
+          if (url.search(/youtube.com/) !== -1) {
+            const HEARTBIT = 6; // sec
+            setInterval(function() {
+              incrementTime(HEARTBIT / 60, (data) => {
+                let timeTracker = document.getElementById('DP_time_tracker');
+                if (timeTracker !== null) {
+                  timeTracker.innerHTML =
+                    Math.round(data.time_watched) + 'mins';
+                }
+              });
+            }, HEARTBIT * 1000);
+          }
+        }
+      });
+
+      let that = this;
+      chrome.storage.sync.get('savedSettings', function(settings) {
+        if (JSON.stringify(settings) !== '{}') {
+          console.log('retrieve settings');
+          console.log(settings);
+          that.savedSettings = settings.savedSettings;
+        }
+      });
     }
   },
   methods: {
@@ -285,6 +322,7 @@ export default {
     //   this.driver.highlight('#header');
     // },
     initialize() {
+      console.log('app initialize');
       this.targetIdentifiers = null;
       this.isPop = false;
       this.mask = document.getElementById('DP_mask');
@@ -319,10 +357,12 @@ export default {
           // Collect dark patterns
           for (let target of this.info) {
             let re = new RegExp(target.url);
+            console.log('initialize', url);
             if (url.search(re) !== -1) {
               if (this.targetIdentifiers === null) {
                 this.targetIdentifiers = [];
               }
+              console.log('initialize', target);
               this.targetIdentifiers.push(target.identifier);
               this.targetNames[target.name] = true;
             }
@@ -421,6 +461,7 @@ export default {
         svg.setAttribute('width', this.overlayWidth);
         svg.setAttribute('height', this.overlayHeight);
         svg.appendChild(this.overlayPath);
+        this.mask = document.getElementById('DP_mask');
         this.mask.appendChild(svg);
 
         this.generateTouchableArea();

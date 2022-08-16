@@ -24,7 +24,7 @@ const vm = app.mount(mountEl);
 
 chrome.runtime.onMessage.addListener((message) => {
   if (message.type === 'URL_CHANGED') {
-    console.log('app reload');
+    // console.log('app reload');
     vm.reload = vm.reload + 1;
     // location.reload();
   } else if (message.toggleConsole) {
