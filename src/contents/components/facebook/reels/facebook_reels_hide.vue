@@ -17,7 +17,7 @@ export default {
                     });
                 }
                 for (let i = 0; i < len; i++)
-                    selectors[i].parentNode.removeChild(selectors[0]);
+                    selectors[i].parentNode.removeChild(selectors[i]);
             } else {
                 selectors.removeNode.push({
                     parent: selectors.parentNode,

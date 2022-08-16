@@ -38,7 +38,7 @@ export default {
                 if (elementList.length > 0) {
                     for (var i = 0; i < elementList.length; i++) {
                         var tempElement = elementList[i];
-                        tempElement.style.backgroundColor = 'inherit';
+                        getComputedStyle(tempElement).backgroundColor = 'inherit';
                     }
 
                     console.log(this.target + " highlight removed");

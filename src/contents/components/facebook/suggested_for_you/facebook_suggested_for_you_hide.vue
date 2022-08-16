@@ -17,7 +17,7 @@ export default {
                     });
                 }
                 for (let i = 0; i < len; i++)
-                    selectors[i].parentNode.removeChild(selectors[0]);
+                    selectors[i].parentNode.removeChild(selectors[i]);
             } else {
                 selectors.removeNode.push({
                     parent: selectors.parentNode,
@@ -66,7 +66,7 @@ export default {
 
                 if (elementList.length > 0) {
                     this.target = elementList;
-                    this.remove(this.target);
+                    this.remove(elementList);
                     console.log(this.target + " removed");
                 } else {
                     console.log("cannot find target element for facebook suggested for you content");
