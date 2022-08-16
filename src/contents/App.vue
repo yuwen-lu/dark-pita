@@ -1,5 +1,6 @@
 <template>
   <div id="DP_wrapper" :key="reload">
+<<<<<<< HEAD
 
     <amazon_buy_now_hide v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
     <amazon_buy_now_fairness v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
@@ -36,7 +37,130 @@
 
     <Popup class="DP_popup" v-if="isPop" :left="popupX" :top="popupY" :key="timer" :target="currentTarget"
       :savedSettings="savedSettings" :targetNames="targetNames" @closeAll="closeAll" @closePop="closePop" />
+=======
+    <amazon_buy_now_hide
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_buy_now_fairness
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_buy_now_friction
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_hide
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_friction
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_disclosure
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_counterfact
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_hide
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_disclosure
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_reflection
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_action
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_home_card_focus
+      v-if="targetNames.amazon_home_card"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_home_card_reflection
+      v-if="targetNames.amazon_home_card"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_focus
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_preview
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_reflection
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_video_dislike_fairness
+      v-if="targetNames.youtube_video_dislike"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_focus
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_preview
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_reflection
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
 
+    // facebook
+    <facebook_suggested_hide
+      v-if="targetNames.facebook_suggested"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_reels_hide
+      v-if="targetNames.facebook_reels"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_sponsored_hide
+      v-if="targetNames.facebook_sponsored"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_suggested_for_you_hide
+      v-if="targetNames.facebook_suggested_for_you"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_suggested_for_you_highlight
+      v-if="targetNames.facebook_suggested_for_you"
+      @update="generateOverviewOverlay"
+    />
+
+    <Alert
+      :targetNames="targetNames"
+      @toggleMask="toggleMask"
+      @closeAlert="closeAlert"
+      v-if="isAlert"
+    />
+
+    <Popup
+      class="DP_popup"
+      v-if="isPop"
+      :left="popupX"
+      :top="popupY"
+      :key="timer"
+      :target="currentTarget"
+      :savedSettings="savedSettings"
+      :targetNames="targetNames"
+      @closeAll="closeAll"
+      @closePop="closePop"
+    />
+>>>>>>> a7d5667f761cfbb46ac5cddc2679b7c7ecb5cc61
 
     <canvas resize id="DP_canvas" style="display:none"></canvas>
 
@@ -45,6 +169,7 @@
     <div v-for="(value, index) in targetIdentifiers" :key="index" :id="'DP_i_' + value" class="DP_bounding_box"
       @click="togglePopup($event, value, index)" v-show="isMask"></div>
     <div id="DP_console" class="DP_console" v-show="isConsole">
+<<<<<<< HEAD
       <div class="mb-4 w-full rounded-lg border bg-gray-700 border-gray-600">
         <div class="py-2 px-4 bg-gray-800 rounded-b-lg">
           <label for="editor" class="sr-only">Publish post</label>
@@ -53,15 +178,23 @@
             placeholder="Write an article..." required="" v-model="diary"></textarea>
         </div>
       </div>
+=======
+      <textarea
+        id="message"
+        rows="4"
+        class="DP_text_area"
+        placeholder="Your message..."
+        v-model="diary"
+      ></textarea>
+>>>>>>> a7d5667f761cfbb46ac5cddc2679b7c7ecb5cc61
       <button @click="sendDiary">
         Screenshot & Send
       </button>
       <button @click="openAlert">
-        Toggle Alert
+        Open Banner
       </button>
       <p v-show="notSupport">This site is not supported by Dark Pita</p>
     </div>
-
   </div>
 </template>
 
@@ -146,7 +279,8 @@ export default {
       savedSettings: {},
       isConsole: false,
       notSupport: false,
-      diary: ''
+      diary: '',
+      isApp: true
     };
   },
   components: {
@@ -333,7 +467,7 @@ export default {
       }
     },
     getBoundingBoxList() {
-      console.log("Getting bounding box list");
+      console.log('Getting bounding box list');
       this.boundingBoxList = [];
       for (let i = 0; i < this.targetIdentifiers.length; i++) {
         let element;
@@ -374,20 +508,33 @@ export default {
         // facebook
         else if (this.website === 'Facebook') {
           if (this.targetIdentifiers[i] == 'People You May Know') {
-            console.log("Looking for facebook people you may know");
-            var retrievedHtmls = document.getElementsByTagName("h3");
+            console.log('Looking for facebook people you may know');
+            var retrievedHtmls = document.getElementsByTagName('h3');
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
+              if (
+                retrievedHtmls[j].innerHTML.indexOf(
+                  this.targetIdentifiers[i]
+                ) != -1
+              ) {
                 // very ugly way, but the whole container is the 4th parent of the h3 tag
-                element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement;
-                console.log("matched element for facebook suggested people: ", element);
+                element =
+                  retrievedHtmls[j].parentElement.parentElement.parentElement
+                    .parentElement;
+                console.log(
+                  'matched element for facebook suggested people: ',
+                  element
+                );
               }
             }
-          } else if (this.targetIdentifiers[i] == "Reels and short videos") {
-            console.log("Looking for facebook reels");
-            var retrievedHtmls = document.getElementsByTagName("span");
+          } else if (this.targetIdentifiers[i] == 'Reels and short videos') {
+            console.log('Looking for facebook reels');
+            var retrievedHtmls = document.getElementsByTagName('span');
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
+              if (
+                retrievedHtmls[j].innerHTML.indexOf(
+                  this.targetIdentifiers[i]
+                ) != -1
+              ) {
                 // very ugly way, but the whole container is the 9th parent of the span tag
                 element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
                 console.log("matched element for facebook reels: ", element);
@@ -408,26 +555,38 @@ export default {
                   if (element.parentElement !== null) {
                     element = element.parentElement;
                   } else {
-                    console.log("Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort");
-                    console.log("current result: ", element);
+                    console.log(
+                      'Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort'
+                    );
+                    console.log('current result: ', element);
                     break;
                   }
                 }
-                console.log("matched element for facebook sponsored ads: ", element);
+                console.log(
+                  'matched element for facebook sponsored ads: ',
+                  element
+                );
               }
             }
-          } else if (this.targetIdentifiers[i] == "Suggested for you") {
-            console.log("Looking for facebook Suggested for you");
-            var retrievedHtmls = document.getElementsByTagName("span");
+          } else if (this.targetIdentifiers[i] == 'Suggested for you') {
+            console.log('Looking for facebook Suggested for you');
+            var retrievedHtmls = document.getElementsByTagName('span');
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              if (retrievedHtmls[j].innerHTML.indexOf(this.targetIdentifiers[i]) != -1) {
+              if (
+                retrievedHtmls[j].innerHTML.indexOf(
+                  this.targetIdentifiers[i]
+                ) != -1
+              ) {
                 // very ugly way, but the whole container is the 7th parent of the a tag
                 var parentLevel = 7;
                 element = retrievedHtmls[j];
                 for (var k = 0; k < parentLevel; k++) {
                   element = element.parentElement;
                 }
-                console.log("matched element for facebook Suggested for you: ", element);
+                console.log(
+                  'matched element for facebook Suggested for you: ',
+                  element
+                );
               }
             }
           }
@@ -441,11 +600,10 @@ export default {
           boundingBox.width = boundingBox.width + 20;
           boundingBox.height = boundingBox.height + 20;
           this.boundingBoxList.push(boundingBox);
-          console.log("Bounding box pushed in ", boundingBox);
+          console.log('Bounding box pushed in ', boundingBox);
         } else {
           console.log('Cannot find element for bounding box');
         }
-
       }
       console.log("Got new list of bounding boxes");
       console.log(this.boundingBoxList);
@@ -630,7 +788,7 @@ export default {
         let url = this.currentTab.url;
         if (url.search(/youtube.com/) !== -1) {
           const HEARTBIT = 6; // sec
-          setInterval(function () {
+          setInterval(function() {
             incrementTime(HEARTBIT / 60, (data) => {
               let timeTracker = document.getElementById('DP_time_tracker');
               if (timeTracker !== null) {
@@ -643,7 +801,7 @@ export default {
     });
 
     let that = this;
-    chrome.storage.sync.get('savedSettings', function (settings) {
+    chrome.storage.sync.get('savedSettings', function(settings) {
       if (JSON.stringify(settings) !== '{}') {
         console.log('retrieve settings');
         console.log(settings);
@@ -674,10 +832,14 @@ div {
 }
 
 .DP_console {
-  @apply fixed right-0 top-0 font-cabin bg-dark z-infinite text-white text-[48px];
+  @apply flex flex-col gap-[8px] fixed right-0 top-0 p-[16px] w-[400px] font-cabin bg-background z-infinite text-white text-[14px];
+
+  .DP_text_area {
+    @apply block p-[10px] w-full h-[200px] text-[14px] rounded-lg border-[1px] bg-dark border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500;
+  }
 
   button {
-    @apply bg-transparent w-[160px] hover:bg-white font-cabin font-normal text-sm text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border;
+    @apply bg-transparent w-full hover:bg-white font-cabin font-normal text-[14px] text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border;
   }
 }
 </style>
