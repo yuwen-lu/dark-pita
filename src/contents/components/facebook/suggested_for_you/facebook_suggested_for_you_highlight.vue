@@ -16,20 +16,25 @@ export default {
             var retrievedHtmls = document.getElementsByTagName("span");
             for (var j = 0; j < retrievedHtmls.length; j++) {
                 if (retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1) {
+                    element = retrievedHtmls[j];
                     elementList.push(element);
+                    console.log("element found");
                 }
             }
 
             if (message === 'on') {
                 console.log('facebook suggested for you content highlight on');
-
+                console.log(elementList);
                 if (elementList.length > 0) {
                     for (var i = 0; i < elementList.length; i++) {
                         var tempElement = elementList[i];
-                        tempElement.style.backgroundColor = '#ff0000';
+                        tempElement.style.color = '#2D88FF';
+                        tempElement.style.fontWeight = 'bold';
+                        tempElement.style.fontSize = '1.5em';
+                        tempElement.innerHTML = tempElement.innerHTML.replace("Suggested for you", "Promoted by Facebook, Not Followed By You");
+                        console.log(tempElement + " highlighted");
                     }
-                    
-                    console.log(element + " highlighted");
+                    this.$emit("update");
                 } else {
                     console.log("cannot find target element for facebook suggested for you content");
                 }
@@ -38,10 +43,10 @@ export default {
                 if (elementList.length > 0) {
                     for (var i = 0; i < elementList.length; i++) {
                         var tempElement = elementList[i];
-                        getComputedStyle(tempElement).backgroundColor = 'inherit';
+                        getComputedStyle(tempElement).color = 'inherit';
                     }
-
                     console.log(this.target + " highlight removed");
+                    this.$emit("update");
                 }
             }
         });

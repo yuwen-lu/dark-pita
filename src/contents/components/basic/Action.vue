@@ -210,7 +210,7 @@ export default {
       if (
         this.intervention.component === 'facebook_suggested_for_you_highlight'
       ) {
-        this.emitter.emit('facebook_suggested_for_you_hightlight', 'on');
+        this.emitter.emit('facebook_suggested_for_you_highlight', 'on');
         console.log(
           'Emitting facebook_suggested_for_you_hightlight message as on'
         );
