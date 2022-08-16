@@ -1,6 +1,5 @@
 <template>
   <div id="DP_wrapper" :key="reload">
-<<<<<<< HEAD
 
     <amazon_buy_now_hide v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
     <amazon_buy_now_fairness v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
@@ -37,130 +36,6 @@
 
     <Popup class="DP_popup" v-if="isPop" :left="popupX" :top="popupY" :key="timer" :target="currentTarget"
       :savedSettings="savedSettings" :targetNames="targetNames" @closeAll="closeAll" @closePop="closePop" />
-=======
-    <amazon_buy_now_hide
-      v-if="targetNames.amazon_buy_now"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_buy_now_fairness
-      v-if="targetNames.amazon_buy_now"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_buy_now_friction
-      v-if="targetNames.amazon_buy_now"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_hide
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_friction
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_disclosure
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_disguised_ads_counterfact
-      v-if="targetNames.amazon_disguised_ads"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_hide
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_disclosure
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_reflection
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_discount_price_action
-      v-if="targetNames.amazon_discount_price"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_home_card_focus
-      v-if="targetNames.amazon_home_card"
-      @update="generateOverviewOverlay"
-    />
-    <amazon_home_card_reflection
-      v-if="targetNames.amazon_home_card"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_recommended_video_focus
-      v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_recommended_video_preview
-      v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_recommended_video_reflection
-      v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_video_dislike_fairness
-      v-if="targetNames.youtube_video_dislike"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_sidebar_video_focus
-      v-if="targetNames.youtube_sidebar_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_sidebar_video_preview
-      v-if="targetNames.youtube_sidebar_video"
-      @update="generateOverviewOverlay"
-    />
-    <youtube_sidebar_video_reflection
-      v-if="targetNames.youtube_sidebar_video"
-      @update="generateOverviewOverlay"
-    />
-
-    // facebook
-    <facebook_suggested_hide
-      v-if="targetNames.facebook_suggested"
-      @update="generateOverviewOverlay"
-    />
-    <facebook_reels_hide
-      v-if="targetNames.facebook_reels"
-      @update="generateOverviewOverlay"
-    />
-    <facebook_sponsored_hide
-      v-if="targetNames.facebook_sponsored"
-      @update="generateOverviewOverlay"
-    />
-    <facebook_suggested_for_you_hide
-      v-if="targetNames.facebook_suggested_for_you"
-      @update="generateOverviewOverlay"
-    />
-    <facebook_suggested_for_you_highlight
-      v-if="targetNames.facebook_suggested_for_you"
-      @update="generateOverviewOverlay"
-    />
-
-    <Alert
-      :targetNames="targetNames"
-      @toggleMask="toggleMask"
-      @closeAlert="closeAlert"
-      v-if="isAlert"
-    />
-
-    <Popup
-      class="DP_popup"
-      v-if="isPop"
-      :left="popupX"
-      :top="popupY"
-      :key="timer"
-      :target="currentTarget"
-      :savedSettings="savedSettings"
-      :targetNames="targetNames"
-      @closeAll="closeAll"
-      @closePop="closePop"
-    />
->>>>>>> a7d5667f761cfbb46ac5cddc2679b7c7ecb5cc61
 
     <canvas resize id="DP_canvas" style="display:none"></canvas>
 
@@ -169,16 +44,6 @@
     <div v-for="(value, index) in targetIdentifiers" :key="index" :id="'DP_i_' + value" class="DP_bounding_box"
       @click="togglePopup($event, value, index)" v-show="isMask"></div>
     <div id="DP_console" class="DP_console" v-show="isConsole">
-<<<<<<< HEAD
-      <div class="mb-4 w-full rounded-lg border bg-gray-700 border-gray-600">
-        <div class="py-2 px-4 bg-gray-800 rounded-b-lg">
-          <label for="editor" class="sr-only">Publish post</label>
-          <textarea id="editor" rows="8"
-            class="block px-0 w-full text-sm border-0 bg-gray-800 focus:ring-0 text-white placeholder-gray-400"
-            placeholder="Write an article..." required="" v-model="diary"></textarea>
-        </div>
-      </div>
-=======
       <textarea
         id="message"
         rows="4"
@@ -186,7 +51,6 @@
         placeholder="Your message..."
         v-model="diary"
       ></textarea>
->>>>>>> a7d5667f761cfbb46ac5cddc2679b7c7ecb5cc61
       <button @click="sendDiary">
         Screenshot & Send
       </button>
