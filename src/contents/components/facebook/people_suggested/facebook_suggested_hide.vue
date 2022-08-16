@@ -41,8 +41,8 @@ export default {
         }
     },
     mounted() {
-        this.emitter.on('facebook_suggested_hide', (massage) => {
-            if (massage === 'on') {
+        this.emitter.on('facebook_suggested_hide', (message) => {
+            if (message === 'on') {
                 console.log('facebook suggested content hide on');
                 let element;
                 
@@ -61,7 +61,7 @@ export default {
                 }
 
                 
-            } else if (massage === 'off') {
+            } else if (message === 'off') {
                 console.log('facebook suggested content hide off');
                 if(this.target != null) {
                     this.recover(this.target);

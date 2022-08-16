@@ -41,8 +41,8 @@ export default {
         }
     },
     mounted() {
-        this.emitter.on('facebook_reels_hide', (massage) => {
-            console.log("facebook_reels_hide message: ", massage);
+        this.emitter.on('facebook_reels_hide', (message) => {
+            console.log("facebook_reels_hide message: ", message);
 
             let element;
             // look for the reels component
@@ -60,7 +60,7 @@ export default {
                 }
             }
 
-            if (massage === 'on') {
+            if (message === 'on') {
                 console.log('facebook reels content hide on');
                 console.log("Trying to remove facebook reels, target: " + element.innerHTML);
 
@@ -71,7 +71,7 @@ export default {
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
                 }                
-            } else if (massage === 'off') {
+            } else if (message === 'off') {
                 console.log('facebook reels content hide off');
                 if (element != null) {
                     this.recover(element);

@@ -41,9 +41,9 @@ export default {
         }
     },
     mounted() {
-        this.emitter.on('facebook_suggested_for_you_hide', (massage) => {
+        this.emitter.on('facebook_suggested_for_you_hide', (message) => {
 
-            console.log("Received emitter message, " + massage);
+            console.log("Received emitter message, " + message);
 
             let elementList = [];
             let element;
@@ -61,7 +61,7 @@ export default {
                 }
             }
 
-            if (massage === 'on') {
+            if (message === 'on') {
                 console.log('facebook suggested for you content hide on');
 
                 if (elementList.length > 0) {
@@ -71,7 +71,7 @@ export default {
                 } else {
                     console.log("cannot find target element for facebook suggested for you content");
                 }
-            } else if (massage === 'off') {
+            } else if (message === 'off') {
                 console.log('facebook suggested for you content hide off');
                 if (elementList.length > 0) {
                     this.target = elementList;

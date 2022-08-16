@@ -166,8 +166,8 @@ export default {
 
 
 
-    this.emitter.on('alert_button_show', (massage) => {
-      if (massage === 'show') {
+    this.emitter.on('alert_button_show', (message) => {
+      if (message === 'show') {
         this.toggleMask();
       }
     });

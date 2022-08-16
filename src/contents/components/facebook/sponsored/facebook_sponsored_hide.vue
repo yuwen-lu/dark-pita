@@ -41,8 +41,8 @@ export default {
         }
     },
     mounted() {
-        this.emitter.on('facebook_sponsored_hide', (massage) => {
-            if (massage === 'on') {
+        this.emitter.on('facebook_sponsored_hide', (message) => {
+            if (message === 'on') {
                 console.log('facebook sponsored content hide on');
                 let element;
                 // look for the sponsored component
@@ -65,7 +65,7 @@ export default {
                 } else {
                     console.log("cannot find target element for facebook sponsored content");
                 }
-            } else if (massage === 'off') {
+            } else if (message === 'off') {
                 console.log('facebook sponsored content hide off');
                 if (this.target != null) {
                     this.recover(this.target);
