@@ -1,50 +1,149 @@
 <template>
   <div id="DP_wrapper" :key="reload">
-
-    <amazon_buy_now_hide v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
-    <amazon_buy_now_fairness v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
-    <amazon_buy_now_friction v-if="targetNames.amazon_buy_now" @update="generateOverviewOverlay" />
-    <amazon_disguised_ads_hide v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
-    <amazon_disguised_ads_friction v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
-    <amazon_disguised_ads_disclosure v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
-    <amazon_disguised_ads_counterfact v-if="targetNames.amazon_disguised_ads" @update="generateOverviewOverlay" />
-    <amazon_discount_price_hide v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
-    <amazon_discount_price_disclosure v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
-    <amazon_discount_price_reflection v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
-    <amazon_discount_price_action v-if="targetNames.amazon_discount_price" @update="generateOverviewOverlay" />
-    <amazon_home_card_focus v-if="targetNames.amazon_home_card" @update="generateOverviewOverlay" />
-    <amazon_home_card_reflection v-if="targetNames.amazon_home_card" @update="generateOverviewOverlay" />
-    <youtube_recommended_video_focus v-if="targetNames.youtube_recommended_video" @update="generateOverviewOverlay" />
-    <youtube_recommended_video_preview v-if="targetNames.youtube_recommended_video" @update="generateOverviewOverlay" />
-    <youtube_recommended_video_reflection v-if="targetNames.youtube_recommended_video"
-      @update="generateOverviewOverlay" />
-    <youtube_video_dislike_fairness v-if="targetNames.youtube_video_dislike" @update="generateOverviewOverlay" />
-    <youtube_sidebar_video_focus v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
-    <youtube_sidebar_video_preview v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
-    <youtube_sidebar_video_reflection v-if="targetNames.youtube_sidebar_video" @update="generateOverviewOverlay" />
+    <amazon_buy_now_hide
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_buy_now_fairness
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_buy_now_friction
+      v-if="targetNames.amazon_buy_now"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_hide
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_friction
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_disclosure
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_disguised_ads_counterfact
+      v-if="targetNames.amazon_disguised_ads"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_hide
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_disclosure
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_reflection
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_discount_price_action
+      v-if="targetNames.amazon_discount_price"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_home_card_focus
+      v-if="targetNames.amazon_home_card"
+      @update="generateOverviewOverlay"
+    />
+    <amazon_home_card_reflection
+      v-if="targetNames.amazon_home_card"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_focus
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_preview
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_recommended_video_reflection
+      v-if="targetNames.youtube_recommended_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_video_dislike_fairness
+      v-if="targetNames.youtube_video_dislike"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_focus
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_preview
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
+    <youtube_sidebar_video_reflection
+      v-if="targetNames.youtube_sidebar_video"
+      @update="generateOverviewOverlay"
+    />
 
     // facebook
-    <facebook_suggested_hide v-if="targetNames.facebook_suggested" @update="generateOverviewOverlay" />
-    <facebook_reels_hide v-if="targetNames.facebook_reels" @update="generateOverviewOverlay" />
-    <facebook_sponsored_hide v-if="targetNames.facebook_sponsored" @update="generateOverviewOverlay" />
-    <facebook_suggested_for_you_hide v-if="targetNames.facebook_suggested_for_you" @update="generateOverviewOverlay" />
-    <facebook_suggested_for_you_highlight v-if="targetNames.facebook_suggested_for_you"
-      @update="generateOverviewOverlay" />
+    <facebook_suggested_hide
+      v-if="targetNames.facebook_suggested"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_reels_hide
+      v-if="targetNames.facebook_reels"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_sponsored_hide
+      v-if="targetNames.facebook_sponsored"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_suggested_for_you_hide
+      v-if="targetNames.facebook_suggested_for_you"
+      @update="generateOverviewOverlay"
+    />
+    <facebook_suggested_for_you_highlight
+      v-if="targetNames.facebook_suggested_for_you"
+      @update="generateOverviewOverlay"
+    />
 
+    <Alert
+      :targetNames="targetNames"
+      :isAlert="isAlert"
+      @toggleMask="toggleMask"
+      @closeAlert="closeAlert"
+      v-show="isAlert"
+    />
 
-    <Alert :targetNames="targetNames" :isAlert="isAlert" @toggleMask="toggleMask" @closeAlert="closeAlert" v-show="isAlert" />
-
-    <Popup class="DP_popup" v-if="isPop" :left="popupX" :top="popupY" :key="timer" :target="currentTarget"
-      :savedSettings="savedSettings" :targetNames="targetNames" @closeAll="closeAll" @closePop="closePop" />
+    <Popup
+      class="DP_popup"
+      v-if="isPop"
+      :left="popupX"
+      :top="popupY"
+      :key="timer"
+      :target="currentTarget"
+      :savedSettings="savedSettings"
+      :targetNames="targetNames"
+      @closeAll="closeAll"
+      @closePop="closePop"
+    />
 
     <canvas resize id="DP_canvas" style="display:none"></canvas>
 
     <div id="DP_mask" class="DP_mask" v-show="isMask"></div>
 
-    <div v-for="(value, index) in targetIdentifiers" :key="index" :id="'DP_i_' + value" class="DP_bounding_box"
-      @click="togglePopup($event, value, index)" v-show="isMask"></div>
+    <div
+      v-for="(value, index) in targetIdentifiers"
+      :key="index"
+      :id="'DP_i_' + value"
+      class="DP_bounding_box"
+      @click="togglePopup($event, value, index)"
+      v-show="isMask"
+    ></div>
     <div id="DP_console" class="DP_console" v-show="isConsole">
-      <textarea id="message" rows="4" class="DP_text_area" placeholder="Your message..." v-model="diary"></textarea>
+      <textarea
+        id="message"
+        rows="4"
+        class="DP_text_area"
+        placeholder="Your message..."
+        v-model="diary"
+      ></textarea>
       <button @click="sendDiary">
         Screenshot & Send
       </button>
@@ -264,7 +363,7 @@ export default {
     },
     generateSpotlightOverlay(id, left, top, width, height, opacity = 0.5) {
       let boundingBox = document.getElementById('DP_i_' + id);
-      if (boundingBox !== undefined) {
+      if (boundingBox !== undefined && boundingBox !== null) {
         boundingBox.style.left = left;
         boundingBox.style.top = top;
         boundingBox.style.width = width;
@@ -285,7 +384,10 @@ export default {
 
         this.refresh();
 
-        console.log("new after refresh this.boundingBoxList", this.boundingBoxList);
+        console.log(
+          'new after refresh this.boundingBoxList',
+          this.boundingBoxList
+        );
 
         const origin = new Paper.Point(0, 0);
         const rect = new Paper.Path.Rectangle({
@@ -338,9 +440,25 @@ export default {
             '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
         } else if (this.website === 'Amazon') {
-          element = document.querySelectorAll(
-            '[id^=' + this.targetIdentifiers[i] + ']'
-          )[0];
+          if (this.targetIdentifiers[i] === 'buyNow_feature_div') {
+            element = document.getElementById(this.targetIdentifiers[i]);
+          } else if (
+            this.targetIdentifiers[i] ===
+            'ad-feedback-text-auto-sparkle-hsa-tetris'
+          ) {
+            element = document.getElementById(this.targetIdentifiers[i]);
+            if (element !== null) {
+              element =
+                element.parentElement.parentElement.parentElement.parentElement
+                  .parentElement.parentElement.parentElement.parentElement;
+            }
+          } else if (this.targetIdentifiers[i] === 'apex_desktop') {
+            element = document.getElementById(this.targetIdentifiers[i]);
+          } else {
+            element = document.querySelectorAll(
+              '[id^=' + this.targetIdentifiers[i] + ']'
+            )[0];
+          }
         } else if (this.website === 'Youtube') {
           if (this.targetIdentifiers[i] === 'content') {
             element = document.querySelectorAll(
@@ -394,18 +512,21 @@ export default {
                 ) != -1
               ) {
                 // very ugly way, but the whole container is the 9th parent of the span tag
-                element = retrievedHtmls[j].parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
-                console.log("matched element for facebook reels: ", element);
+                element =
+                  retrievedHtmls[j].parentElement.parentElement.parentElement
+                    .parentElement.parentElement.parentElement.parentElement
+                    .parentElement.parentElement;
+                console.log('matched element for facebook reels: ', element);
               }
             }
-          } else if (this.targetIdentifiers[i] == "ads/about") {
-            console.log("Looking for facebook ads/about");
-            let retrievedHtmls = document.getElementsByTagName("a");
+          } else if (this.targetIdentifiers[i] == 'ads/about') {
+            console.log('Looking for facebook ads/about');
+            let retrievedHtmls = document.getElementsByTagName('a');
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              let retrievedHref = retrievedHtmls[j].getAttribute("href");
+              let retrievedHref = retrievedHtmls[j].getAttribute('href');
 
-              if (retrievedHref.indexOf("/ads/about") != -1) {
-                console.log("Found ads/about content on facebook");
+              if (retrievedHref.indexOf('/ads/about') != -1) {
+                console.log('Found ads/about content on facebook');
                 // not the most elegant solution, but the whole container is the 11th parent of the a tag
                 var parentLevel = 11;
                 element = retrievedHtmls[j];
@@ -450,7 +571,7 @@ export default {
           }
         }
 
-        if (element !== undefined) {
+        if (element !== undefined && element !== null) {
           let boundingBox = element.getBoundingClientRect();
           boundingBox.id = this.targetIdentifiers[i];
           boundingBox.x = boundingBox.x - 10;
@@ -460,10 +581,22 @@ export default {
           this.boundingBoxList.push(boundingBox);
           console.log('Bounding box pushed in ', boundingBox);
         } else {
+          this.boundingBoxList.push({
+            id: this.targetIdentifiers[i],
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+          });
           console.log('Cannot find element for bounding box');
         }
       }
-      console.log("Got new list of bounding boxes");
+
+      console.log('Got new list of bounding boxes');
       console.log(this.boundingBoxList);
     },
     refresh() {
@@ -547,7 +680,7 @@ export default {
         let url = this.currentTab.url;
         if (url.search(/youtube.com/) !== -1) {
           const HEARTBIT = 6; // sec
-          setInterval(function () {
+          setInterval(function() {
             incrementTime(HEARTBIT / 60, (data) => {
               let timeTracker = document.getElementById('DP_time_tracker');
               if (timeTracker !== null) {
@@ -560,7 +693,7 @@ export default {
     });
 
     let that = this;
-    chrome.storage.sync.get('savedSettings', function (settings) {
+    chrome.storage.sync.get('savedSettings', function(settings) {
       if (JSON.stringify(settings) !== '{}') {
         console.log('retrieve settings');
         console.log(settings);
