@@ -44,7 +44,7 @@ export default {
 </script>
 <style lang="scss">
 .DP_time_tracker {
-  @apply fixed flex flex-col justify-start items-start border-[1px] border-solid border-cognition p-[24px] top-[80px] right-[12px] min-w-[200px] rounded-[12px] text-white z-extension drop-shadow-xl backdrop-blur-xl bg-dark/60;
+  @apply fixed flex flex-col justify-start items-start border-[1px] border-solid border-cognition p-[24px] top-[80px] right-[12px] min-w-[200px] rounded-[12px] text-white z-extension drop-shadow-xl backdrop-blur-xl bg-dark/60 select-none;
 
   h1 {
     @apply text-[12px] font-cabin;

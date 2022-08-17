@@ -5,7 +5,7 @@
 export default {
   data() {
     return {
-      target: document.querySelectorAll('[id^=gw-layout]')
+      target: document.querySelectorAll('[id^=pageContent]')
     };
   },
   methods: {
