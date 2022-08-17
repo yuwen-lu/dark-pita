@@ -4,11 +4,11 @@
       id="message"
       rows="4"
       class="DP_text_area"
-      placeholder="Your message..."
+      placeholder="Your insights..."
       v-model="diary"
     ></textarea>
     <button @click="sendDiary">
-      Screenshot & Send
+      Send Insights
     </button>
     <button @click="openAlert" :disabled="isAlert || notSupport">
       Open Banner
