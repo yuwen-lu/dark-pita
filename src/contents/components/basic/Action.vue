@@ -57,7 +57,8 @@
   </div>
 </template>
 <script>
-import twitter_whats_happening_hideVue from '../twitter/whats_happening/twitter_whats_happening_hide.vue';
+import DataService from '@/contents/services/data.js';
+
 export default {
   props: {
     action: {
@@ -116,7 +117,7 @@ export default {
 
         // twitter
         twitter_whats_happening_hide: 'off',
-        twitter_promoted_highlight: 'off',
+        twitter_promoted_highlight: 'off'
       }
     };
   },
@@ -219,10 +220,14 @@ export default {
       } else if (this.intervention.component === 'facebook_sponsored_hide') {
         this.emitter.emit('facebook_sponsored_hide', 'on');
         console.log('Emitting facebook_sponsored_hide message as on');
-      } else if (this.intervention.component === 'facebook_suggested_for_you_hide') {
+      } else if (
+        this.intervention.component === 'facebook_suggested_for_you_hide'
+      ) {
         this.emitter.emit('facebook_suggested_for_you_hide', 'on');
         console.log('Emitting facebook_suggested_for_you_hide message as on');
-      } else if (this.intervention.component === 'facebook_suggested_for_you_highlight') {
+      } else if (
+        this.intervention.component === 'facebook_suggested_for_you_highlight'
+      ) {
         this.emitter.emit('facebook_suggested_for_you_highlight', 'on');
         console.log(
           'Emitting facebook_suggested_for_you_hightlight message as on'
@@ -232,14 +237,10 @@ export default {
       // twitter
       else if (this.intervention.component === 'twitter_whats_happening_hide') {
         this.emitter.emit('twitter_whats_happening_hide', 'on');
-        console.log(
-          'Emitting twitter_whats_happening_hide message as on'
-        );
+        console.log('Emitting twitter_whats_happening_hide message as on');
       } else if (this.intervention.component === 'twitter_promoted_highlight') {
         this.emitter.emit('twitter_promoted_highlight', 'on');
-        console.log(
-          'Emitting twitter_promoted_highlight message as on'
-        );
+        console.log('Emitting twitter_promoted_highlight message as on');
       }
 
       if (this.intervention.component !== 'none') {
@@ -252,25 +253,29 @@ export default {
       console.log('save settings');
       this.$emit('closePop', 'close popup');
       chrome.storage.sync.set({ savedSettings: this.interventionState });
+      this.sendAction(this.interventionState, 'save settings');
     },
     resetIntervention(selectedComponent) {
-      console.log("Resetting interventions, selectedComponent: ", selectedComponent);
+      console.log(
+        'Resetting interventions, selectedComponent: ',
+        selectedComponent
+      );
       // console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
-            // TODO: CHECK SAVED CONFIG AND SEE IF IT"S ALREADY SET
-            if (key == selectedComponent) {
-              console.log(
-                'This is setting the message for the previously configured component ' +
-                  key +
-                  ', but new instance. No need to reset.'
-              );
-            } else {
-              console.log('reset message for intervention: ' + key);
-              this.emitter.emit(key, 'off');
-              this.interventionState[key] = 'off';
-            }
+          // TODO: CHECK SAVED CONFIG AND SEE IF IT"S ALREADY SET
+          if (key == selectedComponent) {
+            console.log(
+              'This is setting the message for the previously configured component ' +
+                key +
+                ', but new instance. No need to reset.'
+            );
+          } else {
+            console.log('reset message for intervention: ' + key);
+            this.emitter.emit(key, 'off');
+            this.interventionState[key] = 'off';
           }
+        }
       });
 
       console.log('reset done', this.interventionState);

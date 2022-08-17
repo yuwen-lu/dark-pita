@@ -102,6 +102,7 @@ export default {
             if (message === 'on') {
                 this.friction_added = true;
                 console.log('facebook reels content friction on');
+                this.sendAction(1, 'toggle facebook_reels_friction');
 
                 if (this.target != null && this.target !== undefined) {
                     this.createFrictionOverlay();
@@ -112,6 +113,7 @@ export default {
             } else if (message === 'off') {
                 this.friction_added = false;
                 console.log('facebook reels content friction off');
+                this.sendAction(0, 'toggle facebook_reels_friction');
                 if (this.frictionOverlayElement != null) {
                     document.body.removeChild(this.frictionOverlayElement);
                 } else {

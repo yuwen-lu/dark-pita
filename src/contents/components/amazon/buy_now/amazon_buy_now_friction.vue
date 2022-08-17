@@ -34,12 +34,14 @@ export default {
 
       if (message === 'on') {
         console.log('amazon buy now friction on');
+        this.sendAction(1, 'toggle amazon_buy_now_friction');
         this.target.onmouseenter = () => {
           console.log('buy now friction overlay');
           this.on();
         };
       } else if (message === 'off') {
         console.log('amazon buy now friction off');
+        this.sendAction(0, 'toggle amazon_buy_now_friction');
         this.off();
       }
 

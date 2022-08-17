@@ -8,6 +8,7 @@ export default {
     this.emitter.on("amazon_home_card_progress", (message) => {
       if (message === "on") {
         console.log("amazon home card progress on");
+        this.sendAction(1, 'toggle amazon_home_card_progress');
         let elt = document.createElement("div");
         elt.className = "DP_money_tracker";
         elt.id = "DP_money_tracker_wrapper";
@@ -20,6 +21,7 @@ export default {
         document.body.appendChild(elt);
       } else if (message === "off") {
         console.log("amazon home card progress off");
+        this.sendAction(0, 'toggle amazon_home_card_progress');
         let elt = document.getElementById("DP_time_tracker_wrapper");
         document.body.removeChild(elt);
       }

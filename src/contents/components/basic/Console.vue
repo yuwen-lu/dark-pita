@@ -17,6 +17,8 @@
   </div>
 </template>
 <script>
+import DataService from '@/contents/services/data.js';
+
 export default {
   props: {
     notSupport: {
@@ -33,7 +35,19 @@ export default {
   },
   methods: {
     sendDiary() {
-      console.log(this.diary);
+      // console.log(this.diary);
+      // console.log(this.userId);
+      let data = {
+        diary: this.diary,
+        timestamp: new Date().valueOf()
+      };
+      DataService.sendDiary(this.userId, data)
+        .then(() => {
+          console.log('send new diary successfully!');
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     openAlert() {
       this.$emit('openAlert', 'open alert');

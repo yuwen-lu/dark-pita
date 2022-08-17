@@ -222,7 +222,7 @@ export default {
       timer: null,
       currentTab: null,
       info: [],
-      website: "",
+      website: '',
       targetIdentifiers: null,
       currentTarget: {},
       boundingBoxList: [],
@@ -231,8 +231,8 @@ export default {
       isAlert: false,
       popupX: 0,
       popupY: 0,
-      text: "",
-      overlayPath: "",
+      text: '',
+      overlayPath: '',
       overlayWidth: Math.max(
         document.documentElement.clientWidth || 0,
         window.innerWidth || 0
@@ -258,7 +258,7 @@ export default {
         youtube_sidebar_video: false,
 
         twitter_whats_happening: false,
-        twitter_promoted: false,
+        twitter_promoted: false
       },
       savedSettings: {},
       isConsole: false,
@@ -300,16 +300,16 @@ export default {
     youtube_sidebar_video_focus,
     youtube_sidebar_video_preview,
     youtube_sidebar_video_reflection,
-    
+
     twitter_whats_happening_hide,
-    twitter_promoted_highlight,
+    twitter_promoted_highlight
   },
   computed: {},
   watch: {
     reload(newVal, oldVal) {
-      console.log("app reload");
+      console.log('app reload');
       this.initialize();
-    },
+    }
   },
   methods: {
     initialize() {
@@ -321,32 +321,32 @@ export default {
       this.notSupport = false;
       this.targetIdentifiers = null;
       this.isPop = false;
-      this.mask = document.getElementById("DP_mask");
+      this.mask = document.getElementById('DP_mask');
 
-      chrome.runtime.sendMessage({ type: "APP_INIT" }, async (tab) => {
+      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
         this.isAlert = false; // this line is put inside of here to prevent isAlert being set before <Alert> is mounted
         this.currentTab = await tab;
         // console.log(this.currentTab);
 
         if (this.currentTab !== null) {
           let url = this.currentTab.url;
-          console.log("current site:", url);
+          console.log('current site:', url);
 
           // Define the identifier
           if (url.search(/tailwindcss.com/) !== -1) {
-            this.website = "Tailwind";
+            this.website = 'Tailwind';
             this.info = INDEX.tailwind;
           } else if (url.search(/twitter.com/) !== -1) {
-            this.website = "Twitter";
+            this.website = 'Twitter';
             this.info = INDEX.twitter;
           } else if (url.search(/amazon.com/) !== -1) {
-            this.website = "Amazon";
+            this.website = 'Amazon';
             this.info = INDEX.amazon;
           } else if (url.search(/facebook.com/) !== -1) {
-            this.website = "Facebook";
+            this.website = 'Facebook';
             this.info = INDEX.facebook;
           } else if (url.search(/youtube.com/) !== -1) {
-            this.website = "Youtube";
+            this.website = 'Youtube';
             this.info = INDEX.youtube;
           }
 
@@ -364,7 +364,7 @@ export default {
             }
           }
 
-          console.log("dark patterns on this site:", this.targetNames);
+          console.log('dark patterns on this site:', this.targetNames);
 
           // Initialize
           if (this.targetIdentifiers !== null) {
@@ -411,22 +411,22 @@ export default {
     },
     generateTouchableArea() {
       console.log(
-        "generate touchable areas for bounding boxes: " + this.boundingBoxList
+        'generate touchable areas for bounding boxes: ' + this.boundingBoxList
       );
-      document.body.style.position = "relative";
+      document.body.style.position = 'relative';
       for (let i = 0; i < this.boundingBoxList.length; i++) {
         let id = this.boundingBoxList[i].id;
-        let left = this.boundingBoxList[i].x + "px";
-        let top = this.boundingBoxList[i].y + "px";
-        let width = this.boundingBoxList[i].width + "px";
-        let height = this.boundingBoxList[i].height + "px";
+        let left = this.boundingBoxList[i].x + 'px';
+        let top = this.boundingBoxList[i].y + 'px';
+        let width = this.boundingBoxList[i].width + 'px';
+        let height = this.boundingBoxList[i].height + 'px';
         let opacity = 1;
         this.generateSpotlightOverlay(id, left, top, width, height, opacity);
       }
     },
     generateSpotlightOverlay(id, left, top, width, height, opacity = 0.5) {
-      console.log("generate spotlight overlay for " + id);
-      let boundingBox = document.getElementById("DP_i_" + id);
+      console.log('generate spotlight overlay for ' + id);
+      let boundingBox = document.getElementById('DP_i_' + id);
       if (boundingBox !== undefined && boundingBox !== null) {
         boundingBox.style.left = left;
         boundingBox.style.top = top;
@@ -440,16 +440,16 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      console.log("scrolling distance from top:", scrollTop);
+      console.log('scrolling distance from top:', scrollTop);
     },
     generateOverviewOverlay() {
       if (this.isMask) {
-        console.log("generate overlay");
+        console.log('generate overlay');
 
         this.refresh();
 
         console.log(
-          "new after refresh this.boundingBoxList",
+          'new after refresh this.boundingBoxList',
           this.boundingBoxList
         );
 
@@ -457,8 +457,8 @@ export default {
         const rect = new Paper.Path.Rectangle({
           point: origin,
           size: [this.overlayWidth, this.overlayHeight],
-          fillColor: "black",
-          opacity: 0.6,
+          fillColor: 'black',
+          opacity: 0.6
         });
 
         let overlayPath = rect;
@@ -467,10 +467,10 @@ export default {
             point: [this.boundingBoxList[i].x, this.boundingBoxList[i].y],
             size: [
               this.boundingBoxList[i].width,
-              this.boundingBoxList[i].height,
+              this.boundingBoxList[i].height
             ],
-            fillColor: "black",
-            radius: 4,
+            fillColor: 'black',
+            radius: 4
           });
 
           overlayPath = overlayPath.subtract(boundingBox);
@@ -479,10 +479,10 @@ export default {
         this.overlayPath = overlayPath.exportSVG();
         Paper.project.clear();
 
-        const SVG_NS = "http://www.w3.org/2000/svg";
-        let svg = document.createElementNS(SVG_NS, "svg");
-        svg.setAttribute("width", this.overlayWidth);
-        svg.setAttribute("height", this.overlayHeight);
+        const SVG_NS = 'http://www.w3.org/2000/svg';
+        let svg = document.createElementNS(SVG_NS, 'svg');
+        svg.setAttribute('width', this.overlayWidth);
+        svg.setAttribute('height', this.overlayHeight);
         svg.appendChild(this.overlayPath);
         this.mask = document.getElementById('DP_mask');
         this.mask.appendChild(svg);
@@ -492,20 +492,20 @@ export default {
       }
     },
     getBoundingBoxList() {
-      console.log("Getting bounding box list");
+      console.log('Getting bounding box list');
       this.boundingBoxList = [];
       for (let i = 0; i < this.targetIdentifiers.length; i++) {
         let element;
         let elementList = [];
 
         // Set the selector
-        if (this.website === "Tailwind") {
+        if (this.website === 'Tailwind') {
           element = document.getElementById(this.targetIdentifiers[i]);
-        } else if (this.website === "Twitter") {
-          if (this.targetIdentifiers[i] === "See more") {
-            let retrievedHtmls = document.getElementsByTagName("span");
+        } else if (this.website === 'Twitter') {
+          if (this.targetIdentifiers[i] === 'See more') {
+            let retrievedHtmls = document.getElementsByTagName('span');
             for (let j = 0; j < retrievedHtmls.length; j++) {
-              if (retrievedHtmls[j].innerHTML.search("See more") !== -1) {
+              if (retrievedHtmls[j].innerHTML.search('See more') !== -1) {
                 element = retrievedHtmls[j];
                 break;
               }
@@ -513,7 +513,7 @@ export default {
             // our target is the 17th parent of the selected element
             let parentLevel = 17;
             for (let j = 0; j < parentLevel; j++) {
-              if(element.parentElement !== null) {
+              if (element.parentElement !== null) {
                 element = element.parentElement;
               } else {
                 break;
@@ -521,15 +521,15 @@ export default {
             }
           } else {
             element = document.querySelector(
-            '[aria-label="' + this.targetIdentifiers[i] + '"]'
-          );
+              '[aria-label="' + this.targetIdentifiers[i] + '"]'
+            );
           }
         } else if (this.website === 'Amazon') {
           if (this.targetIdentifiers[i] === 'submit.buy-now') {
             element = document.getElementById(this.targetIdentifiers[i]);
           } else if (
             this.targetIdentifiers[i] ===
-            "ad-feedback-text-auto-sparkle-hsa-tetris"
+            'ad-feedback-text-auto-sparkle-hsa-tetris'
           ) {
             element = document.getElementById(this.targetIdentifiers[i]);
             if (element !== null) {
@@ -537,40 +537,40 @@ export default {
                 element.parentElement.parentElement.parentElement.parentElement
                   .parentElement.parentElement.parentElement.parentElement;
             }
-          } else if (this.targetIdentifiers[i] === "apex_desktop") {
+          } else if (this.targetIdentifiers[i] === 'apex_desktop') {
             element = document.getElementById(this.targetIdentifiers[i]);
           } else {
             element = document.querySelectorAll(
-              "[id^=" + this.targetIdentifiers[i] + "]"
+              '[id^=' + this.targetIdentifiers[i] + ']'
             )[0];
           }
-        } else if (this.website === "Youtube") {
-          if (this.targetIdentifiers[i] === "content") {
+        } else if (this.website === 'Youtube') {
+          if (this.targetIdentifiers[i] === 'content') {
             element = document.querySelectorAll(
-              "[id=" + this.targetIdentifiers[i] + "]"
+              '[id=' + this.targetIdentifiers[i] + ']'
             )[2];
           } else if (
-            this.targetIdentifiers[i] === "top-level-buttons-computed"
+            this.targetIdentifiers[i] === 'top-level-buttons-computed'
           ) {
             element = document.getElementById(this.targetIdentifiers[i])
               .childNodes[1];
           } else if (
-            this.targetIdentifiers[i] === "ytd-compact-video-renderer"
+            this.targetIdentifiers[i] === 'ytd-compact-video-renderer'
           ) {
             element = document.getElementsByTagName(
               this.targetIdentifiers[i]
             )[1];
           } else {
             element = document.querySelectorAll(
-              "[id^=" + this.targetIdentifiers[i] + "]"
+              '[id^=' + this.targetIdentifiers[i] + ']'
             )[0];
           }
         }
         // facebook
-        else if (this.website === "Facebook") {
-          if (this.targetIdentifiers[i] == "People You May Know") {
-            console.log("Looking for facebook people you may know");
-            var retrievedHtmls = document.getElementsByTagName("h3");
+        else if (this.website === 'Facebook') {
+          if (this.targetIdentifiers[i] == 'People You May Know') {
+            console.log('Looking for facebook people you may know');
+            var retrievedHtmls = document.getElementsByTagName('h3');
             for (var j = 0; j < retrievedHtmls.length; j++) {
               if (
                 retrievedHtmls[j].innerHTML.indexOf(
@@ -583,14 +583,14 @@ export default {
                     .parentElement;
                 elementList.push(element);
                 console.log(
-                  "matched element for facebook suggested people: ",
+                  'matched element for facebook suggested people: ',
                   element
                 );
               }
             }
-          } else if (this.targetIdentifiers[i] == "Reels and short videos") {
-            console.log("Looking for facebook reels");
-            var retrievedHtmls = document.getElementsByTagName("span");
+          } else if (this.targetIdentifiers[i] == 'Reels and short videos') {
+            console.log('Looking for facebook reels');
+            var retrievedHtmls = document.getElementsByTagName('span');
             for (var j = 0; j < retrievedHtmls.length; j++) {
               if (
                 retrievedHtmls[j].innerHTML.indexOf(
@@ -603,17 +603,17 @@ export default {
                     .parentElement.parentElement.parentElement.parentElement
                     .parentElement.parentElement;
                 elementList.push(element);
-                console.log("matched element for facebook reels: ", element);
+                console.log('matched element for facebook reels: ', element);
               }
             }
-          } else if (this.targetIdentifiers[i] == "ads/about") {
-            console.log("Looking for facebook ads/about");
-            let retrievedHtmls = document.getElementsByTagName("a");
+          } else if (this.targetIdentifiers[i] == 'ads/about') {
+            console.log('Looking for facebook ads/about');
+            let retrievedHtmls = document.getElementsByTagName('a');
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              let retrievedHref = retrievedHtmls[j].getAttribute("href");
+              let retrievedHref = retrievedHtmls[j].getAttribute('href');
 
-              if (retrievedHref.indexOf("/ads/about") != -1) {
-                console.log("Found ads/about content on facebook");
+              if (retrievedHref.indexOf('/ads/about') != -1) {
+                console.log('Found ads/about content on facebook');
                 // not the most elegant solution, but the whole container is the 11th parent of the a tag
                 var parentLevel = 11;
                 element = retrievedHtmls[j];
@@ -622,22 +622,22 @@ export default {
                     element = element.parentElement;
                   } else {
                     console.log(
-                      "Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort"
+                      'Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort'
                     );
-                    console.log("current result: ", element);
+                    console.log('current result: ', element);
                     break;
                   }
                 }
                 elementList.push(element);
                 console.log(
-                  "matched element for facebook sponsored ads: ",
+                  'matched element for facebook sponsored ads: ',
                   element
                 );
               }
             }
-          } else if (this.targetIdentifiers[i] == "Suggested for you") {
-            console.log("Looking for facebook Suggested for you");
-            var retrievedHtmls = document.getElementsByTagName("span");
+          } else if (this.targetIdentifiers[i] == 'Suggested for you') {
+            console.log('Looking for facebook Suggested for you');
+            var retrievedHtmls = document.getElementsByTagName('span');
             for (var j = 0; j < retrievedHtmls.length; j++) {
               if (
                 retrievedHtmls[j].innerHTML.indexOf(
@@ -652,7 +652,7 @@ export default {
                 }
                 elementList.push(element);
                 console.log(
-                  "matched element for facebook Suggested for you: ",
+                  'matched element for facebook Suggested for you: ',
                   element
                 );
               }
@@ -663,16 +663,21 @@ export default {
         if (elementList.length > 0) {
           for (var j = 0; j < elementList.length; j++) {
             if (elementList[j] !== undefined && elementList[j] !== null) {
-              console.log("Got a list to generate bounding box");
+              console.log('Got a list to generate bounding box');
               let boundingBox = elementList[j].getBoundingClientRect();
-              console.log("For boundingbox list, retrieved element: ", elementList[j], " with its bounding box: ", boundingBox);
+              console.log(
+                'For boundingbox list, retrieved element: ',
+                elementList[j],
+                ' with its bounding box: ',
+                boundingBox
+              );
               boundingBox.id = this.targetIdentifiers[i];
               boundingBox.x = boundingBox.x - 10;
               boundingBox.y = boundingBox.y - 10;
               boundingBox.width = boundingBox.width + 20;
               boundingBox.height = boundingBox.height + 20;
               this.boundingBoxList.push(boundingBox);
-              console.log("Bounding box pushed in ", boundingBox);
+              console.log('Bounding box pushed in ', boundingBox);
             } else {
               this.boundingBoxList.push({
                 id: this.targetIdentifiers[i],
@@ -683,14 +688,17 @@ export default {
                 top: 0,
                 right: 0,
                 bottom: 0,
-                left: 0,
+                left: 0
               });
-              console.log("Cannot find element for bounding box");
+              console.log('Cannot find element for bounding box');
             }
           }
         } else {
           if (element !== undefined && element !== null) {
-            console.log("Got a single element to generate bounding box, element: ", element);
+            console.log(
+              'Got a single element to generate bounding box, element: ',
+              element
+            );
             let boundingBox = element.getBoundingClientRect();
             boundingBox.id = this.targetIdentifiers[i];
             boundingBox.x = boundingBox.x - 10;
@@ -698,7 +706,7 @@ export default {
             boundingBox.width = boundingBox.width + 20;
             boundingBox.height = boundingBox.height + 20;
             this.boundingBoxList.push(boundingBox);
-            console.log("Bounding box pushed in ", boundingBox);
+            console.log('Bounding box pushed in ', boundingBox);
           } else {
             this.boundingBoxList.push({
               id: this.targetIdentifiers[i],
@@ -709,19 +717,19 @@ export default {
               top: 0,
               right: 0,
               bottom: 0,
-              left: 0,
+              left: 0
             });
-            console.log("Cannot find element for bounding box");
+            console.log('Cannot find element for bounding box');
           }
         }
       }
 
-      console.log("Got new list of bounding boxes");
+      console.log('Got new list of bounding boxes');
       console.log(this.boundingBoxList);
     },
     refresh() {
       if (this.isMask) {
-        this.mask.innerHTML = "";
+        this.mask.innerHTML = '';
       }
 
       this.overlayWidth = Math.max(

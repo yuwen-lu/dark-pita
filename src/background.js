@@ -40,6 +40,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     case 'APP_INIT':
       getCurrentTab().then(sendResponse);
       return true;
+    case 'USER_ID':
+      chrome.identity.getProfileUserInfo(sendResponse);
+      return true;
     default:
       break;
   }

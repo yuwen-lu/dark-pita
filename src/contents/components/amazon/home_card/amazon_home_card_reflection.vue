@@ -71,6 +71,7 @@ export default {
 
       if (message === 'on') {
         console.log('home card reflection on');
+        this.sendAction(1, 'toggle amazon_home_card_reflection');
         let that = this;
         this.target.forEach((item) => {
           item.onmouseenter = () => {
@@ -81,6 +82,7 @@ export default {
         });
       } else if (message === 'off') {
         console.log('home card reflection off');
+        this.sendAction(0, 'toggle amazon_home_card_reflection');
         this.target.forEach((item) => {
           item.onmouseenter = () => {};
         });

@@ -62,6 +62,7 @@ export default {
 
             if (message === 'on') {
                 console.log('facebook reels content hide on');
+                this.sendAction(1, 'toggle facebook_reels_hide');
                 console.log("Trying to remove facebook reels, target: " + element.innerHTML);
 
                 if (element != null && element !== undefined) {
@@ -73,6 +74,7 @@ export default {
                 }                
             } else if (message === 'off') {
                 console.log('facebook reels content hide off');
+                this.sendAction(0, 'toggle facebook_reels_hide');
                 if (this.target != null) {
                     this.recover(this.target);
                 } else {

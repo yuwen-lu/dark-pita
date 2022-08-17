@@ -14,6 +14,7 @@ export default {
 
       if (message === 'on') {
         console.log('amazon buy now fairness on');
+        this.sendAction(1, 'toggle amazon_buy_now_fairness');
         this.target.style.cssText =
           'background: #ffd814 !important; border-color: #fcd200 !important;';
         this.target.classList.remove('a-button-oneclick');
@@ -27,6 +28,7 @@ export default {
         };
       } else if (message === 'off') {
         console.log('amazon buy now fairness off');
+        this.sendAction(0, 'toggle amazon_buy_now_fairness');
         this.target.style.cssText = '';
         this.target.classList.add('a-button-oneclick');
         this.target.onmouseenter = () => {

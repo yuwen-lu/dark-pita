@@ -29,9 +29,11 @@ export default {
 
       if (message === 'on') {
         console.log('amazon disguised ads friction on');
+        this.sendAction(1, 'toggle amazon_disguised_ads_friction');
         this.changeCursor(this.target, 'none');
       } else if (message === 'off') {
         console.log('amazon disguised ads friction off');
+        this.sendAction(0, 'toggle amazon_disguised_ads_friction');
         this.changeCursor(this.target, 'default');
       }
 

@@ -44,6 +44,7 @@ export default {
         this.emitter.on('facebook_sponsored_hide', (message) => {
             if (message === 'on') {
                 console.log('facebook sponsored content hide on');
+                this.sendAction(1, 'toggle facebook_sponsored_hide');
                 let element;
                 // look for the sponsored component
                 var retrievedHtmls = document.getElementsByTagName("a");
@@ -67,6 +68,7 @@ export default {
                 }
             } else if (message === 'off') {
                 console.log('facebook sponsored content hide off');
+                this.sendAction(0, 'toggle facebook_sponsored_hide');
                 if (this.target != null) {
                     this.recover(this.target);
                 }

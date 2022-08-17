@@ -30,5 +30,5 @@
       "js": ["contents/main.js"]
     }
   ],
-  "permissions": ["tabs"]
+  "permissions": ["tabs", "identity", "identity.email"]
 }

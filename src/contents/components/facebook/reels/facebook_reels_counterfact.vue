@@ -20,6 +20,7 @@ export default {
 
             if (message === 'on') {
                 console.log('facebook reels content counterfact on');
+                this.sendAction(1, 'toggle facebook_reels_counterfact');
                 console.log("Trying to add counterfactual thinking on facebook reels: " + element.innerHTML);
 
                 if (element != null && element !== undefined) {
@@ -34,6 +35,7 @@ export default {
                 }                
             } else if (message === 'off') {
                 console.log('facebook reels content counterfact off');
+                this.sendAction(0, 'toggle facebook_reels_counterfact');
                 if (this.target != null) {
                     // this.target.style.style.color = 'inherit';
                     this.target.style.fontWeight = 'inherit';

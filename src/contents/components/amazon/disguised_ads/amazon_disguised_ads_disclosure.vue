@@ -18,6 +18,7 @@ export default {
 
       if (message === 'on') {
         console.log('amazon disguised ads disclosure on');
+        this.sendAction(1, 'toggle amazon_disguised_ads_disclosure');
         this.sponsord = document.getElementById(
           'ad-feedback-text-auto-sparkle-hsa-tetris'
         );
@@ -32,6 +33,7 @@ export default {
         this.target.appendChild(tip);
       } else if (message === 'off') {
         console.log('amazon disguised ads disclosure off');
+        this.sendAction(0, 'toggle amazon_disguised_ads_disclosure');
         this.sponsord.style.visibility = 'visible';
         this.target.style.cssText = '';
         let tip = document.getElementById(

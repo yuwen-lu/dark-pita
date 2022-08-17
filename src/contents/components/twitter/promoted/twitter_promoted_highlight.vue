@@ -127,6 +127,7 @@ export default {
             if (message === 'on') {
                 this.highlight_added = true;
                 console.log('twitter promoted highlight on');
+                this.sendAction(1, 'toggle twitter_promoted_highlight');
 
                 if (element !== null && element !== undefined) {
                     this.target = element;
@@ -139,6 +140,7 @@ export default {
             } else if (message === 'off') {
                 highlight_added = false;
                 console.log('twitter promoted highlight off');
+                this.sendAction(0, 'toggle twitter_promoted_highlight');
                 console.log("this.target: ", this.target);
                 if (this.target !== null && this.target !== undefined) {
                     // this.recover(this.target);

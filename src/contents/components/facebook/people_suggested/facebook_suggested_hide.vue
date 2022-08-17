@@ -44,6 +44,7 @@ export default {
         this.emitter.on('facebook_suggested_hide', (message) => {
             if (message === 'on') {
                 console.log('facebook suggested content hide on');
+                this.sendAction(1, 'toggle facebook_suggested_hide');
                 let element;
                 
                 var retrievedHtmls = document.getElementsByTagName("h3");
@@ -63,6 +64,7 @@ export default {
                 
             } else if (message === 'off') {
                 console.log('facebook suggested content hide off');
+                this.sendAction(0, 'toggle facebook_suggested_hide');
                 if(this.target != null) {
                     this.recover(this.target);
                 }

@@ -24,6 +24,7 @@ export default {
 
             if (message === 'on') {
                 console.log('facebook suggested for you content highlight on');
+                this.sendAction(1, 'toggle facebook_suggested_for_you_highlight');
                 console.log(elementList);
                 if (elementList.length > 0) {
                     for (var i = 0; i < elementList.length; i++) {
@@ -40,6 +41,7 @@ export default {
                 }
             } else if (message === 'off') {
                 console.log('facebook suggested for you content highlight off');
+                this.sendAction(0, 'toggle facebook_suggested_for_you_highlight');
                 if (elementList.length > 0) {
                     for (var i = 0; i < elementList.length; i++) {
                         var tempElement = elementList[i];

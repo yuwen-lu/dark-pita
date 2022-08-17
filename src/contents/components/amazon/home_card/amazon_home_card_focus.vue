@@ -48,10 +48,12 @@ export default {
     this.emitter.on('amazon_home_card_focus', (message) => {
       if (message === 'on') {
         console.log('amazon home card focus mode on');
+        this.sendAction(1, 'toggle amazon_home_card_focus');
         this.target = document.querySelectorAll('[id^=pageContent]');
         this.remove(this.target);
       } else if (message === 'off') {
         console.log('amazon home card focus mode off');
+        this.sendAction(0, 'toggle amazon_home_card_focus');
         this.recover(this.target);
       }
 

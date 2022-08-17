@@ -23,6 +23,7 @@ export default {
       ) {
         if (message === 'on') {
           console.log('amazon discount price hide on');
+          this.sendAction(1, 'toggle amazon_discount_price_hide');
           this.sibling.parentNode.insertBefore(
             this.price,
             this.sibling.nextSibling
@@ -30,6 +31,7 @@ export default {
           this.target.style.display = 'none';
         } else if (message === 'off') {
           console.log('amazon discount price hide off');
+          this.sendAction(0, 'toggle amazon_discount_price_hide');
           this.sibling.parentNode.removeChild(this.price);
           this.target.style.display = 'visible';
         }

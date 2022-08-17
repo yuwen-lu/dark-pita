@@ -30,6 +30,7 @@ export default {
 
         if (message === 'on') {
           console.log('youtube video dislike fairness on');
+          this.sendAction(1, 'toggle youtube_video_dislike_fairness');
           chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
             let currentTab = await tab;
             if (currentTab !== null) {
@@ -42,6 +43,7 @@ export default {
           });
         } else if (message === 'off') {
           console.log('youtube video dislike fairness off');
+          this.sendAction(0, 'toggle youtube_video_dislike_fairness');
           that.target.querySelector('#text').innerText = 'Dislike';
         }
 

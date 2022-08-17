@@ -14,6 +14,7 @@ export default {
 
       if (message === 'on') {
         console.log('amazon discount price action guide on');
+        this.sendAction(1, 'toggle amazon_discount_price_action');
         let tag = this.target.getElementsByTagName('tr')[0].childNodes[0]
           .textContent;
         let tooltipContent = 'NO Buying, 100% Saving.';
@@ -33,6 +34,7 @@ export default {
         };
       } else if (message === 'off') {
         console.log('amazon discount price action guide off');
+        this.sendAction(0, 'toggle amazon_discount_price_action');
         let tooltip = document.getElementById('DP_tooltip');
         this.target.removeChild(tooltip);
         this.target.style.cssText = '';

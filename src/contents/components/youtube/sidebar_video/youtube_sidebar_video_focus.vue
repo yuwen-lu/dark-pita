@@ -19,9 +19,11 @@ export default {
 
         if (message === 'on') {
           console.log('youtube sidebar video focus mode on');
+          this.sendAction(1, 'toggle youtube_sidebar_video_focus');
           that.target.style.visibility = 'hidden';
         } else if (message === 'off') {
           console.log('youtube sidebar video focus mode off');
+          this.sendAction(0, 'toggle youtube_sidebar_video_focus');
           that.target.style.visibility = 'visible';
         }
 

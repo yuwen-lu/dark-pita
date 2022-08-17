@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import '@/styles/main.css';
 import mitt from 'mitt';
+import DataService from '@/contents/services/data.js';
 
 const MOUNT_EL_ID = 'as-dark-pita';
 
@@ -19,6 +20,25 @@ console.log('content is working');
 
 app.config.globalProperties.emitter = mitt();
 console.log('emitter is working');
+
+chrome.runtime.sendMessage({ type: 'USER_ID' }, async (userInfo) => {
+  app.config.globalProperties.userId = await userInfo.id;
+});
+
+app.config.globalProperties.sendAction = (action, description) => {
+  let data = {
+    description: description,
+    action: action,
+    timestamp: new Date().valueOf()
+  };
+  DataService.sendAction(app.config.globalProperties.userId, data)
+    .then(() => {
+      console.log('send new action successfully!');
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
 
 const vm = app.mount(mountEl);
 

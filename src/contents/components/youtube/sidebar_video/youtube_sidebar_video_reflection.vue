@@ -15,6 +15,7 @@ export default {
     this.emitter.on('youtube_sidebar_video_reflection', (message) => {
       if (message === 'on') {
         console.log('youtube sidebar video reflection on');
+        this.sendAction(1, 'toggle youtube_sidebar_video_reflection');
         let elt = document.createElement('div');
         elt.className = 'DP_time_tracker';
         elt.id = 'DP_time_tracker_wrapper';
@@ -31,6 +32,7 @@ export default {
         document.body.appendChild(elt);
       } else if (message === 'off') {
         console.log('youtube sidebar video reflection off');
+        this.sendAction(0, 'toggle youtube_sidebar_video_reflection');
         let elt = document.getElementById('DP_time_tracker_wrapper');
         document.body.removeChild(elt);
       }

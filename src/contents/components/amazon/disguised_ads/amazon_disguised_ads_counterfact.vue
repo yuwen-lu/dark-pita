@@ -30,6 +30,7 @@ export default {
 
       if (message === "on") {
         console.log("amazon disguised ads counterfact on");
+        this.sendAction(1, 'toggle amazon_disguised_ads_counterfact');
         this.changeCursor(this.target, "warning");
         this.target.style.cssText =
           "border-width: 4px; border-color: rgb(220 38 38);";
@@ -45,6 +46,7 @@ export default {
         this.target.appendChild(tip);
       } else if (message === "off") {
         console.log("amazon disguised ads counterfact off");
+        this.sendAction(0, 'toggle amazon_disguised_ads_counterfact');
         this.changeCursor(this.target, "default");
         this.target.style.cssText = "";
         let tip = document.getElementById(

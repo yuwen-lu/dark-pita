@@ -48,10 +48,12 @@ export default {
     this.emitter.on('amazon_disguised_ads_hide', (message) => {
       if (message === 'on') {
         console.log('amazon disguised ads hide on');
+        this.sendAction(1, 'toggle amazon_disguised_ads_hide');
         this.target = document.querySelectorAll('[id^=CardInstance]')[0];
         this.remove(this.target);
       } else if (message === 'off') {
         console.log('amazon disguised ads hide off');
+        this.sendAction(0, 'toggle amazon_disguised_ads_hide');
         this.recover(this.target);
       }
 

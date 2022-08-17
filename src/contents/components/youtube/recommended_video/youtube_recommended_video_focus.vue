@@ -17,9 +17,11 @@ export default {
 
         if (message === 'on') {
           console.log('youtube recommended video focus mode on');
+          this.sendAction(1, 'toggle youtube_recommended_video_focus');
           that.target.style.visibility = 'hidden';
         } else if (message === 'off') {
           console.log('youtube recommended video focus mode off');
+          this.sendAction(0, 'toggle youtube_recommended_video_focus');
           that.target.style.visibility = 'visible';
         }
 

@@ -50,6 +50,7 @@ export default {
         
             if (message === 'on') {
                 console.log('twitter what\'s happening hide on');
+                this.sendAction(1, 'toggle twitter_whats_happening_hide');
 
                 if (element !== null && element !== undefined) {
                     this.target = element;
@@ -60,6 +61,7 @@ export default {
                 }
             } else if (message === 'off') {
                 console.log('twitter what\'s happening hide off');
+                this.sendAction(0, 'toggle twitter_whats_happening_hide');
                 console.log("this.target: ", this.target);
                 if (this.target !== null && this.target !== undefined) {
                     this.recover(this.target);

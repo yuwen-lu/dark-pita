@@ -14,6 +14,7 @@ export default {
 
       if (message === 'on') {
         console.log('amazon discount price disclosure on');
+        this.sendAction(1, 'toggle amazon_discount_price_disclosure');
         let tag = this.target.getElementsByTagName('tr')[0].childNodes[0]
           .textContent;
         let tooltipContent = 'This price may not be the cheapest.';
@@ -43,6 +44,7 @@ export default {
         };
       } else if (message === 'off') {
         console.log('amazon discount price disclosure off');
+        this.sendAction(0, 'toggle amazon_discount_price_disclosure');
         let tooltip = document.getElementById('DP_tooltip');
         this.target.removeChild(tooltip);
         this.target.style.cssText = '';
