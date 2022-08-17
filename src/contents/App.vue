@@ -87,6 +87,11 @@
       v-if="targetNames.youtube_sidebar_video"
       @update="generateOverviewOverlay"
     />
+    <!-- netflix -->
+    <netflix_timeline_reflection
+      v-if="targetNames.netflix_timeline"
+      @update="generateOverviewOverlay"
+    />
 
     // facebook
     <facebook_suggested_hide
@@ -173,14 +178,15 @@
 </template>
 
 <script>
-import INDEX from '@/contents/index.js';
-import Alert from '@/contents/components/basic/Alert.vue';
-import Popup from '@/contents/components/basic/Popup.vue';
-import Console from '@/contents/components/basic/Console.vue';
-import Paper from 'paper';
-import { incrementTime } from '@/contents/components/youtube/recommended_video/time_tracker/tracker';
+import INDEX from "@/contents/index.js";
+import Alert from "@/contents/components/basic/Alert.vue";
+import Popup from "@/contents/components/basic/Popup.vue";
+import Console from "@/contents/components/basic/Console.vue";
+import Paper from "paper";
+import { incrementTime } from "@/contents/components/youtube/recommended_video/time_tracker/tracker";
 
 // Action components
+
 import amazon_buy_now_hide from '@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue';
 import amazon_buy_now_fairness from '@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue';
 import amazon_buy_now_friction from '@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue';
@@ -204,6 +210,8 @@ import youtube_sidebar_video_focus from '@/contents/components/youtube/sidebar_v
 import youtube_sidebar_video_preview from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue';
 import youtube_sidebar_video_reflection from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue';
 
+import netflix_timeline_reflection from "@/contents/components/netflix/timeline/netflix_timeline_reflection.vue";
+
 import facebook_suggested_hide from '@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue';
 import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
 import facebook_reels_counterfact from '@/contents/components/facebook/reels/facebook_reels_counterfact.vue';
@@ -214,6 +222,7 @@ import facebook_suggested_for_you_highlight from './components/facebook/suggeste
 
 import twitter_whats_happening_hide from './components/twitter/whats_happening/twitter_whats_happening_hide.vue';
 import twitter_promoted_highlight from './components/twitter/promoted/twitter_promoted_highlight.vue';
+
 
 export default {
   data() {
@@ -257,12 +266,16 @@ export default {
         youtube_video_dislike: false,
         youtube_sidebar_video: false,
 
+
+        netflix_preview: false,
+
         twitter_whats_happening: false,
         twitter_promoted: false,
+
       },
       savedSettings: {},
       isConsole: false,
-      notSupport: false
+      notSupport: false,
     };
   },
   components: {
@@ -300,7 +313,9 @@ export default {
     youtube_sidebar_video_focus,
     youtube_sidebar_video_preview,
     youtube_sidebar_video_reflection,
-    
+
+    netflix_timeline_reflection,
+
     twitter_whats_happening_hide,
     twitter_promoted_highlight,
   },
@@ -313,10 +328,10 @@ export default {
   },
   methods: {
     initialize() {
-      console.log('app initialize');
-      window.addEventListener('scroll', this.generateOverviewOverlay);
-      window.addEventListener('resize', this.generateOverviewOverlay);
-      Paper.setup(document.getElementById('DP_canvas'));
+      console.log("app initialize");
+      window.addEventListener("scroll", this.generateOverviewOverlay);
+      window.addEventListener("resize", this.generateOverviewOverlay);
+      Paper.setup(document.getElementById("DP_canvas"));
 
       this.notSupport = false;
       this.targetIdentifiers = null;
@@ -348,6 +363,9 @@ export default {
           } else if (url.search(/youtube.com/) !== -1) {
             this.website = "Youtube";
             this.info = INDEX.youtube;
+          } else if (url.search(/netflix.com/) !== -1) {
+            this.website = "Netflix";
+            this.info = INDEX.netflix;
           }
 
           // Collect dark patterns
@@ -378,12 +396,26 @@ export default {
           // Start time tracker
           if (url.search(/youtube.com/) !== -1) {
             const HEARTBIT = 6; // sec
-            setInterval(function() {
+            setInterval(function () {
               incrementTime(HEARTBIT / 60, (data) => {
-                let timeTracker = document.getElementById('DP_time_tracker');
+                let timeTracker = document.getElementById("DP_time_tracker");
                 if (timeTracker !== null) {
                   timeTracker.innerHTML =
-                    Math.round(data.time_watched) + 'mins';
+                    Math.round(data.time_watched) + "mins";
+                }
+              });
+            }, HEARTBIT * 1000);
+          }
+          if (url.search(/netflix.com/) !== -1) {
+            const HEARTBIT = 6; // sec
+            setInterval(function () {
+              incrementTime(HEARTBIT / 60, (data) => {
+                let timeTrackerNetflix = document.getElementById(
+                  "DP_time_tracker_netflix"
+                );
+                if (timeTrackerNetflix !== null) {
+                  timeTrackerNetflix.innerHTML =
+                    Math.round(data.time_watched) + "mins";
                 }
               });
             }, HEARTBIT * 1000);
@@ -392,9 +424,9 @@ export default {
       });
 
       let that = this;
-      chrome.storage.sync.get('savedSettings', function(settings) {
-        if (JSON.stringify(settings) !== '{}') {
-          console.log('retrieve settings');
+      chrome.storage.sync.get("savedSettings", function (settings) {
+        if (JSON.stringify(settings) !== "{}") {
+          console.log("retrieve settings");
           console.log(settings);
           that.savedSettings = settings.savedSettings;
         }
@@ -484,7 +516,7 @@ export default {
         svg.setAttribute("width", this.overlayWidth);
         svg.setAttribute("height", this.overlayHeight);
         svg.appendChild(this.overlayPath);
-        this.mask = document.getElementById('DP_mask');
+        this.mask = document.getElementById("DP_mask");
         this.mask.appendChild(svg);
 
         this.generateTouchableArea();
@@ -523,9 +555,11 @@ export default {
             element = document.querySelector(
             '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
+
           }
         } else if (this.website === 'Amazon') {
           if (this.targetIdentifiers[i] === 'submit.buy-now') {
+
             element = document.getElementById(this.targetIdentifiers[i]);
           } else if (
             this.targetIdentifiers[i] ===
@@ -544,6 +578,10 @@ export default {
               "[id^=" + this.targetIdentifiers[i] + "]"
             )[0];
           }
+        } else if (this.website === "Netflix") {
+          element = document.querySelector(
+            '[data-uia="' + this.targetIdentifiers[i] + '"]'
+          );
         } else if (this.website === "Youtube") {
           if (this.targetIdentifiers[i] === "content") {
             element = document.querySelectorAll(
@@ -665,7 +703,12 @@ export default {
             if (elementList[j] !== undefined && elementList[j] !== null) {
               console.log("Got a list to generate bounding box");
               let boundingBox = elementList[j].getBoundingClientRect();
-              console.log("For boundingbox list, retrieved element: ", elementList[j], " with its bounding box: ", boundingBox);
+              console.log(
+                "For boundingbox list, retrieved element: ",
+                elementList[j],
+                " with its bounding box: ",
+                boundingBox
+              );
               boundingBox.id = this.targetIdentifiers[i];
               boundingBox.x = boundingBox.x - 10;
               boundingBox.y = boundingBox.y - 10;
@@ -690,7 +733,10 @@ export default {
           }
         } else {
           if (element !== undefined && element !== null) {
-            console.log("Got a single element to generate bounding box, element: ", element);
+            console.log(
+              "Got a single element to generate bounding box, element: ",
+              element
+            );
             let boundingBox = element.getBoundingClientRect();
             boundingBox.id = this.targetIdentifiers[i];
             boundingBox.x = boundingBox.x - 10;
@@ -779,13 +825,13 @@ export default {
     closeAll(value) {
       this.refresh();
       this.isPop = false;
-      this.emitter.emit('alert_button_show', 'show');
-    }
+      this.emitter.emit("alert_button_show", "show");
+    },
   },
   mounted() {
-    console.log('app mounted');
+    console.log("app mounted");
     this.initialize();
-  }
+  },
 };
 </script>
 
