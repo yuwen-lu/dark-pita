@@ -788,11 +788,11 @@ export default {
       tag: ['restrictive', 'covert'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
-      pattern: 'Remaining Time Only',
+      pattern: 'Automatic Background Preview',
       description:
         'Once you enter your Netflix, it will automatically start to play the featured trailor for you.',
       awareness:
-        'The featured content is likely catering to your taste. You will possibly enter a video that you did not plan to watch.',
+        'The featured content is likely catering to your taste. You will possibly enter a video that you did not plan to watch. Therefore, you might spend more time than you expected on this platform.',
       action: [
         {
           name: 'none',
@@ -808,7 +808,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'netflix_hugepreview_disable',
           description:
-            'Dark Pita sets a mini clock on the right top corner as reminder for you to track time you spend here.'
+            'Dark Pita will disable the visual part of the background preview.'
         }
       ]
     },
