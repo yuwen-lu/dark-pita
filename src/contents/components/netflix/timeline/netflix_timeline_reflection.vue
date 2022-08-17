@@ -17,6 +17,7 @@ export default {
     this.emitter.on("netflix_timeline_reflection", (message) => {
       if (message === "on") {
         console.log("netflix player reflection on");
+        this.sendAction(1, 'toggle netflix_timeline_reflection');
         let elt = document.createElement("div");
         elt.className = "DP_time_tracker";
         elt.id = "DP_time_tracker_wrapper";
@@ -33,6 +34,7 @@ export default {
         document.body.appendChild(elt);
       } else if (message === "off") {
         console.log("youtube recommended video reflection off");
+        this.sendAction(0, 'toggle netflix_timeline_reflection');
         let elt = document.getElementById("DP_time_tracker_wrapper");
         document.body.removeChild(elt);
       }

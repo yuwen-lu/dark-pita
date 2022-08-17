@@ -151,7 +151,6 @@
       :target="currentTarget"
       :savedSettings="savedSettings"
       :targetNames="targetNames"
-      @closeAll="closeAll"
       @closePop="closePop"
     />
 
@@ -343,6 +342,7 @@ export default {
         if (this.currentTab !== null) {
           let url = this.currentTab.url;
           console.log('current site:', url);
+          this.sendAction(this.currentTab.url, 'app launched');
 
           // Define the identifier
           if (url.search(/tailwindcss.com/) !== -1) {
@@ -386,6 +386,7 @@ export default {
             console.log(this.targetIdentifiers);
             this.currentTarget = this.info[0];
             this.isAlert = true;
+            this.sendAction(this.currentTab.url, 'trigger banner');
           } else {
             this.notSupport = true;
           }
@@ -433,9 +434,11 @@ export default {
       this.refresh();
       if (this.isMask === false) {
         this.isMask = true;
+        this.sendAction(1, 'toggle mask');
         this.generateOverviewOverlay();
       } else {
         this.isMask = false;
+        this.sendAction(0, 'toggle mask');
       }
     },
     generateTouchableArea() {
@@ -805,22 +808,21 @@ export default {
       }
 
       this.isPop = true;
+      this.sendAction(this.currentTarget, 'trigger popup');
       this.timer = new Date().getTime();
     },
     closePop(value) {
       console.log(value);
       this.isPop = false;
+      this.sendAction(this.currentTarget, 'close popup');
     },
     closeAlert() {
       this.isAlert = false;
+      this.sendAction(this.currentTab.url, 'close banner');
     },
     openAlert() {
       this.isAlert = true;
-    },
-    closeAll(value) {
-      this.refresh();
-      this.isPop = false;
-      this.emitter.emit('alert_button_show', 'show');
+      this.sendAction(this.currentTab.url, 'reopen banner');
     }
   },
   mounted() {

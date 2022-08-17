@@ -178,6 +178,7 @@ export default {
       });
 
       let that = this;
+      this.sendAction(this.interventionState, 'before reset settings');
       chrome.storage.sync.get('savedSettings', function(settings) {
         that.interventionState = settings.savedSettings;
         if (JSON.stringify(settings.savedSettings) !== '{}') {
@@ -198,6 +199,7 @@ export default {
       });
 
       console.log('reset settings');
+      this.sendAction(this.interventionState, 'reset settings');
       location.reload();
     }
   },

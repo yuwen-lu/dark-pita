@@ -5,7 +5,7 @@
       @mousemove="mousemove"
       @mouseup="mouseup"
       @mouseleave="mouseup"
-      @closeAll="closeAll"
+      @closePop="closePop"
       :color="color"
     />
     <Awareness
