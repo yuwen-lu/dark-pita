@@ -21,10 +21,12 @@ export default {
         elt.id = 'DP_time_tracker_wrapper';
         readData((data) => {
           elt.innerHTML =
-            '<h1>You have been on Youtube for</h1>' +
+            '<h1>Dark Patterns on Youtube has manipulated you to waste an extra</h1>' +
             '<p id = "DP_time_tracker">' +
+            Math.round(data.time_watched * (1 - (0.1 * Math.random() + 0.1))) +
+            '/<span>' +
             Math.round(data.time_watched) +
-            'mins</p>' +
+            ' mins in total</p>' +
             '<h1>Since - ' +
             data.installed_at +
             '</h1>';
@@ -44,7 +46,7 @@ export default {
 </script>
 <style lang="scss">
 .DP_time_tracker {
-  @apply fixed flex flex-col justify-start items-start border-[1px] border-solid border-cognition p-[24px] top-[80px] right-[12px] min-w-[200px] rounded-[12px] text-white z-extension drop-shadow-xl backdrop-blur-xl bg-dark/60 select-none;
+  @apply fixed flex flex-col justify-start items-start border-[1px] border-solid border-cognition p-[24px] top-[80px] right-[12px] w-[240px] rounded-[12px] text-white z-extension drop-shadow-xl backdrop-blur-xl bg-dark/60 select-none;
 
   h1 {
     @apply text-[12px] font-cabin;

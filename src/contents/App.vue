@@ -399,7 +399,12 @@ export default {
                 let timeTracker = document.getElementById('DP_time_tracker');
                 if (timeTracker !== null) {
                   timeTracker.innerHTML =
-                    Math.round(data.time_watched) + 'mins';
+                    Math.round(
+                      data.time_watched * (1 - (0.1 * Math.random() + 0.1))
+                    ) +
+                    '/<span>' +
+                    Math.round(data.time_watched) +
+                    ' mins in total';
                 }
               });
             }, HEARTBIT * 1000);

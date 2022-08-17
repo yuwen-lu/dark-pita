@@ -29,10 +29,10 @@ export default {
 </script>
 <style lang="scss">
 .DP_money_tracker {
-  @apply fixed flex flex-col justify-center items-center border-[1px] border-solid border-money p-[24px] top-[80px] right-[12px] w-[200px] rounded-[12px] text-center text-white z-extension drop-shadow-xl backdrop-blur-xl bg-dark/60 select-none;
+  @apply fixed flex flex-col justify-center items-center border-[1px] border-solid border-money p-[24px] top-[80px] right-[12px] w-[220px] rounded-[12px] text-center text-white z-extension drop-shadow-xl backdrop-blur-xl bg-dark/60 select-none;
 
   h1 {
-    @apply text-[16px] leading-[18px] font-cabin;
+    @apply text-[12px] leading-[16px] font-cabin;
   }
 
   p {
@@ -45,6 +45,7 @@ $circle-circumstance: (2 * calc(22 / 7) * 40);
 .circular-progress {
   position: relative;
   display: inline-block;
+  margin-top: 8px;
   width: 140px;
   height: 140px;
   border-radius: 50%;
