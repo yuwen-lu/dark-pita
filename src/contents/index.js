@@ -172,7 +172,7 @@ export default {
       pattern: 'Recommended Items',
 
       description:
-        'These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.',
+        'These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.\n\n* The highlighted one represents all recommended items in this page.',
       awareness:
         'Users are more likely to deviate from their original purchase goals or spend more time browsing less relavant items.',
       action: [
