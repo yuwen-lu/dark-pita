@@ -4,9 +4,16 @@
       id="message"
       rows="4"
       class="DP_text_area"
-      placeholder="Your insights..."
+      placeholder="Take a screenshoot and send it with your insights..."
       v-model="diary"
     ></textarea>
+    <input
+      class="DP_upload"
+      id="DP_upload"
+      type="file"
+      accept="image/jpeg/*"
+      @change="uploadImage()"
+    />
     <button @click="sendDiary">
       Send Insights
     </button>
@@ -30,7 +37,8 @@ export default {
   },
   data() {
     return {
-      diary: ''
+      diary: '',
+      screenshot: null
     };
   },
   methods: {
@@ -38,6 +46,7 @@ export default {
       // console.log(this.diary);
       // console.log(this.userId);
       let data = {
+        screenshot: this.screenshot,
         diary: this.diary,
         timestamp: new Date().valueOf()
       };
@@ -48,9 +57,24 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+      // console.log(this.screenshot);
     },
     openAlert() {
       this.$emit('openAlert', 'open alert');
+    },
+    uploadImage() {
+      const file = document.getElementById('DP_upload').files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        this.screenshot = reader.result;
+        console.log(this.screenshot);
+      };
+
+      // console.log(file);
+      if (file !== null && file !== undefined) {
+        reader.readAsDataURL(file);
+      }
     }
   }
 };
@@ -63,12 +87,16 @@ export default {
     @apply block p-[10px] w-full h-[200px] text-[14px] rounded-lg border-[1px] bg-dark border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500;
   }
 
+  .DP_upload {
+    @apply block w-full font-cabin font-normal text-[14px] text-gray-900 bg-gray-50 rounded-[4px] border border-gray-300 cursor-pointer focus:outline-none;
+  }
+
   button {
     @apply bg-transparent w-full hover:bg-white font-cabin font-normal text-[14px] text-white hover:text-dark px-[24px] py-[8px] rounded-[4px] border disabled:cursor-not-allowed disabled:hover:bg-dark disabled:bg-dark disabled:hover:text-gray-400 disabled:text-gray-400 disabled:border-dark;
   }
 
   p {
-    @apply mt-[12px] text-white text-[12px] text-gray-400;
+    @apply mt-[12px] text-white text-[12px];
   }
 }
 </style>
