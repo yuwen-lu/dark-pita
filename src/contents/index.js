@@ -510,14 +510,7 @@ export default {
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         },
-        {
-          name: 'bright pattern',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
-          description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        }
+        
       ]
     },
     {
@@ -559,7 +552,49 @@ export default {
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         }
       ]
-    }
+    },
+    {
+      name: 'twitter_promoted',
+      identifier: 'See more',
+      url: 'https://twitter.com/home',
+      type: 'social media platform',
+      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
+      pattern: 'loss-gain framing',
+      description:
+        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+      awareness:
+        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: '',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'hide',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'twitter_promoted_hide',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        },
+        {
+          name: 'bright pattern',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: '',
+          description:
+            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        }
+      ]
+    },
+    
+
   ],
   facebook: [
     {

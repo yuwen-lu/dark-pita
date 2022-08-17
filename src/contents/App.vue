@@ -124,6 +124,11 @@
       @update="generateOverviewOverlay"
     />
 
+    <twitter_promoted_hide
+      v-if="targetNames.twitter_promoted"
+      @update="generateOverviewOverlay"
+    />
+
     <Alert
       :targetNames="targetNames"
       :isAlert="isAlert"
@@ -208,6 +213,7 @@ import facebook_suggested_for_you_hide from './components/facebook/suggested_for
 import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
 
 import twitter_whats_happening_hide from './components/twitter/whats_happening/twitter_whats_happening_hide.vue';
+import twitter_promoted_hide from './components/twitter/promoted/twitter_promoted_hide.vue';
 
 export default {
   data() {
@@ -250,6 +256,9 @@ export default {
         youtube_recommended_video: false,
         youtube_video_dislike: false,
         youtube_sidebar_video: false,
+
+        twitter_whats_happening: false,
+        twitter_promoted: false,
       },
       savedSettings: {},
       isConsole: false,
@@ -293,6 +302,7 @@ export default {
     youtube_sidebar_video_reflection,
     
     twitter_whats_happening_hide,
+    twitter_promoted_hide,
   },
   computed: {},
   watch: {
@@ -492,9 +502,28 @@ export default {
         if (this.website === "Tailwind") {
           element = document.getElementById(this.targetIdentifiers[i]);
         } else if (this.website === "Twitter") {
-          element = document.querySelector(
+          if (this.targetIdentifiers[i] === "See more") {
+            let retrievedHtmls = document.getElementsByTagName("span");
+            for (let j = 0; j < retrievedHtmls.length; j++) {
+              if (retrievedHtmls[j].innerHTML.search("See more") !== -1) {
+                element = retrievedHtmls[j];
+                break;
+              }
+            }
+            // our target is the 17th parent of the selected element
+            let parentLevel = 17;
+            for (let j = 0; j < parentLevel; j++) {
+              if(element.parentElement !== null) {
+                element = element.parentElement;
+              } else {
+                break;
+              }
+            }
+          } else {
+            element = document.querySelector(
             '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
+          }
         } else if (this.website === 'Amazon') {
           if (this.targetIdentifiers[i] === 'submit.buy-now') {
             element = document.getElementById(this.targetIdentifiers[i]);
