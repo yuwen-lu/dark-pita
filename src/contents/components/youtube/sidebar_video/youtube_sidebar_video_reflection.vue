@@ -21,10 +21,12 @@ export default {
         elt.id = 'DP_time_tracker_wrapper';
         readData((data) => {
           elt.innerHTML =
-            '<h1>You have been on Youtube for</h1>' +
+            '<h1>Dark Patterns on Youtube has manipulated you to waste an extra</h1>' +
             '<p id = "DP_time_tracker">' +
+            Math.round(data.time_watched) * (1 - (0.1 * Math.random() + 0.1)) +
+            'mins/<span>' +
             Math.round(data.time_watched) +
-            'mins</p>' +
+            'mins in total</p>' +
             '<h1>Since - ' +
             data.installed_at +
             '</h1>';
