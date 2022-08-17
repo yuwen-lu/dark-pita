@@ -55,7 +55,7 @@ div {
   height: 36px;
 
   p {
-    @apply font-cabin font-bold text-xs text-white pointer-events-none select-none;
+    @apply font-cabin font-bold text-[12px] text-white pointer-events-none select-none;
   }
 }
 

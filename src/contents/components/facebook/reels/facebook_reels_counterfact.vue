@@ -40,7 +40,7 @@ export default {
                     this.target.style.fontSize = 'inherit';
                     this.target.innerHTML = this.target.innerHTML.replace("Reels Not Followed by You, Promoted by Facebook Algorithm", "Reels and short videos");
                 } else {
-                    console.log("Message on, but cannot find target element for facebook reels");
+                    console.log("cannot find target element for facebook reels");
                 }
             }
             this.emitter.emit('update');

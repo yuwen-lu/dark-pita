@@ -57,6 +57,7 @@
   </div>
 </template>
 <script>
+import twitter_whats_happening_hideVue from '../twitter/whats_happening/twitter_whats_happening_hide.vue';
 export default {
   props: {
     action: {
@@ -105,17 +106,23 @@ export default {
         facebook_suggested_for_you_highlight: "off",
 
         // youtube
-        youtube_recommended_video_focus: "off",
-        youtube_recommended_video_preview: "off",
-        youtube_recommended_video_reflection: "off",
-        youtube_video_dislike_fairness: "off",
-        youtube_sidebar_video_focus: "off",
-        youtube_sidebar_video_preview: "off",
-        youtube_sidebar_video_reflection: "off",
 
+        youtube_recommended_video_focus: 'off',
+        youtube_recommended_video_preview: 'off',
+        youtube_recommended_video_reflection: 'off',
+        youtube_video_dislike_fairness: 'off',
+        youtube_sidebar_video_focus: 'off',
+        youtube_sidebar_video_preview: 'off',
+        youtube_sidebar_video_reflection: 'off',
+        
         // netflix
         netflix_timeline_reflection: "off",
-      },
+
+        // twitter
+        twitter_whats_happening_hide: 'off',
+        twitter_promoted_highlight: 'off',
+      }
+
     };
   },
   methods: {
@@ -237,9 +244,18 @@ export default {
       }
 
       // twitter
-      else if (this.intervention.component === "twitter_whats_happening_hide") {
-        this.emitter.emit("twitter_whats_happening_hide", "on");
-        console.log("Emitting twitter_whats_happening_hide message as on");
+
+      else if (this.intervention.component === 'twitter_whats_happening_hide') {
+        this.emitter.emit('twitter_whats_happening_hide', 'on');
+        console.log(
+          'Emitting twitter_whats_happening_hide message as on'
+        );
+      } else if (this.intervention.component === 'twitter_promoted_highlight') {
+        this.emitter.emit('twitter_promoted_highlight', 'on');
+        console.log(
+          'Emitting twitter_promoted_highlight message as on'
+        );
+
       }
 
       if (this.intervention.component !== "none") {

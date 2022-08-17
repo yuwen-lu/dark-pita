@@ -129,6 +129,11 @@
       @update="generateOverviewOverlay"
     />
 
+    <twitter_promoted_highlight
+      v-if="targetNames.twitter_promoted"
+      @update="generateOverviewOverlay"
+    />
+
     <Alert
       :targetNames="targetNames"
       :isAlert="isAlert"
@@ -181,40 +186,43 @@ import Paper from "paper";
 import { incrementTime } from "@/contents/components/youtube/recommended_video/time_tracker/tracker";
 
 // Action components
-import amazon_buy_now_hide from "@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue";
-import amazon_buy_now_fairness from "@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue";
-import amazon_buy_now_friction from "@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue";
-import amazon_disguised_ads_hide from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_hide.vue";
-import amazon_disguised_ads_friction from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_friction.vue";
-import amazon_disguised_ads_disclosure from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_disclosure.vue";
-import amazon_disguised_ads_counterfact from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_counterfact.vue";
-import amazon_discount_price_hide from "@/contents/components/amazon/discount_price/amazon_discount_price_hide.vue";
-import amazon_discount_price_disclosure from "@/contents/components/amazon/discount_price/amazon_discount_price_disclosure.vue";
-import amazon_discount_price_reflection from "@/contents/components/amazon/discount_price/amazon_discount_price_reflection.vue";
-import amazon_discount_price_action from "@/contents/components/amazon/discount_price/amazon_discount_price_action.vue";
-import amazon_home_card_focus from "@/contents/components/amazon/home_card/amazon_home_card_focus.vue";
-import amazon_home_card_reflection from "@/contents/components/amazon/home_card/amazon_home_card_reflection.vue";
-import amazon_home_card_progress from "@/contents/components/amazon/home_card/amazon_home_card_progress.vue";
 
-import youtube_recommended_video_focus from "@/contents/components/youtube/recommended_video/youtube_recommended_video_focus.vue";
-import youtube_recommended_video_preview from "@/contents/components/youtube/recommended_video/youtube_recommended_video_preview.vue";
-import youtube_recommended_video_reflection from "@/contents/components/youtube/recommended_video/youtube_recommended_video_reflection.vue";
-import youtube_video_dislike_fairness from "@/contents/components/youtube/video_dislike/youtube_video_dislike_fairness.vue";
-import youtube_sidebar_video_focus from "@/contents/components/youtube/sidebar_video/youtube_sidebar_video_focus.vue";
-import youtube_sidebar_video_preview from "@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue";
-import youtube_sidebar_video_reflection from "@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue";
+import amazon_buy_now_hide from '@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue';
+import amazon_buy_now_fairness from '@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue';
+import amazon_buy_now_friction from '@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue';
+import amazon_disguised_ads_hide from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_hide.vue';
+import amazon_disguised_ads_friction from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_friction.vue';
+import amazon_disguised_ads_disclosure from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_disclosure.vue';
+import amazon_disguised_ads_counterfact from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_counterfact.vue';
+import amazon_discount_price_hide from '@/contents/components/amazon/discount_price/amazon_discount_price_hide.vue';
+import amazon_discount_price_disclosure from '@/contents/components/amazon/discount_price/amazon_discount_price_disclosure.vue';
+import amazon_discount_price_reflection from '@/contents/components/amazon/discount_price/amazon_discount_price_reflection.vue';
+import amazon_discount_price_action from '@/contents/components/amazon/discount_price/amazon_discount_price_action.vue';
+import amazon_home_card_focus from '@/contents/components/amazon/home_card/amazon_home_card_focus.vue';
+import amazon_home_card_reflection from '@/contents/components/amazon/home_card/amazon_home_card_reflection.vue';
+import amazon_home_card_progress from '@/contents/components/amazon/home_card/amazon_home_card_progress.vue';
+
+import youtube_recommended_video_focus from '@/contents/components/youtube/recommended_video/youtube_recommended_video_focus.vue';
+import youtube_recommended_video_preview from '@/contents/components/youtube/recommended_video/youtube_recommended_video_preview.vue';
+import youtube_recommended_video_reflection from '@/contents/components/youtube/recommended_video/youtube_recommended_video_reflection.vue';
+import youtube_video_dislike_fairness from '@/contents/components/youtube/video_dislike/youtube_video_dislike_fairness.vue';
+import youtube_sidebar_video_focus from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_focus.vue';
+import youtube_sidebar_video_preview from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue';
+import youtube_sidebar_video_reflection from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue';
 
 import netflix_timeline_reflection from "@/contents/components/netflix/timeline/netflix_timeline_reflection.vue";
 
-import facebook_suggested_hide from "@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue";
-import facebook_reels_hide from "@/contents/components/facebook/reels/facebook_reels_hide.vue";
-import facebook_reels_counterfact from "@/contents/components/facebook/reels/facebook_reels_counterfact.vue";
-import facebook_reels_friction from "@/contents/components/facebook/reels/facebook_reels_friction.vue";
-import facebook_sponsored_hide from "./components/facebook/sponsored/facebook_sponsored_hide.vue";
-import facebook_suggested_for_you_hide from "./components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue";
-import facebook_suggested_for_you_highlight from "./components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue";
+import facebook_suggested_hide from '@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue';
+import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
+import facebook_reels_counterfact from '@/contents/components/facebook/reels/facebook_reels_counterfact.vue';
+import facebook_reels_friction from '@/contents/components/facebook/reels/facebook_reels_friction.vue';
+import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sponsored_hide.vue';
+import facebook_suggested_for_you_hide from './components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue';
+import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
 
-import twitter_whats_happening_hide from "./components/twitter/whats_happening/twitter_whats_happening_hide.vue";
+import twitter_whats_happening_hide from './components/twitter/whats_happening/twitter_whats_happening_hide.vue';
+import twitter_promoted_highlight from './components/twitter/promoted/twitter_promoted_highlight.vue';
+
 
 export default {
   data() {
@@ -258,7 +266,12 @@ export default {
         youtube_video_dislike: false,
         youtube_sidebar_video: false,
 
+
         netflix_preview: false,
+
+        twitter_whats_happening: false,
+        twitter_promoted: false,
+
       },
       savedSettings: {},
       isConsole: false,
@@ -304,6 +317,7 @@ export default {
     netflix_timeline_reflection,
 
     twitter_whats_happening_hide,
+    twitter_promoted_highlight,
   },
   computed: {},
   watch: {
@@ -520,11 +534,32 @@ export default {
         if (this.website === "Tailwind") {
           element = document.getElementById(this.targetIdentifiers[i]);
         } else if (this.website === "Twitter") {
-          element = document.querySelector(
+          if (this.targetIdentifiers[i] === "See more") {
+            let retrievedHtmls = document.getElementsByTagName("span");
+            for (let j = 0; j < retrievedHtmls.length; j++) {
+              if (retrievedHtmls[j].innerHTML.search("See more") !== -1) {
+                element = retrievedHtmls[j];
+                break;
+              }
+            }
+            // our target is the 17th parent of the selected element
+            let parentLevel = 17;
+            for (let j = 0; j < parentLevel; j++) {
+              if(element.parentElement !== null) {
+                element = element.parentElement;
+              } else {
+                break;
+              }
+            }
+          } else {
+            element = document.querySelector(
             '[aria-label="' + this.targetIdentifiers[i] + '"]'
           );
-        } else if (this.website === "Amazon") {
-          if (this.targetIdentifiers[i] === "submit.buy-now") {
+
+          }
+        } else if (this.website === 'Amazon') {
+          if (this.targetIdentifiers[i] === 'submit.buy-now') {
+
             element = document.getElementById(this.targetIdentifiers[i]);
           } else if (
             this.targetIdentifiers[i] ===
