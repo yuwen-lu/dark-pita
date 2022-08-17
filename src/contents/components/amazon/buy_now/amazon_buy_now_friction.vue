@@ -37,6 +37,7 @@ export default {
         this.sendAction(1, 'toggle amazon_buy_now_friction');
         this.target.onmouseenter = () => {
           console.log('buy now friction overlay');
+          this.sendAction(1, 'trigger amazon_buy_now_friction');
           this.on();
         };
       } else if (message === 'off') {
