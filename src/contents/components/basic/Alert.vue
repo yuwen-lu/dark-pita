@@ -2,7 +2,7 @@
   <div class="DP_heading">
     <div class="DP_alert">
       <img
-        src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dawn.png?v=1659250496384"
+        src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/pita.png?v=1660736175003"
       />
       <p>
         <span>Dark Pita</span>

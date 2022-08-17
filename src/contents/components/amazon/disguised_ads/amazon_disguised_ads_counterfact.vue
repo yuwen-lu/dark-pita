@@ -15,7 +15,7 @@ export default {
         let childNode = nodeList[i];
         if (childNode.nodeType == 1) {
           childNode.style.cssText =
-            'cursor: url("https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cursor.cur?v=1660230130304"), auto;';
+            'cursor: url("https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cursor.cur?v=1660736255715"), auto;';
           if (type === "default") {
             childNode.style.cssText = "";
           }
