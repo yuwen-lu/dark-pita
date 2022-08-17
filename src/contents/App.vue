@@ -124,7 +124,7 @@
       @update="generateOverviewOverlay"
     />
 
-    <twitter_promoted_hide
+    <twitter_promoted_highlight
       v-if="targetNames.twitter_promoted"
       @update="generateOverviewOverlay"
     />
@@ -213,7 +213,7 @@ import facebook_suggested_for_you_hide from './components/facebook/suggested_for
 import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
 
 import twitter_whats_happening_hide from './components/twitter/whats_happening/twitter_whats_happening_hide.vue';
-import twitter_promoted_hide from './components/twitter/promoted/twitter_promoted_hide.vue';
+import twitter_promoted_highlight from './components/twitter/promoted/twitter_promoted_highlight.vue';
 
 export default {
   data() {
@@ -302,7 +302,7 @@ export default {
     youtube_sidebar_video_reflection,
     
     twitter_whats_happening_hide,
-    twitter_promoted_hide,
+    twitter_promoted_highlight,
   },
   computed: {},
   watch: {

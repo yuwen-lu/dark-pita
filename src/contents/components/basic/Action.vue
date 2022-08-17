@@ -116,7 +116,7 @@ export default {
 
         // twitter
         twitter_whats_happening_hide: 'off',
-        twitter_promoted_hide: 'off',
+        twitter_promoted_highlight: 'off',
       }
     };
   },
@@ -235,10 +235,10 @@ export default {
         console.log(
           'Emitting twitter_whats_happening_hide message as on'
         );
-      } else if (this.intervention.component === 'twitter_promoted_hide') {
-        this.emitter.emit('twitter_promoted_hide', 'on');
+      } else if (this.intervention.component === 'twitter_promoted_highlight') {
+        this.emitter.emit('twitter_promoted_highlight', 'on');
         console.log(
-          'Emitting twitter_promoted_hide message as on'
+          'Emitting twitter_promoted_highlight message as on'
         );
       }
 
