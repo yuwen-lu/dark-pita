@@ -38,6 +38,7 @@ export default {
         this.target.style.cssText = 'position: relative;';
         this.target.onmouseenter = () => {
           tooltip.style.visibility = 'visible';
+          this.sendAction(1, 'trigger amazon_discount_price_disclosure');
         };
         this.target.onmouseleave = () => {
           tooltip.style.visibility = 'hidden';

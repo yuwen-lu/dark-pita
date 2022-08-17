@@ -69,6 +69,7 @@ export default {
           let x = boundingBox.x;
           let y = boundingBox.y;
           this.explode(x, y);
+          this.sendAction(1, 'trigger amazon_discount_price_reflection');
         };
       } else if (message === 'off') {
         console.log('amazon discount price reflection off');
