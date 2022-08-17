@@ -69,6 +69,8 @@ export default {
                     this.frictionOverlayElement.appendChild(textNode);
                     this.frictionOverlayElement.appendChild(buttonNode);
                     
+
+                    document.body.appendChild(this.frictionOverlayElement);
                 } 
                 this.frictionOverlayElement.style.position = "fixed";
                 this.frictionOverlayElement.style.width = this.target.offsetWidth + "px";
@@ -78,15 +80,6 @@ export default {
                 this.frictionOverlayElement.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
                 this.frictionOverlayElement.style.zIndex = "1";
 
-                // textNode.style.top = this.frictionOverlayElement.style.height / 2 + "px";
-                // buttonNode.style.top = parseInt(textNode.style.top) + parseInt(textNode.offsetHeight) + parseInt(buttonNode.offsetHeight) + "px";
-
-
-                
-
-                
-
-                document.body.appendChild(this.frictionOverlayElement);
             }
         }
     },
