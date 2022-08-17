@@ -118,6 +118,12 @@
       @update="generateOverviewOverlay"
     />
 
+    // twitter
+    <twitter_whats_happening_hide
+      v-if="targetNames.twitter_whats_happening"
+      @update="generateOverviewOverlay"
+    />
+
     <Alert
       :targetNames="targetNames"
       :isAlert="isAlert"
@@ -201,6 +207,8 @@ import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sp
 import facebook_suggested_for_you_hide from './components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue';
 import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
 
+import twitter_whats_happening_hide from './components/twitter/whats_happening/twitter_whats_happening_hide.vue';
+
 export default {
   data() {
     return {
@@ -283,6 +291,8 @@ export default {
     youtube_sidebar_video_focus,
     youtube_sidebar_video_preview,
     youtube_sidebar_video_reflection,
+    
+    twitter_whats_happening_hide,
   },
   computed: {},
   watch: {

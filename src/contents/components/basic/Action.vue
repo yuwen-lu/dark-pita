@@ -224,6 +224,14 @@ export default {
         );
       }
 
+      // twitter
+      else if (this.intervention.component === 'twitter_whats_happening_hide') {
+        this.emitter.emit('twitter_whats_happening_hide', 'on');
+        console.log(
+          'Emitting twitter_whats_happening_hide message as on'
+        );
+      }
+
       if (this.intervention.component !== 'none') {
         this.interventionState[this.intervention.component] = 'on';
       }
