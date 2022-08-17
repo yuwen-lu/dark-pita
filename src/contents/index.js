@@ -106,7 +106,7 @@ export default {
     },
     {
       name: 'amazon_discount_price',
-      identifier: 'apex_desktop',
+      identifier: 'corePrice_desktop',
       url: 'www.amazon.com(\\S*)/dp',
       type: 'online shopping platform',
       tag: ['information hiding'],
