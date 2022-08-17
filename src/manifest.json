@@ -25,9 +25,12 @@
         "https://twitter.com/*",
         "https://www.amazon.com/*",
         "https://www.facebook.com/*",
-        "https://www.youtube.com/*"
+        "https://www.youtube.com/*",
+        "https://www.netflix.com/*"
       ],
-      "js": ["contents/main.js"]
+      "js": [
+        "contents/main.js"
+      ]
     }
   ],
   "permissions": ["tabs", "identity", "identity.email"]

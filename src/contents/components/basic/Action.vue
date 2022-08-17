@@ -62,18 +62,18 @@ import DataService from '@/contents/services/data.js';
 export default {
   props: {
     action: {
-      type: Array
+      type: Array,
     },
     color: {
       type: String,
-      default: 'money'
+      default: "money",
     },
     savedSettings: {
-      type: Object
+      type: Object,
     },
     targetName: {
-      type: Object
-    }
+      type: Object,
+    },
   },
   data() {
     return {
@@ -82,31 +82,32 @@ export default {
       interventionId: 0,
       interventionState: {
         // amazon
-        amazon_buy_now_hide: 'off',
-        amazon_buy_now_fairness: 'off',
-        amazon_buy_now_friction: 'off',
-        amazon_disguised_ads_hide: 'off',
-        amazon_disguised_ads_friction: 'off',
-        amazon_disguised_ads_disclosure: 'off',
-        amazon_disguised_ads_counterfact: 'off',
-        amazon_discount_price_hide: 'off',
-        amazon_discount_price_disclosure: 'off',
-        amazon_discount_price_reflection: 'off',
-        amazon_discount_price_action: 'off',
-        amazon_home_card_focus: 'off',
-        amazon_home_card_reflection: 'off',
-        amazon_home_card_progress: 'off',
+        amazon_buy_now_hide: "off",
+        amazon_buy_now_fairness: "off",
+        amazon_buy_now_friction: "off",
+        amazon_disguised_ads_hide: "off",
+        amazon_disguised_ads_friction: "off",
+        amazon_disguised_ads_disclosure: "off",
+        amazon_disguised_ads_counterfact: "off",
+        amazon_discount_price_hide: "off",
+        amazon_discount_price_disclosure: "off",
+        amazon_discount_price_reflection: "off",
+        amazon_discount_price_action: "off",
+        amazon_home_card_focus: "off",
+        amazon_home_card_reflection: "off",
+        amazon_home_card_progress: "off",
 
         // facebook
-        facebook_suggested_hide: 'off',
-        facebook_reels_hide: 'off',
-        facebook_reels_counterfact: 'off',
-        facebook_reels_friction: 'off',
-        facebook_sponsored_hide: 'off',
-        facebook_suggested_for_you_hide: 'off',
-        facebook_suggested_for_you_highlight: 'off',
+        facebook_suggested_hide: "off",
+        facebook_reels_hide: "off",
+        facebook_reels_counterfact: "off",
+        facebook_reels_friction: "off",
+        facebook_sponsored_hide: "off",
+        facebook_suggested_for_you_hide: "off",
+        facebook_suggested_for_you_highlight: "off",
 
         // youtube
+
         youtube_recommended_video_focus: 'off',
         youtube_recommended_video_preview: 'off',
         youtube_recommended_video_reflection: 'off',
@@ -114,11 +115,15 @@ export default {
         youtube_sidebar_video_focus: 'off',
         youtube_sidebar_video_preview: 'off',
         youtube_sidebar_video_reflection: 'off',
+        
+        // netflix
+        netflix_timeline_reflection: "off",
 
         // twitter
         twitter_whats_happening_hide: 'off',
         twitter_promoted_highlight: 'off'
       }
+
     };
   },
   methods: {
@@ -127,191 +132,200 @@ export default {
       this.interventionId = index;
 
       console.log(
-        'this.intervention.component: ' + this.intervention.component
+        "this.intervention.component: " + this.intervention.component
       );
 
       this.resetIntervention(this.intervention.component);
 
       // amazon
-      if (this.intervention.component === 'amazon_buy_now_hide') {
-        this.emitter.emit('amazon_buy_now_hide', 'on');
-      } else if (this.intervention.component === 'amazon_buy_now_fairness') {
-        this.emitter.emit('amazon_buy_now_fairness', 'on');
-      } else if (this.intervention.component === 'amazon_buy_now_friction') {
-        this.emitter.emit('amazon_buy_now_friction', 'on');
-      } else if (this.intervention.component === 'amazon_disguised_ads_hide') {
-        this.emitter.emit('amazon_disguised_ads_hide', 'on');
+      if (this.intervention.component === "amazon_buy_now_hide") {
+        this.emitter.emit("amazon_buy_now_hide", "on");
+      } else if (this.intervention.component === "amazon_buy_now_fairness") {
+        this.emitter.emit("amazon_buy_now_fairness", "on");
+      } else if (this.intervention.component === "amazon_buy_now_friction") {
+        this.emitter.emit("amazon_buy_now_friction", "on");
+      } else if (this.intervention.component === "amazon_disguised_ads_hide") {
+        this.emitter.emit("amazon_disguised_ads_hide", "on");
       } else if (
-        this.intervention.component === 'amazon_disguised_ads_disclosure'
+        this.intervention.component === "amazon_disguised_ads_disclosure"
       ) {
-        this.emitter.emit('amazon_disguised_ads_disclosure', 'on');
+        this.emitter.emit("amazon_disguised_ads_disclosure", "on");
       } else if (
-        this.intervention.component === 'amazon_disguised_ads_counterfact'
+        this.intervention.component === "amazon_disguised_ads_counterfact"
       ) {
-        this.emitter.emit('amazon_disguised_ads_counterfact', 'on');
+        this.emitter.emit("amazon_disguised_ads_counterfact", "on");
       } else if (
-        this.intervention.component === 'amazon_disguised_ads_friction'
+        this.intervention.component === "amazon_disguised_ads_friction"
       ) {
-        this.emitter.emit('amazon_disguised_ads_friction', 'on');
-      } else if (this.intervention.component === 'amazon_discount_price_hide') {
-        this.emitter.emit('amazon_discount_price_hide', 'on');
+        this.emitter.emit("amazon_disguised_ads_friction", "on");
+      } else if (this.intervention.component === "amazon_discount_price_hide") {
+        this.emitter.emit("amazon_discount_price_hide", "on");
       } else if (
-        this.intervention.component === 'amazon_discount_price_disclosure'
+        this.intervention.component === "amazon_discount_price_disclosure"
       ) {
-        this.emitter.emit('amazon_discount_price_disclosure', 'on');
+        this.emitter.emit("amazon_discount_price_disclosure", "on");
       } else if (
-        this.intervention.component === 'amazon_discount_price_reflection'
+        this.intervention.component === "amazon_discount_price_reflection"
       ) {
-        this.emitter.emit('amazon_discount_price_reflection', 'on');
+        this.emitter.emit("amazon_discount_price_reflection", "on");
       } else if (
-        this.intervention.component === 'amazon_discount_price_action'
+        this.intervention.component === "amazon_discount_price_action"
       ) {
-        this.emitter.emit('amazon_discount_price_action', 'on');
-      } else if (this.intervention.component === 'amazon_home_card_focus') {
-        this.emitter.emit('amazon_home_card_focus', 'on');
+        this.emitter.emit("amazon_discount_price_action", "on");
+      } else if (this.intervention.component === "amazon_home_card_focus") {
+        this.emitter.emit("amazon_home_card_focus", "on");
       } else if (
-        this.intervention.component === 'amazon_home_card_reflection'
+        this.intervention.component === "amazon_home_card_reflection"
       ) {
-        this.emitter.emit('amazon_home_card_reflection', 'on');
-      } else if (this.intervention.component === 'amazon_home_card_progress') {
-        this.emitter.emit('amazon_home_card_progress', 'on');
+        this.emitter.emit("amazon_home_card_reflection", "on");
+      } else if (this.intervention.component === "amazon_home_card_progress") {
+        this.emitter.emit("amazon_home_card_progress", "on");
       }
 
       // youtube
       else if (
-        this.intervention.component === 'youtube_recommended_video_focus'
+        this.intervention.component === "youtube_recommended_video_focus"
       ) {
-        this.emitter.emit('youtube_recommended_video_focus', 'on');
+        this.emitter.emit("youtube_recommended_video_focus", "on");
       } else if (
-        this.intervention.component === 'youtube_recommended_video_preview'
+        this.intervention.component === "youtube_recommended_video_preview"
       ) {
-        this.emitter.emit('youtube_recommended_video_preview', 'on');
+        this.emitter.emit("youtube_recommended_video_preview", "on");
       } else if (
-        this.intervention.component === 'youtube_recommended_video_reflection'
+        this.intervention.component === "youtube_recommended_video_reflection"
       ) {
-        this.emitter.emit('youtube_recommended_video_reflection', 'on');
+        this.emitter.emit("youtube_recommended_video_reflection", "on");
       } else if (
-        this.intervention.component === 'youtube_video_dislike_fairness'
+        this.intervention.component === "youtube_video_dislike_fairness"
       ) {
-        this.emitter.emit('youtube_video_dislike_fairness', 'on');
+        this.emitter.emit("youtube_video_dislike_fairness", "on");
       } else if (
-        this.intervention.component === 'youtube_sidebar_video_focus'
+        this.intervention.component === "youtube_sidebar_video_focus"
       ) {
-        this.emitter.emit('youtube_sidebar_video_focus', 'on');
+        this.emitter.emit("youtube_sidebar_video_focus", "on");
       } else if (
-        this.intervention.component === 'youtube_sidebar_video_preview'
+        this.intervention.component === "youtube_sidebar_video_preview"
       ) {
-        this.emitter.emit('youtube_sidebar_video_preview', 'on');
+        this.emitter.emit("youtube_sidebar_video_preview", "on");
       } else if (
-        this.intervention.component === 'youtube_sidebar_video_reflection'
+        this.intervention.component === "youtube_sidebar_video_reflection"
       ) {
-        this.emitter.emit('youtube_sidebar_video_reflection', 'on');
+        this.emitter.emit("youtube_sidebar_video_reflection", "on");
+      }
+
+      // netflix
+      else if (this.intervention.component === "netflix_timeline_reflection") {
+        this.emitter.emit("netflix_timeline_reflection", "on");
       }
 
       // facebook
-      if (this.intervention.component === 'facebook_suggested_hide') {
-        this.emitter.emit('facebook_suggested_hide', 'on');
-      } else if (this.intervention.component === 'facebook_reels_hide') {
-        this.emitter.emit('facebook_reels_hide', 'on');
-      } else if (this.intervention.component === 'facebook_reels_counterfact') {
-        this.emitter.emit('facebook_reels_counterfact', 'on');
-      } else if (this.intervention.component === 'facebook_reels_friction') {
-        this.emitter.emit('facebook_reels_friction', 'on');
-      } else if (this.intervention.component === 'facebook_sponsored_hide') {
-        this.emitter.emit('facebook_sponsored_hide', 'on');
-        console.log('Emitting facebook_sponsored_hide message as on');
+      if (this.intervention.component === "facebook_suggested_hide") {
+        this.emitter.emit("facebook_suggested_hide", "on");
+      } else if (this.intervention.component === "facebook_reels_hide") {
+        this.emitter.emit("facebook_reels_hide", "on");
+      } else if (this.intervention.component === "facebook_reels_counterfact") {
+        this.emitter.emit("facebook_reels_counterfact", "on");
+      } else if (this.intervention.component === "facebook_reels_friction") {
+        this.emitter.emit("facebook_reels_friction", "on");
+      } else if (this.intervention.component === "facebook_sponsored_hide") {
+        this.emitter.emit("facebook_sponsored_hide", "on");
+        console.log("Emitting facebook_sponsored_hide message as on");
       } else if (
-        this.intervention.component === 'facebook_suggested_for_you_hide'
+        this.intervention.component === "facebook_suggested_for_you_hide"
       ) {
-        this.emitter.emit('facebook_suggested_for_you_hide', 'on');
-        console.log('Emitting facebook_suggested_for_you_hide message as on');
+        this.emitter.emit("facebook_suggested_for_you_hide", "on");
+        console.log("Emitting facebook_suggested_for_you_hide message as on");
       } else if (
-        this.intervention.component === 'facebook_suggested_for_you_highlight'
+        this.intervention.component === "facebook_suggested_for_you_highlight"
       ) {
-        this.emitter.emit('facebook_suggested_for_you_highlight', 'on');
+        this.emitter.emit("facebook_suggested_for_you_highlight", "on");
         console.log(
-          'Emitting facebook_suggested_for_you_hightlight message as on'
+          "Emitting facebook_suggested_for_you_hightlight message as on"
         );
       }
 
       // twitter
+
       else if (this.intervention.component === 'twitter_whats_happening_hide') {
         this.emitter.emit('twitter_whats_happening_hide', 'on');
         console.log('Emitting twitter_whats_happening_hide message as on');
       } else if (this.intervention.component === 'twitter_promoted_highlight') {
         this.emitter.emit('twitter_promoted_highlight', 'on');
-        console.log('Emitting twitter_promoted_highlight message as on');
+        console.log(
+          'Emitting twitter_promoted_highlight message as on'
+        );
+
       }
 
-      if (this.intervention.component !== 'none') {
-        this.interventionState[this.intervention.component] = 'on';
+      if (this.intervention.component !== "none") {
+        this.interventionState[this.intervention.component] = "on";
       }
 
       this.toggleDropdown();
     },
     triggerIntervention() {
-      console.log('save settings');
-      this.$emit('closePop', 'close popup');
+      console.log("save settings");
+      this.$emit("closePop", "close popup");
       chrome.storage.sync.set({ savedSettings: this.interventionState });
       this.sendAction(this.interventionState, 'save settings');
     },
     resetIntervention(selectedComponent) {
       console.log(
-        'Resetting interventions, selectedComponent: ',
+        "Resetting interventions, selectedComponent: ",
         selectedComponent
       );
       // console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
-        if (this.interventionState[key] === 'on') {
+        if (this.interventionState[key] === "on") {
           // TODO: CHECK SAVED CONFIG AND SEE IF IT"S ALREADY SET
           if (key == selectedComponent) {
             console.log(
-              'This is setting the message for the previously configured component ' +
+              "This is setting the message for the previously configured component " +
                 key +
-                ', but new instance. No need to reset.'
+                ", but new instance. No need to reset."
             );
           } else {
-            console.log('reset message for intervention: ' + key);
-            this.emitter.emit(key, 'off');
-            this.interventionState[key] = 'off';
+            console.log("reset message for intervention: " + key);
+            this.emitter.emit(key, "off");
+            this.interventionState[key] = "off";
           }
         }
       });
 
-      console.log('reset done', this.interventionState);
+      console.log("reset done", this.interventionState);
     },
     toggleDropdown() {
       this.dropdown = !this.dropdown;
     },
     zoomDemo() {
-      let action = document.getElementById('DP_action');
-      let demo = document.getElementById('DP_action_demo');
+      let action = document.getElementById("DP_action");
+      let demo = document.getElementById("DP_action_demo");
 
-      if (action.style.zIndex == -1 || action.style.zIndex == '') {
-        demo.style.transform = 'scale(3)';
+      if (action.style.zIndex == -1 || action.style.zIndex == "") {
+        demo.style.transform = "scale(3)";
         action.style.zIndex = 999999;
       } else {
-        demo.style.transform = 'scale(1)';
+        demo.style.transform = "scale(1)";
         setTimeout(() => {
           action.style.zIndex = -1;
-        }, '500');
+        }, "500");
       }
-    }
+    },
   },
   mounted() {
-    console.log('action mounted');
+    console.log("action mounted");
 
-    let element = document.getElementById('DP_action');
-    element.classList.remove('DP_online_shopping');
-    element.classList.remove('DP_social_media');
-    element.classList.remove('DP_video_streaming');
-    element.classList.add('DP_' + this.color);
+    let element = document.getElementById("DP_action");
+    element.classList.remove("DP_online_shopping");
+    element.classList.remove("DP_social_media");
+    element.classList.remove("DP_video_streaming");
+    element.classList.add("DP_" + this.color);
     // console.log(this.color);
 
-    if (JSON.stringify(this.savedSettings) !== '{}') {
+    if (JSON.stringify(this.savedSettings) !== "{}") {
       this.interventionState = this.savedSettings;
     }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

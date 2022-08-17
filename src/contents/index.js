@@ -746,5 +746,40 @@ export default {
         }
       ]
     }
-  ]
+  ],
+  netflix: [
+    {
+      name: 'netflix_timeline',
+      identifier: 'controls-time-remaining',
+      url: 'https://www.netflix.com/watch/*',
+      type: 'video streaming platform',
+      tag: ['asymmetric', 'covert'],
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
+      pattern: 'Remaining Time Only',
+      description:
+        'The timeline only shows the time remaining.',
+      awareness:
+        'It gives you an expectation about how long to watch, but at the same time it is easier to ignore how much time has been consumed.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'none',
+          description:
+            'Not Modified.'
+        },
+        {
+          name: 'reflection',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'netflix_timeline_reflection',
+          description:
+            'Dark Pita sets a mini clock on the right top corner as reminder for you to track time you spend here.'
+        }
+      ]
+    },
+
+  ],
 };
