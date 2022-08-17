@@ -57,6 +57,7 @@
   </div>
 </template>
 <script>
+import twitter_whats_happening_hideVue from '../twitter/whats_happening/twitter_whats_happening_hide.vue';
 export default {
   props: {
     action: {
@@ -98,6 +99,8 @@ export default {
         // facebook
         facebook_suggested_hide: 'off',
         facebook_reels_hide: 'off',
+        facebook_reels_counterfact: 'off',
+        facebook_reels_friction: 'off',
         facebook_sponsored_hide: 'off',
         facebook_suggested_for_you_hide: 'off',
         facebook_suggested_for_you_highlight: 'off',
@@ -109,7 +112,11 @@ export default {
         youtube_video_dislike_fairness: 'off',
         youtube_sidebar_video_focus: 'off',
         youtube_sidebar_video_preview: 'off',
-        youtube_sidebar_video_reflection: 'off'
+        youtube_sidebar_video_reflection: 'off',
+
+        // twitter
+        twitter_whats_happening_hide: 'off',
+        twitter_promoted_highlight: 'off',
       }
     };
   },
@@ -203,24 +210,35 @@ export default {
       // facebook
       if (this.intervention.component === 'facebook_suggested_hide') {
         this.emitter.emit('facebook_suggested_hide', 'on');
-      }
-      if (this.intervention.component === 'facebook_reels_hide') {
+      } else if (this.intervention.component === 'facebook_reels_hide') {
         this.emitter.emit('facebook_reels_hide', 'on');
-      }
-      if (this.intervention.component === 'facebook_sponsored_hide') {
+      } else if (this.intervention.component === 'facebook_reels_counterfact') {
+        this.emitter.emit('facebook_reels_counterfact', 'on');
+      } else if (this.intervention.component === 'facebook_reels_friction') {
+        this.emitter.emit('facebook_reels_friction', 'on');
+      } else if (this.intervention.component === 'facebook_sponsored_hide') {
         this.emitter.emit('facebook_sponsored_hide', 'on');
         console.log('Emitting facebook_sponsored_hide message as on');
-      }
-      if (this.intervention.component === 'facebook_suggested_for_you_hide') {
+      } else if (this.intervention.component === 'facebook_suggested_for_you_hide') {
         this.emitter.emit('facebook_suggested_for_you_hide', 'on');
         console.log('Emitting facebook_suggested_for_you_hide message as on');
-      }
-      if (
-        this.intervention.component === 'facebook_suggested_for_you_highlight'
-      ) {
-        this.emitter.emit('facebook_suggested_for_you_hightlight', 'on');
+      } else if (this.intervention.component === 'facebook_suggested_for_you_highlight') {
+        this.emitter.emit('facebook_suggested_for_you_highlight', 'on');
         console.log(
           'Emitting facebook_suggested_for_you_hightlight message as on'
+        );
+      }
+
+      // twitter
+      else if (this.intervention.component === 'twitter_whats_happening_hide') {
+        this.emitter.emit('twitter_whats_happening_hide', 'on');
+        console.log(
+          'Emitting twitter_whats_happening_hide message as on'
+        );
+      } else if (this.intervention.component === 'twitter_promoted_highlight') {
+        this.emitter.emit('twitter_promoted_highlight', 'on');
+        console.log(
+          'Emitting twitter_promoted_highlight message as on'
         );
       }
 
@@ -236,10 +254,10 @@ export default {
       chrome.storage.sync.set({ savedSettings: this.interventionState });
     },
     resetIntervention(selectedComponent) {
+      console.log("Resetting interventions, selectedComponent: ", selectedComponent);
       // console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
         if (this.interventionState[key] === 'on') {
-          if (key.search(this.targetName) !== -1) {
             // TODO: CHECK SAVED CONFIG AND SEE IF IT"S ALREADY SET
             if (key == selectedComponent) {
               console.log(
@@ -253,7 +271,6 @@ export default {
               this.interventionState[key] = 'off';
             }
           }
-        }
       });
 
       console.log('reset done', this.interventionState);

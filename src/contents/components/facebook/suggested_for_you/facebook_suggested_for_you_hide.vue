@@ -17,7 +17,7 @@ export default {
                     });
                 }
                 for (let i = 0; i < len; i++)
-                    selectors[i].parentNode.removeChild(selectors[0]);
+                    selectors[i].parentNode.removeChild(selectors[i]);
             } else {
                 selectors.removeNode.push({
                     parent: selectors.parentNode,
@@ -50,7 +50,7 @@ export default {
             // look for the sponsored component
             var retrievedHtmls = document.getElementsByTagName("span");
             for (var j = 0; j < retrievedHtmls.length; j++) {
-                if (retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1) {
+                if (retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1 || retrievedHtmls[j].innerHTML.indexOf("Promoted by Facebook") != -1) {
                     // very ugly way, but the whole container is the 11th parent of the a tag
                     var parentLevel = 7;
                     element = retrievedHtmls[j];
@@ -73,8 +73,8 @@ export default {
                 }
             } else if (message === 'off') {
                 console.log('facebook suggested for you content hide off');
-                if (elementList.length > 0) {
-                    this.target = elementList;
+                console.log("this.target: ", this.target);
+                if (this.target.length > 0) {
                     this.recover(this.target);
                     console.log(this.target + " restored");
                 }

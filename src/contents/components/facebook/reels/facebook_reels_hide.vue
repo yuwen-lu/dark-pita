@@ -17,7 +17,7 @@ export default {
                     });
                 }
                 for (let i = 0; i < len; i++)
-                    selectors[i].parentNode.removeChild(selectors[0]);
+                    selectors[i].parentNode.removeChild(selectors[i]);
             } else {
                 selectors.removeNode.push({
                     parent: selectors.parentNode,
@@ -65,16 +65,16 @@ export default {
                 console.log("Trying to remove facebook reels, target: " + element.innerHTML);
 
                 if (element != null && element !== undefined) {
-                    this.remove(element)
+                    this.target = element;
+                    this.remove(this.target)
                     console.log("Removed facebook reels: " + element.innerHTML);
-                    console.log("New element style: " + element.style);
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
                 }                
             } else if (message === 'off') {
                 console.log('facebook reels content hide off');
-                if (element != null) {
-                    this.recover(element);
+                if (this.target != null) {
+                    this.recover(this.target);
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
                 }

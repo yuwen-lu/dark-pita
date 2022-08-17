@@ -41,34 +41,29 @@ export default {
         }
     },
     mounted() {
-        this.emitter.on('facebook_sponsored_hide', (message) => {
-            if (message === 'on') {
-                console.log('facebook sponsored content hide on');
-                let element;
-                // look for the sponsored component
-                var retrievedHtmls = document.getElementsByTagName("a");
-                for (var j = 0; j < retrievedHtmls.length; j++) {
-                    if (retrievedHtmls[j].innerHTML.indexOf("ads/about") != -1) {
-                        console.log("Found ads/about content on facebook");
-                        // very ugly way, but the whole container is the 11th parent of the a tag
-                        var parentLevel = 11;
-                        element = retrievedHtmls[j];
-                        for (var k = 0; k < parentLevel; k++) {
-                            element = element.parentElement;
-                        }
-                    }
-                }
+        this.emitter.on('twitter_whats_happening_hide', (message) => {
 
-                if (element != null) {
+            console.log("Received emitter message, " + message);
+
+
+            let element = document.querySelector("[aria-label=\"Timeline: Trending now\"]");
+        
+            if (message === 'on') {
+                console.log('twitter what\'s happening hide on');
+
+                if (element !== null && element !== undefined) {
                     this.target = element;
                     this.remove(this.target);
+                    console.log(this.target + " removed");
                 } else {
-                    console.log("cannot find target element for facebook sponsored content");
+                    console.log("cannot find target element for twitter what\'s going on hide");
                 }
             } else if (message === 'off') {
-                console.log('facebook sponsored content hide off');
-                if (this.target != null) {
+                console.log('twitter what\'s happening hide off');
+                console.log("this.target: ", this.target);
+                if (this.target !== null && this.target !== undefined) {
                     this.recover(this.target);
+                    console.log(this.target + " restored");
                 }
             }
             this.$emit('update');
