@@ -541,10 +541,18 @@ export default {
             'Not modified.'
         },
         {
-          name: 'Hide Content',
+          name: 'Marked Promoted',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/tweet_prompted_hide.png?v=1660781658471',
           component: 'twitter_promoted_highlight',
+          description:
+            'Dark Pita will detect this type of tweets and replace them with a clean panel, where Dark Pita explicitly shows you the mechanism behind such tweets.'
+        },
+        {
+          name: 'Add Friction',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/tweet_prompted_hide.png?v=1660781658471',
+          component: 'twitter_promoted_friction',
           description:
             'Dark Pita will detect this type of tweets and replace them with a clean panel, where Dark Pita explicitly shows you the mechanism behind such tweets.'
         },

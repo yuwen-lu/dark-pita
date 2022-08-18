@@ -83,9 +83,9 @@ export default {
     });
 
     this.emitter.on("twitter_promoted_highlight", (message) => {
-      setTimeout(() => {
-        console.log("Received emitter message, " + message);
-
+      console.log(
+        "Received emitter message twitter_promoted_highlight, " + message
+      );
         let element;
         let retrievedHtmls = document.getElementsByTagName("span");
         for (let i = 0; i < retrievedHtmls.length; i++) {
@@ -97,17 +97,35 @@ export default {
 
         console.log("element: " + element);
 
-        // our target is the retrieved element's container, i.e. 17th parent of the retrieved element
-        let parentLevel = 17;
-        for (let i = 0; i < parentLevel; i++) {
-          if (element.parentElement !== null) {
-            element = element.parentNode;
-          } else {
-            break;
-          }
+        // if this is automatically triggered on loading the page because of a previous config, element may be null
+        // in this case we set a timeout and do the retrieve again
+        if (element === null || element === undefined) {
+            console.log("element null, try to retrieve again");
+            setTimeout(() => {
+                let retrievedHtmls = document.getElementsByTagName("span");
+                for (let i = 0; i < retrievedHtmls.length; i++) {
+                    if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
+                        element = retrievedHtmls[i];
+                        break;
+                    }
+                }
+            }, 2000);
         }
 
-        console.log("container element: " + element);
+        if (element !== null && element !== undefined) {
+            // our target is the retrieved element's container, i.e. 17th parent of the retrieved element
+            let parentLevel = 17;
+            for (let i = 0; i < parentLevel; i++) {
+                if (element.parentElement !== null) {
+                    element = element.parentNode;
+                } else {
+                    break;
+                }
+            }
+            console.log("container element: " + element);
+        }
+
+       
 
         if (message === "on") {
           this.highlight_added = true;
@@ -137,7 +155,6 @@ export default {
           }
         }
         this.$emit("update");
-      }, 2000);
     });
   },
 };
