@@ -60,6 +60,9 @@ export default {
     },
     isAlert: {
       type: Boolean
+    },
+    isMask: {
+      type: Boolean
     }
   },
   watch: {
@@ -169,13 +172,11 @@ export default {
   },
   data() {
     return {
-      isMask: false,
       interventionState: {}
     };
   },
   methods: {
     toggleMask() {
-      this.isMask = !this.isMask;
       this.$emit('toggleMask', false);
     },
     closeAlert() {

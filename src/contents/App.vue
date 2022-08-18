@@ -147,6 +147,7 @@
     <Alert
       :targetNames="targetNames"
       :isAlert="isAlert"
+      :isMask="isMask"
       @toggleMask="toggleMask"
       @closeAlert="closeAlert"
       v-show="isAlert"

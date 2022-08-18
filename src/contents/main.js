@@ -31,6 +31,7 @@ app.config.globalProperties.sendAction = (action, description) => {
     action: action,
     timestamp: new Date().valueOf()
   };
+  console.log('user id: ', app.config.globalProperties.userId);
   DataService.sendAction(app.config.globalProperties.userId, data)
     .then(() => {
       console.log('send new action successfully!');
