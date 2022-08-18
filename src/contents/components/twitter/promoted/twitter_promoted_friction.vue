@@ -39,7 +39,7 @@ export default {
 
                 let textNode = document.createElement("h2");
                 textNode.innerHTML = "This content is suggested by Twitter algorithm. <br /> <br /> It was hidden to prevent you from spending excessive time on it.";
-                textNode.style.color = '#0F141A';
+                textNode.style.color = '#fff';
                 textNode.style.textAlign = "center";
                 textNode.style.fontSize = "1rem";
                 
@@ -77,7 +77,7 @@ export default {
                 this.frictionOverlayElement.style.height = this.target.offsetHeight + "px";
                 this.frictionOverlayElement.style.left = this.target.getBoundingClientRect().left + "px";
                 this.frictionOverlayElement.style.top = this.target.getBoundingClientRect().top + "px";
-                this.frictionOverlayElement.style.backgroundColor = "rgb(255, 255, 255)";
+                this.frictionOverlayElement.style.backgroundColor = "#000000";
                 this.frictionOverlayElement.style.zIndex = "1";
 
                 // textNode.style.top = this.frictionOverlayElement.style.height / 2 + "px";

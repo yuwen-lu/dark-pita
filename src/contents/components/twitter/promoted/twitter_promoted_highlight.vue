@@ -7,7 +7,7 @@ export default {
         return {
             highlight_added: false,
             target: null,
-            frictionOverlayElement: null,
+            highlightOverlayElement: null,
         };
     },
     methods: {
@@ -29,7 +29,7 @@ export default {
             if(element !== null && element !== undefined) {
                 this.target = element;
             } else {
-                console.log("cannot find target element for facebook reels");
+                console.log("cannot find target element for twitter promoted");
             }
         },
         createFrictionOverlay() {
@@ -38,8 +38,8 @@ export default {
             } else {
 
                 let textNode = document.createElement("h2");
-                textNode.innerHTML = "This content is suggested by Twitter algorithm. <br /> <br /> It was hidden to prevent you from spending excessive time on it.";
-                textNode.style.color = '#0F141A';
+                textNode.innerHTML = "Sponsored";
+                textNode.style.color = '#ffffff';
                 textNode.style.textAlign = "center";
                 textNode.style.fontSize = "1rem";
                 
@@ -53,34 +53,34 @@ export default {
                 buttonNode.style.textDecoration = "underline";
                 buttonNode.style.backgroundColor = "transparent";
                 buttonNode.addEventListener("click", () => {
-                    this.frictionOverlayElement.style.display = "none";
+                    this.highlightOverlayElement.style.display = "none";
                 });
 
 
-                if (this.frictionOverlayElement === null) {
+                if (this.highlightOverlayElement === null) {
                     
-                    this.frictionOverlayElement = document.createElement("div");
+                    this.highlightOverlayElement = document.createElement("div");
                     
-                    this.frictionOverlayElement.style.display = "flex";
-                    this.frictionOverlayElement.style.flexDirection = "column";
-                    this.frictionOverlayElement.style.justifyContent = "space-evenly";
-                    this.frictionOverlayElement.style.alignItems = "center";
-                    this.frictionOverlayElement.style.padding = "5rem";
+                    this.highlightOverlayElement.style.display = "flex";
+                    this.highlightOverlayElement.style.flexDirection = "column";
+                    this.highlightOverlayElement.style.justifyContent = "space-evenly";
+                    this.highlightOverlayElement.style.alignItems = "center";
+                    this.highlightOverlayElement.style.padding = "5rem";
 
-                    this.frictionOverlayElement.appendChild(textNode);
-                    this.frictionOverlayElement.appendChild(buttonNode);
+                    this.highlightOverlayElement.appendChild(textNode);
+                    this.highlightOverlayElement.appendChild(buttonNode);
                     
-                    document.body.appendChild(this.frictionOverlayElement);
+                    document.body.appendChild(this.highlightOverlayElement);
                 } 
-                this.frictionOverlayElement.style.position = "fixed";
-                this.frictionOverlayElement.style.width = this.target.offsetWidth + "px";
-                this.frictionOverlayElement.style.height = this.target.offsetHeight + "px";
-                this.frictionOverlayElement.style.left = this.target.getBoundingClientRect().left + "px";
-                this.frictionOverlayElement.style.top = this.target.getBoundingClientRect().top + "px";
-                this.frictionOverlayElement.style.backgroundColor = "rgb(255, 255, 255)";
-                this.frictionOverlayElement.style.zIndex = "1";
+                this.highlightOverlayElement.style.position = "fixed";
+                this.highlightOverlayElement.style.width = this.target.offsetWidth + "px";
+                this.highlightOverlayElement.style.height = this.target.offsetHeight + "px";
+                this.highlightOverlayElement.style.left = this.target.getBoundingClientRect().left + "px";
+                this.highlightOverlayElement.style.top = this.target.getBoundingClientRect().top + "px";
+                this.highlightOverlayElement.style.backgroundColor = "rgb(255, 255, 255)";
+                this.highlightOverlayElement.style.zIndex = "1";
 
-                // textNode.style.top = this.frictionOverlayElement.style.height / 2 + "px";
+                // textNode.style.top = this.highlightOverlayElement.style.height / 2 + "px";
                 // buttonNode.style.top = parseInt(textNode.style.top) + parseInt(textNode.offsetHeight) + parseInt(buttonNode.offsetHeight) + "px";
 
                 
@@ -146,7 +146,7 @@ export default {
                 if (this.target !== null && this.target !== undefined) {
                     // this.recover(this.target);
                     // console.log(this.target + " restored");
-                    document.body.removeChild(this.frictionOverlayElement);
+                    document.body.removeChild(this.highlightOverlayElement);
                 }
             }
             this.$emit('update');
