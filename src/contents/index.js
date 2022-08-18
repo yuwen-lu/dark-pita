@@ -510,7 +510,7 @@ export default {
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         },
-        
+
       ]
     },
     {
@@ -593,7 +593,7 @@ export default {
         }
       ]
     },
-    
+
 
   ],
   facebook: [
@@ -753,7 +753,7 @@ export default {
       identifier: 'controls-time-remaining',
       url: 'https://www.netflix.com/watch/*',
       type: 'video streaming platform',
-      tag: ['asymmetric', 'covert'],
+      tag: ['restrictive', 'covert', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Remaining Time Only',
@@ -777,6 +777,38 @@ export default {
           component: 'netflix_timeline_reflection',
           description:
             'Dark Pita sets a mini clock on the right top corner as reminder for you to track time you spend here.'
+        }
+      ]
+    },
+    {
+      name: 'netflix_hugepreview',
+      identifier: 'Featured Content',
+      url: 'https://www.netflix.com/browse',
+      type: 'video streaming platform',
+      tag: ['restrictive', 'covert'],
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
+      pattern: 'Automatic Background Preview',
+      description:
+        'Once you enter your Netflix, it will automatically start to play the featured trailor for you.',
+      awareness:
+        'The featured content is likely catering to your taste. You will possibly enter a video that you did not plan to watch. Therefore, you might spend more time than you expected on this platform.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'none',
+          description:
+            'Not Modified.'
+        },
+        {
+          name: 'disable',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'netflix_hugepreview_disable',
+          description:
+            'Dark Pita will disable the visual part of the background preview.'
         }
       ]
     },
