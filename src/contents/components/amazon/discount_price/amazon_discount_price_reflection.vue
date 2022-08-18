@@ -61,20 +61,22 @@ export default {
     this.emitter.on('amazon_discount_price_reflection', (message) => {
       this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
 
-      if (message === 'on') {
-        console.log('amazon discount price reflection on');
-        this.sendAction(1, 'toggle amazon_discount_price_reflection');
-        this.target.onmouseenter = () => {
-          let boundingBox = this.target.getBoundingClientRect();
-          let x = boundingBox.x;
-          let y = boundingBox.y;
-          this.explode(x, y);
-          this.sendAction(1, 'trigger amazon_discount_price_reflection');
-        };
-      } else if (message === 'off') {
-        console.log('amazon discount price reflection off');
-        this.sendAction(0, 'toggle amazon_discount_price_reflection');
-        this.target.onmouseenter = () => {};
+      if (this.target !== null) {
+        if (message === 'on') {
+          console.log('amazon discount price reflection on');
+          this.sendAction(1, 'toggle amazon_discount_price_reflection');
+          this.target.onmouseenter = () => {
+            let boundingBox = this.target.getBoundingClientRect();
+            let x = boundingBox.x;
+            let y = boundingBox.y;
+            this.explode(x, y);
+            this.sendAction(1, 'trigger amazon_discount_price_reflection');
+          };
+        } else if (message === 'off') {
+          console.log('amazon discount price reflection off');
+          this.sendAction(0, 'toggle amazon_discount_price_reflection');
+          this.target.onmouseenter = () => {};
+        }
       }
 
       this.$emit('update');

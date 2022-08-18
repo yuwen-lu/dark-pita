@@ -32,18 +32,20 @@ export default {
     this.emitter.on('amazon_buy_now_friction', (message) => {
       this.target = document.getElementById('submit.buy-now');
 
-      if (message === 'on') {
-        console.log('amazon buy now friction on');
-        this.sendAction(1, 'toggle amazon_buy_now_friction');
-        this.target.onmouseenter = () => {
-          console.log('buy now friction overlay');
-          this.sendAction(1, 'trigger amazon_buy_now_friction');
-          this.on();
-        };
-      } else if (message === 'off') {
-        console.log('amazon buy now friction off');
-        this.sendAction(0, 'toggle amazon_buy_now_friction');
-        this.off();
+      if (this.target !== null) {
+        if (message === 'on') {
+          console.log('amazon buy now friction on');
+          this.sendAction(1, 'toggle amazon_buy_now_friction');
+          this.target.onmouseenter = () => {
+            console.log('buy now friction overlay');
+            this.sendAction(1, 'trigger amazon_buy_now_friction');
+            this.on();
+          };
+        } else if (message === 'off') {
+          console.log('amazon buy now friction off');
+          this.sendAction(0, 'toggle amazon_buy_now_friction');
+          this.off();
+        }
       }
 
       this.$emit('update');

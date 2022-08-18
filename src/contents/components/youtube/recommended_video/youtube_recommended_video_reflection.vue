@@ -23,7 +23,7 @@ export default {
           elt.innerHTML =
             '<h1>Dark Patterns on Youtube has manipulated you to waste an extra</h1>' +
             '<p id = "DP_time_tracker">' +
-            Math.round(data.time_watched * (1 - (0.1 * Math.random() + 0.1))) +
+            Math.round(data.time_watched * (1 - (0.1 * Math.random() + 0.05))) +
             '/<span>' +
             Math.round(data.time_watched) +
             ' mins in total</p>' +

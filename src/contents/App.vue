@@ -403,10 +403,28 @@ export default {
             let re = new RegExp(target.url);
             // console.log('initialize', url);
             if (url.search(re) !== -1) {
+              // Handle speical circumstances
+              if (target.name === 'amazon_disguised_ads') {
+                if (
+                  document.getElementById(
+                    'ad-feedback-text-auto-sparkle-hsa-tetris'
+                  ) === null
+                )
+                  continue;
+              } else if (target.name === 'amazon_buy_now') {
+                if (document.getElementById('submit.buy-now') === null)
+                  continue;
+              } else if (target.name === 'amazon_discount_price') {
+                if (
+                  document.getElementById('corePrice_desktop').innerText === ''
+                )
+                  continue;
+              }
+
               if (this.targetIdentifiers === null) {
                 this.targetIdentifiers = [];
               }
-              // console.log('initialize', target);
+              // console.log('initialize', target)
               this.targetIdentifiers.push(target.identifier);
               this.targetNames[target.name] = true;
             }
@@ -415,8 +433,11 @@ export default {
           console.log('dark patterns on this site:', this.targetNames);
 
           // Whether the header alert can appear or not, depends on whether dark patterns exist or not
-          if (this.targetIdentifiers !== null) {
-            console.log(this.targetIdentifiers);
+          if (
+            this.targetIdentifiers !== null &&
+            this.targetIdentifiers !== undefined &&
+            this.targetIdentifiers !== []
+          ) {
             this.currentTarget = this.info[0];
             this.isAlert = true;
             this.sendAction(this.currentTab.url, 'trigger banner');
@@ -433,7 +454,7 @@ export default {
                 if (timeTracker !== null) {
                   timeTracker.innerHTML =
                     Math.round(
-                      data.time_watched * (1 - (0.1 * Math.random() + 0.1))
+                      data.time_watched * (1 - (0.1 * Math.random() + 0.05))
                     ) +
                     '/<span>' +
                     Math.round(data.time_watched) +
@@ -908,7 +929,11 @@ export default {
   },
   mounted() {
     console.log('app mounted');
-    this.initialize();
+
+    let that = this;
+    window.onload = function() {
+      that.initialize();
+    };
   }
 };
 </script>

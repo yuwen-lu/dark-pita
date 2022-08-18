@@ -50,17 +50,19 @@ export default {
       setTimeout(() => {
         that.target = document.querySelectorAll('[id^=mouseover-overlay]');
 
-        if (message === 'on') {
-          console.log('youtube sidebar video block preview on');
-          this.sendAction(1, 'toggle youtube_sidebar_video_preview');
-          that.target.forEach((elt) => that.remove(elt));
-        } else if (message === 'off') {
-          console.log('youtube sidebar video block preview off');
-          this.sendAction(0, 'toggle youtube_sidebar_video_preview');
-          that.target.forEach((elt) => that.recover(elt));
-        }
+        if (that.target !== null) {
+          if (message === 'on') {
+            console.log('youtube sidebar video block preview on');
+            this.sendAction(1, 'toggle youtube_sidebar_video_preview');
+            that.target.forEach((elt) => that.remove(elt));
+          } else if (message === 'off') {
+            console.log('youtube sidebar video block preview off');
+            this.sendAction(0, 'toggle youtube_sidebar_video_preview');
+            that.target.forEach((elt) => that.recover(elt));
+          }
 
-        that.$emit('update');
+          that.$emit('update');
+        }
       }, 3000);
     });
   }

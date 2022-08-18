@@ -28,26 +28,28 @@ export default {
           'top-level-buttons-computed'
         ).childNodes[1];
 
-        if (message === 'on') {
-          console.log('youtube video dislike fairness on');
-          this.sendAction(1, 'toggle youtube_video_dislike_fairness');
-          chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
-            let currentTab = await tab;
-            if (currentTab !== null) {
-              let url = currentTab.url;
-              let id = that.getValueArray(url)[0];
-              that.target.querySelector(
-                '#text'
-              ).innerText = await that.fetchPrice(id);
-            }
-          });
-        } else if (message === 'off') {
-          console.log('youtube video dislike fairness off');
-          this.sendAction(0, 'toggle youtube_video_dislike_fairness');
-          that.target.querySelector('#text').innerText = 'Dislike';
-        }
+        if (that.target !== null) {
+          if (message === 'on') {
+            console.log('youtube video dislike fairness on');
+            this.sendAction(1, 'toggle youtube_video_dislike_fairness');
+            chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+              let currentTab = await tab;
+              if (currentTab !== null) {
+                let url = currentTab.url;
+                let id = that.getValueArray(url)[0];
+                that.target.querySelector(
+                  '#text'
+                ).innerText = await that.fetchPrice(id);
+              }
+            });
+          } else if (message === 'off') {
+            console.log('youtube video dislike fairness off');
+            this.sendAction(0, 'toggle youtube_video_dislike_fairness');
+            that.target.querySelector('#text').innerText = 'Dislike';
+          }
 
-        that.$emit('update');
+          that.$emit('update');
+        }
       }, 3000);
     });
   }

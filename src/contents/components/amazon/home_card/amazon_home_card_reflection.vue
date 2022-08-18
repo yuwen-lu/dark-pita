@@ -69,23 +69,25 @@ export default {
     this.emitter.on('amazon_home_card_reflection', (message) => {
       this.target = document.querySelectorAll('[id^=desktop]');
 
-      if (message === 'on') {
-        console.log('home card reflection on');
-        this.sendAction(1, 'toggle amazon_home_card_reflection');
-        let that = this;
-        this.target.forEach((item) => {
-          item.onmouseenter = () => {
-            let x = Math.random() * that.viewpointWidth;
-            let y = Math.random() * that.viewpointHeight;
-            that.explode(x, y);
-          };
-        });
-      } else if (message === 'off') {
-        console.log('home card reflection off');
-        this.sendAction(0, 'toggle amazon_home_card_reflection');
-        this.target.forEach((item) => {
-          item.onmouseenter = () => {};
-        });
+      if (this.target !== null) {
+        if (message === 'on') {
+          console.log('home card reflection on');
+          this.sendAction(1, 'toggle amazon_home_card_reflection');
+          let that = this;
+          this.target.forEach((item) => {
+            item.onmouseenter = () => {
+              let x = Math.random() * that.viewpointWidth;
+              let y = Math.random() * that.viewpointHeight;
+              that.explode(x, y);
+            };
+          });
+        } else if (message === 'off') {
+          console.log('home card reflection off');
+          this.sendAction(0, 'toggle amazon_home_card_reflection');
+          this.target.forEach((item) => {
+            item.onmouseenter = () => {};
+          });
+        }
       }
 
       this.$emit('update');

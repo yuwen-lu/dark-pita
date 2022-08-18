@@ -143,7 +143,7 @@ export default {
             'Dark pita will help you understand more information behind the price and the marketing jargon.'
         },
         {
-          name: 'reflection',
+          name: 'animated metaphor',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_reflection.png?v=1660680246692',
           component: 'amazon_discount_price_reflection',
@@ -195,7 +195,7 @@ export default {
             'Hide the recommended-items section on the home page.'
         },
         {
-          name: 'reflection',
+          name: 'animated metaphor',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amazon_homepage_reflection.gif?v=1660676754864',
           component: 'amazon_home_card_reflection',
