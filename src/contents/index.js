@@ -506,7 +506,7 @@ export default {
 
           name: 'hide / disable',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/whathappen_hide.gif?v=1660787505163',
           component: 'twitter_whats_happening_hide',
           description:
             'Dark Pita will hide this section to help you focus on main content.'
@@ -519,7 +519,7 @@ export default {
       identifier: 'See more',
       url: 'https://twitter.com/home',
       type: 'social media platform',
-      tag: ['disparate treatment', 'information hiding'],
+      tag: ['disparate treatment', 'information hiding', 'covert'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
       pattern: 'Suggested Tweets',
@@ -555,21 +555,22 @@ export default {
       identifier: 'People You May Know',
       url: 'https://www.facebook.com/',
       type: 'social media platform',
+      tag: ['covert', 'asymmetric'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
-      pattern: 'Hidden Information',
+      pattern: 'People You May Know',
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'Facebook prompts you other users you probably know. ',
       awareness:
-        'Contents that I don\'t desire would be prompted onto my homepage feed.',
+        'You may see unexpected content on your homepage. The further goal of connecting you with as many people as possible is to enhance your activity on this platform.',
       action: [
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ppl_you_may_know.png?v=1660788587165',
           component: '',
           description:
-            ''
+            'Not modified.'
         },
         {
           name: 'hide / disable',
@@ -586,18 +587,19 @@ export default {
       identifier: 'Reels and short videos',
       url: 'https://www.facebook.com/',
       type: 'social media platform',
+      tag: ['covert', 'asymmetric'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
-      pattern: 'Hidden Information',
+      pattern: 'Suggested Content',
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'These are videos suggested by Facebook algorithm. They can be created by non-friend users.',
       awareness:
         'Contents that I don\'t desire would be prompted onto my homepage feed.',
       action: [
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels_before.png?v=1660788810334',
           component: '',
           description:
             ''
@@ -605,26 +607,26 @@ export default {
         {
           name: 'hide / disable',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels_hide.gif?v=1660790522011',
           component: 'facebook_reels_hide',
           description:
-            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+            'Dark Pita will hide the Reels.'
         },
         {
-          name: 'counterfactual thinking',
+          name: 'Explanation',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels_counterfactual.gif?v=1660790427159',
           component: 'facebook_reels_counterfact',
           description:
-            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+            'Dark Pita will prompt you to think about the mechanism behind the selected content.'
         },
         {
-          name: 'add friction',
+          name: 'Covering',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels_friction.gif?v=1660790308015',
           component: 'facebook_reels_friction',
           description:
-            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+            'Dark Pita will add an overlay on the Reels and explain the mechanism behind the selected content.'
         }
       ]
     },
@@ -633,7 +635,7 @@ export default {
       identifier: 'ads/about',
       url: 'https://www.facebook.com/',
       type: 'social media platform',
-      tag: ['covert', 'deceptive', 'information hiding'],
+      tag: ['covert', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
       pattern: 'Disguised Sponsored Content',
@@ -667,36 +669,35 @@ export default {
       type: 'social media platform',
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
-      pattern: 'Recommendations from Facebook',
-      tag: ['covert', 'deceptive', 'information hiding'],
+      pattern: 'Suggested Content',
+      tag: ['covert', 'information hiding'],
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'Content prompted by Facebook algorithm.',
       awareness:
-        'Contents that I don\'t desire would be prompted onto my homepage feed.',
+        'It can be a bad experience to see lots of irrelavant content on your homepage. Also, you can get distracted by the suggested information and prolong you usage of this platform.',
       action: [
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/suggested_before.png?v=1660791078203',
           component: '',
           description:
-            ''
+            'Not modified'
         },
         {
           name: 'hide / disable',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/suggested_for_you.gif?v=1660789013809',
           component: 'facebook_suggested_for_you_hide',
           description:
-            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+            'Dark Pita will hide the selected suggested content.'
         },
         {
           name: 'highlight',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'facebook_suggested_for_you_highlight',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/fb_content_highlight.gif?v=1660789578695',
           description:
-            'Contents that I don\'t desire would be prompted onto my homepage feed.'
+            'Dark Pita will explicitly label it as suggested content.'
         }
       ]
     }
@@ -719,7 +720,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/netflix_timeline_before.png?v=1660789248576',
           component: 'none',
           description:
             'Not Modified.'
@@ -727,7 +728,7 @@ export default {
         {
           name: 'reflection',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/netflix_time_tracker.png?v=1660782189787',
           component: 'netflix_timeline_reflection',
           description:
             'Dark Pita sets a mini clock on the right top corner as reminder for you to track time you spend here.'
