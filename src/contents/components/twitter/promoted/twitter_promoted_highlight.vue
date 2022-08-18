@@ -38,37 +38,23 @@ export default {
             } else {
 
                 let textNode = document.createElement("h2");
-                textNode.innerHTML = "Sponsored";
+                textNode.innerHTML = "Promoted Content";
                 textNode.style.color = '#ffffff';
-                textNode.style.textAlign = "center";
+                textNode.style.backgroundColor = '#DC2625';
+                textNode.style.textAlign = "right";
                 textNode.style.fontSize = "1rem";
-                
-                let buttonNode = document.createElement("button");
-                buttonNode.innerHTML = "Reveal";
-                buttonNode.style.fontFamily = "Cabin";
-                buttonNode.style.width = "7rem";
-                buttonNode.style.height = "2rem";
-                buttonNode.style.padding = "0.5rem";
-                buttonNode.style.color = "#1C9BEF";
-                buttonNode.style.textDecoration = "underline";
-                buttonNode.style.backgroundColor = "transparent";
-                buttonNode.addEventListener("click", () => {
-                    this.highlightOverlayElement.style.display = "none";
-                });
+                textNode.style.fontFamily = "Cabin";
+                textNode.style.padding = "0.5rem";
 
+                textNode.style.position = "absolute";
+                textNode.style.top = "0";
+                textNode.style.right = "0";
 
                 if (this.highlightOverlayElement === null) {
                     
                     this.highlightOverlayElement = document.createElement("div");
-                    
-                    this.highlightOverlayElement.style.display = "flex";
-                    this.highlightOverlayElement.style.flexDirection = "column";
-                    this.highlightOverlayElement.style.justifyContent = "space-evenly";
-                    this.highlightOverlayElement.style.alignItems = "center";
                     this.highlightOverlayElement.style.padding = "5rem";
-
                     this.highlightOverlayElement.appendChild(textNode);
-                    this.highlightOverlayElement.appendChild(buttonNode);
                     
                     document.body.appendChild(this.highlightOverlayElement);
                 } 
@@ -77,11 +63,10 @@ export default {
                 this.highlightOverlayElement.style.height = this.target.offsetHeight + "px";
                 this.highlightOverlayElement.style.left = this.target.getBoundingClientRect().left + "px";
                 this.highlightOverlayElement.style.top = this.target.getBoundingClientRect().top + "px";
-                this.highlightOverlayElement.style.backgroundColor = "rgb(255, 255, 255)";
-                this.highlightOverlayElement.style.zIndex = "1";
+                this.highlightOverlayElement.style.backgroundColor = "transparent";
+                this.highlightOverlayElement.style.borderWidth = "4px";
+                this.highlightOverlayElement.style.borderColor = "#DC2625";
 
-                // textNode.style.top = this.highlightOverlayElement.style.height / 2 + "px";
-                // buttonNode.style.top = parseInt(textNode.style.top) + parseInt(textNode.offsetHeight) + parseInt(buttonNode.offsetHeight) + "px";
 
                 
             }

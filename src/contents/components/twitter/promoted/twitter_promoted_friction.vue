@@ -138,7 +138,7 @@ export default {
                     console.log("cannot find target element for twitter promoted friction");
                 }
             } else if (message === 'off') {
-                friction_added = false;
+                this.friction_added = false;
                 console.log('twitter promoted friction off');
                 this.sendAction(0, 'toggle twitter_promoted_friction');
                 console.log("this.target: ", this.target);
