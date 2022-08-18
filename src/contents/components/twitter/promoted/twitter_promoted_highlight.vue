@@ -48,7 +48,7 @@ export default {
         textNode.style.padding = "0.5rem";
 
         textNode.style.position = "absolute";
-        textNode.style.top = "0";
+        textNode.style.bottom = "0";
         textNode.style.right = "0";
 
         if (this.highlightOverlayElement === null) {

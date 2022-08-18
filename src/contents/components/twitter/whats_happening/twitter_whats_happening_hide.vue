@@ -3,7 +3,11 @@
 </template>
 <script>
 export default {
-  data() {},
+  data() {
+    return {
+      target: null,
+    };
+  },
   methods: {
     remove(selectors) {
       selectors.removeNode = [];
@@ -44,43 +48,37 @@ export default {
     this.emitter.on("twitter_whats_happening_hide", (message) => {
       console.log("Received emitter message, " + message);
 
-      let element = document.querySelector(
-        '[aria-label="Timeline: Trending now"]'
-      );
+      setTimeout(() => {
+        let element;
+        element = document.querySelector(
+          '[aria-label="Timeline: Trending now"]'
+        );
 
-      // Twitter uses lazy load, so if this is configued in the past and we're loading the page again
-      // we might not fetch the element right away, need to wait for the dom to load, so add a settimeout
-      if (element === null || element === undefined) {
-        setTimeout(() => {
-          let element = document.querySelector(
-            '[aria-label="Timeline: Trending now"]'
-          );
-        }, 2000);
-      }
+        if (message === "on") {
+          console.log("twitter what's happening hide on");
+          this.sendAction(1, "toggle twitter_whats_happening_hide");
 
-      if (message === "on") {
-        console.log("twitter what's happening hide on");
-        this.sendAction(1, "toggle twitter_whats_happening_hide");
+          if (element !== null && element !== undefined) {
+            this.target = element;
+            this.remove(this.target);
+            console.log(this.target + " removed");
+          } else {
+            console.log(
+              "cannot find target element for twitter what's going on hide"
+            );
+          }
+        } else if (message === "off") {
+          console.log("twitter what's happening hide off");
+          this.sendAction(0, "toggle twitter_whats_happening_hide");
+          console.log("this.target: ", this.target);
 
-        if (element !== null && element !== undefined) {
-          this.target = element;
-          this.remove(this.target);
-          console.log(this.target + " removed");
-        } else {
-          console.log(
-            "cannot find target element for twitter what's going on hide"
-          );
+          if (this.target !== null && this.target !== undefined) {
+            this.recover(this.target);
+            console.log(this.target + " restored");
+          }
         }
-      } else if (message === "off") {
-        console.log("twitter what's happening hide off");
-        this.sendAction(0, "toggle twitter_whats_happening_hide");
-        console.log("this.target: ", this.target);
-        if (this.target !== null && this.target !== undefined) {
-          this.recover(this.target);
-          console.log(this.target + " restored");
-        }
-      }
-      this.$emit("update");
+        this.$emit("update");
+      }, 1500);
     });
   },
 };
