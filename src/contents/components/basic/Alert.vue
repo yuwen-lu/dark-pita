@@ -9,7 +9,7 @@
         <span style="padding-left: 20px"> </span> Hello there, dark patterns
         detected
       </p>
-      <button @click="toggleMask" v-if="!isMask">Show All</button>
+      <button @click="toggleMask" v-if="!isMask">Show</button>
       <button @click="toggleMask" v-if="isMask">Close</button>
       <button @click="reset">Reset</button>
       <a href="https://kapa-moon.github.io/dark-pita-manual/" target="_blank">
