@@ -5,7 +5,7 @@
 export default {
     data() { 
         return {
-            highlight_added: false,
+            friction_added: false,
             target: null,
             frictionOverlayElement: null,
         };
@@ -90,14 +90,14 @@ export default {
     mounted() {
 
         window.addEventListener('scroll', () => {
-            if(this.highlight_added) {
-                console.log("scroll from twitter sponsored hightlight");
+            if(this.friction_added) {
+                console.log("scroll from twitter sponsored friction");
                 this.getTarget();
                 this.createFrictionOverlay();
             }
         });
 
-        this.emitter.on('twitter_promoted_highlight', (message) => {
+        this.emitter.on('twitter_promoted_friction', (message) => {
 
             console.log("Received emitter message, " + message);
 
@@ -125,9 +125,9 @@ export default {
             console.log("container element: " + element);
         
             if (message === 'on') {
-                this.highlight_added = true;
-                console.log('twitter promoted highlight on');
-                this.sendAction(1, 'toggle twitter_promoted_highlight');
+                this.friction_added = true;
+                console.log('twitter promoted friction on');
+                this.sendAction(1, 'toggle twitter_promoted_friction');
 
                 if (element !== null && element !== undefined) {
                     this.target = element;
@@ -135,13 +135,12 @@ export default {
                     // console.log(this.target + " removed");
                     this.createFrictionOverlay();
                 } else {
-                    console.log("cannot find target element for twitter promoted highlight");
+                    console.log("cannot find target element for twitter promoted friction");
                 }
             } else if (message === 'off') {
-                this.highlight_added = false;
-                this.sendAction(0, 'toggle twitter_promoted_highlight');
-                console.log('twitter promoted highlight off');
-                
+                friction_added = false;
+                console.log('twitter promoted friction off');
+                this.sendAction(0, 'toggle twitter_promoted_friction');
                 console.log("this.target: ", this.target);
                 if (this.target !== null && this.target !== undefined) {
                     // this.recover(this.target);
