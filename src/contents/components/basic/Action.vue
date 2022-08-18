@@ -126,14 +126,11 @@ export default {
   },
   methods: {
     alterIntervention(index) {
-      this.intervention = this.action[index];
-      this.interventionId = index;
-
-      console.log(
-        'this.intervention.component: ' + this.intervention.component
-      );
-
-      this.resetIntervention(this.intervention.component);
+      this.intervention = this.action[index]; // this.action contains all the options for the current dark pattern
+      this.interventionId = index;  // the index points to the selected option for current dark pattern
+      // when user selects one option, we need to reset the state of the other options
+      // this is used when users change between different options
+      this.resetIntervention(this.action, index);
 
       // amazon
       if (this.intervention.component === 'amazon_buy_now_hide') {
@@ -271,26 +268,31 @@ export default {
       chrome.storage.sync.set({ savedSettings: this.interventionState });
       this.sendAction(this.interventionState, 'save settings');
     },
-    resetIntervention(selectedComponent) {
+    resetIntervention(actions, index) {
+
+      // three scenarios:
+      // 1. set intervention for a DP that's previously configured in chrome.storage.sync (no need to reset, new setting will be sest to chrome.storage.sync again when pushing the button)
+      // 2. set intervention for a DP that's not previously configured 
+      //    2.a. select an option (not necessary, but can reset all alternative options for the same DP)
+      //    2.b. select another option while clearing the previous selection (reset all alternative options for the same DP)
+
+      // the component names of the options to be reset
+      let resetOptions = [];
+      actions.forEach(  (action, i) => {
+        if (i !== index) {
+          resetOptions.push(action.component);
+        }
+      } );
+
       console.log(
-        'Resetting interventions, selectedComponent: ',
-        selectedComponent
+        'Resetting interventions for: ' + resetOptions.join(', ')
       );
       // console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
-        if (this.interventionState[key] === 'on') {
-          // TODO: CHECK SAVED CONFIG AND SEE IF IT"S ALREADY SET
-          if (key == selectedComponent) {
-            console.log(
-              'This is setting the message for the previously configured component ' +
-                key +
-                ', but new instance. No need to reset.'
-            );
-          } else {
-            console.log('reset message for intervention: ' + key);
-            this.emitter.emit(key, 'off');
-            this.interventionState[key] = 'off';
-          }
+        if (resetOptions.includes(key) && this.interventionState[key] === 'on') {
+          console.log('reset message for intervention: ' + key);
+          this.emitter.emit(key, 'off');
+          this.interventionState[key] = 'off';
         }
       });
 
