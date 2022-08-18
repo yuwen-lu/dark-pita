@@ -1,142 +1,145 @@
 <template>
-    <div></div>
+  <div></div>
 </template>
 <script>
 export default {
-    data() { 
-        return {
-            highlight_added: false,
-            target: null,
-            highlightOverlayElement: null,
-        };
-    },
-    methods: {
-        getTarget() {
-            let element;
-            // look for the reels component
-            var retrievedHtmls = document.getElementsByTagName("span");
-            for (var j = 0; j < retrievedHtmls.length; j++) {
-                if (retrievedHtmls[j].innerHTML.indexOf("See more") != -1) {
-                    var parentLevel = 17;
-                    element = retrievedHtmls[j];
-                    for (var k = 0; k < parentLevel; k++) {
-                        if (element.parentElement == null) break;
-                        element = element.parentElement;
-                    }
-                    break;
-                }
-            }
-            if(element !== null && element !== undefined) {
-                this.target = element;
-            } else {
-                console.log("cannot find target element for twitter promoted");
-            }
-        },
-        createFrictionOverlay() {
-            if (this.target === null || this.target === undefined) {
-                console.log("Error when creating friction overlay: target is null or undefined");
-            } else {
-
-                let textNode = document.createElement("h2");
-                textNode.innerHTML = "Promoted Content";
-                textNode.style.color = '#ffffff';
-                textNode.style.backgroundColor = '#DC2625';
-                textNode.style.textAlign = "right";
-                textNode.style.fontSize = "1rem";
-                textNode.style.fontFamily = "Cabin";
-                textNode.style.padding = "0.5rem";
-
-                textNode.style.position = "absolute";
-                textNode.style.top = "0";
-                textNode.style.right = "0";
-
-                if (this.highlightOverlayElement === null) {
-                    
-                    this.highlightOverlayElement = document.createElement("div");
-                    this.highlightOverlayElement.style.padding = "5rem";
-                    this.highlightOverlayElement.appendChild(textNode);
-                    
-                    document.body.appendChild(this.highlightOverlayElement);
-                } 
-                this.highlightOverlayElement.style.position = "fixed";
-                this.highlightOverlayElement.style.width = this.target.offsetWidth + "px";
-                this.highlightOverlayElement.style.height = this.target.offsetHeight + "px";
-                this.highlightOverlayElement.style.left = this.target.getBoundingClientRect().left + "px";
-                this.highlightOverlayElement.style.top = this.target.getBoundingClientRect().top + "px";
-                this.highlightOverlayElement.style.backgroundColor = "transparent";
-                this.highlightOverlayElement.style.borderWidth = "4px";
-                this.highlightOverlayElement.style.borderColor = "#DC2625";
-
-
-                
-            }
+  data() {
+    return {
+      highlight_added: false,
+      target: null,
+      highlightOverlayElement: null,
+    };
+  },
+  methods: {
+    getTarget() {
+      let element;
+      // look for the reels component
+      var retrievedHtmls = document.getElementsByTagName("span");
+      for (var j = 0; j < retrievedHtmls.length; j++) {
+        if (retrievedHtmls[j].innerHTML.indexOf("See more") != -1) {
+          var parentLevel = 17;
+          element = retrievedHtmls[j];
+          for (var k = 0; k < parentLevel; k++) {
+            if (element.parentElement == null) break;
+            element = element.parentElement;
+          }
+          break;
         }
+      }
+      if (element !== null && element !== undefined) {
+        this.target = element;
+      } else {
+        console.log("cannot find target element for twitter promoted");
+      }
     },
-    mounted() {
+    createFrictionOverlay() {
+      if (this.target === null || this.target === undefined) {
+        console.log(
+          "Error when creating friction overlay: target is null or undefined"
+        );
+      } else {
+        let textNode = document.createElement("h2");
+        textNode.innerHTML = "Promoted Content";
+        textNode.style.color = "#ffffff";
+        textNode.style.backgroundColor = "#DC2625";
+        textNode.style.textAlign = "right";
+        textNode.style.fontSize = "1rem";
+        textNode.style.fontFamily = "Cabin";
+        textNode.style.padding = "0.5rem";
 
-        window.addEventListener('scroll', () => {
-            if(this.highlight_added) {
-                console.log("scroll from twitter sponsored hightlight");
-                this.getTarget();
-                this.createFrictionOverlay();
-            }
-        });
+        textNode.style.position = "absolute";
+        textNode.style.top = "0";
+        textNode.style.right = "0";
 
-        this.emitter.on('twitter_promoted_highlight', (message) => {
+        if (this.highlightOverlayElement === null) {
+          this.highlightOverlayElement = document.createElement("div");
+          this.highlightOverlayElement.style.padding = "5rem";
+          this.highlightOverlayElement.appendChild(textNode);
 
-            console.log("Received emitter message, " + message);
+          document.body.appendChild(this.highlightOverlayElement);
+        }
+        this.highlightOverlayElement.style.position = "fixed";
+        this.highlightOverlayElement.style.width =
+          this.target.offsetWidth + "px";
+        this.highlightOverlayElement.style.height =
+          this.target.offsetHeight + "px";
+        this.highlightOverlayElement.style.left =
+          this.target.getBoundingClientRect().left + "px";
+        this.highlightOverlayElement.style.top =
+          this.target.getBoundingClientRect().top + "px";
+        this.highlightOverlayElement.style.backgroundColor = "transparent";
+        this.highlightOverlayElement.style.borderWidth = "4px";
+        this.highlightOverlayElement.style.borderColor = "#DC2625";
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", () => {
+      if (this.highlight_added) {
+        console.log("scroll from twitter sponsored hightlight");
+        this.getTarget();
+        this.createFrictionOverlay();
+      }
+    });
 
-            let element;
-            let retrievedHtmls = document.getElementsByTagName("span");
-            for (let i = 0; i < retrievedHtmls.length; i++) {
-                if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
-                    element = retrievedHtmls[i];
-                    break;
-                }
-            }
+    this.emitter.on("twitter_promoted_highlight", (message) => {
+      setTimeout(() => {
+        console.log("Received emitter message, " + message);
 
-            console.log("element: " + element);
+        let element;
+        let retrievedHtmls = document.getElementsByTagName("span");
+        for (let i = 0; i < retrievedHtmls.length; i++) {
+          if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
+            element = retrievedHtmls[i];
+            break;
+          }
+        }
 
-            // our target is the retrieved element's container, i.e. 17th parent of the retrieved element
-            let parentLevel = 17;
-            for (let i = 0; i < parentLevel; i++) {
-                if (element.parentElement !== null) {
-                    element = element.parentNode;
-                } else {
-                    break;
-                }
-            }
+        console.log("element: " + element);
 
-            console.log("container element: " + element);
-        
-            if (message === 'on') {
-                this.highlight_added = true;
-                console.log('twitter promoted highlight on');
-                this.sendAction(1, 'toggle twitter_promoted_highlight');
+        // our target is the retrieved element's container, i.e. 17th parent of the retrieved element
+        let parentLevel = 17;
+        for (let i = 0; i < parentLevel; i++) {
+          if (element.parentElement !== null) {
+            element = element.parentNode;
+          } else {
+            break;
+          }
+        }
 
-                if (element !== null && element !== undefined) {
-                    this.target = element;
-                    // this.remove(this.target);
-                    // console.log(this.target + " removed");
-                    this.createFrictionOverlay();
-                } else {
-                    console.log("cannot find target element for twitter promoted highlight");
-                }
-            } else if (message === 'off') {
-                this.highlight_added = false;
-                this.sendAction(0, 'toggle twitter_promoted_highlight');
-                console.log('twitter promoted highlight off');
-                
-                console.log("this.target: ", this.target);
-                if (this.target !== null && this.target !== undefined) {
-                    // this.recover(this.target);
-                    // console.log(this.target + " restored");
-                    document.body.removeChild(this.highlightOverlayElement);
-                }
-            }
-            this.$emit('update');
-        });
-    }
+        console.log("container element: " + element);
+
+        if (message === "on") {
+          this.highlight_added = true;
+          console.log("twitter promoted highlight on");
+          this.sendAction(1, "toggle twitter_promoted_highlight");
+
+          if (element !== null && element !== undefined) {
+            this.target = element;
+            // this.remove(this.target);
+            // console.log(this.target + " removed");
+            this.createFrictionOverlay();
+          } else {
+            console.log(
+              "cannot find target element for twitter promoted highlight"
+            );
+          }
+        } else if (message === "off") {
+          this.highlight_added = false;
+          this.sendAction(0, "toggle twitter_promoted_highlight");
+          console.log("twitter promoted highlight off");
+
+          console.log("this.target: ", this.target);
+          if (this.target !== null && this.target !== undefined) {
+            // this.recover(this.target);
+            // console.log(this.target + " restored");
+            document.body.removeChild(this.highlightOverlayElement);
+          }
+        }
+        this.$emit("update");
+      }, 2000);
+    });
+  },
 };
 </script>
 <style lang=""></style>
