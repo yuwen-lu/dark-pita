@@ -172,7 +172,7 @@ export default {
       pattern: 'Recommended Items',
 
       description:
-        'These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.\n\n* The highlighted one represents all recommended items in this page.',
+        '(The highlighted one represents all recommended items on homepage.) These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.',
       awareness:
         'Users are more likely to deviate from their original purchase goals or spend more time browsing less relavant items.',
       action: [
@@ -222,7 +222,7 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Recommended Videos',
       description:
-        'Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.',
+        '(The highlighted one represents all recommended videos on homepage.) Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.',
       awareness:
         'The videos are trying to cater to your tastes. You are more likely to consume more content than you originally intent to. Auxilary functions such as preview will make it even easier to be distracted.',
       action: [
@@ -302,7 +302,7 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Recommended Videos',
       description:
-        'Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.',
+        '(The highlighted one represents all recommended videos on sidebar.) Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.',
       awareness:
         'It is likely that you will watch more similar videos after you finish the current one.',
       action: [
