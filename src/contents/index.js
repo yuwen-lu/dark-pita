@@ -256,7 +256,7 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_reflection_timetracker.png?v=1660765926230',
           component: 'youtube_recommended_video_reflection',
           description:
-            'Dark Pita will put a mini clock on the right top corner as a reminder to track time you spend on YouTube. This may help prevent overconsumption of YouTube videos.'
+            'Dark Pita will put a mini clock to help track extra time you spend on YouTube due to dark patterns.'
         }
       ]
     },
