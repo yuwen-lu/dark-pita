@@ -118,10 +118,10 @@ export default {
         netflix_hugepreview_disable: 'off',
 
         // twitter
-        twitter_whats_happening_hide: "off",
-        twitter_promoted_highlight: "off",
-        twitter_promoted_friction: "off",
-      },
+        twitter_whats_happening_hide: 'off',
+        twitter_promoted_highlight: 'off',
+        twitter_promoted_friction: 'off'
+      }
     };
   },
   methods: {
@@ -247,15 +247,15 @@ export default {
       }
 
       // twitter
-      else if (this.intervention.component === "twitter_whats_happening_hide") {
-        this.emitter.emit("twitter_whats_happening_hide", "on");
-        console.log("Emitting twitter_whats_happening_hide message as on");
-      } else if (this.intervention.component === "twitter_promoted_highlight") {
-        this.emitter.emit("twitter_promoted_highlight", "on");
-        console.log("Emitting twitter_promoted_highlight message as on");
-      } else if (this.intervention.component === "twitter_promoted_friction") {
-        this.emitter.emit("twitter_promoted_friction", "on");
-        console.log("Emitting twitter_promoted_friction message as on");
+      else if (this.intervention.component === 'twitter_whats_happening_hide') {
+        this.emitter.emit('twitter_whats_happening_hide', 'on');
+        console.log('Emitting twitter_whats_happening_hide message as on');
+      } else if (this.intervention.component === 'twitter_promoted_highlight') {
+        this.emitter.emit('twitter_promoted_highlight', 'on');
+        console.log('Emitting twitter_promoted_highlight message as on');
+      } else if (this.intervention.component === 'twitter_promoted_friction') {
+        this.emitter.emit('twitter_promoted_friction', 'on');
+        console.log('Emitting twitter_promoted_friction message as on');
       }
 
       if (this.intervention.component !== 'none') {

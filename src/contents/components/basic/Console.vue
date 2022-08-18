@@ -59,6 +59,7 @@ export default {
       DataService.sendDiary(this.userId, data)
         .then(() => {
           console.log('send new diary successfully!');
+          this.diary = '';
         })
         .catch((e) => {
           console.log(e);

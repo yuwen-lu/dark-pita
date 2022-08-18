@@ -241,7 +241,7 @@ import facebook_suggested_for_you_highlight from './components/facebook/suggeste
 
 import twitter_whats_happening_hide from './components/twitter/whats_happening/twitter_whats_happening_hide.vue';
 import twitter_promoted_highlight from './components/twitter/promoted/twitter_promoted_highlight.vue';
-import twitter_promoted_friction from "./components/twitter/promoted/twitter_promoted_friction.vue";
+import twitter_promoted_friction from './components/twitter/promoted/twitter_promoted_friction.vue';
 
 export default {
   data() {
@@ -600,7 +600,7 @@ export default {
               }
             }
             // our target is the 17th parent of the selected element
-            if(element !== null && element !== undefined) {
+            if (element !== null && element !== undefined) {
               let parentLevel = 17;
               for (let j = 0; j < parentLevel; j++) {
                 if (element.parentElement !== null) {
