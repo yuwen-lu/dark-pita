@@ -584,10 +584,10 @@ export default {
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         },
         {
-          name: 'bright pattern',
+          name: 'friction',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
+          component: 'twitter_promoted_friction',
           description:
             'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
         }

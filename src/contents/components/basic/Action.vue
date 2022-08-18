@@ -123,6 +123,7 @@ export default {
         // twitter
         twitter_whats_happening_hide: "off",
         twitter_promoted_highlight: "off",
+        twitter_promoted_friction: "off",
       },
     };
   },
@@ -255,6 +256,9 @@ export default {
       } else if (this.intervention.component === "twitter_promoted_highlight") {
         this.emitter.emit("twitter_promoted_highlight", "on");
         console.log("Emitting twitter_promoted_highlight message as on");
+      } else if (this.intervention.component === "twitter_promoted_friction") {
+        this.emitter.emit("twitter_promoted_friction", "on");
+        console.log("Emitting twitter_promoted_friction message as on");
       }
 
       if (this.intervention.component !== "none") {
