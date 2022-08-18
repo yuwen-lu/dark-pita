@@ -321,7 +321,7 @@ export default {
     element.classList.add('DP_' + this.color);
     // console.log(this.color);
 
-    // Set the default option in dropdown meue to the current intervention imposed on the target dark pattern
+    // Set the default option in dropdown menu to the current intervention imposed on the target dark pattern
     if (JSON.stringify(this.savedSettings) !== '{}') {
       this.interventionState = this.savedSettings;
       Object.keys(this.interventionState).map((key) => {
