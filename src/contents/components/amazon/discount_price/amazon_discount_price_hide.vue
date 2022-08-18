@@ -18,7 +18,7 @@ export default {
 
       if (
         this.target !== null &&
-        this.target !== null &&
+        this.price !== null &&
         this.sibling !== null
       ) {
         if (message === 'on') {
