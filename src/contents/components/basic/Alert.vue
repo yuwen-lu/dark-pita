@@ -9,15 +9,15 @@
         <span style="padding-left: 20px"> </span> Hello there, dark patterns
         detected
       </p>
-      <button @click="toggleMask" v-if="!isMask">
-        Show All
-      </button>
-      <button @click="toggleMask" v-if="isMask">
-        Close
-      </button>
-      <button @click="reset">
-        Reset
-      </button>
+
+      <button @click="toggleMask" v-if="!isMask">Show All</button>
+      <button @click="toggleMask" v-if="isMask">Close</button>
+      <button @click="reset">Reset</button>
+      <a href="https://kapa-moon.github.io/dark-pita-manual/" target="_blank"
+        ><img
+          src="https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/icons8-information-48.png?v=1660785219550"
+          style="width: 20px; height: 20px"
+      /></a>
     </div>
 
     <button @click="closeAlert">
@@ -40,14 +40,14 @@
 export default {
   props: {
     targetNames: {
-      type: Object
+      type: Object,
     },
     website: {
-      type: String
+      type: String,
     },
     isAlert: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   watch: {
     isAlert(newValue, oldValue) {
@@ -61,14 +61,14 @@ export default {
           }
         });
 
-        chrome.storage.sync.get('savedSettings', function(settings) {
-          if (JSON.stringify(settings.savedSettings) !== '{}') {
+        chrome.storage.sync.get("savedSettings", function (settings) {
+          if (JSON.stringify(settings.savedSettings) !== "{}") {
             Object.keys(settings.savedSettings).forEach((key) => {
               // console.log(key, settings.savedSettings[key]);
-              if (settings.savedSettings[key] === 'on') {
+              if (settings.savedSettings[key] === "on") {
                 for (let i = 0; i < targets.length; i++) {
                   if (key.search(targets[i]) !== -1) {
-                    that.emitter.emit(key, 'on');
+                    that.emitter.emit(key, "on");
                   }
                 }
               }
@@ -79,95 +79,95 @@ export default {
 
       // if the banner is on, move the top bar lower
       // otherwise, move the top bar higher
-      console.log('isAlert changed to ' + newValue);
-      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
+      console.log("isAlert changed to " + newValue);
+      chrome.runtime.sendMessage({ type: "APP_INIT" }, async (tab) => {
         this.currentTab = await tab;
         console.log(this.currentTab);
 
         if (this.currentTab !== null) {
           let url = this.currentTab.url;
-          console.log('current site in alert:', url);
+          console.log("current site in alert:", url);
           if (url.search(/facebook.com/) !== -1) {
             let bannerElement = document.querySelectorAll('[role="banner"]')[0];
             for (var i = 0; i < bannerElement.children.length; i++) {
               if (newValue) {
-                bannerElement.children[i].style.top = '64px';
+                bannerElement.children[i].style.top = "64px";
               } else {
-                bannerElement.children[i].style.top = '0px';
+                bannerElement.children[i].style.top = "0px";
               }
             }
           } else if (url.search(/youtube.com/) !== -1) {
             // need to manually change the top position of each screen componet (header, main content, left bar)
-            let leftBar = document.getElementsByTagName('tp-yt-app-drawer')[0];
-            console.log('leftBar', leftBar);
+            let leftBar = document.getElementsByTagName("tp-yt-app-drawer")[0];
+            console.log("leftBar", leftBar);
             // leftBar current position set to fixed, add its left value by 64 px;
             if (leftBar != undefined) {
               let leftBarCurrentTopValue = getComputedStyle(leftBar).top;
               if (newValue) {
-                console.log('moving left bar down');
+                console.log("moving left bar down");
                 leftBar.style.top =
-                  parseInt(leftBarCurrentTopValue) + 64 + 'px';
+                  parseInt(leftBarCurrentTopValue) + 64 + "px";
               } else {
-                console.log('moving left bar back to original position');
+                console.log("moving left bar back to original position");
                 leftBar.style.top =
-                  parseInt(leftBarCurrentTopValue) - 64 + 'px';
+                  parseInt(leftBarCurrentTopValue) - 64 + "px";
               }
             } else {
-              console.log('leftBar not retrieved');
+              console.log("leftBar not retrieved");
             }
 
-            let headerBar = document.getElementById('masthead-container');
-            console.log('headerBar', headerBar);
+            let headerBar = document.getElementById("masthead-container");
+            console.log("headerBar", headerBar);
             // headerBar current position set to fixed, add its left value by 64 px;
             if (headerBar != undefined) {
               let headerBarCurrentTopValue = getComputedStyle(headerBar).top;
               if (newValue) {
                 headerBar.style.top =
-                  parseInt(headerBarCurrentTopValue) + 64 + 'px';
+                  parseInt(headerBarCurrentTopValue) + 64 + "px";
               } else {
                 headerBar.style.top =
-                  parseInt(headerBarCurrentTopValue) - 64 + 'px';
+                  parseInt(headerBarCurrentTopValue) - 64 + "px";
               }
             } else {
-              console.log('headerBar not retrieved');
+              console.log("headerBar not retrieved");
             }
 
-            let bannerElement = document.getElementsByTagName('ytd-browse')[0];
+            let bannerElement = document.getElementsByTagName("ytd-browse")[0];
             if (bannerElement != undefined) {
-              console.log('bannerElement: ' + bannerElement);
+              console.log("bannerElement: " + bannerElement);
               if (newValue) {
-                bannerElement.style.marginTop = '64px';
+                bannerElement.style.marginTop = "64px";
               } else {
-                bannerElement.style.marginTop = '0px';
+                bannerElement.style.marginTop = "0px";
               }
             } else {
-              console.log('bannerElement not retrieved');
+              console.log("bannerElement not retrieved");
             }
           } else {
             if (newValue) {
-              document.body.style.paddingTop = '64px';
+              document.body.style.paddingTop = "64px";
             } else {
-              document.body.style.paddingTop = '0px';
+              document.body.style.paddingTop = "0px";
             }
           }
         }
       });
-    }
+    },
   },
   data() {
     return {
       isMask: false,
-      interventionState: {}
+      interventionState: {},
     };
   },
   methods: {
     toggleMask() {
       this.isMask = !this.isMask;
-      this.$emit('toggleMask', false);
+      this.$emit("toggleMask", false);
     },
     closeAlert() {
-      alert('You can reopen the banner by clicking the Dark Pita icon.');
-      this.$emit('closeAlert', false);
+      alert("You can reopen the banner by clicking the Dark Pita icon.");
+      this.$emit("closeAlert", false);
     },
     reset() {
       let targets = [];
@@ -178,17 +178,17 @@ export default {
       });
 
       let that = this;
-      this.sendAction(this.interventionState, 'before reset settings');
-      chrome.storage.sync.get('savedSettings', function(settings) {
+      this.sendAction(this.interventionState, "before reset settings");
+      chrome.storage.sync.get("savedSettings", function (settings) {
         that.interventionState = settings.savedSettings;
-        if (JSON.stringify(settings.savedSettings) !== '{}') {
+        if (JSON.stringify(settings.savedSettings) !== "{}") {
           Object.keys(settings.savedSettings).forEach((key) => {
             // console.log(key, settings.savedSettings[key]);
-            if (settings.savedSettings[key] === 'on') {
+            if (settings.savedSettings[key] === "on") {
               for (let i = 0; i < targets.length; i++) {
                 if (key.search(targets[i]) !== -1) {
-                  that.emitter.emit(key, 'off');
-                  that.interventionState[key] = 'off';
+                  that.emitter.emit(key, "off");
+                  that.interventionState[key] = "off";
                 }
               }
             }
@@ -198,20 +198,20 @@ export default {
         chrome.storage.sync.set({ savedSettings: that.interventionState });
       });
 
-      console.log('reset settings');
-      this.sendAction(this.interventionState, 'reset settings');
+      console.log("reset settings");
+      this.sendAction(this.interventionState, "reset settings");
       location.reload();
-    }
+    },
   },
   mounted() {
-    console.log('alert mounted');
+    console.log("alert mounted");
 
-    this.emitter.on('alert_button_show', (message) => {
-      if (message === 'show') {
+    this.emitter.on("alert_button_show", (message) => {
+      if (message === "show") {
         this.toggleMask();
       }
     });
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

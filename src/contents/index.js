@@ -187,7 +187,7 @@ export default {
         {
           name: 'focus mode',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_home_focus_mode.gif?v=1660783201214',
           component: 'amazon_home_card_focus',
           description:
             'Hide the recommended-items section on the home page.'
@@ -253,7 +253,7 @@ export default {
         {
           name: 'reflection',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_time_tracker.png?v=1660683895184',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_reflection_timetracker.png?v=1660765926230',
           component: 'youtube_recommended_video_reflection',
           description:
             'Dark Pita will put a mini clock on the right top corner as a reminder to track time you spend on YouTube. This may help prevent overconsumption of YouTube videos.'
@@ -485,72 +485,33 @@ export default {
       identifier: 'Timeline: Trending now',
       url: 'https://twitter.com/home',
       type: 'social media platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['disparate treatment', 'covert'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
-      pattern: 'loss-gain framing',
+      pattern: 'Suggested Content',
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'This section shows trending content suggested by Twitter.',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'You might be distracted from your original browsing purpose.',
       action: [
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/what_happen_before.png?v=1660785897963',
           component: '',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified.'
         },
         {
+
           name: 'hide / disable',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: 'twitter_whats_happening_hide',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Dark Pita will hide this section to help you focus on main content.'
         },
-        
-      ]
-    },
-    {
-      name: 'twitter_who_to_follow',
-      identifier: 'Who to follow',
-      url: 'https://twitter.com/home',
-      type: 'social media platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
-      icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
-      pattern: 'loss-gain framing',
-      description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
-      awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
-      action: [
-        {
-          name: 'none',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
-          description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        },
-        {
-          name: 'design friction',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
-          description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        },
-        {
-          name: 'bright pattern',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
-          description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        }
+
       ]
     },
     {
@@ -558,42 +519,34 @@ export default {
       identifier: 'See more',
       url: 'https://twitter.com/home',
       type: 'social media platform',
-      tag: ['asymmetric', 'disparate treatment', 'information hiding'],
+      tag: ['disparate treatment', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
-      pattern: 'loss-gain framing',
+      pattern: 'Suggested Tweets',
       description:
-        'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
+        'Though this is suggested content by Twitter algorithm, it does not explicitly label itself as "sponsored" or "suggested". Instead, it is using confusing labels such as "Popular videos" or the name of topics that you are interested in, such as "Computer programming".',
       awareness:
-        'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.',
+        'It feeds you information that you did not intend to look for. You might miss the fact that these tweets are suggested content. Furthermore, you might spend extra time on browsing this type of tweets.',
       action: [
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/twt_prompted_before.png?v=1660781206833',
           component: '',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Not modified.'
         },
         {
-          name: 'highlight',
+          name: 'Hide Content',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/tweet_prompted_hide.png?v=1660781658471',
           component: 'twitter_promoted_highlight',
           description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+            'Dark Pita will detect this type of tweets and replace them with a clean pannel, where Dark Pita explicitly shows you the mechanism behind such tweets.'
         },
-        {
-          name: 'bright pattern',
-          image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: '',
-          description:
-            'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        }
       ]
     },
-    
+
 
   ],
   facebook: [
@@ -603,7 +556,7 @@ export default {
       url: 'https://www.facebook.com/',
       type: 'social media platform',
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
       pattern: 'Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
@@ -634,7 +587,7 @@ export default {
       url: 'https://www.facebook.com/',
       type: 'social media platform',
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
       pattern: 'Hidden Information',
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
@@ -683,7 +636,7 @@ export default {
       tag: ['covert', 'deceptive', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
-      pattern: 'Sponsored Feed',
+      pattern: 'Disguised Sponsored Content',
       description:
         'These are sponsored/promoted posts prompted onto your homepage feed, instead of being posted by your friends.',
       awareness:
@@ -713,8 +666,9 @@ export default {
       url: 'https://www.facebook.com/',
       type: 'social media platform',
       icon:
-        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388',
-      pattern: 'Hidden Information',
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539',
+      pattern: 'Recommendations from Facebook',
+      tag: ['covert', 'deceptive', 'information hiding'],
       description:
         'A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.',
       awareness:
