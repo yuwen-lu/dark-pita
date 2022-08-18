@@ -57,8 +57,6 @@
   </div>
 </template>
 <script>
-import DataService from '@/contents/services/data.js';
-
 export default {
   props: {
     action: {
@@ -107,7 +105,6 @@ export default {
         facebook_suggested_for_you_highlight: 'off',
 
         // youtube
-
         youtube_recommended_video_focus: 'off',
         youtube_recommended_video_preview: 'off',
         youtube_recommended_video_reflection: 'off',
@@ -118,10 +115,12 @@ export default {
 
         // netflix
         netflix_timeline_reflection: 'off',
+        netflix_hugepreview_disable: 'off',
 
         // twitter
         twitter_whats_happening_hide: 'off',
-        twitter_promoted_highlight: 'off'
+        twitter_promoted_highlight: 'off',
+        twitter_promoted_friction: 'off'
       }
     };
   },
@@ -215,6 +214,10 @@ export default {
       // netflix
       else if (this.intervention.component === 'netflix_timeline_reflection') {
         this.emitter.emit('netflix_timeline_reflection', 'on');
+      } else if (
+        this.intervention.component === 'netflix_hugepreview_disable'
+      ) {
+        this.emitter.emit('netflix_hugepreview_disable', 'on');
       }
 
       // facebook
@@ -250,12 +253,16 @@ export default {
       } else if (this.intervention.component === 'twitter_promoted_highlight') {
         this.emitter.emit('twitter_promoted_highlight', 'on');
         console.log('Emitting twitter_promoted_highlight message as on');
+      } else if (this.intervention.component === 'twitter_promoted_friction') {
+        this.emitter.emit('twitter_promoted_friction', 'on');
+        console.log('Emitting twitter_promoted_friction message as on');
       }
 
       if (this.intervention.component !== 'none') {
         this.interventionState[this.intervention.component] = 'on';
       }
 
+      this.emitter.emit('intervention state', this.interventionState);
       this.toggleDropdown();
     },
     triggerIntervention() {
@@ -310,6 +317,7 @@ export default {
   mounted() {
     console.log('action mounted');
 
+    // Set the color theme according to the type of the current site
     let element = document.getElementById('DP_action');
     element.classList.remove('DP_online_shopping');
     element.classList.remove('DP_social_media');
@@ -317,8 +325,20 @@ export default {
     element.classList.add('DP_' + this.color);
     // console.log(this.color);
 
+    // Set the default option in dropdown menu to the current intervention imposed on the target dark pattern
     if (JSON.stringify(this.savedSettings) !== '{}') {
       this.interventionState = this.savedSettings;
+      Object.keys(this.interventionState).map((key) => {
+        if (key.search(this.targetName) !== -1) {
+          if (this.interventionState[key] === 'on') {
+            for (let i = 0; i < this.action.length; i++) {
+              if (this.action[i].component === key) {
+                this.intervention = this.action[i];
+              }
+            }
+          }
+        }
+      });
     }
   }
 };

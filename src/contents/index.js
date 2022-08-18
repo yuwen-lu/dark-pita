@@ -172,7 +172,9 @@ export default {
       pattern: 'Recommended Items',
 
       description:
-        'These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and takes the whole field of view.\n\n* The highlighted one represents all recommended items on this page.',
+
+        '(The highlighted one represents all recommended items on homepage.) These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.',
+
       awareness:
         'Users are more likely to deviate from their original purchase goals or spend more time browsing less relevant items.',
       action: [
@@ -222,7 +224,7 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Recommended Videos',
       description:
-        'Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.',
+        '(The highlighted one represents all recommended videos on homepage.) Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.',
       awareness:
         'The videos are trying to cater to your tastes. You are likely to consume more content than you originally intended to. Auxiliary functions such as preview will make it even easier to be distracted.',
       action: [
@@ -302,7 +304,7 @@ export default {
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Recommended Videos',
       description:
-        'Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.',
+        '(The highlighted one represents all recommended videos on sidebar.) Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.',
       awareness:
         'It is likely that you will watch more similar videos after you finish the current one.',
       action: [
@@ -509,7 +511,9 @@ export default {
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/whathappen_hide.gif?v=1660787505163',
           component: 'twitter_whats_happening_hide',
           description:
+
             'Dark Pita will hide this section to help you focus on main content.'
+
         },
 
       ]
@@ -544,6 +548,16 @@ export default {
           description:
             'Dark Pita will detect this type of tweets and replace them with a clean panel, where Dark Pita explicitly shows you the mechanism behind such tweets.'
         },
+
+    //    {
+     //     name: 'friction',
+    //      image:
+    //        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+   //       component: 'twitter_promoted_friction',
+   //       description:
+   //         'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+   //     }
+
       ]
     },
 
@@ -708,7 +722,7 @@ export default {
       identifier: 'controls-time-remaining',
       url: 'https://www.netflix.com/watch/*',
       type: 'video streaming platform',
-      tag: ['asymmetric', 'covert'],
+      tag: ['restrictive', 'covert', 'information hiding'],
       icon:
         'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
       pattern: 'Remaining Time Only',
@@ -732,6 +746,38 @@ export default {
           component: 'netflix_timeline_reflection',
           description:
             'Dark Pita sets a mini clock for you to track the time you spend here. This may help prevent behaviors such as binge-watching.'
+        }
+      ]
+    },
+    {
+      name: 'netflix_hugepreview',
+      identifier: 'Featured Content',
+      url: 'https://www.netflix.com/browse',
+      type: 'video streaming platform',
+      tag: ['restrictive', 'covert'],
+      icon:
+        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076',
+      pattern: 'Automatic Background Preview',
+      description:
+        'Once you enter your Netflix, it will automatically start to play the featured trailor for you.',
+      awareness:
+        'The featured content is likely catering to your taste. You will possibly enter a video that you did not plan to watch. Therefore, you might spend more time than you expected on this platform.',
+      action: [
+        {
+          name: 'none',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'none',
+          description:
+            'Not Modified.'
+        },
+        {
+          name: 'disable',
+          image:
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+          component: 'netflix_hugepreview_disable',
+          description:
+            'Dark Pita will disable the visual part of the background preview.'
         }
       ]
     },

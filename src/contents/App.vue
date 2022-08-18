@@ -1,6 +1,7 @@
 <template>
   <div id="DP_wrapper" :key="reload">
-    // amazon
+    <!-- Intervention list -->
+    <!-- Amazon -->
     <amazon_buy_now_hide
       v-if="targetNames.amazon_buy_now"
       @update="generateOverviewOverlay"
@@ -58,7 +59,7 @@
       @update="generateOverviewOverlay"
     />
 
-    // youtube
+    <!-- Youtube -->
     <youtube_recommended_video_focus
       v-if="targetNames.youtube_recommended_video"
       @update="generateOverviewOverlay"
@@ -87,13 +88,18 @@
       v-if="targetNames.youtube_sidebar_video"
       @update="generateOverviewOverlay"
     />
-    <!-- netflix -->
+
+    <!-- Netflix -->
     <netflix_timeline_reflection
       v-if="targetNames.netflix_timeline"
       @update="generateOverviewOverlay"
     />
+    <netflix_hugepreview_disable
+      v-if="targetNames.netflix_hugepreview"
+      @update="generateOverviewOverlay"
+    />
 
-    // facebook
+    <!-- Facebook -->
     <facebook_suggested_hide
       v-if="targetNames.facebook_suggested"
       @update="generateOverviewOverlay"
@@ -123,13 +129,17 @@
       @update="generateOverviewOverlay"
     />
 
-    // twitter
+    <!-- Twitter -->
     <twitter_whats_happening_hide
       v-if="targetNames.twitter_whats_happening"
       @update="generateOverviewOverlay"
     />
-
     <twitter_promoted_highlight
+      v-if="targetNames.twitter_promoted"
+      @update="generateOverviewOverlay"
+    />
+
+    <twitter_promoted_friction
       v-if="targetNames.twitter_promoted"
       @update="generateOverviewOverlay"
     />
@@ -142,6 +152,7 @@
       v-show="isAlert"
     />
 
+    <!-- Popup panel -->
     <Popup
       class="DP_popup"
       v-if="isPop"
@@ -154,10 +165,12 @@
       @closePop="closePop"
     />
 
+    <!-- Canvas for overlay -->
     <canvas resize id="DP_canvas" style="display: none"></canvas>
 
     <div id="DP_mask" class="DP_mask" v-show="isMask"></div>
 
+    <!-- Clickable area for highlighted dark patterns -->
     <div
       v-for="(value, index) in targetIdentifiers"
       :key="index"
@@ -167,25 +180,31 @@
       v-show="isMask"
     ></div>
 
+    <!-- Console for sending diary notes -->
     <Console
       v-if="isConsole"
       :notSupport="notSupport"
       :isAlert="isAlert"
+      :currentURL="currentTab.url"
       @openAlert="openAlert"
     />
   </div>
 </template>
 
 <script>
+// Dark pattern index
 import INDEX from '@/contents/index.js';
-import Alert from '@/contents/components/basic/Alert.vue';
-import Popup from '@/contents/components/basic/Popup.vue';
-import Console from '@/contents/components/basic/Console.vue';
+
+// Libraries
 import Paper from 'paper';
 import { incrementTime } from '@/contents/components/youtube/recommended_video/time_tracker/tracker';
 
-// Action components
+// Basic components
+import Alert from '@/contents/components/basic/Alert.vue';
+import Popup from '@/contents/components/basic/Popup.vue';
+import Console from '@/contents/components/basic/Console.vue';
 
+// Intervention components
 import amazon_buy_now_hide from '@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue';
 import amazon_buy_now_fairness from '@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue';
 import amazon_buy_now_friction from '@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue';
@@ -210,6 +229,7 @@ import youtube_sidebar_video_preview from '@/contents/components/youtube/sidebar
 import youtube_sidebar_video_reflection from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue';
 
 import netflix_timeline_reflection from '@/contents/components/netflix/timeline/netflix_timeline_reflection.vue';
+import netflix_hugepreview_disable from '@/contents/components/netflix/hugepreview/netflix_hugepreview_disable.vue';
 
 import facebook_suggested_hide from '@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue';
 import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
@@ -221,63 +241,64 @@ import facebook_suggested_for_you_highlight from './components/facebook/suggeste
 
 import twitter_whats_happening_hide from './components/twitter/whats_happening/twitter_whats_happening_hide.vue';
 import twitter_promoted_highlight from './components/twitter/promoted/twitter_promoted_highlight.vue';
+import twitter_promoted_friction from './components/twitter/promoted/twitter_promoted_friction.vue';
 
 export default {
   data() {
     return {
-      reload: 0,
-      timer: null,
-      currentTab: null,
-      info: [],
-      website: '',
-      targetIdentifiers: null,
-      currentTarget: {},
-      boundingBoxList: [],
-      isPop: false,
-      isMask: false,
-      isAlert: false,
-      popupX: 0,
-      popupY: 0,
-      text: '',
-      overlayPath: '',
+      reload: 0, // reload hook for whole app
+      timer: null, // reload hook for popup
+      currentTab: null, // information (url, etc.) of current site
+      info: [], // dark pattern information of current platform (Amazon, etc.)
+      website: '', // name of current platform (Amazon, etc.)
+      targetIdentifiers: null, // identifiers of dark patterns in current site
+      currentTarget: {}, // current selected dark pattern
+      boundingBoxList: [], // containers for all bounding boxes of dark patterns
+      isPop: false, // state of popup panel
+      isMask: false, // state of overlay
+      isAlert: false, // state of header alert
+      popupX: 0, // left position of popup panel
+      popupY: 0, // top position of popup panel
+      overlayPath: '', // container for overlay svg
       overlayWidth: Math.max(
         document.documentElement.clientWidth || 0,
         window.innerWidth || 0
-      ),
+      ), // width of overlay, equal to the viewpoint
       overlayHeight: Math.max(
         document.documentElement.clientHeight || 0,
         window.innerHeight || 0
-      ),
-      mask: null,
+      ), // height of overlay, equal to the viewpoint
+      mask: null, // container for overlay element
       targetNames: {
         amazon_buy_now: false,
         amazon_disguised_ads: false,
         amazon_discount_price: false,
         amazon_home_card: false,
-
         facebook_suggested: false,
         facebook_reels: false,
         facebook_sponsored: false,
         facebook_suggested_for_you: false,
-
         youtube_recommended_video: false,
         youtube_video_dislike: false,
         youtube_sidebar_video: false,
-
         netflix_preview: false,
-
+        netflix_timeline: false,
+        netflix_hugepreview: false,
         twitter_whats_happening: false,
         twitter_promoted: false
-      },
-      savedSettings: {},
-      isConsole: false,
-      notSupport: false
+      }, // list of all dark patterns
+      savedSettings: {}, // saved settings for interventions of dark patterns
+      isConsole: false, // state of console panel
+      notSupport: false // whether dark patterns exist in this site
     };
   },
   components: {
+    // Basic components
     Alert,
     Popup,
     Console,
+
+    // Intervention components
     amazon_buy_now_hide,
     amazon_buy_now_fairness,
     amazon_buy_now_friction,
@@ -311,29 +332,41 @@ export default {
     youtube_sidebar_video_reflection,
 
     netflix_timeline_reflection,
+    netflix_hugepreview_disable,
 
     twitter_whats_happening_hide,
-    twitter_promoted_highlight
+    twitter_promoted_highlight,
+    twitter_promoted_friction
   },
   computed: {},
   watch: {
     reload(newVal, oldVal) {
+      /**
+       * Reload the whole app when url is changed
+       */
       console.log('app reload');
       this.initialize();
     }
   },
   methods: {
     initialize() {
+      /**
+       * Initialize the whole app
+       */
       console.log('app initialize');
+
+      // Add event for responsible overlay
       window.addEventListener('scroll', this.generateOverviewOverlay);
       window.addEventListener('resize', this.generateOverviewOverlay);
       Paper.setup(document.getElementById('DP_canvas'));
 
+      // Initialize varaiables
       this.notSupport = false;
       this.targetIdentifiers = null;
       this.isPop = false;
       this.mask = document.getElementById('DP_mask');
 
+      // Get the site info (url, etc.) to initialize varaiables
       chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
         this.isAlert = false; // this line is put inside of here to prevent isAlert being set before <Alert> is mounted
         this.currentTab = await tab;
@@ -381,7 +414,7 @@ export default {
 
           console.log('dark patterns on this site:', this.targetNames);
 
-          // Initialize
+          // Whether the header alert can appear or not, depends on whether dark patterns exist or not
           if (this.targetIdentifiers !== null) {
             console.log(this.targetIdentifiers);
             this.currentTarget = this.info[0];
@@ -391,7 +424,7 @@ export default {
             this.notSupport = true;
           }
 
-          // Start time tracker
+          // Start time tracker for youtube
           if (url.search(/youtube.com/) !== -1) {
             const HEARTBIT = 6; // sec
             setInterval(function() {
@@ -407,8 +440,10 @@ export default {
                     ' mins in total';
                 }
               });
-            }, HEARTBIT * 1000);
+            }, HEARTBIT * 1000); // update every 6s
           }
+
+          // Start time tracker for netflix
           if (url.search(/netflix.com/) !== -1) {
             const HEARTBIT = 6; // sec
             setInterval(function() {
@@ -421,11 +456,12 @@ export default {
                     Math.round(data.time_watched) + 'mins';
                 }
               });
-            }, HEARTBIT * 1000);
+            }, HEARTBIT * 1000); // update every 6s
           }
         }
       });
 
+      // Get the saved settings from chrome
       let that = this;
       chrome.storage.sync.get('savedSettings', function(settings) {
         if (JSON.stringify(settings) !== '{}') {
@@ -436,6 +472,9 @@ export default {
       });
     },
     toggleMask() {
+      /**
+       * Click 'Show All' in header alert to show the overlay
+       */
       this.refresh();
       if (this.isMask === false) {
         this.isMask = true;
@@ -447,10 +486,16 @@ export default {
       }
     },
     generateTouchableArea() {
+      /**
+       * Generate all touchable areas for dark patterns in current site
+       */
       console.log(
         'generate touchable areas for bounding boxes: ' + this.boundingBoxList
       );
-      document.body.style.position = 'relative';
+
+      document.body.style.position = 'relative'; // set the body relative position for the absolute postion of touchable areas
+
+      // Iterate all bounding boxes to generate touchable areas
       for (let i = 0; i < this.boundingBoxList.length; i++) {
         let id = this.boundingBoxList[i].id;
         let left = this.boundingBoxList[i].x + 'px';
@@ -462,6 +507,9 @@ export default {
       }
     },
     generateSpotlightOverlay(id, left, top, width, height, opacity = 0.5) {
+      /**
+       * Generate single touchable area for one specific dark pattern
+       */
       console.log('generate spotlight overlay for ' + id);
       let boundingBox = document.getElementById('DP_i_' + id);
       if (boundingBox !== undefined && boundingBox !== null) {
@@ -472,24 +520,21 @@ export default {
         boundingBox.style.opacity = opacity;
       }
     },
-    handleScroll() {
-      let scrollTop =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      console.log('scrolling distance from top:', scrollTop);
-    },
     generateOverviewOverlay() {
+      /**
+       * Generate overlay
+       */
       if (this.isMask) {
         console.log('generate overlay');
 
-        this.refresh();
+        this.refresh(); // refresh bounding boxes before generating overlay
 
-        console.log(
-          'new after refresh this.boundingBoxList',
-          this.boundingBoxList
-        );
+        // console.log(
+        //   'new after refresh this.boundingBoxList',
+        //   this.boundingBoxList
+        // );
 
+        // Leverage paper.js to generate overlay svg
         const origin = new Paper.Point(0, 0);
         const rect = new Paper.Path.Rectangle({
           point: origin,
@@ -498,6 +543,7 @@ export default {
           opacity: 0.6
         });
 
+        // Boolean operations to subtract bounding boxes
         let overlayPath = rect;
         for (let i = 0; i < this.boundingBoxList.length; i++) {
           const boundingBox = new Paper.Path.Rectangle({
@@ -513,9 +559,11 @@ export default {
           overlayPath = overlayPath.subtract(boundingBox);
         }
 
+        // Export the generated overlay svg
         this.overlayPath = overlayPath.exportSVG();
         Paper.project.clear();
 
+        // Insert the generated overlay svg into DOM
         const SVG_NS = 'http://www.w3.org/2000/svg';
         let svg = document.createElementNS(SVG_NS, 'svg');
         svg.setAttribute('width', this.overlayWidth);
@@ -524,18 +572,22 @@ export default {
         this.mask = document.getElementById('DP_mask');
         this.mask.appendChild(svg);
 
+        // Regenerate touchable areas for the new overlay
         this.generateTouchableArea();
         // console.log(this.overlayPath);
       }
     },
     getBoundingBoxList() {
+      /**
+       * Get all bounding boxes according the position and size of dark patterns
+       */
       console.log('Getting bounding box list');
       this.boundingBoxList = [];
       for (let i = 0; i < this.targetIdentifiers.length; i++) {
         let element;
         let elementList = [];
 
-        // Set the selector
+        // Set one unique selector for every dark pattern
         if (this.website === 'Tailwind') {
           element = document.getElementById(this.targetIdentifiers[i]);
         } else if (this.website === 'Twitter') {
@@ -548,12 +600,14 @@ export default {
               }
             }
             // our target is the 17th parent of the selected element
-            let parentLevel = 17;
-            for (let j = 0; j < parentLevel; j++) {
-              if (element.parentElement !== null) {
-                element = element.parentElement;
-              } else {
-                break;
+            if (element !== null && element !== undefined) {
+              let parentLevel = 17;
+              for (let j = 0; j < parentLevel; j++) {
+                if (element.parentElement !== null) {
+                  element = element.parentElement;
+                } else {
+                  break;
+                }
               }
             }
           } else {
@@ -582,9 +636,15 @@ export default {
             )[0];
           }
         } else if (this.website === 'Netflix') {
-          element = document.querySelector(
-            '[data-uia="' + this.targetIdentifiers[i] + '"]'
-          );
+          if (this.targetIdentifiers[i] === 'Featured Content') {
+            element = document.querySelector(
+              '[aria-label="' + this.targetIdentifiers[i] + '"]'
+            );
+          } else if (this.targetIdentifiers[i] === 'controls-time-remaining') {
+            element = document.querySelector(
+              '[data-uia="' + this.targetIdentifiers[i] + '"]'
+            );
+          }
         } else if (this.website === 'Youtube') {
           if (this.targetIdentifiers[i] === 'content') {
             element = document.querySelectorAll(
@@ -607,7 +667,7 @@ export default {
             )[0];
           }
         }
-        // facebook
+        // Facebook
         else if (this.website === 'Facebook') {
           if (this.targetIdentifiers[i] == 'People You May Know') {
             console.log('Looking for facebook people you may know');
@@ -701,24 +761,25 @@ export default {
           }
         }
 
+        // Get all bounding boxes according the position and size of dark patterns
         if (elementList.length > 0) {
           for (var j = 0; j < elementList.length; j++) {
             if (elementList[j] !== undefined && elementList[j] !== null) {
-              console.log('Got a list to generate bounding box');
+              // console.log('Got a list to generate bounding box');
               let boundingBox = elementList[j].getBoundingClientRect();
-              console.log(
-                'For boundingbox list, retrieved element: ',
-                elementList[j],
-                ' with its bounding box: ',
-                boundingBox
-              );
+              // console.log(
+              //   'For boundingbox list, retrieved element: ',
+              //   elementList[j],
+              //   ' with its bounding box: ',
+              //   boundingBox
+              // );
               boundingBox.id = this.targetIdentifiers[i];
               boundingBox.x = boundingBox.x - 10;
               boundingBox.y = boundingBox.y - 10;
               boundingBox.width = boundingBox.width + 20;
               boundingBox.height = boundingBox.height + 20;
               this.boundingBoxList.push(boundingBox);
-              console.log('Bounding box pushed in ', boundingBox);
+              // console.log('Bounding box pushed in ', boundingBox);
             } else {
               this.boundingBoxList.push({
                 id: this.targetIdentifiers[i],
@@ -731,15 +792,15 @@ export default {
                 bottom: 0,
                 left: 0
               });
-              console.log('Cannot find element for bounding box');
+              // console.log('Cannot find element for bounding box');
             }
           }
         } else {
           if (element !== undefined && element !== null) {
-            console.log(
-              'Got a single element to generate bounding box, element: ',
-              element
-            );
+            // console.log(
+            //   'Got a single element to generate bounding box, element: ',
+            //   element
+            // );
             let boundingBox = element.getBoundingClientRect();
             boundingBox.id = this.targetIdentifiers[i];
             boundingBox.x = boundingBox.x - 10;
@@ -760,15 +821,18 @@ export default {
               bottom: 0,
               left: 0
             });
-            console.log('Cannot find element for bounding box');
+            // console.log('Cannot find element for bounding box');
           }
         }
       }
 
-      console.log('Got new list of bounding boxes');
-      console.log(this.boundingBoxList);
+      // console.log('Got new list of bounding boxes');
+      // console.log(this.boundingBoxList);
     },
     refresh() {
+      /**
+       * Refresh the overlay
+       */
       if (this.isMask) {
         this.mask.innerHTML = '';
       }
@@ -786,6 +850,9 @@ export default {
       this.getBoundingBoxList();
     },
     togglePopup(event, value, index) {
+      /**
+       * Toggle the popup panel when click a touchable area
+       */
       console.log(value);
       this.isPop = false;
       for (let i = 0; i < this.info.length; i++) {
@@ -817,15 +884,24 @@ export default {
       this.timer = new Date().getTime();
     },
     closePop(value) {
+      /**
+       * Close popup panel when click 'Close' icon in popup panel
+       */
       console.log(value);
       this.isPop = false;
       this.sendAction(this.currentTarget, 'close popup');
     },
     closeAlert() {
+      /**
+       * Close header alert when click 'Close' icon in header alert
+       */
       this.isAlert = false;
       this.sendAction(this.currentTab.url, 'close banner');
     },
     openAlert() {
+      /**
+       * Reopen the header alert when click 'Open Banner' in the console
+       */
       this.isAlert = true;
       this.sendAction(this.currentTab.url, 'reopen banner');
     }

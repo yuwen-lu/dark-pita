@@ -7,7 +7,7 @@ export default {
         return {
             highlight_added: false,
             target: null,
-            frictionOverlayElement: null,
+            highlightOverlayElement: null,
         };
     },
     methods: {
@@ -29,7 +29,7 @@ export default {
             if(element !== null && element !== undefined) {
                 this.target = element;
             } else {
-                console.log("cannot find target element for facebook reels");
+                console.log("cannot find target element for twitter promoted");
             }
         },
         createFrictionOverlay() {
@@ -38,50 +38,35 @@ export default {
             } else {
 
                 let textNode = document.createElement("h2");
-                textNode.innerHTML = "This content is suggested by Twitter algorithm. <br /> <br /> It was hidden to prevent you from spending excessive time on it.";
-                textNode.style.color = '#0F141A';
-                textNode.style.textAlign = "center";
+                textNode.innerHTML = "Promoted Content";
+                textNode.style.color = '#ffffff';
+                textNode.style.backgroundColor = '#DC2625';
+                textNode.style.textAlign = "right";
                 textNode.style.fontSize = "1rem";
-                
-                let buttonNode = document.createElement("button");
-                buttonNode.innerHTML = "Reveal";
-                buttonNode.style.fontFamily = "Cabin";
-                buttonNode.style.width = "7rem";
-                buttonNode.style.height = "2rem";
-                buttonNode.style.padding = "0.5rem";
-                buttonNode.style.color = "#1C9BEF";
-                buttonNode.style.textDecoration = "underline";
-                buttonNode.style.backgroundColor = "transparent";
-                buttonNode.addEventListener("click", () => {
-                    this.frictionOverlayElement.style.display = "none";
-                });
+                textNode.style.fontFamily = "Cabin";
+                textNode.style.padding = "0.5rem";
 
+                textNode.style.position = "absolute";
+                textNode.style.top = "0";
+                textNode.style.right = "0";
 
-                if (this.frictionOverlayElement === null) {
+                if (this.highlightOverlayElement === null) {
                     
-                    this.frictionOverlayElement = document.createElement("div");
+                    this.highlightOverlayElement = document.createElement("div");
+                    this.highlightOverlayElement.style.padding = "5rem";
+                    this.highlightOverlayElement.appendChild(textNode);
                     
-                    this.frictionOverlayElement.style.display = "flex";
-                    this.frictionOverlayElement.style.flexDirection = "column";
-                    this.frictionOverlayElement.style.justifyContent = "space-evenly";
-                    this.frictionOverlayElement.style.alignItems = "center";
-                    this.frictionOverlayElement.style.padding = "5rem";
-
-                    this.frictionOverlayElement.appendChild(textNode);
-                    this.frictionOverlayElement.appendChild(buttonNode);
-                    
-                    document.body.appendChild(this.frictionOverlayElement);
+                    document.body.appendChild(this.highlightOverlayElement);
                 } 
-                this.frictionOverlayElement.style.position = "fixed";
-                this.frictionOverlayElement.style.width = this.target.offsetWidth + "px";
-                this.frictionOverlayElement.style.height = this.target.offsetHeight + "px";
-                this.frictionOverlayElement.style.left = this.target.getBoundingClientRect().left + "px";
-                this.frictionOverlayElement.style.top = this.target.getBoundingClientRect().top + "px";
-                this.frictionOverlayElement.style.backgroundColor = "rgb(255, 255, 255)";
-                this.frictionOverlayElement.style.zIndex = "1";
+                this.highlightOverlayElement.style.position = "fixed";
+                this.highlightOverlayElement.style.width = this.target.offsetWidth + "px";
+                this.highlightOverlayElement.style.height = this.target.offsetHeight + "px";
+                this.highlightOverlayElement.style.left = this.target.getBoundingClientRect().left + "px";
+                this.highlightOverlayElement.style.top = this.target.getBoundingClientRect().top + "px";
+                this.highlightOverlayElement.style.backgroundColor = "transparent";
+                this.highlightOverlayElement.style.borderWidth = "4px";
+                this.highlightOverlayElement.style.borderColor = "#DC2625";
 
-                // textNode.style.top = this.frictionOverlayElement.style.height / 2 + "px";
-                // buttonNode.style.top = parseInt(textNode.style.top) + parseInt(textNode.offsetHeight) + parseInt(buttonNode.offsetHeight) + "px";
 
                 
             }
@@ -138,14 +123,15 @@ export default {
                     console.log("cannot find target element for twitter promoted highlight");
                 }
             } else if (message === 'off') {
-                highlight_added = false;
-                console.log('twitter promoted highlight off');
+                this.highlight_added = false;
                 this.sendAction(0, 'toggle twitter_promoted_highlight');
+                console.log('twitter promoted highlight off');
+                
                 console.log("this.target: ", this.target);
                 if (this.target !== null && this.target !== undefined) {
                     // this.recover(this.target);
                     // console.log(this.target + " restored");
-                    document.body.removeChild(this.frictionOverlayElement);
+                    document.body.removeChild(this.highlightOverlayElement);
                 }
             }
             this.$emit('update');
