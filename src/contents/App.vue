@@ -176,57 +176,58 @@
       v-if="isConsole"
       :notSupport="notSupport"
       :isAlert="isAlert"
+      :currentURL="currentTab.url"
       @openAlert="openAlert"
     />
   </div>
 </template>
 
 <script>
-import INDEX from "@/contents/index.js";
-import Alert from "@/contents/components/basic/Alert.vue";
-import Popup from "@/contents/components/basic/Popup.vue";
-import Console from "@/contents/components/basic/Console.vue";
-import Paper from "paper";
-import { incrementTime } from "@/contents/components/youtube/recommended_video/time_tracker/tracker";
+import INDEX from '@/contents/index.js';
+import Alert from '@/contents/components/basic/Alert.vue';
+import Popup from '@/contents/components/basic/Popup.vue';
+import Console from '@/contents/components/basic/Console.vue';
+import Paper from 'paper';
+import { incrementTime } from '@/contents/components/youtube/recommended_video/time_tracker/tracker';
 
 // Action components
 
-import amazon_buy_now_hide from "@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue";
-import amazon_buy_now_fairness from "@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue";
-import amazon_buy_now_friction from "@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue";
-import amazon_disguised_ads_hide from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_hide.vue";
-import amazon_disguised_ads_friction from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_friction.vue";
-import amazon_disguised_ads_disclosure from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_disclosure.vue";
-import amazon_disguised_ads_counterfact from "@/contents/components/amazon/disguised_ads/amazon_disguised_ads_counterfact.vue";
-import amazon_discount_price_hide from "@/contents/components/amazon/discount_price/amazon_discount_price_hide.vue";
-import amazon_discount_price_disclosure from "@/contents/components/amazon/discount_price/amazon_discount_price_disclosure.vue";
-import amazon_discount_price_reflection from "@/contents/components/amazon/discount_price/amazon_discount_price_reflection.vue";
-import amazon_discount_price_action from "@/contents/components/amazon/discount_price/amazon_discount_price_action.vue";
-import amazon_home_card_focus from "@/contents/components/amazon/home_card/amazon_home_card_focus.vue";
-import amazon_home_card_reflection from "@/contents/components/amazon/home_card/amazon_home_card_reflection.vue";
-import amazon_home_card_progress from "@/contents/components/amazon/home_card/amazon_home_card_progress.vue";
+import amazon_buy_now_hide from '@/contents/components/amazon/buy_now/amazon_buy_now_hide.vue';
+import amazon_buy_now_fairness from '@/contents/components/amazon/buy_now/amazon_buy_now_fairness.vue';
+import amazon_buy_now_friction from '@/contents/components/amazon/buy_now/amazon_buy_now_friction.vue';
+import amazon_disguised_ads_hide from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_hide.vue';
+import amazon_disguised_ads_friction from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_friction.vue';
+import amazon_disguised_ads_disclosure from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_disclosure.vue';
+import amazon_disguised_ads_counterfact from '@/contents/components/amazon/disguised_ads/amazon_disguised_ads_counterfact.vue';
+import amazon_discount_price_hide from '@/contents/components/amazon/discount_price/amazon_discount_price_hide.vue';
+import amazon_discount_price_disclosure from '@/contents/components/amazon/discount_price/amazon_discount_price_disclosure.vue';
+import amazon_discount_price_reflection from '@/contents/components/amazon/discount_price/amazon_discount_price_reflection.vue';
+import amazon_discount_price_action from '@/contents/components/amazon/discount_price/amazon_discount_price_action.vue';
+import amazon_home_card_focus from '@/contents/components/amazon/home_card/amazon_home_card_focus.vue';
+import amazon_home_card_reflection from '@/contents/components/amazon/home_card/amazon_home_card_reflection.vue';
+import amazon_home_card_progress from '@/contents/components/amazon/home_card/amazon_home_card_progress.vue';
 
-import youtube_recommended_video_focus from "@/contents/components/youtube/recommended_video/youtube_recommended_video_focus.vue";
-import youtube_recommended_video_preview from "@/contents/components/youtube/recommended_video/youtube_recommended_video_preview.vue";
-import youtube_recommended_video_reflection from "@/contents/components/youtube/recommended_video/youtube_recommended_video_reflection.vue";
-import youtube_video_dislike_fairness from "@/contents/components/youtube/video_dislike/youtube_video_dislike_fairness.vue";
-import youtube_sidebar_video_focus from "@/contents/components/youtube/sidebar_video/youtube_sidebar_video_focus.vue";
-import youtube_sidebar_video_preview from "@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue";
-import youtube_sidebar_video_reflection from "@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue";
+import youtube_recommended_video_focus from '@/contents/components/youtube/recommended_video/youtube_recommended_video_focus.vue';
+import youtube_recommended_video_preview from '@/contents/components/youtube/recommended_video/youtube_recommended_video_preview.vue';
+import youtube_recommended_video_reflection from '@/contents/components/youtube/recommended_video/youtube_recommended_video_reflection.vue';
+import youtube_video_dislike_fairness from '@/contents/components/youtube/video_dislike/youtube_video_dislike_fairness.vue';
+import youtube_sidebar_video_focus from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_focus.vue';
+import youtube_sidebar_video_preview from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_preview.vue';
+import youtube_sidebar_video_reflection from '@/contents/components/youtube/sidebar_video/youtube_sidebar_video_reflection.vue';
 
-import netflix_timeline_reflection from "@/contents/components/netflix/timeline/netflix_timeline_reflection.vue";
-import netflix_hugepreview_disable from "@/contents/components/netflix/hugepreview/netflix_hugepreview_disable.vue";
+import netflix_timeline_reflection from '@/contents/components/netflix/timeline/netflix_timeline_reflection.vue';
+import netflix_hugepreview_disable from '@/contents/components/netflix/hugepreview/netflix_hugepreview_disable.vue';
 
-import facebook_suggested_hide from "@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue";
-import facebook_reels_hide from "@/contents/components/facebook/reels/facebook_reels_hide.vue";
-import facebook_reels_counterfact from "@/contents/components/facebook/reels/facebook_reels_counterfact.vue";
-import facebook_reels_friction from "@/contents/components/facebook/reels/facebook_reels_friction.vue";
-import facebook_sponsored_hide from "./components/facebook/sponsored/facebook_sponsored_hide.vue";
-import facebook_suggested_for_you_hide from "./components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue";
-import facebook_suggested_for_you_highlight from "./components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue";
+import facebook_suggested_hide from '@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue';
+import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
+import facebook_reels_counterfact from '@/contents/components/facebook/reels/facebook_reels_counterfact.vue';
+import facebook_reels_friction from '@/contents/components/facebook/reels/facebook_reels_friction.vue';
+import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sponsored_hide.vue';
+import facebook_suggested_for_you_hide from './components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue';
+import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
 
-import twitter_whats_happening_hide from "./components/twitter/whats_happening/twitter_whats_happening_hide.vue";
-import twitter_promoted_highlight from "./components/twitter/promoted/twitter_promoted_highlight.vue";
+import twitter_whats_happening_hide from './components/twitter/whats_happening/twitter_whats_happening_hide.vue';
+import twitter_promoted_highlight from './components/twitter/promoted/twitter_promoted_highlight.vue';
 
 export default {
   data() {
@@ -235,7 +236,7 @@ export default {
       timer: null,
       currentTab: null,
       info: [],
-      website: "",
+      website: '',
       targetIdentifiers: null,
       currentTarget: {},
       boundingBoxList: [],
@@ -244,8 +245,8 @@ export default {
       isAlert: false,
       popupX: 0,
       popupY: 0,
-      text: "",
-      overlayPath: "",
+      text: '',
+      overlayPath: '',
       overlayWidth: Math.max(
         document.documentElement.clientWidth || 0,
         window.innerWidth || 0
@@ -275,11 +276,11 @@ export default {
         netflix_hugepreview: false,
 
         twitter_whats_happening: false,
-        twitter_promoted: false,
+        twitter_promoted: false
       },
       savedSettings: {},
       isConsole: false,
-      notSupport: false,
+      notSupport: false
     };
   },
   components: {
@@ -322,55 +323,55 @@ export default {
     netflix_hugepreview_disable,
 
     twitter_whats_happening_hide,
-    twitter_promoted_highlight,
+    twitter_promoted_highlight
   },
   computed: {},
   watch: {
     reload(newVal, oldVal) {
-      console.log("app reload");
+      console.log('app reload');
       this.initialize();
-    },
+    }
   },
   methods: {
     initialize() {
-      console.log("app initialize");
-      window.addEventListener("scroll", this.generateOverviewOverlay);
-      window.addEventListener("resize", this.generateOverviewOverlay);
-      Paper.setup(document.getElementById("DP_canvas"));
+      console.log('app initialize');
+      window.addEventListener('scroll', this.generateOverviewOverlay);
+      window.addEventListener('resize', this.generateOverviewOverlay);
+      Paper.setup(document.getElementById('DP_canvas'));
 
       this.notSupport = false;
       this.targetIdentifiers = null;
       this.isPop = false;
-      this.mask = document.getElementById("DP_mask");
+      this.mask = document.getElementById('DP_mask');
 
-      chrome.runtime.sendMessage({ type: "APP_INIT" }, async (tab) => {
+      chrome.runtime.sendMessage({ type: 'APP_INIT' }, async (tab) => {
         this.isAlert = false; // this line is put inside of here to prevent isAlert being set before <Alert> is mounted
         this.currentTab = await tab;
         // console.log(this.currentTab);
 
         if (this.currentTab !== null) {
           let url = this.currentTab.url;
-          console.log("current site:", url);
-          this.sendAction(this.currentTab.url, "app launched");
+          console.log('current site:', url);
+          this.sendAction(this.currentTab.url, 'app launched');
 
           // Define the identifier
           if (url.search(/tailwindcss.com/) !== -1) {
-            this.website = "Tailwind";
+            this.website = 'Tailwind';
             this.info = INDEX.tailwind;
           } else if (url.search(/twitter.com/) !== -1) {
-            this.website = "Twitter";
+            this.website = 'Twitter';
             this.info = INDEX.twitter;
           } else if (url.search(/amazon.com/) !== -1) {
-            this.website = "Amazon";
+            this.website = 'Amazon';
             this.info = INDEX.amazon;
           } else if (url.search(/facebook.com/) !== -1) {
-            this.website = "Facebook";
+            this.website = 'Facebook';
             this.info = INDEX.facebook;
           } else if (url.search(/youtube.com/) !== -1) {
-            this.website = "Youtube";
+            this.website = 'Youtube';
             this.info = INDEX.youtube;
           } else if (url.search(/netflix.com/) !== -1) {
-            this.website = "Netflix";
+            this.website = 'Netflix';
             this.info = INDEX.netflix;
           }
 
@@ -388,14 +389,14 @@ export default {
             }
           }
 
-          console.log("dark patterns on this site:", this.targetNames);
+          console.log('dark patterns on this site:', this.targetNames);
 
           // Initialize
           if (this.targetIdentifiers !== null) {
             console.log(this.targetIdentifiers);
             this.currentTarget = this.info[0];
             this.isAlert = true;
-            this.sendAction(this.currentTab.url, "trigger banner");
+            this.sendAction(this.currentTab.url, 'trigger banner');
           } else {
             this.notSupport = true;
           }
@@ -403,31 +404,31 @@ export default {
           // Start time tracker
           if (url.search(/youtube.com/) !== -1) {
             const HEARTBIT = 6; // sec
-            setInterval(function () {
+            setInterval(function() {
               incrementTime(HEARTBIT / 60, (data) => {
-                let timeTracker = document.getElementById("DP_time_tracker");
+                let timeTracker = document.getElementById('DP_time_tracker');
                 if (timeTracker !== null) {
                   timeTracker.innerHTML =
                     Math.round(
                       data.time_watched * (1 - (0.1 * Math.random() + 0.1))
                     ) +
-                    "/<span>" +
+                    '/<span>' +
                     Math.round(data.time_watched) +
-                    " mins in total";
+                    ' mins in total';
                 }
               });
             }, HEARTBIT * 1000);
           }
           if (url.search(/netflix.com/) !== -1) {
             const HEARTBIT = 6; // sec
-            setInterval(function () {
+            setInterval(function() {
               incrementTime(HEARTBIT / 60, (data) => {
                 let timeTrackerNetflix = document.getElementById(
-                  "DP_time_tracker_netflix"
+                  'DP_time_tracker_netflix'
                 );
                 if (timeTrackerNetflix !== null) {
                   timeTrackerNetflix.innerHTML =
-                    Math.round(data.time_watched) + "mins";
+                    Math.round(data.time_watched) + 'mins';
                 }
               });
             }, HEARTBIT * 1000);
@@ -436,9 +437,9 @@ export default {
       });
 
       let that = this;
-      chrome.storage.sync.get("savedSettings", function (settings) {
-        if (JSON.stringify(settings) !== "{}") {
-          console.log("retrieve settings");
+      chrome.storage.sync.get('savedSettings', function(settings) {
+        if (JSON.stringify(settings) !== '{}') {
+          console.log('retrieve settings');
           console.log(settings);
           that.savedSettings = settings.savedSettings;
         }
@@ -448,31 +449,31 @@ export default {
       this.refresh();
       if (this.isMask === false) {
         this.isMask = true;
-        this.sendAction(1, "toggle mask");
+        this.sendAction(1, 'toggle mask');
         this.generateOverviewOverlay();
       } else {
         this.isMask = false;
-        this.sendAction(0, "toggle mask");
+        this.sendAction(0, 'toggle mask');
       }
     },
     generateTouchableArea() {
       console.log(
-        "generate touchable areas for bounding boxes: " + this.boundingBoxList
+        'generate touchable areas for bounding boxes: ' + this.boundingBoxList
       );
-      document.body.style.position = "relative";
+      document.body.style.position = 'relative';
       for (let i = 0; i < this.boundingBoxList.length; i++) {
         let id = this.boundingBoxList[i].id;
-        let left = this.boundingBoxList[i].x + "px";
-        let top = this.boundingBoxList[i].y + "px";
-        let width = this.boundingBoxList[i].width + "px";
-        let height = this.boundingBoxList[i].height + "px";
+        let left = this.boundingBoxList[i].x + 'px';
+        let top = this.boundingBoxList[i].y + 'px';
+        let width = this.boundingBoxList[i].width + 'px';
+        let height = this.boundingBoxList[i].height + 'px';
         let opacity = 1;
         this.generateSpotlightOverlay(id, left, top, width, height, opacity);
       }
     },
     generateSpotlightOverlay(id, left, top, width, height, opacity = 0.5) {
-      console.log("generate spotlight overlay for " + id);
-      let boundingBox = document.getElementById("DP_i_" + id);
+      console.log('generate spotlight overlay for ' + id);
+      let boundingBox = document.getElementById('DP_i_' + id);
       if (boundingBox !== undefined && boundingBox !== null) {
         boundingBox.style.left = left;
         boundingBox.style.top = top;
@@ -486,16 +487,16 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      console.log("scrolling distance from top:", scrollTop);
+      console.log('scrolling distance from top:', scrollTop);
     },
     generateOverviewOverlay() {
       if (this.isMask) {
-        console.log("generate overlay");
+        console.log('generate overlay');
 
         this.refresh();
 
         console.log(
-          "new after refresh this.boundingBoxList",
+          'new after refresh this.boundingBoxList',
           this.boundingBoxList
         );
 
@@ -503,8 +504,8 @@ export default {
         const rect = new Paper.Path.Rectangle({
           point: origin,
           size: [this.overlayWidth, this.overlayHeight],
-          fillColor: "black",
-          opacity: 0.6,
+          fillColor: 'black',
+          opacity: 0.6
         });
 
         let overlayPath = rect;
@@ -513,10 +514,10 @@ export default {
             point: [this.boundingBoxList[i].x, this.boundingBoxList[i].y],
             size: [
               this.boundingBoxList[i].width,
-              this.boundingBoxList[i].height,
+              this.boundingBoxList[i].height
             ],
-            fillColor: "black",
-            radius: 4,
+            fillColor: 'black',
+            radius: 4
           });
 
           overlayPath = overlayPath.subtract(boundingBox);
@@ -525,12 +526,12 @@ export default {
         this.overlayPath = overlayPath.exportSVG();
         Paper.project.clear();
 
-        const SVG_NS = "http://www.w3.org/2000/svg";
-        let svg = document.createElementNS(SVG_NS, "svg");
-        svg.setAttribute("width", this.overlayWidth);
-        svg.setAttribute("height", this.overlayHeight);
+        const SVG_NS = 'http://www.w3.org/2000/svg';
+        let svg = document.createElementNS(SVG_NS, 'svg');
+        svg.setAttribute('width', this.overlayWidth);
+        svg.setAttribute('height', this.overlayHeight);
         svg.appendChild(this.overlayPath);
-        this.mask = document.getElementById("DP_mask");
+        this.mask = document.getElementById('DP_mask');
         this.mask.appendChild(svg);
 
         this.generateTouchableArea();
@@ -538,20 +539,20 @@ export default {
       }
     },
     getBoundingBoxList() {
-      console.log("Getting bounding box list");
+      console.log('Getting bounding box list');
       this.boundingBoxList = [];
       for (let i = 0; i < this.targetIdentifiers.length; i++) {
         let element;
         let elementList = [];
 
         // Set the selector
-        if (this.website === "Tailwind") {
+        if (this.website === 'Tailwind') {
           element = document.getElementById(this.targetIdentifiers[i]);
-        } else if (this.website === "Twitter") {
-          if (this.targetIdentifiers[i] === "See more") {
-            let retrievedHtmls = document.getElementsByTagName("span");
+        } else if (this.website === 'Twitter') {
+          if (this.targetIdentifiers[i] === 'See more') {
+            let retrievedHtmls = document.getElementsByTagName('span');
             for (let j = 0; j < retrievedHtmls.length; j++) {
-              if (retrievedHtmls[j].innerHTML.search("See more") !== -1) {
+              if (retrievedHtmls[j].innerHTML.search('See more') !== -1) {
                 element = retrievedHtmls[j];
                 break;
               }
@@ -570,12 +571,12 @@ export default {
               '[aria-label="' + this.targetIdentifiers[i] + '"]'
             );
           }
-        } else if (this.website === "Amazon") {
-          if (this.targetIdentifiers[i] === "submit.buy-now") {
+        } else if (this.website === 'Amazon') {
+          if (this.targetIdentifiers[i] === 'submit.buy-now') {
             element = document.getElementById(this.targetIdentifiers[i]);
           } else if (
             this.targetIdentifiers[i] ===
-            "ad-feedback-text-auto-sparkle-hsa-tetris"
+            'ad-feedback-text-auto-sparkle-hsa-tetris'
           ) {
             element = document.getElementById(this.targetIdentifiers[i]);
             if (element !== null) {
@@ -583,50 +584,50 @@ export default {
                 element.parentElement.parentElement.parentElement.parentElement
                   .parentElement.parentElement.parentElement.parentElement;
             }
-          } else if (this.targetIdentifiers[i] === "apex_desktop") {
+          } else if (this.targetIdentifiers[i] === 'apex_desktop') {
             element = document.getElementById(this.targetIdentifiers[i]);
           } else {
             element = document.querySelectorAll(
-              "[id^=" + this.targetIdentifiers[i] + "]"
+              '[id^=' + this.targetIdentifiers[i] + ']'
             )[0];
           }
-        } else if (this.website === "Netflix") {
-          if (this.targetIdentifiers[i] === "Featured Content") {
+        } else if (this.website === 'Netflix') {
+          if (this.targetIdentifiers[i] === 'Featured Content') {
             element = document.querySelector(
               '[aria-label="' + this.targetIdentifiers[i] + '"]'
             );
-          } else if (this.targetIdentifiers[i] === "controls-time-remaining") {
+          } else if (this.targetIdentifiers[i] === 'controls-time-remaining') {
             element = document.querySelector(
               '[data-uia="' + this.targetIdentifiers[i] + '"]'
             );
           }
-        } else if (this.website === "Youtube") {
-          if (this.targetIdentifiers[i] === "content") {
+        } else if (this.website === 'Youtube') {
+          if (this.targetIdentifiers[i] === 'content') {
             element = document.querySelectorAll(
-              "[id=" + this.targetIdentifiers[i] + "]"
+              '[id=' + this.targetIdentifiers[i] + ']'
             )[2];
           } else if (
-            this.targetIdentifiers[i] === "top-level-buttons-computed"
+            this.targetIdentifiers[i] === 'top-level-buttons-computed'
           ) {
             element = document.getElementById(this.targetIdentifiers[i])
               .childNodes[1];
           } else if (
-            this.targetIdentifiers[i] === "ytd-compact-video-renderer"
+            this.targetIdentifiers[i] === 'ytd-compact-video-renderer'
           ) {
             element = document.getElementsByTagName(
               this.targetIdentifiers[i]
             )[1];
           } else {
             element = document.querySelectorAll(
-              "[id^=" + this.targetIdentifiers[i] + "]"
+              '[id^=' + this.targetIdentifiers[i] + ']'
             )[0];
           }
         }
         // facebook
-        else if (this.website === "Facebook") {
-          if (this.targetIdentifiers[i] == "People You May Know") {
-            console.log("Looking for facebook people you may know");
-            var retrievedHtmls = document.getElementsByTagName("h3");
+        else if (this.website === 'Facebook') {
+          if (this.targetIdentifiers[i] == 'People You May Know') {
+            console.log('Looking for facebook people you may know');
+            var retrievedHtmls = document.getElementsByTagName('h3');
             for (var j = 0; j < retrievedHtmls.length; j++) {
               if (
                 retrievedHtmls[j].innerHTML.indexOf(
@@ -639,14 +640,14 @@ export default {
                     .parentElement;
                 elementList.push(element);
                 console.log(
-                  "matched element for facebook suggested people: ",
+                  'matched element for facebook suggested people: ',
                   element
                 );
               }
             }
-          } else if (this.targetIdentifiers[i] == "Reels and short videos") {
-            console.log("Looking for facebook reels");
-            var retrievedHtmls = document.getElementsByTagName("span");
+          } else if (this.targetIdentifiers[i] == 'Reels and short videos') {
+            console.log('Looking for facebook reels');
+            var retrievedHtmls = document.getElementsByTagName('span');
             for (var j = 0; j < retrievedHtmls.length; j++) {
               if (
                 retrievedHtmls[j].innerHTML.indexOf(
@@ -659,17 +660,17 @@ export default {
                     .parentElement.parentElement.parentElement.parentElement
                     .parentElement.parentElement;
                 elementList.push(element);
-                console.log("matched element for facebook reels: ", element);
+                console.log('matched element for facebook reels: ', element);
               }
             }
-          } else if (this.targetIdentifiers[i] == "ads/about") {
-            console.log("Looking for facebook ads/about");
-            let retrievedHtmls = document.getElementsByTagName("a");
+          } else if (this.targetIdentifiers[i] == 'ads/about') {
+            console.log('Looking for facebook ads/about');
+            let retrievedHtmls = document.getElementsByTagName('a');
             for (var j = 0; j < retrievedHtmls.length; j++) {
-              let retrievedHref = retrievedHtmls[j].getAttribute("href");
+              let retrievedHref = retrievedHtmls[j].getAttribute('href');
 
-              if (retrievedHref.indexOf("/ads/about") != -1) {
-                console.log("Found ads/about content on facebook");
+              if (retrievedHref.indexOf('/ads/about') != -1) {
+                console.log('Found ads/about content on facebook');
                 // not the most elegant solution, but the whole container is the 11th parent of the a tag
                 var parentLevel = 11;
                 element = retrievedHtmls[j];
@@ -678,22 +679,22 @@ export default {
                     element = element.parentElement;
                   } else {
                     console.log(
-                      "Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort"
+                      'Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort'
                     );
-                    console.log("current result: ", element);
+                    console.log('current result: ', element);
                     break;
                   }
                 }
                 elementList.push(element);
                 console.log(
-                  "matched element for facebook sponsored ads: ",
+                  'matched element for facebook sponsored ads: ',
                   element
                 );
               }
             }
-          } else if (this.targetIdentifiers[i] == "Suggested for you") {
-            console.log("Looking for facebook Suggested for you");
-            var retrievedHtmls = document.getElementsByTagName("span");
+          } else if (this.targetIdentifiers[i] == 'Suggested for you') {
+            console.log('Looking for facebook Suggested for you');
+            var retrievedHtmls = document.getElementsByTagName('span');
             for (var j = 0; j < retrievedHtmls.length; j++) {
               if (
                 retrievedHtmls[j].innerHTML.indexOf(
@@ -708,7 +709,7 @@ export default {
                 }
                 elementList.push(element);
                 console.log(
-                  "matched element for facebook Suggested for you: ",
+                  'matched element for facebook Suggested for you: ',
                   element
                 );
               }
@@ -719,12 +720,12 @@ export default {
         if (elementList.length > 0) {
           for (var j = 0; j < elementList.length; j++) {
             if (elementList[j] !== undefined && elementList[j] !== null) {
-              console.log("Got a list to generate bounding box");
+              console.log('Got a list to generate bounding box');
               let boundingBox = elementList[j].getBoundingClientRect();
               console.log(
-                "For boundingbox list, retrieved element: ",
+                'For boundingbox list, retrieved element: ',
                 elementList[j],
-                " with its bounding box: ",
+                ' with its bounding box: ',
                 boundingBox
               );
               boundingBox.id = this.targetIdentifiers[i];
@@ -733,7 +734,7 @@ export default {
               boundingBox.width = boundingBox.width + 20;
               boundingBox.height = boundingBox.height + 20;
               this.boundingBoxList.push(boundingBox);
-              console.log("Bounding box pushed in ", boundingBox);
+              console.log('Bounding box pushed in ', boundingBox);
             } else {
               this.boundingBoxList.push({
                 id: this.targetIdentifiers[i],
@@ -744,15 +745,15 @@ export default {
                 top: 0,
                 right: 0,
                 bottom: 0,
-                left: 0,
+                left: 0
               });
-              console.log("Cannot find element for bounding box");
+              console.log('Cannot find element for bounding box');
             }
           }
         } else {
           if (element !== undefined && element !== null) {
             console.log(
-              "Got a single element to generate bounding box, element: ",
+              'Got a single element to generate bounding box, element: ',
               element
             );
             let boundingBox = element.getBoundingClientRect();
@@ -762,7 +763,7 @@ export default {
             boundingBox.width = boundingBox.width + 20;
             boundingBox.height = boundingBox.height + 20;
             this.boundingBoxList.push(boundingBox);
-            console.log("Bounding box pushed in ", boundingBox);
+            console.log('Bounding box pushed in ', boundingBox);
           } else {
             this.boundingBoxList.push({
               id: this.targetIdentifiers[i],
@@ -773,19 +774,19 @@ export default {
               top: 0,
               right: 0,
               bottom: 0,
-              left: 0,
+              left: 0
             });
-            console.log("Cannot find element for bounding box");
+            console.log('Cannot find element for bounding box');
           }
         }
       }
 
-      console.log("Got new list of bounding boxes");
+      console.log('Got new list of bounding boxes');
       console.log(this.boundingBoxList);
     },
     refresh() {
       if (this.isMask) {
-        this.mask.innerHTML = "";
+        this.mask.innerHTML = '';
       }
 
       this.overlayWidth = Math.max(
@@ -828,27 +829,27 @@ export default {
       }
 
       this.isPop = true;
-      this.sendAction(this.currentTarget, "trigger popup");
+      this.sendAction(this.currentTarget, 'trigger popup');
       this.timer = new Date().getTime();
     },
     closePop(value) {
       console.log(value);
       this.isPop = false;
-      this.sendAction(this.currentTarget, "close popup");
+      this.sendAction(this.currentTarget, 'close popup');
     },
     closeAlert() {
       this.isAlert = false;
-      this.sendAction(this.currentTab.url, "close banner");
+      this.sendAction(this.currentTab.url, 'close banner');
     },
     openAlert() {
       this.isAlert = true;
-      this.sendAction(this.currentTab.url, "reopen banner");
-    },
+      this.sendAction(this.currentTab.url, 'reopen banner');
+    }
   },
   mounted() {
-    console.log("app mounted");
+    console.log('app mounted');
     this.initialize();
-  },
+  }
 };
 </script>
 

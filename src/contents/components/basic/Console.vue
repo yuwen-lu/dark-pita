@@ -33,20 +33,26 @@ export default {
     },
     isAlert: {
       type: Boolean
+    },
+    currentURL: {
+      type: String
     }
   },
   data() {
     return {
       diary: '',
-      screenshot: null
+      screenshot: null,
+      interventionState: null
     };
   },
   methods: {
     sendDiary() {
       // console.log(this.diary);
-      // console.log(this.userId);
+      // console.log(this.interventionState);
       let data = {
+        url: this.currentURL,
         screenshot: this.screenshot,
+        intervention: this.interventionState,
         diary: this.diary,
         timestamp: new Date().valueOf()
       };
@@ -76,6 +82,15 @@ export default {
         reader.readAsDataURL(file);
       }
     }
+  },
+  mounted() {
+    chrome.storage.sync.get('savedSettings', (settings) => {
+      this.interventionState = settings;
+    });
+
+    this.emitter.on('intervention state', (message) => {
+      this.interventionState = message;
+    });
   }
 };
 </script>
