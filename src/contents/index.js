@@ -129,7 +129,7 @@ export default {
         {
           name: 'hide',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/price-hide.gif?v=1660786700320',
           component: 'amazon_discount_price_hide',
           description:
             'Hide the discounts alert to not let it influence your purchase decision.'
@@ -203,10 +203,10 @@ export default {
         {
           name: 'cost tracker',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/progress.png?v=1660678117572',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_homepage_cost_tracker.png?v=1660786833764',
           component: 'amazon_home_card_progress',
           description:
-            'A progress circle that helps you track your daily cost on Amazon, with which you can better avoid binge shopping.'
+            'Dark Pita puts a progress circle that helps you track extra cost on Amazon that is likely incurred due to dark patterns.'
         }
       ]
     }
