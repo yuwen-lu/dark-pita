@@ -99,17 +99,32 @@ export default {
     });
 
     this.emitter.on("twitter_promoted_friction", (message) => {
-        console.log("Received emitter message, " + message);
+      console.log("Received emitter message, " + message);
 
-        let element;
-        let retrievedHtmls = document.getElementsByTagName("span");
-        for (let i = 0; i < retrievedHtmls.length; i++) {
-          if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
-            element = retrievedHtmls[i];
-            break;
-          }
+      let element;
+      let retrievedHtmls = document.getElementsByTagName("span");
+      for (let i = 0; i < retrievedHtmls.length; i++) {
+        if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
+          element = retrievedHtmls[i];
+          break;
         }
+      }
 
+      // if this is automatically triggered on loading the page because of a previous config, element may be null
+      // in this case we set a timeout and do the retrieve again
+      if (element === null || element === undefined) {
+        setTimeout(() => {
+          let retrievedHtmls = document.getElementsByTagName("span");
+          for (let i = 0; i < retrievedHtmls.length; i++) {
+            if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
+              element = retrievedHtmls[i];
+              break;
+            }
+          }
+        }, 2000);
+      }
+
+      if (element !== null && element !== undefined) {
         console.log("element: " + element);
 
         // our target is the retrieved element's container, i.e. 17th parent of the retrieved element
@@ -121,36 +136,37 @@ export default {
             break;
           }
         }
+      }
 
-        console.log("container element: " + element);
+      console.log("container element: " + element);
 
-        if (message === "on") {
-          this.friction_added = true;
-          console.log("twitter promoted friction on");
-          this.sendAction(1, "toggle twitter_promoted_friction");
+      if (message === "on") {
+        this.friction_added = true;
+        console.log("twitter promoted friction on");
+        this.sendAction(1, "toggle twitter_promoted_friction");
 
-          if (element !== null && element !== undefined) {
-            this.target = element;
-            // this.remove(this.target);
-            // console.log(this.target + " removed");
-            this.createFrictionOverlay();
-          } else {
-            console.log(
-              "cannot find target element for twitter promoted friction"
-            );
-          }
-        } else if (message === "off") {
-          this.friction_added = false;
-          console.log("twitter promoted friction off");
-          this.sendAction(0, "toggle twitter_promoted_friction");
-          console.log("this.target: ", this.target);
-          if (this.target !== null && this.target !== undefined) {
-            // this.recover(this.target);
-            // console.log(this.target + " restored");
-            document.body.removeChild(this.frictionOverlayElement);
-          }
+        if (element !== null && element !== undefined) {
+          this.target = element;
+          // this.remove(this.target);
+          // console.log(this.target + " removed");
+          this.createFrictionOverlay();
+        } else {
+          console.log(
+            "cannot find target element for twitter promoted friction"
+          );
         }
-        this.$emit("update");
+      } else if (message === "off") {
+        this.friction_added = false;
+        console.log("twitter promoted friction off");
+        this.sendAction(0, "toggle twitter_promoted_friction");
+        console.log("this.target: ", this.target);
+        if (this.target !== null && this.target !== undefined) {
+          // this.recover(this.target);
+          // console.log(this.target + " restored");
+          document.body.removeChild(this.frictionOverlayElement);
+        }
+      }
+      this.$emit("update");
     });
   },
 };
