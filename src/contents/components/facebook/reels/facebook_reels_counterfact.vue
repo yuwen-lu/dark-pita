@@ -37,7 +37,7 @@ export default {
                 console.log('facebook reels content counterfact off');
                 this.sendAction(0, 'toggle facebook_reels_counterfact');
                 if (this.target != null) {
-                    this.target.style.style.color = 'inherit';
+                    this.target.style.color = 'inherit';
                     this.target.style.fontWeight = 'inherit';
                     this.target.style.fontSize = 'inherit';
                     this.target.innerHTML = this.target.innerHTML.replace("Reels Not Followed by You, Promoted by Facebook", "Reels and short videos");

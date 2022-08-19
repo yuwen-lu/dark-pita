@@ -70,7 +70,7 @@ export default {
                 console.log('facebook reels content hide off');
                 this.sendAction(0, 'toggle facebook_reels_hide');
                 if (this.target !== null && this.target !== undefined) {
-                    this.target.style.display = "visible";
+                    this.target.style.visibility = "visible";
                 } else {
                     console.log("Message on, but cannot find target element for facebook reels");
                 }
