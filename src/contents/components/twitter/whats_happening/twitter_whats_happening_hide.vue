@@ -32,14 +32,19 @@ export default {
       }
     },
     recover(selectors) {
-      let len = selectors.removeNode.length;
-      for (let i = 0; i < len; i++) {
-        let node = selectors.removeNode[i];
-        if (node.next == null) node.parent.innerHTML += node.inner;
-        else {
-          let div = document.createElement("div");
-          div.innerHTML = node.inner;
-          node.parent.insertBefore(div.childNodes[0], node.next);
+      if (
+        selectors.removeNode !== null &&
+        selectors.removeNode !== undefined
+      ) {
+        let len = selectors.removeNode.length;
+        for (let i = 0; i < len; i++) {
+          let node = selectors.removeNode[i];
+          if (node.next == null) node.parent.innerHTML += node.inner;
+          else {
+            let div = document.createElement("div");
+            div.innerHTML = node.inner;
+            node.parent.insertBefore(div.childNodes[0], node.next);
+          }
         }
       }
     },
@@ -54,8 +59,11 @@ export default {
           '[aria-label="Timeline: Trending now"]'
         );
 
+        console.log("twitter what's happening hide, retrieved element: " + element);
+
         if (message === "on") {
           console.log("twitter what's happening hide on");
+          
           this.sendAction(1, "toggle twitter_whats_happening_hide");
 
           if (element !== null && element !== undefined) {
@@ -78,7 +86,7 @@ export default {
           }
         }
         this.$emit("update");
-      }, 1500);
+      }, 2000);
     });
   },
 };

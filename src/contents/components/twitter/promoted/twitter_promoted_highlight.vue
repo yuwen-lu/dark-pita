@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       highlight_added: false,
-      target: null,
+      targetList: [],
       highlightOverlayElementDict: new Map(),
     };
   },
@@ -46,7 +46,7 @@ export default {
 
         console.log("targetList: " + this.targetList);
       } else {
-        console.log("cannot find target element for twitter promoted friction");
+        console.log("cannot find target element for twitter promoted highlight");
       }
     },
     createFrictionOverlays() {
