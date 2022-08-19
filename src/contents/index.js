@@ -621,7 +621,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels_before.png?v=1660788810334',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/Reels.png?v=1660884228733',
           component: '',
           description:
             'Not modified'
@@ -629,15 +629,14 @@ export default {
         {
           name: 'hide / disable',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels_hide.gif?v=1660790522011',
-          component: 'facebook_reels_hide',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels-hide.gif?v=1660884549951',
           description:
             'Dark Pita will hide the Reels.'
         },
         {
           name: 'Explanation',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels_counterfactual.gif?v=1660790427159',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels-explain.gif?v=1660884550717',
           component: 'facebook_reels_counterfact',
           description:
             'Dark Pita will prompt you to think about the mechanism behind the selected content.'
@@ -645,7 +644,7 @@ export default {
         {
           name: 'Covering',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels_friction.gif?v=1660790308015',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels-cover.gif?v=1660884551935',
           component: 'facebook_reels_friction',
           description:
             'Dark Pita will add an overlay on the Reels and explain the mechanism behind the selected content.'
