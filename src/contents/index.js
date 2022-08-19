@@ -176,7 +176,7 @@ export default {
         '(The highlighted one represents all recommended items on homepage.) These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.',
 
       awareness:
-        'Users are more likely to deviate from their original purchase goals or spend more time browsing less relevant items.',
+        'You are more likely to deviate from their original purchase goals or spend more time browsing less relevant items.',
       action: [
         {
           name: 'none',
@@ -499,7 +499,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/what_happen_before.png?v=1660785897963',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/whathappen_before.png?v=1660855146667',
           component: '',
           description:
             'Not modified.'
@@ -508,7 +508,7 @@ export default {
 
           name: 'hide / disable',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/whathappen_hide.gif?v=1660787505163',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/trending_hide.gif?v=1660854950452',
           component: 'twitter_whats_happening_hide',
           description:
 
@@ -535,7 +535,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/twt_prompted_before.png?v=1660781206833',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/promt_before.gif?v=1660855544704',
           component: '',
           description:
             'Not modified.'
@@ -543,28 +543,28 @@ export default {
         {
           name: 'Marked Promoted',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/tweet_prompted_hide.png?v=1660781658471',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/marked_prompt.gif?v=1660855624889',
           component: 'twitter_promoted_highlight',
           description:
-            'Dark Pita will detect this type of tweets and replace them with a clean panel, where Dark Pita explicitly shows you the mechanism behind such tweets.'
+            'Dark Pita will detect this type of tweets and explicitly mark them for you.'
         },
         {
           name: 'Add Friction',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/tweet_prompted_hide.png?v=1660781658471',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/prompt_friction.gif?v=1660855677652',
           component: 'twitter_promoted_friction',
           description:
             'Dark Pita will detect this type of tweets and replace them with a clean panel, where Dark Pita explicitly shows you the mechanism behind such tweets.'
         },
 
-    //    {
-     //     name: 'friction',
-    //      image:
-    //        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-   //       component: 'twitter_promoted_friction',
-   //       description:
-   //         'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-   //     }
+        //    {
+        //     name: 'friction',
+        //      image:
+        //        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+        //       component: 'twitter_promoted_friction',
+        //       description:
+        //         'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
+        //     }
 
       ]
     },
@@ -701,7 +701,9 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/suggested_before.png?v=1660791078203',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/fb_suggested_before.png?v=1660856409025',
+
+          // 'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: '',
           description:
             'Not modified'
@@ -709,7 +711,7 @@ export default {
         {
           name: 'hide / disable',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/suggested_for_you.gif?v=1660789013809',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/fb_suggested.gif?v=1660856271171',
           component: 'facebook_suggested_for_you_hide',
           description:
             'Dark Pita will hide the selected suggested content.'
@@ -775,7 +777,7 @@ export default {
         {
           name: 'none',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/netflix_preview_before.gif?v=1660857214243',
           component: 'none',
           description:
             'Not Modified.'
@@ -783,8 +785,7 @@ export default {
         {
           name: 'disable',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-          component: 'netflix_hugepreview_disable',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/netflix_preview_disable.gif?v=1660857216480',
           description:
             'Dark Pita will disable the visual part of the background preview.'
         }
