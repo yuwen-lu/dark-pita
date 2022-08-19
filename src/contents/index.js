@@ -750,6 +750,7 @@ export default {
           name: "disable",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/netflix_preview_disable.gif?v=1660857216480",
+          component: "netflix_hugepreview_disable",
           description:
             "Dark Pita will disable the visual part of the background preview.",
         },
