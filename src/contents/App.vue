@@ -766,7 +766,9 @@ export default {
               if (
                 retrievedHtmls[j].innerHTML.indexOf(
                   this.targetIdentifiers[i]
-                ) != -1
+                ) != -1 || retrievedHtmls[j].innerHTML.indexOf(
+                  "Promoted by Facebook"
+                ) != -1 
               ) {
                 // very ugly way, but the whole container is the 7th parent of the a tag
                 var parentLevel = 7;

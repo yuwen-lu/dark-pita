@@ -34,7 +34,7 @@ export default {
       if (this.targetList.length > 0) {
         for (var i = 0; i < this.targetList.length; i++) {
           var tempElement = this.targetList[i];
-          tempElement.style.color = "#2D88FF";
+          tempElement.style.color = "#DC2638";
           tempElement.style.fontWeight = "bold";
           tempElement.style.fontSize = "1.5em";
           tempElement.innerHTML = tempElement.innerHTML.replace(
