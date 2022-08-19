@@ -67,7 +67,7 @@ export default {
 
             textNode.style.position = "absolute";
             textNode.style.top = "0";
-            textNode.style.right = "2rem";
+            textNode.style.right = "0";
 
             if (this.highlightOverlayElementDict.has(target) === false) {
                 let newHighlightOverlayElement = document.createElement("div");
