@@ -25,7 +25,7 @@ export default {
         {
           name: 'hide',
           image:
-            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/buy_now_hide.gif?v=1660676427334',
+            'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/buynow_hide.gif?v=1660876577813',
           component: 'amazon_buy_now_hide',
           description:
             'Let the "Buy Now" button disappear.'
@@ -720,6 +720,7 @@ export default {
           name: 'highlight',
           image:
             'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/fb_content_highlight.gif?v=1660789578695',
+          component: 'facebook_suggested_for_you_highlight',
           description:
             'Dark Pita will explicitly label it as suggested content.'
         }

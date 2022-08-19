@@ -146,7 +146,8 @@ export default {
         console.log("this.targetList: ", this.targetList);
         if (this.targetList.length > 0) {
           this.targetList.forEach((target) => {
-            document.removeChild(this.frictionOverlayElementDict.get(target));
+            console.log("Removing child: " + this.frictionOverlayElementDict.get(target));
+            document.body.removeChild(this.frictionOverlayElementDict.get(target));
           });
         }
       }

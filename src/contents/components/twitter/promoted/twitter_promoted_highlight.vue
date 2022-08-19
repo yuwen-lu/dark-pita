@@ -6,70 +6,92 @@ export default {
   data() {
     return {
       highlight_added: false,
-      target: null,
-      highlightOverlayElement: null,
+      targetList: [],
+      highlightOverlayElementDict: new Map(),
     };
   },
   methods: {
-    getTarget() {
-      let element;
-      // look for the reels component
-      var retrievedHtmls = document.getElementsByTagName("span");
-      for (var j = 0; j < retrievedHtmls.length; j++) {
-        if (retrievedHtmls[j].innerHTML.indexOf("See more") != -1) {
-          var parentLevel = 17;
-          element = retrievedHtmls[j];
-          for (var k = 0; k < parentLevel; k++) {
-            if (element.parentElement == null) break;
-            element = element.parentElement;
-          }
-          break;
+    getTargetList() {
+      let elementList = [];
+      let retrievedHtmls = document.getElementsByTagName("span");
+      for (let i = 0; i < retrievedHtmls.length; i++) {
+        if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
+          elementList.push(retrievedHtmls[i]);
         }
       }
-      if (element !== null && element !== undefined) {
-        this.target = element;
+
+      // if this is automatically triggered on loading the page because of a previous config, element may be null
+      // in this case we set a timeout and do the retrieve again
+      if (elementList.length === 0) {
+        setTimeout(() => {
+          let retrievedHtmls = document.getElementsByTagName("span");
+          for (let i = 0; i < retrievedHtmls.length; i++) {
+            if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
+              elementList.push(retrievedHtmls[i]);
+            }
+          }
+        }, 2000);
+      }
+
+      if (elementList.length !== 0) {
+        // our target is the retrieved element's container, i.e. 17th parent of the retrieved element
+        let parentLevel = 17;
+        elementList.forEach((element, index, list) => {
+          for (let i = 0; i < parentLevel; i++) {
+            if (list[index].parentElement === null) break;
+            list[index] = list[index].parentNode;
+          }
+        });
+        this.targetList = elementList;
+
+        console.log("targetList: " + this.targetList);
       } else {
-        console.log("cannot find target element for twitter promoted");
+        console.log("cannot find target element for twitter promoted highlight");
       }
     },
-    createFrictionOverlay() {
-      if (this.target === null || this.target === undefined) {
+    createFrictionOverlays() {
+      if (this.targetList.length === 0) {
         console.log(
           "Error when creating friction overlay: target is null or undefined"
         );
       } else {
-        let textNode = document.createElement("h2");
-        textNode.innerHTML = "Promoted Content";
-        textNode.style.color = "#ffffff";
-        textNode.style.backgroundColor = "#DC2625";
-        textNode.style.textAlign = "right";
-        textNode.style.fontSize = "1rem";
-        textNode.style.fontFamily = "Cabin";
-        textNode.style.padding = "0.5rem";
+        this.targetList.forEach( (target) => {
+            let textNode = document.createElement("h2");
+            textNode.innerHTML = "Promoted Content";
+            textNode.style.color = "#ffffff";
+            textNode.style.backgroundColor = "#DC2625";
+            textNode.style.textAlign = "right";
+            textNode.style.fontSize = "1rem";
+            textNode.style.fontFamily = "Cabin";
+            textNode.style.padding = "0.5rem";
 
-        textNode.style.position = "absolute";
-        textNode.style.bottom = "0";
-        textNode.style.right = "0";
+            textNode.style.position = "absolute";
+            textNode.style.top = "0";
+            textNode.style.right = "0";
 
-        if (this.highlightOverlayElement === null) {
-          this.highlightOverlayElement = document.createElement("div");
-          this.highlightOverlayElement.style.padding = "5rem";
-          this.highlightOverlayElement.appendChild(textNode);
+            if (this.highlightOverlayElementDict.has(target) === false) {
+                let newHighlightOverlayElement = document.createElement("div");
+                newHighlightOverlayElement.style.padding = "5rem";
+                newHighlightOverlayElement.style.backgroundColor = "transparent";
+                newHighlightOverlayElement.style.borderWidth = "3px";
+                newHighlightOverlayElement.style.borderColor = "#DC2625";
 
-          document.body.appendChild(this.highlightOverlayElement);
-        }
-        this.highlightOverlayElement.style.position = "fixed";
-        this.highlightOverlayElement.style.width =
-          this.target.offsetWidth + "px";
-        this.highlightOverlayElement.style.height =
-          this.target.offsetHeight + "px";
-        this.highlightOverlayElement.style.left =
-          this.target.getBoundingClientRect().left + "px";
-        this.highlightOverlayElement.style.top =
-          this.target.getBoundingClientRect().top + "px";
-        this.highlightOverlayElement.style.backgroundColor = "transparent";
-        this.highlightOverlayElement.style.borderWidth = "4px";
-        this.highlightOverlayElement.style.borderColor = "#DC2625";
+                newHighlightOverlayElement.appendChild(textNode);
+
+                this.highlightOverlayElementDict.set(target, newHighlightOverlayElement);
+                document.body.appendChild(this.highlightOverlayElementDict.get(target));
+            }
+
+            this.highlightOverlayElementDict.get(target).style.position = "fixed";
+            this.highlightOverlayElementDict.get(target).style.width =
+            target.offsetWidth + "px";
+            this.highlightOverlayElementDict.get(target).style.height =
+            target.offsetHeight + "px";
+            this.highlightOverlayElementDict.get(target).style.left =
+            target.getBoundingClientRect().left + "px";
+            this.highlightOverlayElementDict.get(target).style.top =
+            target.getBoundingClientRect().top + "px";
+        })
       }
     },
   },
@@ -77,8 +99,8 @@ export default {
     window.addEventListener("scroll", () => {
       if (this.highlight_added) {
         console.log("scroll from twitter sponsored hightlight");
-        this.getTarget();
-        this.createFrictionOverlay();
+        this.getTargetList();
+        this.createFrictionOverlays();
       }
     });
 
@@ -86,45 +108,7 @@ export default {
       console.log(
         "Received emitter message twitter_promoted_highlight, " + message
       );
-        let element;
-        let retrievedHtmls = document.getElementsByTagName("span");
-        for (let i = 0; i < retrievedHtmls.length; i++) {
-          if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
-            element = retrievedHtmls[i];
-            break;
-          }
-        }
-
-        console.log("element: " + element);
-
-        // if this is automatically triggered on loading the page because of a previous config, element may be null
-        // in this case we set a timeout and do the retrieve again
-        if (element === null || element === undefined) {
-            console.log("element null, try to retrieve again");
-            setTimeout(() => {
-                let retrievedHtmls = document.getElementsByTagName("span");
-                for (let i = 0; i < retrievedHtmls.length; i++) {
-                    if (retrievedHtmls[i].innerHTML.search("See more") !== -1) {
-                        element = retrievedHtmls[i];
-                        break;
-                    }
-                }
-            }, 2000);
-        }
-
-        if (element !== null && element !== undefined) {
-            // our target is the retrieved element's container, i.e. 17th parent of the retrieved element
-            let parentLevel = 17;
-            for (let i = 0; i < parentLevel; i++) {
-                if (element.parentElement !== null) {
-                    element = element.parentNode;
-                } else {
-                    break;
-                }
-            }
-            console.log("container element: " + element);
-        }
-
+        this.getTargetList();
        
 
         if (message === "on") {
@@ -132,11 +116,8 @@ export default {
           console.log("twitter promoted highlight on");
           this.sendAction(1, "toggle twitter_promoted_highlight");
 
-          if (element !== null && element !== undefined) {
-            this.target = element;
-            // this.remove(this.target);
-            // console.log(this.target + " removed");
-            this.createFrictionOverlay();
+          if (this.targetList.length !== 0) {
+            this.createFrictionOverlays();
           } else {
             console.log(
               "cannot find target element for twitter promoted highlight"
@@ -147,11 +128,11 @@ export default {
           this.sendAction(0, "toggle twitter_promoted_highlight");
           console.log("twitter promoted highlight off");
 
-          console.log("this.target: ", this.target);
-          if (this.target !== null && this.target !== undefined) {
-            // this.recover(this.target);
-            // console.log(this.target + " restored");
-            document.body.removeChild(this.highlightOverlayElement);
+          if (this.targetList.length !== 0) {
+            this.targetList.forEach((target) => {
+                console.log("Removing friction: " + this.highlightOverlayElementDict.get(target));
+                document.body.removeChild(this.highlightOverlayElementDict.get(target));
+            })
           }
         }
         this.$emit("update");

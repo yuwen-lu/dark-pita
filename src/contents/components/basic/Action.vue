@@ -283,16 +283,20 @@ export default {
         }
       });
 
-      console.log("Resetting interventions for: " + resetOptions.join(", "));
+
+      console.log('Resetting interventions for: ' + resetOptions.join(', '));
+
       // console.log(this.targetName, this.action);
       Object.keys(this.interventionState).forEach((key) => {
         if (
           resetOptions.includes(key) &&
-          this.interventionState[key] === "on"
+
+          this.interventionState[key] === 'on'
         ) {
-          console.log("reset message for intervention: " + key);
-          this.emitter.emit(key, "off");
-          this.interventionState[key] = "off";
+          console.log('reset message for intervention: ' + key);
+          this.emitter.emit(key, 'off');
+          this.interventionState[key] = 'off';
+
         }
       });
 
@@ -418,8 +422,10 @@ div {
 }
 
 .DP_action_demo {
-  @apply w-full rounded-[4px] transition ease-in-out delay-150 hover:-translate-y-1 cursor-pointer;
-  height: 150px;
+
+  @apply rounded-[4px] w-[256px] h-[144px] overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 cursor-pointer;
+
+
   // &:hover {
   //   transform: scale(3);
   // }

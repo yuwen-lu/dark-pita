@@ -111,7 +111,18 @@ export default {
               } else {
                 bannerElement.children[i].style.top = '0px';
               }
-            }
+            } 
+          } else if (url.search(/twitter.com/) !== -1) {
+            setTimeout(() => {
+              let searchElement = document.querySelectorAll('[aria-label="Search Twitter"]')[0];
+              if (newValue) {
+                searchElement.style.top = "64px";
+                document.body.style.paddingTop = '64px';
+              } else {
+                searchElement.style.top = "0px";
+                document.body.style.paddingTop = '0px';
+              }
+            }, 2000);
           } else if (url.search(/youtube.com/) !== -1) {
             // need to manually change the top position of each screen componet (header, main content, left bar)
             let leftBar = document.getElementsByTagName('tp-yt-app-drawer')[0];
@@ -158,6 +169,18 @@ export default {
               }
             } else {
               console.log('bannerElement not retrieved');
+            }
+
+            let ytbAppElement = document.getElementsByTagName('ytd-app')[0];
+            if (ytbAppElement != undefined) {
+              console.log('ytbAppElement: ' + ytbAppElement);
+              if (newValue) {
+                ytbAppElement.style.top = '64px';
+              } else {
+                ytbAppElement.style.top = '0px';
+              }
+            } else {
+              console.log('ytbAppElement not retrieved');
             }
           } else {
             if (newValue) {

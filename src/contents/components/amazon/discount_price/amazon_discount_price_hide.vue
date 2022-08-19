@@ -14,26 +14,34 @@ export default {
     this.emitter.on('amazon_discount_price_hide', (message) => {
       this.target = document.querySelectorAll('[id^=corePrice_desktop]')[0];
       this.price = document.getElementsByClassName('apexPriceToPay')[0];
-      this.sibling = document.getElementById('desktop_unifiedPrice');
+      this.targetSibling = document.getElementById('desktop_unifiedPrice');
+      this.priceSibling = document.getElementById(
+        'jewelryPriceBreakup_feature_div'
+      ).parentNode;
 
       if (
         this.target !== null &&
         this.price !== null &&
-        this.sibling !== null
+        this.targetSibling !== null &&
+        this.priceSibling !== null
       ) {
         if (message === 'on') {
           console.log('amazon discount price hide on');
           this.sendAction(1, 'toggle amazon_discount_price_hide');
-          this.sibling.parentNode.insertBefore(
+          this.targetSibling.parentNode.insertBefore(
             this.price,
-            this.sibling.nextSibling
+            this.targetSibling.nextSibling
           );
           this.target.style.display = 'none';
         } else if (message === 'off') {
           console.log('amazon discount price hide off');
           this.sendAction(0, 'toggle amazon_discount_price_hide');
-          this.sibling.parentNode.removeChild(this.price);
-          this.target.style.display = 'visible';
+          this.targetSibling.parentNode.removeChild(this.price);
+          this.priceSibling.parentNode.insertBefore(
+            this.price,
+            this.priceSibling
+          );
+          this.target.style.display = 'block';
         }
       }
 
