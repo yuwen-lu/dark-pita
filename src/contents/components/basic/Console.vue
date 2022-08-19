@@ -5,16 +5,12 @@
       <summary>What is the dark pattern you want to talk about?</summary>
       <div>
         <ul>
-          <li>
-            How does the dark pattern affect your browsing experience?
-          </li>
+          <li>How does the dark pattern affect your browsing experience?</li>
           <li>
             Do you think our provided interventions help improve your
             experience?
           </li>
-          <li>
-            Is there a better intervention you can think of?
-          </li>
+          <li>Is there a better intervention you can think of?</li>
         </ul>
         <textarea
           id="message"
@@ -27,10 +23,10 @@
     </details>
 
     <details class="DP_question_two">
-      <summary
-        >For the Dark Pita extension, anything interesting or any issue you
-        found when using it?</summary
-      >
+      <summary>
+        For the Dark Pita extension, anything interesting or any issue you found
+        when using it?
+      </summary>
       <div>
         <textarea
           id="message"
@@ -43,23 +39,23 @@
     </details>
 
     <details class="DP_question_three">
-      <summary
-        >Did you encounter things related to dark patterns that you found
+      <summary>
+        Did you encounter things related to dark patterns that you found
         meaningful or interesting, not limited to our targeted dark patterns and
-        interventions?</summary
-      >
+        interventions?
+      </summary>
       <div>
         <textarea
           id="message"
           rows="4"
           class="DP_text_area"
-          placeholder="Write your insights..."
+          placeholder="Ex. Yesterday I found this on XXX website. Feel like it's a dark pattern too. You guys should do something about it in the future lol..."
           v-model="questionThree"
         ></textarea>
       </div>
     </details>
 
-    <p>Take a screenshoot and upload it with your insights:</p>
+    <p>Take a screenshoot of your current page and attach it below :)</p>
     <input
       class="DP_upload"
       id="DP_upload"
@@ -67,9 +63,7 @@
       accept="image/jpeg/*"
       @change="uploadImage()"
     />
-    <button @click="sendDiary">
-      Send Insights
-    </button>
+    <button @click="sendDiary">Send Insights</button>
     <button @click="openAlert" :disabled="isAlert || notSupport">
       Open Banner
     </button>
@@ -77,27 +71,27 @@
   </div>
 </template>
 <script>
-import DataService from '@/contents/services/data.js';
+import DataService from "@/contents/services/data.js";
 
 export default {
   props: {
     notSupport: {
-      type: Boolean
+      type: Boolean,
     },
     isAlert: {
-      type: Boolean
+      type: Boolean,
     },
     currentURL: {
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
-      questionOne: '',
-      questionTwo: '',
-      questionThree: '',
-      screenshot: '',
-      interventionState: null
+      questionOne: "",
+      questionTwo: "",
+      questionThree: "",
+      screenshot: "",
+      interventionState: null,
     };
   },
   methods: {
@@ -111,15 +105,15 @@ export default {
         one: this.questionOne,
         two: this.questionTwo,
         three: this.questionThree,
-        timestamp: new Date().valueOf()
+        timestamp: new Date().valueOf(),
       };
       DataService.sendDiary(this.userId, data)
         .then(() => {
-          console.log('send new diary successfully!');
-          this.questionOne = '';
-          this.questionTwo = '';
-          this.questionThree = '';
-          this.screenshot = '';
+          console.log("send new diary successfully!");
+          this.questionOne = "";
+          this.questionTwo = "";
+          this.questionThree = "";
+          this.screenshot = "";
         })
         .catch((e) => {
           console.log(e);
@@ -127,10 +121,10 @@ export default {
       // console.log(this.screenshot);
     },
     openAlert() {
-      this.$emit('openAlert', 'open alert');
+      this.$emit("openAlert", "open alert");
     },
     uploadImage() {
-      const file = document.getElementById('DP_upload').files[0];
+      const file = document.getElementById("DP_upload").files[0];
       const reader = new FileReader();
 
       reader.onloadend = () => {
@@ -142,17 +136,17 @@ export default {
       if (file !== null && file !== undefined) {
         reader.readAsDataURL(file);
       }
-    }
+    },
   },
   mounted() {
-    chrome.storage.sync.get('savedSettings', (settings) => {
+    chrome.storage.sync.get("savedSettings", (settings) => {
       this.interventionState = settings;
     });
 
-    this.emitter.on('intervention state', (message) => {
+    this.emitter.on("intervention state", (message) => {
       this.interventionState = message;
     });
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
