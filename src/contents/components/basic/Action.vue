@@ -418,11 +418,8 @@ div {
 }
 
 .DP_action_demo {
-  @apply rounded-[4px] transition ease-in-out delay-150 hover:-translate-y-1 cursor-pointer;
+  @apply rounded-[4px] w-[256px] h-[144px] overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 cursor-pointer;
 
-  width: 256px;
-  height: 144px;
-  overflow: hidden;
   // &:hover {
   //   transform: scale(3);
   // }
