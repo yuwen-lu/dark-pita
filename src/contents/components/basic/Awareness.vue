@@ -105,16 +105,16 @@ export default {
         deceptive: false
       },
       tagInfo: {
-        asymmetric: 'Unequal burdens on choices available to the user',
+        asymmetric: 'Unequal burdens on choices available to you',
         'disparate treatment':
-          'Disadvantage and treat one group of users differently from another',
+          'Disadvantage and treat you differently from another group of users',
         'information hiding':
-          'Obscure or delay the presentation of necessary information to users',
-        covert: 'Hiding the influence mechanism from users',
+          'Obscure or delay the presentation of necessary information to you',
+        covert: 'Hiding the influence mechanism from you',
         restrictive:
-          'Eliminate certain choices that should be available to users',
+          'Eliminate certain choices that should be available to you',
         deceptive:
-          'Induce false beliefs in users either through affirmative misstatements, misleading statements, or omissions'
+          'Induce false beliefs in you either through affirmative misstatements, misleading statements, or omissions'
       }
     };
   },
