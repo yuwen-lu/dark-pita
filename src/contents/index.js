@@ -12,7 +12,7 @@ export default {
       description:
         'The "Buy Now" button is in a more prominent orange color, while the regular "Add to Cart" button is yellow.',
       awareness:
-        'You could choose the "Buy Now" option more easily, and sometimes even mistakenly make a purchase.',
+        'You could select the "Buy Now" option subconsciously, and sometimes even mistakenly make a purchase.',
       action: [
         {
           name: "none",
@@ -56,9 +56,9 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626",
       pattern: "Disguised Ads",
       description:
-        'The interface design makes this section large and makes it less obvious that it is an inserted ad. The "sponsored" notice is minimal at the right bottom corner.',
+        'The interface design makes this section appear to be your search results, not ads. The "sponsored" notice is minimal at the right bottom corner.',
       awareness:
-        "It is harder to avoid clicking the ads. As a user, you may be confused that the product you are looking for is behind this link.",
+        "Disguised advertising may lead you to believe that it is the best product for you and cause you financial loss.",
       action: [
         {
           name: "none",
@@ -218,7 +218,7 @@ export default {
       description:
         "The highlighted one represents all recommended videos on homepage. Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.",
       awareness:
-        "The videos are trying to cater to your tastes. You are likely to consume more content than you originally intended to. Auxiliary functions such as preview will make it even easier to be distracted.",
+        "The videos are trying to cater to your tastes. You are likely to consume more content than you originally intended to. Auxiliary functions such as preview make you even more easily distracted",
       action: [
         {
           name: "none",
@@ -295,7 +295,7 @@ export default {
       description:
         "The highlighted one represents all recommended videos on sidebar. Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.",
       awareness:
-        "It is likely that you will watch more similar videos after you finish the current one.",
+        "It is likely that you will watch more similar videos after you finish the current one, leading to distractions and time wasting.",
       action: [
         {
           name: "none",
@@ -560,7 +560,7 @@ export default {
       pattern: "People You May Know",
       description: "Facebook prompts you other users you probably know. ",
       awareness:
-        "You may see unexpected content on your homepage. The further goal of connecting you with as many people as possible is to enhance your activity on this platform.",
+        "You may see unexpected content on your homepage. The further goal of connecting you with as many people as possible is to keep you on this platform.",
       action: [
         {
           name: "none",
