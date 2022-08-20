@@ -157,7 +157,7 @@ export default {
     },
     {
       name: "amazon_home_card",
-      identifier: "desktop-grid-1",
+      identifier: "desktop-grid-3",
       url: "https://www.amazon.com(/)?(#nav-top)?(#)?(ref=nav_logo)?$",
       type: "online shopping platform",
       tag: ["asymmetric", "disparate treatment", "information hiding"],
@@ -331,144 +331,144 @@ export default {
       ],
     },
   ],
-  tailwind: [
-    {
-      name: "tailwind_header",
-      identifier: "header",
-      url: "https://tailwindcss.com/docs/",
-      type: "video streaming platform",
-      tag: ["asymmetric", "disparate treatment", "information hiding"],
-      icon:
-        "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388",
-      pattern: "loss-gain framing",
-      description:
-        "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
-      awareness:
-        "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-      action: [
-        {
-          name: "none",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "detection",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "bright pattern",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-      ],
-    },
-    {
-      name: "tailwind_basic_usage",
-      identifier: "basic-usage",
-      url: "https://tailwindcss.com/docs/",
-      type: "video streaming platform",
-      tag: ["asymmetric", "disparate treatment", "information hiding"],
-      icon:
-        "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/privacy.png?v=1659250500782",
-      pattern: "loss-gain framing",
-      description:
-        "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
-      awareness:
-        "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-      action: [
-        {
-          name: "none",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "hide / disable",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "detection",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "bright pattern",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-      ],
-    },
-    {
-      name: "tailwind_applying_conditionally",
-      identifier: "applying-conditionally",
-      url: "https://tailwindcss.com/docs/",
-      type: "video streaming platform",
-      tag: ["asymmetric", "disparate treatment", "information hiding"],
-      icon:
-        "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cognition.png?v=1659250494144",
-      pattern: "loss-gain framing",
-      description:
-        "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
-      awareness:
-        "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-      action: [
-        {
-          name: "none",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "hide / disable",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "design friction",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "bright pattern",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-      ],
-    },
-  ],
+  // tailwind: [
+  //   {
+  //     name: "tailwind_header",
+  //     identifier: "header",
+  //     url: "https://tailwindcss.com/docs/",
+  //     type: "video streaming platform",
+  //     tag: ["asymmetric", "disparate treatment", "information hiding"],
+  //     icon:
+  //       "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388",
+  //     pattern: "loss-gain framing",
+  //     description:
+  //       "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
+  //     awareness:
+  //       "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //     action: [
+  //       {
+  //         name: "none",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "detection",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "bright pattern",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "tailwind_basic_usage",
+  //     identifier: "basic-usage",
+  //     url: "https://tailwindcss.com/docs/",
+  //     type: "video streaming platform",
+  //     tag: ["asymmetric", "disparate treatment", "information hiding"],
+  //     icon:
+  //       "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/privacy.png?v=1659250500782",
+  //     pattern: "loss-gain framing",
+  //     description:
+  //       "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
+  //     awareness:
+  //       "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //     action: [
+  //       {
+  //         name: "none",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "hide / disable",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "detection",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "bright pattern",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "tailwind_applying_conditionally",
+  //     identifier: "applying-conditionally",
+  //     url: "https://tailwindcss.com/docs/",
+  //     type: "video streaming platform",
+  //     tag: ["asymmetric", "disparate treatment", "information hiding"],
+  //     icon:
+  //       "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cognition.png?v=1659250494144",
+  //     pattern: "loss-gain framing",
+  //     description:
+  //       "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
+  //     awareness:
+  //       "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //     action: [
+  //       {
+  //         name: "none",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "hide / disable",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "design friction",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "bright pattern",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //     ],
+  //   },
+  // ],
   twitter: [
     {
       name: "twitter_whats_happening",
