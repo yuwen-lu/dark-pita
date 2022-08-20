@@ -184,7 +184,7 @@ export default {
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_home_focus_mode.gif?v=1660783201214",
           component: "amazon_home_card_focus",
-          description: "Dark Pita will hide the recommended-items sections on the homepage.",
+          description: "Dark Pita will hide ALL recommended-items sections on the homepage.",
         },
         {
           name: "animated metaphor",
