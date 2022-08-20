@@ -10,7 +10,7 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626",
       pattern: "Prominent Option",
       description:
-        'The "Buy Now" button is in color orange, while the regular "Add to Cart" button is yellow.',
+        'The "Buy Now" button is in a more prominent orange color, while the regular "Add to Cart" button is yellow.',
       awareness:
         'You could choose the "Buy Now" option more easily, and sometimes even mistakenly make a purchase.',
       action: [
