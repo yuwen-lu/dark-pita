@@ -151,7 +151,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_action_guide.png?v=1660680267948",
           component: "amazon_discount_price_action",
           description:
-            "Dark Pita will suggest something you can do about this item.",
+            "Dark Pita will provide some suggestions that you can take towards this item.",
         },
       ],
     },
@@ -167,10 +167,10 @@ export default {
       pattern: "Recommended Items",
 
       description:
-        "(The highlighted one represents all recommended items on homepage.) These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.",
+        "The highlighted one represents all recommended items on homepage. These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part dominant and take the whole field of view.",
 
       awareness:
-        "You are more likely to deviate from their original purchase goals or spend more time browsing less relevant items.",
+        "You are more likely to stray from your initial purchase goals or spend more time browsing for less needed items, ultimately causing you to waste a lot of money on items you don't need.",
       action: [
         {
           name: "none",
@@ -184,7 +184,7 @@ export default {
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_home_focus_mode.gif?v=1660783201214",
           component: "amazon_home_card_focus",
-          description: "Hide the recommended-items section on the home page.",
+          description: "Dark Pita will hide the recommended-items sections on the homepage.",
         },
         {
           name: "animated metaphor",
@@ -192,7 +192,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amazon_homepage_reflection.gif?v=1660676754864",
           component: "amazon_home_card_reflection",
           description:
-            "Dark Pita adds a bit of push-back to help you avoid mindless browsing.",
+            "Dark Pita will add a bit of push-back to help you avoid mindless browsing.",
         },
         {
           name: "cost tracker",
@@ -200,7 +200,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_homepage_cost_tracker.png?v=1660786833764",
           component: "amazon_home_card_progress",
           description:
-            "Dark Pita puts a progress circle that helps you track extra cost on Amazon that is likely incurred due to dark patterns.",
+            "Dark Pita will put a progress circle that helps you track extra cost on Amazon that is likely incurred due to dark patterns.",
         },
       ],
     },
@@ -216,7 +216,7 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Recommended Videos",
       description:
-        "(The highlighted one represents all recommended videos on homepage.) Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.",
+        "The highlighted one represents all recommended videos on homepage. Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.",
       awareness:
         "The videos are trying to cater to your tastes. You are likely to consume more content than you originally intended to. Auxiliary functions such as preview will make it even easier to be distracted.",
       action: [
@@ -293,7 +293,7 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Recommended Videos",
       description:
-        "(The highlighted one represents all recommended videos on sidebar.) Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.",
+        "The highlighted one represents all recommended videos on sidebar. Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.",
       awareness:
         "It is likely that you will watch more similar videos after you finish the current one.",
       action: [
