@@ -72,7 +72,7 @@ export default {
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_hide.gif?v=1660681502216",
           component: "amazon_disguised_ads_hide",
-          description: "Let the ads disappear.",
+          description: "Dark Pita will hide the disguised ads.",
         },
         {
           name: "friction",
@@ -80,7 +80,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_friction.gif?v=1660681503661",
           component: "amazon_disguised_ads_friction",
           description:
-            "Your cursor will disappear if it navigates through the ads area.",
+            "Dark Pita will make your disappear if it navigates through the ads area.",
         },
         {
           name: "information disclosure",
