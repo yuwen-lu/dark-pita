@@ -504,15 +504,24 @@ export default {
 
       document.body.style.position = 'relative'; // set the body relative position for the absolute postion of touchable areas
 
+      let idList = [];  // used to store the id of generated touchable areas. If there's one already generated, then we don't generate for others. Just a temporary solution.
+
       // Iterate all bounding boxes to generate touchable areas
       for (let i = 0; i < this.boundingBoxList.length; i++) {
+        console.log("generate touchable area for bounding box: " + this.boundingBoxList[i]);
         let id = this.boundingBoxList[i].id;
+        if (idList.includes(id)) {
+          continue;
+        } else {
+          idList.push(id);
+        }
         let left = this.boundingBoxList[i].x + 'px';
         let top = this.boundingBoxList[i].y + 'px';
         let width = this.boundingBoxList[i].width + 'px';
         let height = this.boundingBoxList[i].height + 'px';
         let opacity = 1;
         this.generateSpotlightOverlay(id, left, top, width, height, opacity);
+
       }
     },
     generateSpotlightOverlay(id, left, top, width, height, opacity = 0.5) {
@@ -678,27 +687,7 @@ export default {
         }
         // Facebook
         else if (this.website === 'Facebook') {
-          if (this.targetIdentifiers[i] == 'People You May Know') {
-            console.log('Looking for facebook people you may know');
-            var retrievedHtmls = document.getElementsByTagName('h3');
-            for (var j = 0; j < retrievedHtmls.length; j++) {
-              if (
-                retrievedHtmls[j].innerHTML.indexOf(
-                  this.targetIdentifiers[i]
-                ) != -1
-              ) {
-                // very ugly way, but the whole container is the 4th parent of the h3 tag
-                element =
-                  retrievedHtmls[j].parentElement.parentElement.parentElement
-                    .parentElement;
-                elementList.push(element);
-                console.log(
-                  'matched element for facebook suggested people: ',
-                  element
-                );
-              }
-            }
-          } else if (this.targetIdentifiers[i] == 'Reels and short videos') {
+          if (this.targetIdentifiers[i] == 'Reels and short videos') {
             console.log('Looking for facebook reels');
             var retrievedHtmls = document.getElementsByTagName('span');
             for (var j = 0; j < retrievedHtmls.length; j++) {
@@ -714,35 +703,6 @@ export default {
                     .parentElement.parentElement;
                 elementList.push(element);
                 console.log('matched element for facebook reels: ', element);
-              }
-            }
-          } else if (this.targetIdentifiers[i] == 'ads/about') {
-            console.log('Looking for facebook ads/about');
-            let retrievedHtmls = document.getElementsByTagName('a');
-            for (var j = 0; j < retrievedHtmls.length; j++) {
-              let retrievedHref = retrievedHtmls[j].getAttribute('href');
-
-              if (retrievedHref.indexOf('/ads/about') != -1) {
-                console.log('Found ads/about content on facebook');
-                // not the most elegant solution, but the whole container is the 11th parent of the a tag
-                var parentLevel = 11;
-                element = retrievedHtmls[j];
-                for (var k = 0; k < parentLevel; k++) {
-                  if (element.parentElement !== null) {
-                    element = element.parentElement;
-                  } else {
-                    console.log(
-                      'Parent for element is null, when retrieving dark pattern for facebook sponsored ads, abort'
-                    );
-                    console.log('current result: ', element);
-                    break;
-                  }
-                }
-                elementList.push(element);
-                console.log(
-                  'matched element for facebook sponsored ads: ',
-                  element
-                );
               }
             }
           } else if (this.targetIdentifiers[i] == 'Suggested for you') {
