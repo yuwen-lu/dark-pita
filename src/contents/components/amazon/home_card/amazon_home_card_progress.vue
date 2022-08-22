@@ -13,7 +13,7 @@ export default {
         elt.className = 'DP_money_tracker';
         elt.id = 'DP_money_tracker_wrapper';
         elt.innerHTML =
-          '<h1>Dark Patterns on Amazon has manipulated you to spend an extra $126, or about 75% of your total spend.</h1><div class="circular-progress"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-labelledby="title" role="graphic"> <title id="title">svg circular progress bar</title> <circle cx="50" cy="50" r="40" ></circle> <circle cx="50" cy="50" r="40" id="pct-ind"></circle> </svg> <p class="pct">$126</p></div>';
+          '<h1>Dark Patterns on Amazon has made you spend extra $126, or about 75% of your total spendings.</h1><div class="circular-progress"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-labelledby="title" role="graphic"> <title id="title">svg circular progress bar</title> <circle cx="50" cy="50" r="40" ></circle> <circle cx="50" cy="50" r="40" id="pct-ind"></circle> </svg> <p class="pct">$126</p></div>';
         document.body.appendChild(elt);
       } else if (message === 'off') {
         console.log('amazon home card progress off');

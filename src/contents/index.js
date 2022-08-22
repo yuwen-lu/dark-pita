@@ -10,31 +10,31 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626",
       pattern: "Prominent Option",
       description:
-        'The "Buy Now" button is in a more prominent orange color, while the regular "Add to Cart" button is yellow.',
+        'The "Buy Now" button is in a more prominent orange color, making it easier to click on than the "Add to Cart" button. Buy now is a more friction-less experience for users and makes it more likely for users to purchase the item.',
       awareness:
-        'You could select the "Buy Now" option subconsciously, and sometimes even mistakenly make a purchase.',
+        'You could select the "Buy Now" option subconsciously, buying items you don\'t necessarily need and sometimes even mistakenly make a purchase.',
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/buy_now_before.png?v=1660677100767",
           component: "none",
-          description: "Not modified.",
+          description: "No change.",
         },
         {
           name: "hide",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/buynow_hide.gif?v=1660876577813",
           component: "amazon_buy_now_hide",
-          description: 'Let the "Buy Now" button disappear.',
+          description: 'Dark Pita will make the "Buy Now" button disappear. You can still purchase the item by adding it to your cart and check out there.',
         },
         {
-          name: "fairness",
+          name: "change color",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amazon_buy_now_fairness.gif?v=1660676951948",
           component: "amazon_buy_now_fairness",
           description:
-            'Let the "Buy Now" button be in the same color as the regular "Add to Cart" option.',
+            'Dark Pita will make the "Buy Now" button be in the same color as the regular "Add to Cart" option.',
         },
         {
           name: "friction",
@@ -42,7 +42,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/buy_now_friction.gif?v=1660676374305",
           component: "amazon_buy_now_friction",
           description:
-            "Add a bit friction before you actually proceed to purchase, even you click buy now.",
+            "Dark Pita will add an overlay as friction before you purchase, when you hover over buy now.",
         },
       ],
     },
@@ -56,16 +56,16 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626",
       pattern: "Disguised Ads",
       description:
-        'The interface design makes this section appear to be your search results, not ads. The "sponsored" notice is minimal at the right bottom corner.',
+        'This is an advertisement, but the interface design put the "sponsored" notice at the right bottom corner, very hard to see for users.',
       awareness:
-        "Disguised advertising may lead you to believe that it is the best product for you and cause you financial loss.",
+        "Disguised advertising may lead you to believe that it is part of the search result and potentially cause you financial loss.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_before.png?v=1660681628026",
           component: "none",
-          description: "Not modified",
+          description: "No change",
         },
         {
           name: "hide",
@@ -80,7 +80,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_friction.gif?v=1660681503661",
           component: "amazon_disguised_ads_friction",
           description:
-            "Dark Pita will make your disappear if it navigates through the ads area.",
+            "Dark Pita will make your cursor disappear if it navigates through the ads area.",
         },
         {
           name: "information disclosure",
@@ -88,7 +88,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_info_disc.png?v=1660681526249",
           component: "amazon_disguised_ads_disclosure",
           description:
-            "Dark Pita will detect and indicate the ads area explicitly for you.",
+            "Dark Pita will detect the ad and make it clear it's an advertisement for you.",
         },
         {
           name: "counterfactual thinking",
@@ -96,7 +96,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_count_th.png?v=1660681591634",
           component: "amazon_disguised_ads_counterfact",
           description:
-            "Dark Pita will motivate you to give a second thought before you proceed. This may also help you avoid unnecessary browsing.",
+            "Dark Pita will mark that the item(s) may be promoted because they paid Amazon. This may also help you avoid unnecessary browsing.",
         },
       ],
     },
@@ -110,16 +110,16 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626",
       pattern: "Confusing Price Labels",
       description:
-        "Discounts information may be shown in an exaggerated way. Some key information about the price could be hidden.",
+        "Discounts information may be shown in a confusing or exaggerated way. It tricks users into thinking the item is on sale and buy it while in fact it might just be a marketing strategy.",
       awareness:
-        "You may be more likely to purchase this item with the given discounts information.",
+        "You might get tricked to purchase this item with the confusing / exaggerated discount information, while it's in fact not on sale.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_before.png?v=1660680258968",
           component: "none",
-          description: "Not modified.",
+          description: "No change.",
         },
         {
           name: "hide",
@@ -127,7 +127,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/price-hide.gif?v=1660786700320",
           component: "amazon_discount_price_hide",
           description:
-            "Hide the discounts alert to not let it influence your purchase decision.",
+            "Dark Pita can hide the discount information and prevent it from influencing your decision.",
         },
         {
           name: "information disclosure",
@@ -143,7 +143,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_reflection.png?v=1660680246692",
           component: "amazon_discount_price_reflection",
           description:
-            "When you are navigating through this area, Dark Pita will add some visual effects so that you will be reminded to give a second thought before making your purchase decision.",
+            "Dark Pita will add some visual effects and remind you to give a second thought before making your purchase decision.",
         },
         {
           name: "action guide",
@@ -151,7 +151,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_action_guide.png?v=1660680267948",
           component: "amazon_discount_price_action",
           description:
-            "Dark Pita will provide some suggestions that you can take towards this item.",
+            "Hover over the discount price and Dark Pita will provide some suggestions that you can take towards this item.",
         },
       ],
     },
@@ -167,17 +167,17 @@ export default {
       pattern: "Recommended Items",
 
       description:
-        "The highlighted one represents all recommended items on homepage. These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part dominant and take the whole field of view.",
+        "The highlighted section represents all recommended items on homepage. These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part dominant and take the whole field of view.",
 
       awareness:
-        "You are more likely to stray from your initial purchase goals or spend more time browsing for less needed items, ultimately causing you to waste a lot of money on items you don't need.",
+        "You are likely to be distracted from your initial purchase goals or spend more time browsing for less needed items, ultimately causing you to spend money on items you don't really need.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_homepage_before.png?v=1660682739077",
           component: "none",
-          description: "Not Modified.",
+          description: "No change.",
         },
         {
           name: "focus mode",
@@ -192,7 +192,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amazon_homepage_reflection.gif?v=1660676754864",
           component: "amazon_home_card_reflection",
           description:
-            "Dark Pita will add a bit of push-back to help you avoid mindless browsing.",
+            "Dark Pita will add visual effects and remind you to think twice before mindlessly browsing.",
         },
         {
           name: "cost tracker",
@@ -200,7 +200,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_homepage_cost_tracker.png?v=1660786833764",
           component: "amazon_home_card_progress",
           description:
-            "Dark Pita will put a progress circle that helps you track extra cost on Amazon that is likely incurred due to dark patterns.",
+            "Dark Pita will track and show your extra cost on Amazon that is likely caused by dark patterns.",
         },
       ],
     },
@@ -216,16 +216,16 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Recommended Videos",
       description:
-        "The highlighted one represents all recommended videos on homepage. Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.",
+        "The highlighted video represents all recommended videos on homepage. These videos are individualized recommendations by YouTube, mostly through exploiting your history data.",
       awareness:
-        "The videos are trying to cater to your tastes. You are likely to consume more content than you originally intended to. Auxiliary functions such as preview make you even more easily distracted",
+        "The videos are trying to cater to your interests. You are likely to get distracted and watch videos that you never planned to. Automatic preview on hover grabs your attention and distract you even further.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_homepage_before.png?v=1660683118921",
           component: "none",
-          description: "Not Modified.",
+          description: "No change.",
         },
         {
           name: "focus mode",
@@ -233,7 +233,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_homepage_focus.gif?v=1660683222367",
           component: "youtube_recommended_video_focus",
           description:
-            "Dark Pita will hide ALL recommended videos on the homepage. This is especially helpful when you visit YouTube for a study lecture or work-relevant tasks.",
+            "Dark Pita will hide ALL recommended videos on the homepage. You can still use the search bar on top; this is helpful when you visit YouTube with a goal in mind.",
         },
         {
           name: "block preview",
@@ -241,7 +241,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_homepage_blkpreview.gif?v=1660683589579",
           component: "youtube_recommended_video_preview",
           description:
-            "Dark Pita will disable the preview function. This may prevent you from being distracted by less relevant content.",
+            "Dark Pita will disable the preview function. This may prevent you from being distracted.",
         },
         {
           name: "reflection",
@@ -249,7 +249,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_reflection_timetracker.png?v=1660765926230",
           component: "youtube_recommended_video_reflection",
           description:
-            "Dark Pita will put a mini clock to help track the extra time you spend on YouTube due to dark patterns.",
+            "Dark Pita will track and show the extra time you spend on YouTube due to dark patterns.",
         },
       ],
     },
@@ -263,16 +263,16 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Hidden Dislike Counts",
       description:
-        "Only Like counts shows up, but you cannot see how many Dislikes the video gets.",
+        "YouTube only displays the like count but not the dislike counts.",
       awareness:
-        "You might mistakenly perceive popularity of the video while being unaware of its controversy.",
+        "You only see the popularity of the video while being unaware of its controversy.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/dislike-before?v=1660625022841",
           component: "none",
-          description: "Not modified.",
+          description: "No change.",
         },
         {
           name: "fairness",
@@ -293,16 +293,16 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Recommended Videos",
       description:
-        "The highlighted one represents all recommended videos on sidebar. Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.",
+        "The highlighted video represents all recommended videos on sidebar. Video recommendations on the sidebar are personally customized based on your watch history and the video that you are currently watching.",
       awareness:
-        "It is likely that you will watch more similar videos after you finish the current one, leading to distractions and time wasting.",
+        "This may cause you to binge watch similar videos after you finish the current one, leading to distractions and time wasting.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_sidebar_before.png?v=1660684441064",
           component: "none",
-          description: "Not modified.",
+          description: "No change.",
         },
         {
           name: "focus mode",
@@ -310,7 +310,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_sidebar_focus.gif?v=1660684900361",
           component: "youtube_sidebar_video_focus",
           description:
-            "Dark Pita will hide ALL recommended videos on the sidebar. This is especially helpful when you visit YouTube for a study lecture or work-relevant tasks.",
+            "Dark Pita will hide ALL recommended videos on the sidebar. This is helpful when you want to prevent yourself from binge watching.",
         },
         {
           name: "block preview",
@@ -318,7 +318,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_side_blkpreview.gif?v=1660685057356",
           component: "youtube_sidebar_video_preview",
           description:
-            "Dark Pita will disable the preview function. This may prevent you from being distracted by less relevant content.",
+            "Dark Pita will disable the preview function. This may prevent you from being distracted and spending too much time on YouTube.",
         },
         {
           name: "reflection",
@@ -326,7 +326,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ytb_sidebar_reflection.png?v=1660685719313",
           component: "youtube_sidebar_video_reflection",
           description:
-            "Dark Pita will put a mini clock on the right top corner as a reminder to track time you spend on YouTube. This may help prevent overconsumption of YouTube videos.",
+            "Dark Pita will track and show the time you spend on YouTube and let you know how much are through the dark patterns on YouTube interfaces.",
         },
       ],
     },
@@ -480,14 +480,14 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539",
       pattern: "Suggested Content",
       description: "This section shows trending content suggested by Twitter.",
-      awareness: "You might be distracted from your original browsing purpose.",
+      awareness: "You might be distracted from your original goals of visiting Twitter.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/whathappen_before.png?v=1660855146667",
           component: "",
-          description: "Not modified.",
+          description: "No change.",
         },
         {
           name: "hide / disable",
@@ -495,7 +495,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/trending_hide.gif?v=1660854950452",
           component: "twitter_whats_happening_hide",
           description:
-            "Dark Pita will hide this section to help you focus on main content.",
+            "Dark Pita will hide this section to help you focus on your feed. You can always use the \"Explore\" tab on the left sidebar. This is helpful for you to reduce Twitter consumption.",
         },
       ],
     },
@@ -509,16 +509,16 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539",
       pattern: "Suggested Tweets",
       description:
-        'Though this is suggested content by the Twitter algorithm, it does not explicitly label itself as "sponsored" or "suggested". Instead, it is using confusing labels such as "Popular videos" or the name of topics that you are interested in, such as "Computer programming".',
+        'This is suggested content by the Twitter algorithm, but it does not explicitly label itself as "sponsored" or "suggested". Instead, it is using confusing labels such as "Popular videos".',
       awareness:
-        "It feeds you information that you did not intend to look for. You might miss the fact that these tweets are suggested content. Furthermore, you might spend extra time browsing this type of tweets.",
+        "It shows you tweets from people you don't follow and you might not be aware of it. You are likely to spend more time on Twitter than you would like.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/promt_before.gif?v=1660855544704",
           component: "",
-          description: "Not modified.",
+          description: "No change.",
         },
         {
           name: "Marked Promoted",
@@ -526,7 +526,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/marked_prompt.gif?v=1660855624889",
           component: "twitter_promoted_highlight",
           description:
-            "Dark Pita will detect this type of tweets and explicitly mark them for you.",
+          "Dark Pita will detect this type of tweets and explicitly mark them as promoted for you.",
         },
         {
           name: "Add Friction",
@@ -534,17 +534,8 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/prompt_friction.gif?v=1660855677652",
           component: "twitter_promoted_friction",
           description:
-            "Dark Pita will detect this type of tweets and replace them with a clean panel, where Dark Pita explicitly shows you the mechanism behind such tweets.",
+            "Dark Pita will detect this type of tweets and replace them with an overlay. If you still want to see the tweet, you can click on the reveal button.",
         },
-
-        //    {
-        //     name: 'friction',
-        //      image:
-        //        'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
-        //       component: 'twitter_promoted_friction',
-        //       description:
-        //         'If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.'
-        //     }
       ],
     },
   ],
@@ -568,7 +559,7 @@ export default {
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/Reels.png?v=1660884228733",
           component: "",
-          description: "Not modified",
+          description: "No change",
         },
         {
           name: "hide / disable",
@@ -591,7 +582,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/reels-cover.gif?v=1660884551935",
           component: "facebook_reels_friction",
           description:
-            "Dark Pita will add an overlay on the Reels and explain the mechanism behind the selected content.",
+            "Dark Pita will add an overlay to the Reels to prevent you from immediately being distracted by them. If you still want to view them, click on the reveal button.",
         },
       ],
     },
@@ -606,7 +597,7 @@ export default {
       tag: ["covert", "information hiding"],
       description: "Content prompted by the Facebook algorithm.",
       awareness:
-        "It can be a bad experience to see lots of irrelevant content on your homepage. Also, you can get distracted by the suggested information and prolong your usage of this platform.",
+        "You can get distracted by the suggested information and spend more time on Facebook than you would like to by mindlessly browsing.",
       action: [
         {
           name: "none",
@@ -615,14 +606,14 @@ export default {
 
           // 'https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375',
           component: "",
-          description: "Not modified",
+          description: "No change",
         },
         {
           name: "hide / disable",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/fb_suggested.gif?v=1660856271171",
           component: "facebook_suggested_for_you_hide",
-          description: "Dark Pita will hide the selected suggested content.",
+          description: "Dark Pita will hide the selected suggested content for you.",
         },
         {
           name: "highlight",
@@ -645,16 +636,16 @@ export default {
       icon:
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Remaining Time Only",
-      description: "The timeline only shows the time remaining.",
+      description: "The timeline only shows the time remaining, not how long you have spent on the episode.",
       awareness:
-        "It gives you an expectation about how long to watch, but at the same time it is easier to ignore how much time has been consumed.",
+        "This feature makes it easier for you to binge watch shows. It gives you an expectation about the time left and prompts you to finish the episode, however, it is easy to ignore the time spent.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/netflix_timeline_before.png?v=1660789248576",
           component: "none",
-          description: "Not Modified.",
+          description: "No change.",
         },
         {
           name: "reflection",
@@ -662,7 +653,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/netflix_time_tracker.png?v=1660782189787",
           component: "netflix_timeline_reflection",
           description:
-            "Dark Pita sets a mini clock for you to track the time you spend here. This may help prevent behaviors such as binge-watching.",
+            "Dark Pita tracks and shows the time you spend on Netflix. This may prevent binge-watching.",
         },
       ],
     },
@@ -676,16 +667,16 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Automatic Background Preview",
       description:
-        "Once you enter your Netflix, it will automatically start to play the featured trailor for you.",
+        "Netflix automatically plays the featured trailor for you upon arriving on the site.",
       awareness:
-        "The featured content is likely catering to your taste. You will possibly enter a video that you did not plan to watch. Therefore, you might spend more time than you expected on this platform.",
+        "The featured content is customized for your taste and since it automatically plays, it will likely grab your attention. You might get distracted and spend more time than you expected on this platform.",
       action: [
         {
           name: "none",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/netflix_preview_before.gif?v=1660857214243",
           component: "none",
-          description: "Not Modified.",
+          description: "No change.",
         },
         {
           name: "disable",
