@@ -16,15 +16,21 @@ export default {
       // look for the sponsored component
       var retrievedHtmls = document.getElementsByTagName("span");
       for (var j = 0; j < retrievedHtmls.length; j++) {
-        if (retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1 || retrievedHtmls[j].innerHTML.indexOf("Promoted by Facebook, Not Followed By You") ) {
-          var parentLevel = 7;
-          element = retrievedHtmls[j];
-          for (var k = 0; k < parentLevel; k++) {
-            if (element.parentElement == null) break;
-            element = element.parentElement;
-          }
-          elementList.push(element);
-          console.log("element found");
+          
+          if (
+            retrievedHtmls[j].innerHTML.indexOf("Suggested for you") != -1 ||
+            retrievedHtmls[j].innerHTML.indexOf(
+              "Promoted by Facebook, Not Followed By You"
+            ) != -1
+          ) {
+            var parentLevel = 7;
+            element = retrievedHtmls[j];
+            for (var k = 0; k < parentLevel; k++) {
+              if (element.parentElement == null) break;
+              element = element.parentElement;
+            }
+            elementList.push(element);
+            console.log("element found");
         }
       }
 
@@ -33,7 +39,6 @@ export default {
       }
     },
     remove(selectors) {
-      alert("Has the title changed yet?");
       selectors.removeNode = [];
       if (selectors.length != undefined) {
         let len = selectors.length;
@@ -47,7 +52,6 @@ export default {
         for (let i = 0; i < len; i++) {
           selectors[i].parentNode.removeChild(selectors[i]);
         }
-          
       } else {
         selectors.removeNode.push({
           parent: selectors.parentNode,
@@ -75,7 +79,10 @@ export default {
       if (this.isHideOn) {
         this.getTargetList();
         if (this.targetList.length !== 0) {
-          this.remove(this.targetList);
+          // this.remove(this.targetList);
+          this.targetList.forEach((element) => {
+            element.style.display = "none";
+          });
         }
       }
     });
@@ -88,10 +95,12 @@ export default {
       if (message === "on") {
         this.isHideOn = true;
         console.log("facebook suggested for you content hide on");
-        this.sendAction(1, "toggle facebook_suggested_for_you_hide");
 
         if (this.targetList.length > 0) {
-          this.remove(this.targetList);
+          // this.remove(this.targetList);
+          this.targetList.forEach((item) => {
+            item.style.display = "none";
+          });
           console.log(this.targetList + " removed");
         } else {
           console.log(
@@ -104,11 +113,16 @@ export default {
         this.sendAction(0, "toggle facebook_suggested_for_you_hide");
         console.log("this.targetList: ", this.targetList);
         if (this.targetList.length > 0) {
-          this.recover(this.targetList);
+          // this.recover(this.targetList);
+          this.targetList.forEach((item) => {
+            item.style.display = "block";
+          });
           console.log(this.targetList + " restored");
         }
       }
       this.$emit("update");
+
+      this.sendAction(1, "toggle facebook_suggested_for_you_hide");
     });
   },
 };

@@ -547,11 +547,6 @@ export default {
 
         this.refresh(); // refresh bounding boxes before generating overlay
 
-        // console.log(
-        //   'new after refresh this.boundingBoxList',
-        //   this.boundingBoxList
-        // );
-
         // Leverage paper.js to generate overlay svg
         const origin = new Paper.Point(0, 0);
         const rect = new Paper.Path.Rectangle({
@@ -811,6 +806,8 @@ export default {
       if (this.isMask) {
         this.mask.innerHTML = '';
       }
+
+      
 
       this.overlayWidth = Math.max(
         document.documentElement.clientWidth || 0,
