@@ -487,11 +487,11 @@ export default {
       this.refresh();
       if (this.isMask === false) {
         this.isMask = true;
-        this.sendAction(1, 'toggle mask');
+        // this.sendAction(1, 'toggle mask');
         this.generateOverviewOverlay();
       } else {
         this.isMask = false;
-        this.sendAction(0, 'toggle mask');
+        // this.sendAction(0, 'toggle mask');
       }
     },
     generateTouchableArea() {
@@ -852,7 +852,7 @@ export default {
       }
 
       this.isPop = true;
-      this.sendAction(this.currentTarget, 'trigger popup');
+      // this.sendAction(this.currentTarget, 'trigger popup');
       this.timer = new Date().getTime();
     },
     closePop(value) {
@@ -861,21 +861,21 @@ export default {
        */
       console.log(value);
       this.isPop = false;
-      this.sendAction(this.currentTarget, 'close popup');
+      // this.sendAction(this.currentTarget, 'close popup');
     },
     closeAlert() {
       /**
        * Close header alert when click 'Close' icon in header alert
        */
       this.isAlert = false;
-      this.sendAction(this.currentTab.url, 'close banner');
+      // this.sendAction(this.currentTab.url, 'close banner');
     },
     openAlert() {
       /**
        * Reopen the header alert when click 'Open Banner' in the console
        */
       this.isAlert = true;
-      this.sendAction(this.currentTab.url, 'reopen banner');
+      // this.sendAction(this.currentTab.url, 'reopen banner');
     }
   },
   mounted() {

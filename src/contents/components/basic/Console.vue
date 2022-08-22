@@ -1,5 +1,6 @@
 <template>
   <div id="DP_console" class="DP_console">
+    <h1>Diary Note Submission</h1>
     <!-- The First FAQ -->
     <details class="DP_question_one" open>
       <summary>What is the dark pattern you want to talk about?</summary>
@@ -20,7 +21,7 @@
           id="message"
           rows="4"
           class="DP_text_area"
-          placeholder="Write your insights..."
+          placeholder="Write your feedback..."
           v-model="questionOne"
         ></textarea>
       </div>
@@ -36,7 +37,7 @@
           id="message"
           rows="4"
           class="DP_text_area"
-          placeholder="Write your insights..."
+          placeholder="Write your feedback..."
           v-model="questionTwo"
         ></textarea>
       </div>
@@ -53,13 +54,13 @@
           id="message"
           rows="4"
           class="DP_text_area"
-          placeholder="Write your insights..."
+          placeholder="Write your feedback..."
           v-model="questionThree"
         ></textarea>
       </div>
     </details>
 
-    <p>Take a screenshoot and upload it with your insights:</p>
+    <p>Take a screenshoot and upload it with your feedback:</p>
     <input
       class="DP_upload"
       id="DP_upload"
@@ -68,7 +69,7 @@
       @change="uploadImage()"
     />
     <button @click="sendDiary">
-      Send Insights
+      Send Note
     </button>
     <button @click="openAlert" :disabled="isAlert || notSupport">
       Open Banner
