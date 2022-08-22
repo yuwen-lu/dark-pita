@@ -648,6 +648,10 @@ export default {
             }
           } else if (this.targetIdentifiers[i] === 'apex_desktop') {
             element = document.getElementById(this.targetIdentifiers[i]);
+          } else if (this.targetIdentifiers[i] === 'desktop-grid-3') {
+            element = document.querySelectorAll(
+              '[id^=' + this.targetIdentifiers[i] + ']'
+            )[0];
           } else {
             element = document.querySelectorAll(
               '[id^=' + this.targetIdentifiers[i] + ']'
@@ -712,9 +716,9 @@ export default {
               if (
                 retrievedHtmls[j].innerHTML.indexOf(
                   this.targetIdentifiers[i]
-                ) != -1 || retrievedHtmls[j].innerHTML.indexOf(
-                  "Promoted by Facebook"
-                ) != -1 
+                ) != -1 ||
+                retrievedHtmls[j].innerHTML.indexOf('Promoted by Facebook') !=
+                  -1
               ) {
                 // very ugly way, but the whole container is the 7th parent of the a tag
                 var parentLevel = 7;

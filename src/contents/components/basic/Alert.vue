@@ -111,15 +111,17 @@ export default {
               } else {
                 bannerElement.children[i].style.top = '0px';
               }
-            } 
+            }
           } else if (url.search(/twitter.com/) !== -1) {
             setTimeout(() => {
-              let searchElement = document.querySelectorAll('[aria-label="Search Twitter"]')[0];
+              let searchElement = document.querySelectorAll(
+                '[aria-label="Search Twitter"]'
+              )[0];
               if (newValue) {
-                searchElement.style.top = "64px";
+                searchElement.style.top = '64px';
                 document.body.style.paddingTop = '64px';
               } else {
-                searchElement.style.top = "0px";
+                searchElement.style.top = '0px';
                 document.body.style.paddingTop = '0px';
               }
             }, 2000);
@@ -203,7 +205,9 @@ export default {
       this.$emit('toggleMask', false);
     },
     closeAlert() {
-      alert('You can reopen the banner by clicking the Dark Pita icon.');
+      alert(
+        'You can reopen the banner by clicking the Dark Pita icon and then clicking the Open Banner button.'
+      );
       this.$emit('closeAlert', false);
     },
     reset() {

@@ -10,9 +10,9 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626",
       pattern: "Prominent Option",
       description:
-        'The "Buy Now" button is in color orange, while the regular "Add to Cart" button is yellow.',
+        'The "Buy Now" button is in a more prominent orange color, while the regular "Add to Cart" button is yellow.',
       awareness:
-        'You could choose the "Buy Now" option more easily, and sometimes even mistakenly make a purchase.',
+        'You could select the "Buy Now" option subconsciously, and sometimes even mistakenly make a purchase.',
       action: [
         {
           name: "none",
@@ -56,9 +56,9 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/online_shopping.png?v=1660533261626",
       pattern: "Disguised Ads",
       description:
-        'The interface design makes this section large and makes it less obvious that it is an inserted ad. The "sponsored" notice is minimal at the right bottom corner.',
+        'The interface design makes this section appear to be your search results, not ads. The "sponsored" notice is minimal at the right bottom corner.',
       awareness:
-        "It is harder to avoid clicking the ads. As a user, you may be confused that the product you are looking for is behind this link.",
+        "Disguised advertising may lead you to believe that it is the best product for you and cause you financial loss.",
       action: [
         {
           name: "none",
@@ -72,7 +72,7 @@ export default {
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_hide.gif?v=1660681502216",
           component: "amazon_disguised_ads_hide",
-          description: "Let the ads disappear.",
+          description: "Dark Pita will hide the disguised ads.",
         },
         {
           name: "friction",
@@ -80,7 +80,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ads_friction.gif?v=1660681503661",
           component: "amazon_disguised_ads_friction",
           description:
-            "Your cursor will disappear if it navigates through the ads area.",
+            "Dark Pita will make your disappear if it navigates through the ads area.",
         },
         {
           name: "information disclosure",
@@ -151,13 +151,13 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/discounts_action_guide.png?v=1660680267948",
           component: "amazon_discount_price_action",
           description:
-            "Dark Pita will suggest something you can do about this item.",
+            "Dark Pita will provide some suggestions that you can take towards this item.",
         },
       ],
     },
     {
       name: "amazon_home_card",
-      identifier: "desktop-grid-1",
+      identifier: "desktop-grid-3",
       url: "https://www.amazon.com(/)?(#nav-top)?(#)?(ref=nav_logo)?$",
       type: "online shopping platform",
       tag: ["asymmetric", "disparate treatment", "information hiding"],
@@ -167,10 +167,10 @@ export default {
       pattern: "Recommended Items",
 
       description:
-        "(The highlighted one represents all recommended items on homepage.) These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part big and take the whole field of view.",
+        "The highlighted one represents all recommended items on homepage. These are recommended items suggested by Amazon, partially based on user data. The interface design makes this part dominant and take the whole field of view.",
 
       awareness:
-        "You are more likely to deviate from their original purchase goals or spend more time browsing less relevant items.",
+        "You are more likely to stray from your initial purchase goals or spend more time browsing for less needed items, ultimately causing you to waste a lot of money on items you don't need.",
       action: [
         {
           name: "none",
@@ -184,7 +184,7 @@ export default {
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_home_focus_mode.gif?v=1660783201214",
           component: "amazon_home_card_focus",
-          description: "Hide the recommended-items section on the home page.",
+          description: "Dark Pita will hide ALL recommended-items sections on the homepage.",
         },
         {
           name: "animated metaphor",
@@ -192,7 +192,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amazon_homepage_reflection.gif?v=1660676754864",
           component: "amazon_home_card_reflection",
           description:
-            "Dark Pita adds a bit of push-back to help you avoid mindless browsing.",
+            "Dark Pita will add a bit of push-back to help you avoid mindless browsing.",
         },
         {
           name: "cost tracker",
@@ -200,7 +200,7 @@ export default {
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/amz_homepage_cost_tracker.png?v=1660786833764",
           component: "amazon_home_card_progress",
           description:
-            "Dark Pita puts a progress circle that helps you track extra cost on Amazon that is likely incurred due to dark patterns.",
+            "Dark Pita will put a progress circle that helps you track extra cost on Amazon that is likely incurred due to dark patterns.",
         },
       ],
     },
@@ -216,9 +216,9 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Recommended Videos",
       description:
-        "(The highlighted one represents all recommended videos on homepage.) Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.",
+        "The highlighted one represents all recommended videos on homepage. Videos on the homepage are individualized recommendations by YouTube, mostly through exploiting your history data.",
       awareness:
-        "The videos are trying to cater to your tastes. You are likely to consume more content than you originally intended to. Auxiliary functions such as preview will make it even easier to be distracted.",
+        "The videos are trying to cater to your tastes. You are likely to consume more content than you originally intended to. Auxiliary functions such as preview make you even more easily distracted",
       action: [
         {
           name: "none",
@@ -293,9 +293,9 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Recommended Videos",
       description:
-        "(The highlighted one represents all recommended videos on sidebar.) Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.",
+        "The highlighted one represents all recommended videos on sidebar. Videos on the sidebar are individualized recommendations based on your watch history and the video that you are currently watching.",
       awareness:
-        "It is likely that you will watch more similar videos after you finish the current one.",
+        "It is likely that you will watch more similar videos after you finish the current one, leading to distractions and time wasting.",
       action: [
         {
           name: "none",
@@ -331,144 +331,144 @@ export default {
       ],
     },
   ],
-  tailwind: [
-    {
-      name: "tailwind_header",
-      identifier: "header",
-      url: "https://tailwindcss.com/docs/",
-      type: "video streaming platform",
-      tag: ["asymmetric", "disparate treatment", "information hiding"],
-      icon:
-        "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388",
-      pattern: "loss-gain framing",
-      description:
-        "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
-      awareness:
-        "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-      action: [
-        {
-          name: "none",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "detection",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "bright pattern",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-      ],
-    },
-    {
-      name: "tailwind_basic_usage",
-      identifier: "basic-usage",
-      url: "https://tailwindcss.com/docs/",
-      type: "video streaming platform",
-      tag: ["asymmetric", "disparate treatment", "information hiding"],
-      icon:
-        "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/privacy.png?v=1659250500782",
-      pattern: "loss-gain framing",
-      description:
-        "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
-      awareness:
-        "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-      action: [
-        {
-          name: "none",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "hide / disable",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "detection",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "bright pattern",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-      ],
-    },
-    {
-      name: "tailwind_applying_conditionally",
-      identifier: "applying-conditionally",
-      url: "https://tailwindcss.com/docs/",
-      type: "video streaming platform",
-      tag: ["asymmetric", "disparate treatment", "information hiding"],
-      icon:
-        "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cognition.png?v=1659250494144",
-      pattern: "loss-gain framing",
-      description:
-        "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
-      awareness:
-        "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-      action: [
-        {
-          name: "none",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "hide / disable",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "design friction",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-        {
-          name: "bright pattern",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description:
-            "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
-        },
-      ],
-    },
-  ],
+  // tailwind: [
+  //   {
+  //     name: "tailwind_header",
+  //     identifier: "header",
+  //     url: "https://tailwindcss.com/docs/",
+  //     type: "video streaming platform",
+  //     tag: ["asymmetric", "disparate treatment", "information hiding"],
+  //     icon:
+  //       "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/money.png?v=1659250500388",
+  //     pattern: "loss-gain framing",
+  //     description:
+  //       "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
+  //     awareness:
+  //       "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //     action: [
+  //       {
+  //         name: "none",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "detection",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "bright pattern",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "tailwind_basic_usage",
+  //     identifier: "basic-usage",
+  //     url: "https://tailwindcss.com/docs/",
+  //     type: "video streaming platform",
+  //     tag: ["asymmetric", "disparate treatment", "information hiding"],
+  //     icon:
+  //       "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/privacy.png?v=1659250500782",
+  //     pattern: "loss-gain framing",
+  //     description:
+  //       "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
+  //     awareness:
+  //       "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //     action: [
+  //       {
+  //         name: "none",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "hide / disable",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "detection",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "bright pattern",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     name: "tailwind_applying_conditionally",
+  //     identifier: "applying-conditionally",
+  //     url: "https://tailwindcss.com/docs/",
+  //     type: "video streaming platform",
+  //     tag: ["asymmetric", "disparate treatment", "information hiding"],
+  //     icon:
+  //       "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/cognition.png?v=1659250494144",
+  //     pattern: "loss-gain framing",
+  //     description:
+  //       "A selective disclosure of information that positively frames the consequences of an action, while omitting the entailed risks.",
+  //     awareness:
+  //       "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //     action: [
+  //       {
+  //         name: "none",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "hide / disable",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "design friction",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //       {
+  //         name: "bright pattern",
+  //         image:
+  //           "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
+  //         component: "",
+  //         description:
+  //           "If I am manipulated by this item, I will have a high chance of purchasing this item. If I purchase this item, I would not break even.",
+  //       },
+  //     ],
+  //   },
+  // ],
   twitter: [
     {
       name: "twitter_whats_happening",
@@ -691,8 +691,9 @@ export default {
           name: "disable",
           image:
             "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/netflix_preview_disable.gif?v=1660857216480",
+          component: "netflix_hugepreview_disable",
           description:
-            "Dark Pita will disable the visual part of the background preview.",
+            "Dark Pita will disable background preview on Netflix homepage. This may help prevent you from being distracted by the featured content.",
         },
       ],
     },

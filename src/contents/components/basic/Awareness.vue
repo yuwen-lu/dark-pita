@@ -105,16 +105,16 @@ export default {
         deceptive: false
       },
       tagInfo: {
-        asymmetric: 'Unequal burdens on choices available to the user',
+        asymmetric: 'Unequal burdens on choices available to you',
         'disparate treatment':
-          'Disadvantage and treat one group of users differently from another',
+          'Disadvantage and treat you differently from another group of users',
         'information hiding':
-          'Obscure or delay the presentation of necessary information to users',
-        covert: 'Hiding the influence mechanism from users',
+          'Obscure or delay the presentation of necessary information to you',
+        covert: 'Hiding the influence mechanism from you',
         restrictive:
-          'Eliminate certain choices that should be available to users',
+          'Eliminate certain choices that should be available to you',
         deceptive:
-          'Induce false beliefs in users either through affirmative misstatements, misleading statements, or omissions'
+          'Induce false beliefs in you either through affirmative misstatements, misleading statements, or omissions'
       }
     };
   },
@@ -249,7 +249,7 @@ div {
   @apply flex flex-wrap flex-row gap-[8px] justify-start items-start;
 
   .DP_tag {
-    @apply relative text-[12px] capitalize py-[2px] px-[12px] text-white bg-dark border-[1px] border-solid rounded-[4px];
+    @apply relative text-[12px] normal-case py-[2px] px-[12px] text-white bg-dark border-[1px] border-solid rounded-[4px];
 
     .DP_tag_info {
       @apply absolute bottom-[28px] py-[6px] px-[12px] left-[-1px] w-[200px] bg-dark text-[12px] text-white z-infinite rounded-[4px] border-[1px] border-solid border-dark drop-shadow-xl backdrop-blur-xl bg-dark/60;
