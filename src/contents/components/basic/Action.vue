@@ -96,11 +96,9 @@ export default {
         amazon_home_card_progress: "off",
 
         // facebook
-        facebook_suggested_hide: "off",
         facebook_reels_hide: "off",
         facebook_reels_counterfact: "off",
         facebook_reels_friction: "off",
-        facebook_sponsored_hide: "off",
         facebook_suggested_for_you_hide: "off",
         facebook_suggested_for_you_highlight: "off",
 
@@ -218,17 +216,12 @@ export default {
       }
 
       // facebook
-      if (this.intervention.component === "facebook_suggested_hide") {
-        this.emitter.emit("facebook_suggested_hide", "on");
-      } else if (this.intervention.component === "facebook_reels_hide") {
+      if (this.intervention.component === "facebook_reels_hide") {
         this.emitter.emit("facebook_reels_hide", "on");
       } else if (this.intervention.component === "facebook_reels_counterfact") {
         this.emitter.emit("facebook_reels_counterfact", "on");
       } else if (this.intervention.component === "facebook_reels_friction") {
         this.emitter.emit("facebook_reels_friction", "on");
-      } else if (this.intervention.component === "facebook_sponsored_hide") {
-        this.emitter.emit("facebook_sponsored_hide", "on");
-        console.log("Emitting facebook_sponsored_hide message as on");
       } else if (
         this.intervention.component === "facebook_suggested_for_you_hide"
       ) {

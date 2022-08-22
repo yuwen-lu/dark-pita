@@ -33,6 +33,7 @@ export default {
       }
     },
     remove(selectors) {
+      alert("Has the title changed yet?");
       selectors.removeNode = [];
       if (selectors.length != undefined) {
         let len = selectors.length;
@@ -43,8 +44,10 @@ export default {
             next: selectors[i].nextSibling,
           });
         }
-        for (let i = 0; i < len; i++)
+        for (let i = 0; i < len; i++) {
           selectors[i].parentNode.removeChild(selectors[i]);
+        }
+          
       } else {
         selectors.removeNode.push({
           parent: selectors.parentNode,

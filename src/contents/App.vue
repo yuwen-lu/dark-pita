@@ -100,10 +100,6 @@
     />
 
     <!-- Facebook -->
-    <facebook_suggested_hide
-      v-if="targetNames.facebook_suggested"
-      @update="generateOverviewOverlay"
-    />
     <facebook_reels_hide
       v-if="targetNames.facebook_reels"
       @update="generateOverviewOverlay"
@@ -114,10 +110,6 @@
     />
     <facebook_reels_friction
       v-if="targetNames.facebook_reels"
-      @update="generateOverviewOverlay"
-    />
-    <facebook_sponsored_hide
-      v-if="targetNames.facebook_sponsored"
       @update="generateOverviewOverlay"
     />
     <facebook_suggested_for_you_hide
@@ -232,11 +224,9 @@ import youtube_sidebar_video_reflection from '@/contents/components/youtube/side
 import netflix_timeline_reflection from '@/contents/components/netflix/timeline/netflix_timeline_reflection.vue';
 import netflix_hugepreview_disable from '@/contents/components/netflix/hugepreview/netflix_hugepreview_disable.vue';
 
-import facebook_suggested_hide from '@/contents/components/facebook/people_suggested/facebook_suggested_hide.vue';
 import facebook_reels_hide from '@/contents/components/facebook/reels/facebook_reels_hide.vue';
 import facebook_reels_counterfact from '@/contents/components/facebook/reels/facebook_reels_counterfact.vue';
 import facebook_reels_friction from '@/contents/components/facebook/reels/facebook_reels_friction.vue';
-import facebook_sponsored_hide from './components/facebook/sponsored/facebook_sponsored_hide.vue';
 import facebook_suggested_for_you_hide from './components/facebook/suggested_for_you/facebook_suggested_for_you_hide.vue';
 import facebook_suggested_for_you_highlight from './components/facebook/suggested_for_you/facebook_suggested_for_you_highlight.vue';
 
@@ -275,9 +265,7 @@ export default {
         amazon_disguised_ads: false,
         amazon_discount_price: false,
         amazon_home_card: false,
-        facebook_suggested: false,
         facebook_reels: false,
-        facebook_sponsored: false,
         facebook_suggested_for_you: false,
         youtube_recommended_video: false,
         youtube_video_dislike: false,
@@ -316,11 +304,9 @@ export default {
     amazon_home_card_reflection,
     amazon_home_card_progress,
 
-    facebook_suggested_hide,
     facebook_reels_hide,
     facebook_reels_counterfact,
     facebook_reels_friction,
-    facebook_sponsored_hide,
     facebook_suggested_for_you_hide,
     facebook_suggested_for_you_highlight,
 

@@ -550,35 +550,6 @@ export default {
   ],
   facebook: [
     {
-      name: "facebook_suggested",
-      identifier: "People You May Know",
-      url: "https://www.facebook.com/",
-      type: "social media platform",
-      tag: ["covert", "asymmetric"],
-      icon:
-        "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539",
-      pattern: "People You May Know",
-      description: "Facebook prompts you other users you probably know. ",
-      awareness:
-        "You may see unexpected content on your homepage. The further goal of connecting you with as many people as possible is to enhance your activity on this platform.",
-      action: [
-        {
-          name: "none",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/ppl_you_may_know.png?v=1660788587165",
-          component: "",
-          description: "Not modified.",
-        },
-        {
-          name: "hide / disable",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "",
-          description: "Dark Pita will hide the People You May Know section.",
-        },
-      ],
-    },
-    {
       name: "facebook_reels",
       identifier: "Reels and short videos",
       url: "https://www.facebook.com/",
@@ -621,36 +592,6 @@ export default {
           component: "facebook_reels_friction",
           description:
             "Dark Pita will add an overlay on the Reels and explain the mechanism behind the selected content.",
-        },
-      ],
-    },
-    {
-      name: "facebook_sponsored",
-      identifier: "ads/about",
-      url: "https://www.facebook.com/",
-      type: "social media platform",
-      tag: ["covert", "information hiding"],
-      icon:
-        "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/social_media.png?v=1660533416539",
-      pattern: "Disguised Sponsored Content",
-      description:
-        "These are sponsored/promoted posts prompted onto your homepage feed, instead of being posted by your friends.",
-      awareness:
-        "You will possibly consume them as posts from your friends or people you follow. These posts are possibly exploiting your attention.",
-      action: [
-        {
-          name: "none",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/fb_spons_before.png?v=1660686155283",
-          component: "",
-          description: "Not modified.",
-        },
-        {
-          name: "hide / disable",
-          image:
-            "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/demo.png?v=1659593917375",
-          component: "facebook_sponsored_hide",
-          description: "Dark Pita will hide the sponsored posts for you.",
         },
       ],
     },
