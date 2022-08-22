@@ -53,9 +53,9 @@ export default {
       if (this.targetList.length > 0) {
         for (var i = 0; i < this.targetList.length; i++) {
           var tempElement = this.targetList[i];
-          tempElement.style.color = "inherit";
-          tempElement.style.fontWeight = "inherit";
-          tempElement.style.fontSize = "inherit";
+          tempElement.style.color = "var(--secondary-text)";
+          tempElement.style.fontWeight = "400";
+          tempElement.style.fontSize = ".9375rem";
           tempElement.innerHTML = tempElement.innerHTML.replace(
             "Promoted by Facebook, Not Followed By You",
             "Suggested for you"
