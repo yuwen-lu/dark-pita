@@ -75,6 +75,7 @@ export default {
                 newHighlightOverlayElement.style.backgroundColor = "transparent";
                 newHighlightOverlayElement.style.borderWidth = "3px";
                 newHighlightOverlayElement.style.borderColor = "#DC2625";
+                newHighlightOverlayElement.style.pointerEvents = "none";
 
                 newHighlightOverlayElement.appendChild(textNode);
 
