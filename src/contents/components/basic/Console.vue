@@ -60,7 +60,7 @@
       </div>
     </details>
 
-    <p>Take a screenshoot and upload it with your feedback:</p>
+    <p>Take a screenshot and upload it with your feedback:</p>
     <input
       class="DP_upload"
       id="DP_upload"
