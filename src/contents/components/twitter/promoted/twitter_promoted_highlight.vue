@@ -71,6 +71,7 @@ export default {
 
             if (this.highlightOverlayElementDict.has(target) === false) {
                 let newHighlightOverlayElement = document.createElement("div");
+                newHighlightOverlayElement.className = "twitter-promoted-highlight";
                 newHighlightOverlayElement.style.padding = "5rem";
                 newHighlightOverlayElement.style.backgroundColor = "transparent";
                 newHighlightOverlayElement.style.borderWidth = "3px";
@@ -95,8 +96,45 @@ export default {
         })
       }
     },
+    hideAllOverlays() {
+      let fetchedHighlightDivs = document.getElementsByClassName("twitter-promoted-highlight");
+      for (let i = 0; i < fetchedHighlightDivs.length; i++) {
+        fetchedHighlightDivs[i].style.visibility = "hidden";
+      }
+    },
+    showAllOverlays() {
+      let fetchedHighlightDivs = document.getElementsByClassName("twitter-promoted-highlight");
+      for (let i = 0; i < fetchedHighlightDivs.length; i++) {
+        fetchedHighlightDivs[i].style.visibility = "visible";
+      }
+    }
   },
   mounted() {
+
+    // check if the url changes, if so, don't show anything
+    let previousUrl = "";
+
+    const observer = new MutationObserver(() => {
+      if (window.location.href !== previousUrl) {
+        console.log(`URL changed from ${previousUrl} to ${window.location.href}`);
+        previousUrl = window.location.href;
+
+        // do your thing
+        if (window.location.href.indexOf("twitter.com/home") !== -1) {
+          console.log("Show all overlays");
+          this.showAllOverlays();
+        } else {
+          console.log("Hide all overlays");
+          this.hideAllOverlays();
+        }
+        
+      }
+    });
+    const config = { subtree: true, childList: true };
+    // start observing change
+    observer.observe(document, config);
+
+
     window.addEventListener("scroll", () => {
       if (this.highlight_added) {
         console.log("scroll from twitter sponsored hightlight");

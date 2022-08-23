@@ -112,7 +112,7 @@ export default {
                 bannerElement.children[i].style.top = '0px';
               }
             }
-          } else if (url.search(/twitter.com/) !== -1) {
+          } else if (url.search(/twitter.com\/home/) !== -1) {
             setTimeout(() => {
               let searchElement = document.querySelectorAll(
                 '[aria-label="Search Twitter"]'
