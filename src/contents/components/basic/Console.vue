@@ -161,7 +161,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .DP_console {
-  @apply flex flex-col gap-[8px] items-start fixed right-0 top-0 p-[16px] w-[400px] font-cabin bg-background z-infinite text-white text-[12px];
+  @apply flex flex-col gap-[8px] items-start fixed right-0 top-0 p-[16px] w-[400px] font-cabin bg-background z-infinite text-white text-[12px] text-left;
+
+  h1 {
+    @apply text-[24px] font-cabin text-white text-left;
+  }
 
   .DP_text_area {
     @apply block p-[10px] w-full h-[200px] text-[14px] rounded-[4px] border-[1px] bg-dark border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500;
@@ -209,18 +213,18 @@ export default {
     @apply bg-background text-white duration-300;
 
     summary {
-      @apply bg-inherit px-[20px] py-[8px] font-cabin text-white text-[14px] cursor-pointer border-[1px] rounded-[4px] select-none;
+      @apply bg-inherit px-[20px] py-[8px] font-cabin text-white text-[14px] cursor-pointer border-[1px] rounded-[4px] select-none text-left;
     }
 
     div {
-      @apply bg-background py-[8px] font-cabin text-[12px] leading-[18px] font-light text-white;
+      @apply bg-background py-[8px] font-cabin text-[12px] leading-[18px] font-light text-white text-left;
     }
 
     ul {
       @apply list-disc ml-[40px] mb-[8px] text-white;
 
       li {
-        @apply text-white;
+        @apply text-white text-left;
       }
     }
   }
