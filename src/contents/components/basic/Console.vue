@@ -94,7 +94,7 @@ export default {
     currentURL: {
       type: String
     },
-    isConsole:{
+    isConsole: {
       type: Boolean
     }
   },
@@ -166,7 +166,7 @@ export default {
         });
       // console.log(this.screenshot);
       this.$emit('closeConsole', 'close console');
-      alert('Your note has been sent!');
+      alert('Your note has been sent! Thanks!');
     },
     openAlert() {
       this.$emit('openAlert', 'open alert');
