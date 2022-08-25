@@ -2,63 +2,66 @@
   <div id="DP_console" class="DP_console">
     <h1>Diary Note Submission</h1>
     <!-- The First FAQ -->
-    <details class="DP_question_one" open>
-      <summary>What is the dark pattern you want to talk about?</summary>
-      <div>
-        <ul>
-          <li>
-            How does the dark pattern affect your browsing experience?
-          </li>
-          <li>
-            Do you think our provided interventions help improve your
-            experience?
-          </li>
-          <li>
-            Is there a better intervention you can think of?
-          </li>
-        </ul>
-        <textarea
-          id="message"
-          rows="4"
-          class="DP_text_area"
-          placeholder="Write your feedback..."
-          v-model="questionOne"
-        ></textarea>
-      </div>
-    </details>
 
-    <details class="DP_question_two">
-      <summary
-        >For the Dark Pita extension, anything interesting or any issue you
-        found when using it?</summary
-      >
-      <div>
-        <textarea
-          id="message"
-          rows="4"
-          class="DP_text_area"
-          placeholder="Write your feedback..."
-          v-model="questionTwo"
-        ></textarea>
-      </div>
-    </details>
+    <div class="DP_question DP_scrollbar">
+      <details class="DP_question_one" open>
+        <summary>What is the dark pattern you want to talk about?</summary>
+        <div>
+          <ul>
+            <li>
+              How does the dark pattern affect your browsing experience?
+            </li>
+            <li>
+              Do you think our provided interventions help improve your
+              experience?
+            </li>
+            <li>
+              Is there a better intervention you can think of?
+            </li>
+          </ul>
+          <textarea
+            id="message"
+            rows="4"
+            class="DP_text_area"
+            placeholder="Write your feedback..."
+            v-model="questionOne"
+          ></textarea>
+        </div>
+      </details>
 
-    <details class="DP_question_three">
-      <summary
-        >Did you encounter things related to dark patterns that you found
-        meaningful or interesting, not limited to our targeted dark patterns and
-        interventions?</summary
-      >
-      <div>
-        <textarea
-          id="message"
-          rows="4"
-          class="DP_text_area"
-          placeholder="Write your feedback..."
-          v-model="questionThree"
-        ></textarea>
-      </div>
-    </details>
+      <details class="DP_question_two">
+        <summary
+          >For the Dark Pita extension, anything interesting or any issue you
+          found when using it?</summary
+        >
+        <div>
+          <textarea
+            id="message"
+            rows="4"
+            class="DP_text_area"
+            placeholder="Write your feedback..."
+            v-model="questionTwo"
+          ></textarea>
+        </div>
+      </details>
+
+      <details class="DP_question_three">
+        <summary
+          >Did you encounter things related to dark patterns that you found
+          meaningful or interesting, not limited to our targeted dark patterns
+          and interventions?</summary
+        >
+        <div>
+          <textarea
+            id="message"
+            rows="4"
+            class="DP_text_area"
+            placeholder="Write your feedback..."
+            v-model="questionThree"
+          ></textarea>
+        </div>
+      </details>
+    </div>
 
     <p>Take a screenshot and upload it with your feedback:</p>
     <input
@@ -166,6 +169,28 @@ export default {
 
   .DP_upload {
     @apply block w-full font-cabin font-normal text-[14px] text-gray-900 bg-gray-50 rounded-[4px] border border-gray-300 cursor-pointer focus:outline-none;
+  }
+
+  .DP_question {
+    @apply flex flex-col gap-[8px] w-full h-[500px] overflow-scroll;
+  }
+
+  .DP_scrollbar::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+  }
+
+  .DP_scrollbar::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 5px;
+    background: #aeaeae;
+  }
+
+  .DP_scrollbar::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    border-radius: 5px;
+    background: #2c2c2c;
   }
 
   .DP_question_one {
