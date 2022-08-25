@@ -20,16 +20,8 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://twitter.com/*",
-        "https://www.amazon.com/*",
-        "https://www.facebook.com/*",
-        "https://www.youtube.com/*",
-        "https://www.netflix.com/*"
-      ],
-      "js": [
-        "contents/main.js"
-      ]
+      "matches": ["<all_urls>"],
+      "js": ["contents/main.js"]
     }
   ],
   "permissions": ["tabs", "identity", "identity.email"]

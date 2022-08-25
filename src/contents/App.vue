@@ -365,10 +365,7 @@ export default {
           this.sendAction(this.currentTab.url, 'app launched');
 
           // Define the identifier
-          if (url.search(/tailwindcss.com/) !== -1) {
-            this.website = 'Tailwind';
-            this.info = INDEX.tailwind;
-          } else if (url.search(/twitter.com/) !== -1) {
+          if (url.search(/twitter.com/) !== -1) {
             this.website = 'Twitter';
             this.info = INDEX.twitter;
           } else if (url.search(/amazon.com/) !== -1) {
@@ -383,42 +380,48 @@ export default {
           } else if (url.search(/netflix.com/) !== -1) {
             this.website = 'Netflix';
             this.info = INDEX.netflix;
+          } else {
+            this.website = 'Others';
+            this.info = null;
           }
 
           // Collect dark patterns
-          for (let target of this.info) {
-            let re = new RegExp(target.url);
-            // console.log('initialize', url);
-            if (url.search(re) !== -1) {
-              // Handle speical circumstances
-              if (target.name === 'amazon_disguised_ads') {
-                if (
-                  document.getElementById(
-                    'ad-feedback-text-auto-sparkle-hsa-tetris'
-                  ) === null
-                )
-                  continue;
-              } else if (target.name === 'amazon_buy_now') {
-                if (document.getElementById('submit.buy-now') === null)
-                  continue;
-              } else if (target.name === 'amazon_discount_price') {
-                if (
-                  document.getElementById('corePrice_desktop') === null ||
-                  document.getElementById('corePrice_desktop').innerText === ''
-                )
-                  continue;
-              }
+          if (this.info !== null) {
+            for (let target of this.info) {
+              let re = new RegExp(target.url);
+              // console.log('initialize', url);
+              if (url.search(re) !== -1) {
+                // Handle speical circumstances
+                if (target.name === 'amazon_disguised_ads') {
+                  if (
+                    document.getElementById(
+                      'ad-feedback-text-auto-sparkle-hsa-tetris'
+                    ) === null
+                  )
+                    continue;
+                } else if (target.name === 'amazon_buy_now') {
+                  if (document.getElementById('submit.buy-now') === null)
+                    continue;
+                } else if (target.name === 'amazon_discount_price') {
+                  if (
+                    document.getElementById('corePrice_desktop') === null ||
+                    document.getElementById('corePrice_desktop').innerText ===
+                      ''
+                  )
+                    continue;
+                }
 
-              if (this.targetIdentifiers === null) {
-                this.targetIdentifiers = [];
+                if (this.targetIdentifiers === null) {
+                  this.targetIdentifiers = [];
+                }
+                // console.log('initialize', target)
+                this.targetIdentifiers.push(target.identifier);
+                this.targetNames[target.name] = true;
               }
-              // console.log('initialize', target)
-              this.targetIdentifiers.push(target.identifier);
-              this.targetNames[target.name] = true;
             }
-          }
 
-          console.log('dark patterns on this site:', this.targetNames);
+            console.log('dark patterns on this site:', this.targetNames);
+          }
 
           // Whether the header alert can appear or not, depends on whether dark patterns exist or not
           if (
@@ -504,11 +507,13 @@ export default {
 
       document.body.style.position = 'relative'; // set the body relative position for the absolute postion of touchable areas
 
-      let idList = [];  // used to store the id of generated touchable areas. If there's one already generated, then we don't generate for others. Just a temporary solution.
+      let idList = []; // used to store the id of generated touchable areas. If there's one already generated, then we don't generate for others. Just a temporary solution.
 
       // Iterate all bounding boxes to generate touchable areas
       for (let i = 0; i < this.boundingBoxList.length; i++) {
-        console.log("generate touchable area for bounding box: " + this.boundingBoxList[i]);
+        console.log(
+          'generate touchable area for bounding box: ' + this.boundingBoxList[i]
+        );
         let id = this.boundingBoxList[i].id;
         if (idList.includes(id)) {
           continue;
@@ -521,7 +526,6 @@ export default {
         let height = this.boundingBoxList[i].height + 'px';
         let opacity = 1;
         this.generateSpotlightOverlay(id, left, top, width, height, opacity);
-
       }
     },
     generateSpotlightOverlay(id, left, top, width, height, opacity = 0.5) {
@@ -806,8 +810,6 @@ export default {
       if (this.isMask) {
         this.mask.innerHTML = '';
       }
-
-      
 
       this.overlayWidth = Math.max(
         document.documentElement.clientWidth || 0,
