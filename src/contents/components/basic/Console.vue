@@ -104,7 +104,39 @@ export default {
       questionTwo: '',
       questionThree: '',
       screenshot: '',
-      interventionState: null
+      interventionState: {
+        amazon_buy_now_fairness: 'off',
+        amazon_buy_now_friction: 'off',
+        amazon_buy_now_hide: 'off',
+        amazon_discount_price_action: 'off',
+        amazon_discount_price_disclosure: 'off',
+        amazon_discount_price_hide: 'off',
+        amazon_discount_price_reflection: 'off',
+        amazon_disguised_ads_counterfact: 'off',
+        amazon_disguised_ads_disclosure: 'off',
+        amazon_disguised_ads_friction: 'off',
+        amazon_disguised_ads_hide: 'off',
+        amazon_home_card_focus: 'off',
+        amazon_home_card_progress: 'off',
+        amazon_home_card_reflection: 'on',
+        facebook_reels_counterfact: 'off',
+        facebook_reels_friction: 'off',
+        facebook_reels_hide: 'off',
+        facebook_suggested_for_you_hide: 'off',
+        facebook_suggested_for_you_highlight: 'off',
+        netflix_hugepreview_disable: 'off',
+        netflix_timeline_reflection: 'off',
+        twitter_promoted_friction: 'off',
+        twitter_promoted_highlight: 'off',
+        twitter_whats_happening_hide: 'off',
+        youtube_recommended_video_focus: 'off',
+        youtube_recommended_video_preview: 'off',
+        youtube_recommended_video_reflection: 'off',
+        youtube_sidebar_video_focus: 'off',
+        youtube_sidebar_video_preview: 'off',
+        youtube_sidebar_video_reflection: 'off',
+        youtube_video_dislike_fairness: 'off'
+      }
     };
   },
   methods: {
@@ -120,6 +152,7 @@ export default {
         three: this.questionThree,
         timestamp: new Date().valueOf()
       };
+      // console.log(data);
       DataService.sendDiary(this.userId, data)
         .then(() => {
           console.log('send new diary successfully!');
@@ -155,12 +188,20 @@ export default {
     }
   },
   mounted() {
+    let that = this;
     chrome.storage.sync.get('savedSettings', (settings) => {
-      this.interventionState = settings;
+      if (JSON.stringify(settings.savedSettings) !== '{}') {
+        if (
+          settings.savedSettings !== undefined &&
+          settings.savedSettings !== null
+        ) {
+          that.interventionState = settings.savedSettings;
+        }
+      }
     });
 
     this.emitter.on('intervention state', (message) => {
-      this.interventionState = message;
+      that.interventionState = message;
     });
   }
 };
