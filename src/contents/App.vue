@@ -180,6 +180,7 @@
       :isAlert="isAlert"
       :currentURL="currentTab.url"
       @openAlert="openAlert"
+      @closeConsole="closeConsole"
     />
   </div>
 </template>
@@ -878,6 +879,12 @@ export default {
        */
       this.isAlert = true;
       // this.sendAction(this.currentTab.url, 'reopen banner');
+    },
+    closeConsole() {
+      /**
+       * Close the console when open the banner from console or submit diary note
+       */
+      this.isConsole = false;
     }
   },
   mounted() {

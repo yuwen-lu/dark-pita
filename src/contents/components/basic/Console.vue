@@ -93,6 +93,9 @@ export default {
     },
     currentURL: {
       type: String
+    },
+    isConsole:{
+      type: Boolean
     }
   },
   data() {
@@ -129,9 +132,12 @@ export default {
           console.log(e);
         });
       // console.log(this.screenshot);
+      this.$emit('closeConsole', 'close console');
+      alert('Your note has been sent!');
     },
     openAlert() {
       this.$emit('openAlert', 'open alert');
+      this.$emit('closeConsole', 'close console');
     },
     uploadImage() {
       const file = document.getElementById('DP_upload').files[0];
