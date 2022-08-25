@@ -161,7 +161,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .DP_console {
-  @apply flex flex-col gap-[8px] fixed right-0 top-0 p-[16px] w-[400px] font-cabin bg-background z-infinite text-white text-[12px];
+  @apply flex flex-col gap-[8px] items-start fixed right-0 top-0 p-[16px] w-[400px] font-cabin bg-background z-infinite text-white text-[12px];
 
   .DP_text_area {
     @apply block p-[10px] w-full h-[200px] text-[14px] rounded-[4px] border-[1px] bg-dark border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500;
