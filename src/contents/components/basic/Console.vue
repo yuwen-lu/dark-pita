@@ -139,7 +139,7 @@ export default {
   methods: {
     sendDiary() {
       // console.log(this.diary);
-      console.log(this.interventionState);
+      // console.log(this.interventionState);
       let data = {
         url: this.currentURL,
         screenshot: this.screenshot,
@@ -149,7 +149,7 @@ export default {
         three: this.questionThree,
         timestamp: new Date().valueOf()
       };
-      console.log(data);
+      // console.log(data);
       DataService.sendDiary(this.userId, data)
         .then(() => {
           console.log('send new diary successfully!');
