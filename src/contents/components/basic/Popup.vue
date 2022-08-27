@@ -98,10 +98,17 @@ export default {
       if (!this.isMove) {
         return;
       }
-      let leftx = event.clientX - this.leftOffset;
-      let topy = event.clientY - this.topOffset;
-      this.x = leftx;
-      this.y = topy;
+      event.preventDefault();
+      let lastUpdatedCall = null;
+      if(lastUpdatedCall) cancelAnimationFrame(lastUpdatedCall);  //if an animation frame was already requested after last repaint, cancel it in favour of the newer event
+
+      lastUpdatedCall = window.requestAnimationFrame(() => {  //save the requested frame so we can check next time if one was already requested
+        let leftx = event.clientX - this.leftOffset;
+        let topy = event.clientY - this.topOffset;
+        this.x = leftx;
+        this.y = topy;
+        lastUpdatedCall = null; // Since this frame didn't get cancelled, the lastUpdateCall should be reset so new frames can be called. 
+      })
     },
     // mouse up event
     mouseup() {
