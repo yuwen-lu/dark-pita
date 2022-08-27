@@ -156,6 +156,7 @@
       :savedSettings="savedSettings"
       :targetNames="targetNames"
       @closePop="closePop"
+      @toggleMask="toggleMask"
     />
 
     <!-- Canvas for overlay -->
@@ -869,6 +870,7 @@ export default {
       /**
        * Close header alert when click 'Close' icon in header alert
        */
+      console.log("Alert closed");
       this.isAlert = false;
       // this.sendAction(this.currentTab.url, 'close banner');
     },

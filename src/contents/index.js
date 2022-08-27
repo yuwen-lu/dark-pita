@@ -667,7 +667,7 @@ export default {
         "https://cdn.glitch.global/437de514-4247-434b-b3ad-750c6fc27691/video_streamming.png?v=1660533549076",
       pattern: "Automatic Background Preview",
       description:
-        "Netflix automatically plays the featured trailor for you upon arriving on the site.",
+        "Netflix automatically plays the featured trailer for you upon arriving on the site.",
       awareness:
         "The featured content is customized for your taste and since it automatically plays, it will likely grab your attention. You might get distracted and spend more time than you expected on this platform.",
       action: [

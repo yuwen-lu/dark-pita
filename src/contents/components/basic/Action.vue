@@ -258,6 +258,7 @@ export default {
     triggerIntervention() {
       console.log('save settings');
       this.$emit('closePop', 'close popup');
+      this.$parent.$emit('toggleMask', false);
       chrome.storage.sync.set({ savedSettings: this.interventionState });
       this.sendAction(this.interventionState, 'save settings');
     },
