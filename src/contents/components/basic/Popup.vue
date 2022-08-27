@@ -88,10 +88,15 @@ export default {
   methods: {
     mousedown(event) {
       // mouse click event
-      console.log('mouse click');
-      this.leftOffset = event.offsetX;
-      this.topOffset = event.offsetY;
-      this.isMove = true;
+      let closePopupButton = document.getElementById("closePopupButton");
+      if (closePopupButton.contains(event.target)) {
+        console.log("closePopupButton clicked");
+      } else {
+        console.log('mouse click header');
+        this.leftOffset = event.offsetX;
+        this.topOffset = event.offsetY;
+        this.isMove = true;
+      }
     },
     // mouse move event
     mousemove(event) {
@@ -129,7 +134,7 @@ export default {
       this.isPop = value;
       this.$emit('closeAll', this.isPop);
     },
-    closePop(value) {
+    closePop() {
       this.$emit('closePop', 'close popup');
     }
   },

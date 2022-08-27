@@ -858,11 +858,10 @@ export default {
       // this.sendAction(this.currentTarget, 'trigger popup');
       this.timer = new Date().getTime();
     },
-    closePop(value) {
+    closePop() {
       /**
        * Close popup panel when click 'Close' icon in popup panel
        */
-      console.log(value);
       this.isPop = false;
       // this.sendAction(this.currentTarget, 'close popup');
     },

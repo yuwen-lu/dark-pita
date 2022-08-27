@@ -1,7 +1,7 @@
 <template>
   <div class="DP_header" id="DP_header">
     <p>DARK PITA</p>
-    <button @click="closePop">
+    <button id="closePopupButton" @click="closePop">
       <svg
         width="24"
         height="24"
@@ -26,10 +26,10 @@ export default {
     }
   },
   methods: {
-    closePop(event) {
+    closePop() {
       this.$emit('closePop', 'close popup');
-      event.preventDefault();
-      event.cancelBubble = true;
+      // event.preventDefault();
+      // event.cancelBubble = true;
     }
   },
   mounted() {
