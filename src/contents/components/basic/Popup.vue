@@ -98,12 +98,8 @@ export default {
         // handle mouse move event, add the listener to document, otherwise cannot move smoothly
         document.addEventListener('mousemove', (e) => {
           if (!this.isMove) {
-            console.log("Huhhhhh?");
             return;
           }
-          console.log("Mouse Moveeeee!!!!");
-          console.log(e.clientX);
-
           e.preventDefault();
           let lastUpdatedCall = null;
           if(lastUpdatedCall) cancelAnimationFrame(lastUpdatedCall);  //if an animation frame was already requested after last repaint, cancel it in favour of the newer event
@@ -113,8 +109,6 @@ export default {
             let topy = e.clientY - this.topOffset;
             this.x = leftx;
             this.y = topy;
-            console.log("this.x = " + this.x);
-            console.log("this.y = " + this.y);
             lastUpdatedCall = null; // Since this frame didn't get cancelled, the lastUpdateCall should be reset so new frames can be called. 
           });
         });

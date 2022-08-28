@@ -93,13 +93,7 @@ export default {
     hideAllOverlays() {
       let fetchedHighlightDivs = document.getElementsByClassName("twitter-promoted-highlight");
       for (let i = 0; i < fetchedHighlightDivs.length; i++) {
-        fetchedHighlightDivs[i].style.visibility = "hidden";
-      }
-    },
-    showAllOverlays() {
-      let fetchedHighlightDivs = document.getElementsByClassName("twitter-promoted-highlight");
-      for (let i = 0; i < fetchedHighlightDivs.length; i++) {
-        fetchedHighlightDivs[i].style.visibility = "visible";
+        document.body.removeChild(fetchedHighlightDivs[i]);
       }
     }
   },
@@ -113,13 +107,17 @@ export default {
         console.log(`URL changed from ${previousUrl} to ${window.location.href}`);
         previousUrl = window.location.href;
 
-        // do your thing
+        // only show highlight on twitter homepage
         if (window.location.href.indexOf("twitter.com/home") !== -1) {
-          console.log("Show all overlays");
-          this.showAllOverlays();
+          console.log("Show all overlays again");
+          this.getTargetList();
+          this.createFrictionOverlays();
+          this.highlight_added = true;
         } else {
-          console.log("Hide all overlays");
+          console.log("Remove all overlays");
+          this.targetList = [];
           this.hideAllOverlays();
+          this.highlight_added = false;
         }
         
       }

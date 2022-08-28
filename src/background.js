@@ -11,7 +11,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   // read changeInfo data and do something with it
   // like send the new url to contentscripts.js
   console.log(changeInfo);
-  let re = /(tailwind.com)|(twitter.com)|(amazon.com)|(youtube.com)/;
+  let re = /(twitter.com)|(amazon.com)|(youtube.com)/;
   if (changeInfo.url) {
     if (changeInfo.url.search(re) !== -1) {
       // conditional check prevents sending multiple messages per refresh
