@@ -381,7 +381,7 @@ div {
 }
 
 .DP_dropdown_list {
-  @apply absolute z-infinite w-[237.5px] bg-dark rounded-[4px] divide-y divide-gray-100 shadow;
+  @apply absolute z-infinite w-[256px] bg-dark rounded-[4px] divide-y divide-gray-100 shadow;
 
   ul {
     @apply py-[4px] list-none m-0;
