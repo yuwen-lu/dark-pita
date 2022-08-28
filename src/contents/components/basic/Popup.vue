@@ -2,8 +2,6 @@
   <div class="DP_wrapper" :style="position" v-show="isPop">
     <Header
       @mousedown="mousedown"
-      @mousemove="mousemove"
-      @mouseup="mouseup"
       @mouseleave="mouseup"
       @closePop="closePop"
       :color="color"
@@ -96,28 +94,36 @@ export default {
         this.leftOffset = event.offsetX;
         this.topOffset = event.offsetY;
         this.isMove = true;
-      }
-    },
-    // mouse move event
-    mousemove(event) {
-      if (!this.isMove) {
-        return;
-      }
-      event.preventDefault();
-      let lastUpdatedCall = null;
-      if(lastUpdatedCall) cancelAnimationFrame(lastUpdatedCall);  //if an animation frame was already requested after last repaint, cancel it in favour of the newer event
+        
+        // handle mouse move event, add the listener to document, otherwise cannot move smoothly
+        document.addEventListener('mousemove', (e) => {
+          if (!this.isMove) {
+            console.log("Huhhhhh?");
+            return;
+          }
+          console.log("Mouse Moveeeee!!!!");
+          console.log(e.clientX);
 
-      lastUpdatedCall = window.requestAnimationFrame(() => {  //save the requested frame so we can check next time if one was already requested
-        let leftx = event.clientX - this.leftOffset;
-        let topy = event.clientY - this.topOffset;
-        this.x = leftx;
-        this.y = topy;
-        lastUpdatedCall = null; // Since this frame didn't get cancelled, the lastUpdateCall should be reset so new frames can be called. 
-      })
-    },
-    // mouse up event
-    mouseup() {
-      this.isMove = false;
+          e.preventDefault();
+          let lastUpdatedCall = null;
+          if(lastUpdatedCall) cancelAnimationFrame(lastUpdatedCall);  //if an animation frame was already requested after last repaint, cancel it in favour of the newer event
+
+          lastUpdatedCall = window.requestAnimationFrame(() => {  //save the requested frame so we can check next time if one was already requested
+            let leftx = e.clientX - this.leftOffset;
+            let topy = e.clientY - this.topOffset;
+            this.x = leftx;
+            this.y = topy;
+            console.log("this.x = " + this.x);
+            console.log("this.y = " + this.y);
+            lastUpdatedCall = null; // Since this frame didn't get cancelled, the lastUpdateCall should be reset so new frames can be called. 
+          });
+        });
+
+        // handle mouse up event, add the listener to document, otherwise cannot move smoothly
+        document.addEventListener('mouseup', (e) => {
+          this.isMove = false;
+        });
+      }
     },
     toggleAction(value) {
       console.log(value);
