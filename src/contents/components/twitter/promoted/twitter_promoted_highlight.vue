@@ -42,18 +42,16 @@ export default {
             list[index] = list[index].parentNode;
           }
         });
-        this.targetList = elementList;
-
-        console.log("targetList: " + this.targetList);
       } else {
         console.log("cannot find target element for twitter promoted highlight");
       }
+      this.targetList = elementList;
     },
     createFrictionOverlays() {
       if (this.targetList.length === 0) {
-        console.log(
-          "Error when creating friction overlay: target is null or undefined"
-        );
+        // console.log(
+        //   "Error when creating friction overlay: target is null or undefined"
+        // );
       } else {
         this.targetList.forEach( (target) => {
             let textNode = document.createElement("h2");
@@ -85,15 +83,11 @@ export default {
             }
 
             this.highlightOverlayElementDict.get(target).style.position = "fixed";
-            this.highlightOverlayElementDict.get(target).style.width =
-            target.offsetWidth + "px";
-            this.highlightOverlayElementDict.get(target).style.height =
-            target.offsetHeight + "px";
-            this.highlightOverlayElementDict.get(target).style.left =
-            target.getBoundingClientRect().left + "px";
-            this.highlightOverlayElementDict.get(target).style.top =
-            target.getBoundingClientRect().top + "px";
-        })
+            this.highlightOverlayElementDict.get(target).style.width = target.offsetWidth + "px";
+            this.highlightOverlayElementDict.get(target).style.height = target.offsetHeight + "px";
+            this.highlightOverlayElementDict.get(target).style.left = target.getBoundingClientRect().left + "px";
+            this.highlightOverlayElementDict.get(target).style.top = target.getBoundingClientRect().top + "px";
+        });
       }
     },
     hideAllOverlays() {
@@ -137,7 +131,6 @@ export default {
 
     window.addEventListener("scroll", () => {
       if (this.highlight_added) {
-        console.log("scroll from twitter sponsored hightlight");
         this.getTargetList();
         this.createFrictionOverlays();
       }
@@ -149,7 +142,6 @@ export default {
       );
         this.getTargetList();
        
-
         if (message === "on") {
           this.highlight_added = true;
           console.log("twitter promoted highlight on");

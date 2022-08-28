@@ -51,9 +51,9 @@ export default {
     },
     createFrictionOverlays() {
       if (this.targetList.length === 0) {
-        console.log(
-          "Error when creating friction overlay: target is null or undefined"
-        );
+        // console.log(
+        //   "Error when creating friction overlay: target is null or undefined"
+        // );
       } else {
         console.log(
           "Creating friction overlays for targetList: " + this.targetList
@@ -117,7 +117,6 @@ export default {
   mounted() {
     window.addEventListener("scroll", () => {
       if (this.friction_added) {
-        console.log("scroll from twitter sponsored friction");
         this.getTargetList();
         this.createFrictionOverlays();
       }

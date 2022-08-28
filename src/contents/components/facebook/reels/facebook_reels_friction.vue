@@ -87,7 +87,6 @@ export default {
 
         window.addEventListener('scroll', () => {
             if(this.friction_added) {
-                console.log("scroll from reels friction");
                 this.getTarget();
                 console.log("After scroll, target position: top - " + this.target.getBoundingClientRect().top + ", left - " + this.target.getBoundingClientRect().left);
                 this.createFrictionOverlay();

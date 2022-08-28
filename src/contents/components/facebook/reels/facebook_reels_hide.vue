@@ -36,7 +36,6 @@ export default {
     mounted() {
 
         window.addEventListener('scroll', () => {
-            console.log("scroll from facebook_reels_hide, reelsIsHide: " + this.reelsIsHide);
             if (this.reelsIsHide) {
                 this.getTarget();
                 if (this.target !== null && this.target !== undefined) {

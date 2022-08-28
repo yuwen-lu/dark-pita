@@ -607,9 +607,7 @@ export default {
         let elementList = [];
 
         // Set one unique selector for every dark pattern
-        if (this.website === 'Tailwind') {
-          element = document.getElementById(this.targetIdentifiers[i]);
-        } else if (this.website === 'Twitter') {
+        if (this.website === 'Twitter') {
           if (this.targetIdentifiers[i] === 'See more') {
             let retrievedHtmls = document.getElementsByTagName('span');
             for (let j = 0; j < retrievedHtmls.length; j++) {
@@ -802,8 +800,8 @@ export default {
         }
       }
 
-      // console.log('Got new list of bounding boxes');
-      // console.log(this.boundingBoxList);
+      console.log('Got new list of bounding boxes');
+      console.log(this.boundingBoxList);
     },
     refresh() {
       /**
