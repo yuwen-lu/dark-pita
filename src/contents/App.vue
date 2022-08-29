@@ -347,6 +347,15 @@ export default {
       // Add event for responsible overlay
       window.addEventListener('scroll', this.generateOverviewOverlay);
       window.addEventListener('resize', this.generateOverviewOverlay);
+      // hide top banner (alert) when in fullscreen mode
+      window.addEventListener('fullscreenchange', () => {
+        // if the fullscreen opened
+        if (document.fullscreenElement) {
+          this.isAlert = false;
+        } else {
+          this.isAlert = true;
+        }
+      });
       Paper.setup(document.getElementById('DP_canvas'));
 
       // Initialize varaiables
