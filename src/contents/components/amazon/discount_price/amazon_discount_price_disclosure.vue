@@ -5,19 +5,24 @@
 export default {
   data() {
     return {
-      target: document.querySelectorAll('[id^=apex_desktop]')[0]
+      target: document.querySelectorAll(
+        '[id^=corePriceDisplay_desktop_feature_div]'
+      )[0],
+      tag: null
     };
   },
   mounted() {
     this.emitter.on('amazon_discount_price_disclosure', (message) => {
-      this.target = document.querySelectorAll('[id^=apex_desktop]')[0];
+      this.target = document.querySelectorAll(
+        '[id^=corePriceDisplay_desktop_feature_div]'
+      )[0];
+      this.tag = document.getElementsByClassName('basisPrice')[0];
 
-      if (this.target !== null) {
+      if (this.target !== null && this.tag !== null) {
         if (message === 'on') {
           console.log('amazon discount price disclosure on');
           this.sendAction(1, 'toggle amazon_discount_price_disclosure');
-          let tag = this.target.getElementsByTagName('tr')[0].childNodes[0]
-            .textContent;
+          let tag = this.tag.textContent;
           let tooltipContent = 'This price may not be the cheapest.';
           if (tag.search(/was/i) !== -1) {
             tooltipContent =

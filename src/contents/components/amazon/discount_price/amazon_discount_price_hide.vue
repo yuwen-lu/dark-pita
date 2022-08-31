@@ -12,8 +12,8 @@ export default {
   methods: {},
   mounted() {
     this.emitter.on('amazon_discount_price_hide', (message) => {
-      this.target = document.querySelectorAll('[id^=corePrice_desktop]')[0];
-      this.price = document.getElementsByClassName('apexPriceToPay')[0];
+      this.target = document.querySelectorAll('[id^=corePriceDisplay_desktop_feature_div]')[0];
+      this.price = document.getElementsByClassName('priceToPay')[0];
       this.targetSibling = document.getElementById('desktop_unifiedPrice');
       this.priceSibling = document.getElementById(
         'jewelryPriceBreakup_feature_div'

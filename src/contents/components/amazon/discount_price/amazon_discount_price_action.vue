@@ -16,8 +16,6 @@ export default {
         if (message === 'on') {
           console.log('amazon discount price action guide on');
           this.sendAction(1, 'toggle amazon_discount_price_action');
-          let tag = this.target.getElementsByTagName('tr')[0].childNodes[0]
-            .textContent;
           let tooltipContent = 'NO Buying, 100% Saving.';
 
           this.target.innerHTML +=
