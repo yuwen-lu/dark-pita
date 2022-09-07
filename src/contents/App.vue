@@ -415,8 +415,8 @@ export default {
                     continue;
                 } else if (target.name === 'amazon_discount_price') {
                   if (
-                    document.getElementById('corePriceDisplay_desktop_feature_div') === null ||
-                    document.getElementById('corePriceDisplay_desktop_feature_div').innerText ===
+                    document.getElementById('corePrice_desktop') === null ||
+                    document.getElementById('corePrice_desktop').innerText ===
                       ''
                   )
                     continue;
