@@ -70,6 +70,12 @@ export default {
         console.log('amazon home card focus mode off');
         this.sendAction(0, 'toggle amazon_home_card_focus');
         this.recover(this.target);
+
+        let navBar = document.getElementById("navbar-main");
+        navBar.style.marginTop = "0px";
+
+        let emptyContent = document.getElementById("emptyContent");
+        emptyContent.parentNode.removeChild(emptyContent);
       }
 
       this.$emit('update');
