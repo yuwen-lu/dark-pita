@@ -49,8 +49,23 @@ export default {
       if (message === 'on') {
         console.log('amazon home card focus mode on');
         this.sendAction(1, 'toggle amazon_home_card_focus');
-        this.target = document.querySelectorAll('[id^=pageContent]');
+        this.target = document.querySelectorAll('[id^=pageContent], [id^=rhf], [id^=navBackToTop]');
         this.remove(this.target);
+
+        const emptyContent = document.createElement('div');
+        emptyContent.id = 'emptyContent';
+        emptyContent.style.height = '100vh';
+        emptyContent.style.width = '100vw';
+        emptyContent.style.backgroundColor = '#fff';
+        
+        // add empty content to screen
+        let attachTarget = document.getElementsByClassName("a-section")[0];
+        attachTarget.appendChild(emptyContent);
+
+        // move nav bar a little lower to become the focus of the screen
+        let navBar = document.getElementById("navbar-main");
+        navBar.style.marginTop = "20vh";
+
       } else if (message === 'off') {
         console.log('amazon home card focus mode off');
         this.sendAction(0, 'toggle amazon_home_card_focus');
