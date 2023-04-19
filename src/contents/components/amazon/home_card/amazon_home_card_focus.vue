@@ -59,7 +59,7 @@ export default {
         emptyContent.style.backgroundColor = '#fff';
         
         // add empty content to screen
-        let attachTarget = document.getElementsByClassName("a-section")[0];
+        let attachTarget = document.getElementById('navbar');
         attachTarget.appendChild(emptyContent);
 
         // move nav bar a little lower to become the focus of the screen

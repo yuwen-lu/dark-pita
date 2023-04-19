@@ -1,8 +1,6 @@
 <template>
   <div id="DP_console" class="DP_console">
-    <h1>Diary Note Submission</h1>
-    <!-- The First FAQ -->
-
+    <!-- <h1>Diary Note Submission</h1>
     <div class="DP_question DP_scrollbar">
       <details class="DP_question_one" open>
         <summary>What is the dark pattern you want to talk about?</summary>
@@ -73,7 +71,7 @@
     />
     <button @click="sendDiary">
       Send Note
-    </button>
+    </button> -->
     <button @click="openAlert" :disabled="isAlert || notSupport">
       Open Banner
     </button>
