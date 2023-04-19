@@ -14,9 +14,9 @@ export default {
   mounted() {
     this.emitter.on('amazon_discount_price_disclosure', (message) => {
       this.target = document.querySelectorAll(
-        '[id^=corePriceDisplay_desktop_feature_div]'
+        '[id^=corePrice_desktop]'
       )[0];
-      this.tag = document.getElementsByClassName('basisPrice')[0];
+      this.tag = document.querySelector('[id^=basisPrice]');
 
       if (this.target !== null && this.tag !== null) {
         if (message === 'on') {
