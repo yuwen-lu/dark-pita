@@ -102,8 +102,8 @@ export default {
     },
     {
       name: "amazon_discount_price",
-      identifier: "corePrice_desktop",
-      url: "www.amazon.com(\\S*)/dp",
+      identifier: "corePriceDisplay_desktop_feature_div",
+      url: "www.amazon.com(\\S*)((/dp)|(/gp))",
       type: "online shopping platform",
       tag: ["information hiding"],
       icon:

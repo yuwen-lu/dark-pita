@@ -415,8 +415,8 @@ export default {
                     continue;
                 } else if (target.name === "amazon_discount_price") {
                   if (
-                    document.getElementById("corePrice_desktop") === null ||
-                    document.getElementById("corePrice_desktop").innerText ===
+                    document.getElementById("corePrice_feature_div") === null ||
+                    document.getElementById("corePrice_feature_div").innerText ===
                       ""
                   )
                     continue;
@@ -642,6 +642,13 @@ export default {
             );
           }
         } else if (this.website === "Amazon") {
+          // Add these debug logs
+          console.log("Checking Amazon elements:");
+          console.log("Buy Now button exists:", document.getElementById("submit.buy-now"));
+          console.log("ccorePrice_feature_div exists:", document.getElementById("corePrice_feature_div"));
+          console.log("Elements with id starting with corePrice_desktop:", document.querySelectorAll('[id^=corePrice_desktop]').length);
+          console.log("Elements with id starting with apex_desktop:", document.querySelectorAll('[id^=apex_desktop]').length);
+
           if (this.targetIdentifiers[i] === "submit.buy-now") {
             element = document.getElementById(this.targetIdentifiers[i]);
           } else if (
@@ -809,7 +816,7 @@ export default {
         }
       }
 
-      console.log("Got new list of bounding boxes");
+      console.log("Got new list of bounding boxes :>");
       console.log(this.boundingBoxList);
     },
     refresh() {
